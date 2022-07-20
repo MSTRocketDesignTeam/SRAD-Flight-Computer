@@ -14,6 +14,11 @@ It aims to reduce complexity and overhead by doing away with the modular design 
 <em><strong>Once this platform has adequately matured, it is intended to be a viable parachute deployment system for S&T's Rockets.</strong></em>
 
 # Documentation
+```mermaid
+flowchart TD
+1["Sphinx + Breathe + Doxygen"] --> 2["Github Pages"]
+```
+<strong> Work in Progress</strong>
 
 # Development 
 
