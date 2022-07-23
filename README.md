@@ -53,7 +53,7 @@ There are three main hardware projects:
 3. Flight Computer 
 
 ### Firmware:
-The firmware directory will contain all of the code (C++) necessary to operate the above hardware. Once the boards have been designed and assembled this is where significant effort will be made
+The firmware directory will contain all of the code (C++) necessary to operate the above hardware. Once the boards have been designed and assembled this is where significant effort will be made.
 
 ### Software: 
 The software directory will contain the code (Python) for the flight computer's computer interface. This program will be responsible for configuring the flight computer prior to launch as well as for displaying live flight data as received over the telemetry radio. 
