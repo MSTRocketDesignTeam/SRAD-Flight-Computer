@@ -43,4 +43,4 @@ jobs:
           cd /home/runner
           echo $GITHUB_WORKSPACE
           ls
-          uname
+          uname -a
