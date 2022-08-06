@@ -45,7 +45,7 @@ end
 This repo contains three main sections, hardware, firmware, and software.
 
 ### Hardware:
-The hardware directory will contain all of the files related to the design and assembly of the PCBs. This includes Altium Designer projects as well as BOMs. 
+The hardware directory will contain all of the files related to the design and assembly of the PCBs. This includes KiCad projects as well as BOMs. 
 
 There are three main hardware projects:
 1. Dev Board
