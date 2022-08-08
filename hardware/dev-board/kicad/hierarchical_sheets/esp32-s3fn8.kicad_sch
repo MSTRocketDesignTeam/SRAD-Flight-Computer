@@ -1,0 +1,18 @@
+(kicad_sch (version 20211123) (generator eeschema)
+
+  (uuid 16cba032-5832-4650-b5ce-00ae5afa2599)
+
+  (paper "USLetter")
+
+  (title_block
+    (title "ESP32-S3FN8")
+    (date "2022-08-06")
+    (rev "V1.0 ")
+    (company "Missouri S&T Rocket Design Team")
+    (comment 1 "Seth Sievers")
+  )
+
+  (lib_symbols
+  )
+
+)
