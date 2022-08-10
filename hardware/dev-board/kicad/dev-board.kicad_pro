@@ -327,15 +327,23 @@
     ],
     [
       "e5dd472d-0147-4d93-be86-6e3d2b752417",
-      "ICM-20608G"
+      "General Purpose IMU"
     ],
     [
       "c3492924-c0d9-4dc2-95f4-5ff5fb394f57",
-      "KX134-1211"
+      "High G Accelerometer"
     ],
     [
       "6d64e4c5-737f-4cca-9693-600bf993863a",
-      "MS5611"
+      "Barometer"
+    ],
+    [
+      "4df84968-9e4f-499d-a301-87e9b49593a0",
+      "Magnetometer"
+    ],
+    [
+      "aac83767-0099-4d8a-bb8e-c64d3232847f",
+      "GPS"
     ]
   ],
   "text_variables": {}
