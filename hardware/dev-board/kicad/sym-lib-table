@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name "SRAD-FC")(type "KiCad")(uri "${KIPRJMOD}/symbols/SRAD-FC.kicad_sym")(options "")(descr ""))
   (lib (name "ZOE-M8Q")(type "Legacy")(uri "${KIPRJMOD}/symbols/ZOE-M8Q.lib")(options "")(descr ""))
+  (lib (name "CONSMA020.062-G")(type "Legacy")(uri "${KIPRJMOD}/symbols/CONSMA020.062-G.lib")(options "")(descr ""))
 )

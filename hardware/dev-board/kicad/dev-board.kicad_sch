@@ -138,6 +138,9 @@
     (path "/6d64e4c5-737f-4cca-9693-600bf993863a/54666779-d93d-4cd9-917b-7208c05d5e49"
       (reference "#PWR0113") (unit 1) (value "GND") (footprint "")
     )
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/3f5590b1-8493-4c2e-98a6-fa8f13e6f4bf"
+      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
+    )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/4958e893-ec13-46a3-a468-58710e3a15b7"
       (reference "#PWR?") (unit 1) (value "GND") (footprint "")
     )
@@ -148,6 +151,9 @@
       (reference "#PWR?") (unit 1) (value "GND") (footprint "")
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/cea2b267-c578-4e93-9b80-455089c68536"
+      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/f01aa4fe-3568-4a8a-9d36-09c0eb513e7d"
       (reference "#PWR?") (unit 1) (value "GND") (footprint "")
     )
     (path "/e5dd472d-0147-4d93-be86-6e3d2b752417/54a30f3f-ae95-42a2-b47b-42237bf566f3"
@@ -207,11 +213,17 @@
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/ccd2cf2c-0efc-4831-ada6-3f9286958fdd"
       (reference "C?") (unit 1) (value "0.1μF") (footprint "")
     )
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/3d0e154e-4f61-4381-918f-02dca0f66eff"
+      (reference "D?") (unit 1) (value "SZESD9R3.3ST5G") (footprint "Diode_SMD:D_SOD-923")
+    )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/5a8309b5-37f9-4b94-879e-c93cdbd7eda0"
       (reference "D?") (unit 1) (value "CUS08F30,H3F") (footprint "Diode_SMD:D_SOD-323_HandSoldering")
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/1f70d94d-fbd9-40b4-9cf0-2d239e6f83df"
       (reference "FB?") (unit 1) (value "2506036017H0") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
+    )
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/e18e32fc-d6a1-4b3c-87d5-a860d2117316"
+      (reference "J?") (unit 1) (value "CONSMA020.062-G") (footprint "SRAD-FC:CONSMA020.062-G")
     )
     (path "/e5dd472d-0147-4d93-be86-6e3d2b752417/d1a6f6ed-4429-4624-b304-e2217c9e046f"
       (reference "JP1") (unit 1) (value "SolderJumper_2_Open") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
