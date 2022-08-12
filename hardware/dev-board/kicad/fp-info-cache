@@ -1,4 +1,4 @@
-20391582283163632
+20393242460396151
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -78931,6 +78931,13 @@ rotary encoder
 0
 5
 4
+SRAD-FC
+CAP_DSK-3R3H703T414-HLL
+
+
+0
+2
+2
 SRAD-FC
 CONSMA020.062-G
 
