@@ -28,6 +28,18 @@
     )
   )
 
+  (sheet (at 170.815 90.17) (size 24.765 22.86) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 255 255 194 1.0000))
+    (uuid 602f4caf-b9d3-45bf-9e3b-788a618f0058)
+    (property "Sheet name" "Telemetry Radio" (id 0) (at 170.815 89.4584 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "hierarchical_sheets/sx1262.kicad_sch" (id 1) (at 170.815 113.6146 0)
+      (effects (font (size 1.27 1.27)) (justify left top) hide)
+    )
+  )
+
   (sheet (at 144.78 55.88) (size 24.13 25.4) (fields_autoplaced)
     (stroke (width 0.1524) (type solid) (color 0 0 0 0))
     (fill (color 255 255 194 1.0000))
@@ -96,6 +108,7 @@
     (path "/6d64e4c5-737f-4cca-9693-600bf993863a" (page "5"))
     (path "/4df84968-9e4f-499d-a301-87e9b49593a0" (page "6"))
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f" (page "7"))
+    (path "/602f4caf-b9d3-45bf-9e3b-788a618f0058" (page "8"))
   )
 
   (symbol_instances
@@ -161,9 +174,6 @@
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/a63e5548-ff27-4208-88b4-169dc28b9b39"
       (reference "#PWR?") (unit 1) (value "+3V3") (footprint "")
-    )
-    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/fa135ae3-5704-436c-b3b8-0867a63a5ef3"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
     )
     (path "/e5dd472d-0147-4d93-be86-6e3d2b752417/54a30f3f-ae95-42a2-b47b-42237bf566f3"
       (reference "C1") (unit 1) (value "10nF") (footprint "")
@@ -291,16 +301,22 @@
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/2824ff51-5a76-49b4-a0f4-dd9499d1ccdf"
       (reference "JP?") (unit 1) (value "SolderJumper_2_Open") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
-    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/2b8e48c8-8702-4ac5-9b05-393e32fbad9d"
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/67b8ac51-465d-4daa-92e0-75034918ccaa"
       (reference "JP?") (unit 1) (value "SolderJumper_2_Open") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
-    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/67b8ac51-465d-4daa-92e0-75034918ccaa"
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/6f81843e-c373-4d63-b50b-6b3c15e4ba2d"
       (reference "JP?") (unit 1) (value "SolderJumper_2_Open") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/783df045-e783-48bc-93b2-9b16531a8d9b"
       (reference "JP?") (unit 1) (value "SolderJumper_2_Open") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/79086c16-ae67-4efb-b5de-4e5e958ee902"
+      (reference "JP?") (unit 1) (value "SolderJumper_2_Open") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
+    )
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/961ed7ae-6761-42cd-865f-d264883f31ce"
+      (reference "JP?") (unit 1) (value "SolderJumper_3_Open") (footprint "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm")
+    )
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/fb87cf30-3827-4eb5-af03-f09f9967b4c7"
       (reference "JP?") (unit 1) (value "SolderJumper_2_Open") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
     (path "/e5dd472d-0147-4d93-be86-6e3d2b752417/152b1f8d-c066-4d04-be9d-18dd57ab3ec8"
@@ -314,12 +330,6 @@
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/6ce469b5-bb00-4a23-a314-d84ce35927d8"
       (reference "R4") (unit 1) (value "47Ω") (footprint "")
-    )
-    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/3c082c03-b2b9-4bee-a501-92787a268a6a"
-      (reference "R?") (unit 1) (value "10K") (footprint "")
-    )
-    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/4b52e462-b9a5-434a-aa4b-ab1ee9566aef"
-      (reference "R?") (unit 1) (value "10K") (footprint "")
     )
     (path "/e5dd472d-0147-4d93-be86-6e3d2b752417/fcdb7807-0bfa-4cc7-8f22-9b403312714d"
       (reference "TP1") (unit 1) (value "Header") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical")
@@ -381,16 +391,25 @@
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/2a628c51-f425-4b10-bdef-08784427a099"
       (reference "TP?") (unit 1) (value "Header") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical")
     )
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/2f643400-5a36-4bdf-82af-29fe092842fe"
+      (reference "TP?") (unit 1) (value "Header") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical")
+    )
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/31bd57f0-7747-49a5-9e72-b472ea09de2a"
+      (reference "TP?") (unit 1) (value "Header") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical")
+    )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/5def7c4b-ab28-4048-857b-6075bf53ffed"
       (reference "TP?") (unit 1) (value "Header") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical")
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/64dec992-cf32-4994-b08b-660527bf2081"
       (reference "TP?") (unit 1) (value "Header") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical")
     )
-    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/8c218e47-f7cc-4340-b28a-44ad16e0094d"
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/8b8dccf4-24fd-4d63-9e75-9aea5fb0e203"
       (reference "TP?") (unit 1) (value "Header") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical")
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/c5368788-60f6-4a6d-ba3f-bd41db5baaf2"
+      (reference "TP?") (unit 1) (value "Header") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical")
+    )
+    (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/de77de17-d39a-42a7-86f6-72c4b920738f"
       (reference "TP?") (unit 1) (value "Header") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical")
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/eae57fbe-989c-49f5-a8e6-7ad51c6cbd3e"

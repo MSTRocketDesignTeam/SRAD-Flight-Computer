@@ -344,6 +344,10 @@
     [
       "aac83767-0099-4d8a-bb8e-c64d3232847f",
       "GPS"
+    ],
+    [
+      "602f4caf-b9d3-45bf-9e3b-788a618f0058",
+      "Telemetry Radio"
     ]
   ],
   "text_variables": {}
