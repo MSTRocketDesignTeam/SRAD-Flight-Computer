@@ -2498,7 +2498,7 @@
     (property "Value" "SolderJumper_3_Open" (id 1) (at 199.8781 156.845 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm" (id 2) (at 201.93 156.845 0)
+    (property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm" (id 2) (at 201.93 156.845 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 201.93 156.845 0)

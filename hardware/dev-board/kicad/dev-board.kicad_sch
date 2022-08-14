@@ -172,6 +172,9 @@
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/3a1f40c4-cec7-4dc6-904a-b5bd9c4f06bf"
       (reference "#PWR?") (unit 1) (value "GND") (footprint "")
     )
+    (path "/4df84968-9e4f-499d-a301-87e9b49593a0/4c342d79-647f-442a-bae4-8724fa6aab47"
+      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
+    )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/a63e5548-ff27-4208-88b4-169dc28b9b39"
       (reference "#PWR?") (unit 1) (value "+3V3") (footprint "")
     )
@@ -231,6 +234,9 @@
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/3df9060c-3ad1-483f-bd91-656d09be7ebe"
       (reference "C19") (unit 1) (value "10μF") (footprint "")
+    )
+    (path "/4df84968-9e4f-499d-a301-87e9b49593a0/18d56a25-2bac-4214-8f9f-4e9aa34316d3"
+      (reference "C?") (unit 1) (value "10nF") (footprint "")
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/3d0e154e-4f61-4381-918f-02dca0f66eff"
       (reference "D1") (unit 1) (value "SZESD9R3.3ST5G") (footprint "Diode_SMD:D_SOD-923")
@@ -314,7 +320,7 @@
       (reference "JP?") (unit 1) (value "SolderJumper_2_Open") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/961ed7ae-6761-42cd-865f-d264883f31ce"
-      (reference "JP?") (unit 1) (value "SolderJumper_3_Open") (footprint "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm")
+      (reference "JP?") (unit 1) (value "SolderJumper_3_Open") (footprint "Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
     (path "/aac83767-0099-4d8a-bb8e-c64d3232847f/fb87cf30-3827-4eb5-af03-f09f9967b4c7"
       (reference "JP?") (unit 1) (value "SolderJumper_2_Open") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
