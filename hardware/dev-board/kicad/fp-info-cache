@@ -1,4 +1,4 @@
-20393242460396151
+20394903154801853
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -78945,6 +78945,13 @@ CONSMA020.062-G
 0
 5
 2
+SRAD-FC
+ECS-TXO-25CSMV-320-BM-TR
+
+
+0
+4
+4
 SRAD-FC
 QFN-56-1EP_7x7mm_P0.4mm_EP4.0x4.0mm
 QFN, 56 Pin (https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf#page=634), generated with kicad-footprint-generator ipc_noLead_generator.py
