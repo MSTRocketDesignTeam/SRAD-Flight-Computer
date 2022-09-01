@@ -626,7 +626,7 @@
       (reference "U?") (unit 1) (value "sx1262") (footprint "Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm_ThermalVias")
     )
     (path "/602f4caf-b9d3-45bf-9e3b-788a618f0058/fb467a35-c81e-4038-a51b-9ebd1b806b53"
-      (reference "U?") (unit 1) (value "pe4242") (footprint "")
+      (reference "U?") (unit 1) (value "pe4242") (footprint "Package_TO_SOT_SMD:SOT-363_SC-70-6")
     )
     (path "/602f4caf-b9d3-45bf-9e3b-788a618f0058/fb3ccb80-887c-4a2c-98a8-66fd107939bf"
       (reference "X?") (unit 1) (value "ECS-TXO-25CSMV-320-BM-TR") (footprint "SRAD-FC:ECS-TXO-25CSMV-320-BM-TR")

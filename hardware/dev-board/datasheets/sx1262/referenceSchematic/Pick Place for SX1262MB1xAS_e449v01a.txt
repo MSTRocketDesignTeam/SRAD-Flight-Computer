@@ -1,0 +1,92 @@
+Altium Designer Pick and Place Locations
+\\ch02netappc1-leg\groups\laboratory\pcblabo\users\marguier\pcb_altium\sx1261\sx1262_e449v01a\Project Outputs for SX126x_e449v01a\Pick Place for SX126x_e449v01a.txt
+
+========================================================================================================================
+File Design Information:
+
+Date:       15.01.18
+Time:       14:41
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mm
+
+Designator      Comment          Layer       Footprint                         Center-X(mm) Pad-X(mm) Pad-Y(mm) Center-Y(mm) Rotation Description                                          
+C1              Cap              TopLayer    RLC_402_SMD                       62.700       62.700    32.700    32.150       270      Capacitor SMD                                        
+C2              Cap              TopLayer    RLC_402_SMD                       63.600       63.600    32.700    32.150       270      Capacitor SMD                                        
+C3              Cap              TopLayer    RLC_402_SMD                       65.450       65.450    31.600    31.050       270      Capacitor SMD                                        
+C4              Cap              TopLayer    RLC_402_SMD                       66.950       67.500    31.450    31.450       180      Capacitor SMD                                        
+C5              Cap              TopLayer    RLC_402_SMD                       68.450       68.450    31.600    31.050       270      Capacitor SMD                                        
+C6              Cap              TopLayer    RLC_402_SMD                       69.950       70.500    30.500    30.500       180      Capacitor SMD                                        
+C7              Cap              TopLayer    RLC_402_SMD                       73.550       73.550    31.600    31.050       270      Capacitor SMD                                        
+C8              Cap              TopLayer    RLC_402_SMD                       78.050       78.600    29.675    29.675       180      Capacitor SMD                                        
+C9              Cap              TopLayer    RLC_402_SMD                       80.900       80.900    28.575    29.125       90       Capacitor SMD                                        
+C10             Cap              TopLayer    RLC_402_SMD                       83.900       83.900    28.575    29.125       90       Capacitor SMD                                        
+C11             Cap              TopLayer    RLC_402_SMD                       63.950       64.500    29.550    29.550       180      Capacitor SMD                                        
+C12             Cap              TopLayer    RLC_402_SMD                       63.950       64.500    28.450    28.450       180      Capacitor SMD                                        
+C13             Cap              TopLayer    RLC_402_SMD                       65.450       65.450    28.450    29.000       90       Capacitor SMD                                        
+C14             Cap              TopLayer    RLC_402_SMD                       76.450       76.450    32.100    32.650       90       Capacitor SMD                                        
+C15             Cap              TopLayer    RLC_402_SMD                       76.450       76.450    27.250    26.700       270      Capacitor SMD                                        
+C16             Cap              TopLayer    RLC_402_SMD                       61.050       61.050    33.200    32.650       270      Capacitor SMD                                        
+C17             Cap              TopLayer    RLC_402_SMD                       56.000       56.000    30.300    30.850       90       Capacitor SMD                                        
+C18             Cap              TopLayer    RLC_402_SMD                       56.000       56.000    27.400    27.950       90       Capacitor SMD                                        
+C20             Cap              TopLayer    rlc_603_smd                       25.300       26.050    16.900    16.900       180      Capacitor SMD                                        
+C21             Cap              TopLayer    rlc_603_smd                       25.300       26.050    12.350    12.350       180      Capacitor SMD                                        
+C22             Cap              TopLayer    rlc_805_smd                       18.120       18.120    16.000    15.100       270      Capacitor SMD                                        
+C23             Cap              TopLayer    RLC_402_SMD                       19.420       19.420    15.650    15.100       270      Capacitor SMD                                        
+C24             Cap              TopLayer    RLC_402_SMD                       25.050       25.600    6.750     6.750        180      Capacitor SMD                                        
+C26             Cap              TopLayer    rlc_805_smd                       21.550       22.450    7.000     7.000        180      Capacitor SMD                                        
+C27             Cap              TopLayer    RLC_402_SMD                       58.900       59.450    32.900    32.900       180      Capacitor SMD                                        
+C28             Cap              TopLayer    RLC_402_SMD                       60.425       60.425    34.475    35.025       90       Capacitor SMD                                        
+FB1             Ferrite beads    TopLayer    RLC_402_SMD                       61.325       61.325    34.475    35.025       90       Ferrite beads                                        
+FR0             Resistor         TopLayer    RLC_402_SMD                       36.000       36.000    8.550     8.000        270      Resistor SMD - IEC symbol version                    
+FR1             Resistor         TopLayer    RLC_402_SMD                       37.100       37.100    8.550     8.000        270      Resistor SMD - IEC symbol version                    
+GND             Test Pin         TopLayer    pin_0.9mm                         61.000       61.000    5.000     5.000        90       Test Pin                                             
+J1              Header 8         BottomLayer HDR1X8                            37.310       46.200    53.150    53.150       180      Header, 8-Pin	on Bottom side for mbed connection                                       
+J2              Header 10        BottomLayer HDR1X10                           13.070       24.500    53.150    53.150       180      Header, 10-Pin	on Bottom side for mbed connection                                       
+J3              Header 8         BottomLayer HDR1X8                            19.390       10.500    4.890     4.890        360      Header, 8-Pin	on Bottom side for mbed connection                                        
+J4              Header 6         BottomLayer HDR1X6                            39.850       33.500    4.890     4.890        360      Header, 6-Pin	on Bottom side for mbed connection                                        
+J1_DISP         Header 8         TopLayer    HDR1X8                            37.310       46.200    50.610    50.610       180      Header, 8-Pin	on Top side for display                                         
+J2_DISP         Header 10        TopLayer    HDR1X10                           13.070       24.500    50.610    50.610       180      Header, 10-Pin	on Top side for display                                        
+J3_DISP         Header 8         TopLayer    HDR1X8                            19.390       10.500    2.350     2.350        360      Header, 8-Pin	on Top side for display                                         
+J4_DISP         Header 6         TopLayer    HDR1X6                            39.850       33.500    2.350     2.350        360      Header, 6-Pin	on Top side for display                                         
+L1              Inductor         TopLayer    RLC_402_SMD                       64.500       64.500    30.500    31.050       90       Inductor SMD                                         
+L2              Inductor         TopLayer    RLC_402_SMD                       63.000       62.450    30.500    30.500       360      Inductor SMD                                         
+L3              Inductor         TopLayer    RLC_402_SMD                       66.950       66.400    30.500    30.500       360      Inductor SMD                                         
+L4              Inductor         TopLayer    RLC_402_SMD                       72.000       71.450    30.500    30.500       360      Inductor SMD                                         
+L5              Inductor         TopLayer    RLC_402_SMD                       82.400       81.850    29.675    29.675       360      Inductor SMD                                         
+L6              Inductor         TopLayer    RLC_402_SMD                       62.450       62.450    28.450    29.000       90       Inductor SMD                                         
+L7              Inductor         TopLayer    rlc_805_smd_enlarged              54.550       54.550    31.700    30.800       270      Inductor SMD                                         
+L8              Inductor         TopLayer    rlc_402_smd                       56.000       56.000    33.400    32.850       270      Inductor SMD                                         
+Logo Bot        Logo symbol      BottomLayer logo_semtech_horiz_size4          -95.051      -95.051   -17.100   -17.100      90       Schematic symbol for Logo                            
+Logo ESD        Logo symbol      TopLayer    Logo_ESD                          -95.051      -95.051   -17.100   -17.100      360      Schematic symbol for Logo                            
+Logo Recycling1 Logo symbol      BottomLayer Logo_Recycling1                   -95.051      -95.051   -17.100   -17.100      90       Schematic symbol for Logo                            
+Logo Semtech S  Logo symbol      TopLayer    logo_semtech_horiz_size3          -95.051      -95.051   -17.100   -17.100      360      Schematic symbol for Logo                            
+Logo_LoRA1      Logo symbol      BottomLayer LOGO_LORA_SIZE4                   -95.051      -95.051   -17.100   -17.100      90       Schematic symbol for Logo                            
+Logo_LoRA2      Logo symbol      TopLayer    LOGO_LORA_SIZE3                   -95.051      -95.051   -17.100   -17.100      360      Schematic symbol for Logo                            
+Other           Resistor         TopLayer    RLC_402_SMD                       75.500       74.950    3.050     3.050        360      Resistor SMD - IEC symbol version                    
+Q2              TCXO             TopLayer    TCXO_2.0x1.6mm                    58.850       58.250    35.575    34.675       270      TCXO                                                 
+R1              Resistor         TopLayer    rlc_603_smd                       22.600       23.350    16.900    16.900       180      Resistor SMD - IEC symbol version                    
+R2              Resistor         TopLayer    rlc_603_smd                       22.600       23.350    12.350    12.350       180      Resistor SMD - IEC symbol version                    
+R3              Resistor         TopLayer    RLC_402_SMD                       75.500       75.500    27.250    26.700       270      Resistor SMD - IEC symbol version                    
+R4              Resistor         TopLayer    RLC_402_SMD                       75.550       75.550    32.100    32.650       90       Resistor SMD - IEC symbol version                    
+R5              Resistor         TopLayer    rlc_402_smd                       58.900       59.450    32.000    32.000       180      Resistor SMD - IEC symbol version                    
+R11             Resistor         TopLayer    RLC_402_SMD                       22.050       22.050    10.400    9.850        270      Resistor SMD - IEC symbol version                    
+R12             Resistor         TopLayer    RLC_402_SMD                       21.500       20.950    8.350     8.350        360      Resistor SMD - IEC symbol version                    
+R13             Resistor         TopLayer    RLC_402_SMD                       24.500       24.500    47.600    48.150       90       Resistor SMD - IEC symbol version                    
+R15             Resistor         TopLayer    RLC_402_SMD                       53.050       53.050    8.421     7.871        270      Resistor SMD - IEC symbol version                    
+R16             Resistor         TopLayer    RLC_402_SMD                       55.600       55.600    8.421     7.871        270      Resistor SMD - IEC symbol version                    
+R18             Resistor         TopLayer    rlc_402_smd                       55.450       56.000    34.300    34.300       180      Resistor SMD - IEC symbol version                    
+R434            Resistor         TopLayer    RLC_402_SMD                       75.500       74.950    4.200     4.200        360      Resistor SMD - IEC symbol version                    
+R490            Resistor         TopLayer    rlc_402_smd                       75.500       76.050    5.350     5.350        180      Resistor SMD - IEC symbol version                    
+R868            Resistor         TopLayer    RLC_402_SMD                       75.500       74.950    6.500     6.500        360      Resistor SMD - IEC symbol version                    
+R915            Resistor         TopLayer    RLC_402_SMD                       75.500       76.050    7.650     7.650        180      Resistor SMD - IEC symbol version                    
+RFIO            SMA              TopLayer    SMA_end_launch_1.0mm_9.52mm       86.650       86.650    29.675    29.675       360      SMA Straight Connector                               
+RX              LED              TopLayer    LGM676_LED                        55.600       55.600    3.921     4.921        90       LED                                                  
+Shield          Logo symbol      TopLayer    BMIS-209-F_-_Shield_-_Solder_Mask 50.350       50.350    23.550    23.550       360      Shield - EMI Gasket - Standard Surface Mount Shields 
+SX1261          Resistor         TopLayer    rlc_402_smd                       38.600       38.600    8.550     8.000        270      Resistor SMD - IEC symbol version                    
+SX1262          Resistor         TopLayer    RLC_402_SMD                       39.650       39.650    8.550     8.000        270      Resistor SMD - IEC symbol version                    
+TCXO            Resistor         TopLayer    rlc_402_smd                       42.150       42.150    8.550     8.000        270      Resistor SMD - IEC symbol version                    
+TX              LED              TopLayer    LGM676_LED                        53.050       53.050    3.971     4.971        90       LED                                                  
+U1              SX1261/2         TopLayer    VQFN24_4X4MM                      59.200       60.450    30.900    29.000       270      SX1261/2 - Ultra low power RF transceiver            
+U2              PE4259 RF Switch TopLayer    SC70-6                            75.525       74.575    30.325    29.675       360      PE4259 Peregrine RF Switch                           
+VDD_RADIO       Jumper           TopLayer    BRIDGE_254MM                      22.720       21.450    14.550    14.550       360      Jumper Wire                                          
