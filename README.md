@@ -1,3 +1,5 @@
+# *NOTE: THIS IS AN ARCHIVE OF PREVIOUS UNFINISHED DESIGN, CURRENT IS UNDER MAIN BRANCH*
+
 <p align="center">
     <img src="assets/images/RDT_LOGO.png" width="60%" alt="Missouri S&T Rocket Design Team">
 </p>
