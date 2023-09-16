@@ -1,0 +1,7 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "282834-4")(type "KiCad")(uri "${KIPRJMOD}/footprints/282834-4")(options "")(descr ""))
+  (lib (name "BMI270")(type "KiCad")(uri "${KIPRJMOD}/footprints/BMI270")(options "")(descr ""))
+  (lib (name "BMM350")(type "KiCad")(uri "${KIPRJMOD}/footprints/BMM350.pretty")(options "")(descr ""))
+  (lib (name "CONSMA020.062")(type "KiCad")(uri "${KIPRJMOD}/footprints/CONSMA020.062")(options "")(descr ""))
+)
