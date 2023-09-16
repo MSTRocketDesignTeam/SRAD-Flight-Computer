@@ -1,5 +1,31 @@
 (kicad_sch (version 20230121) (generator eeschema)
+
+  (uuid 54cce219-8b98-4e71-96c4-f9ee784aa3bc)
+
   (paper "A4")
-  (lib_symbols)
-  (symbol_instances)
+
+  (lib_symbols
+  )
+
+
+  (sheet (at 100.965 70.485) (size 22.86 20.32) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 255 255 194 1.0000))
+    (uuid 047c0ef5-e762-41a7-bfd7-fdc982a27304)
+    (property "Sheetname" "Pyro Channels" (at 100.965 69.7734 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "hierarchical_sheets/pyro_channel.kicad_sch" (at 100.965 91.3896 0)
+      (effects (font (size 1.27 1.27)) (justify left top) hide)
+    )
+    (instances
+      (project "FC"
+        (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc" (page "2"))
+      )
+    )
+  )
+
+  (sheet_instances
+    (path "/" (page "1"))
+  )
 )
