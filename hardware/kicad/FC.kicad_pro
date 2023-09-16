@@ -330,6 +330,34 @@
     [
       "047c0ef5-e762-41a7-bfd7-fdc982a27304",
       "Pyro Channels"
+    ],
+    [
+      "cf41b566-7189-40a2-a24f-d689fa8a8692",
+      "High G Accelerometer"
+    ],
+    [
+      "7e43dc21-d4ed-4dfe-b96f-060fb7f0f8ce",
+      "IMU"
+    ],
+    [
+      "01e59dc5-0a98-4437-b4f9-a1305517a629",
+      "Barometer"
+    ],
+    [
+      "35031a3a-251a-4009-92bf-5738de5c8c69",
+      "Telemetry Radio"
+    ],
+    [
+      "f2d155c9-a158-4cf0-b4ab-42b0987153ce",
+      "GPS"
+    ],
+    [
+      "6e22c049-ccb1-45dc-8368-a811e6fa6e08",
+      "Magnetometer"
+    ],
+    [
+      "ec693876-f9f5-4d00-b73f-be61605a2d0a",
+      "Storage"
     ]
   ],
   "text_variables": {}
