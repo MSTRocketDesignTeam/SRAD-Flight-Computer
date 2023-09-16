@@ -2,7 +2,12 @@
 
   (uuid 38356e07-f1c2-436e-8054-22a19039cbae)
 
-  (paper "A4")
+  (paper "USLetter")
+
+  (title_block
+    (title "SRAD-FC")
+    (company "Missouri S&T Rocket Design Team")
+  )
 
   (lib_symbols
   )

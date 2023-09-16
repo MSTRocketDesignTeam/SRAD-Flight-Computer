@@ -5,7 +5,7 @@
   (paper "USLetter")
 
   (title_block
-    (title "Pyro Channels")
+    (title "SRAD-FC")
     (date "2023-04-27")
     (rev "0.1")
     (company "Missouri S&T Rocket Design Team")

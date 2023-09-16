@@ -2,20 +2,26 @@
 
   (uuid 54cce219-8b98-4e71-96c4-f9ee784aa3bc)
 
-  (paper "A4")
+  (paper "USLetter")
+
+  (title_block
+    (title "SRAD-FC")
+    (date "2023-09-16")
+    (company "Missouri S&T Rocket Design Team")
+  )
 
   (lib_symbols
   )
 
 
-  (sheet (at 125.095 303.53) (size 22.86 20.32) (fields_autoplaced)
+  (sheet (at 132.715 59.055) (size 22.86 20.32) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 255 255 194 1.0000))
     (uuid 01e59dc5-0a98-4437-b4f9-a1305517a629)
-    (property "Sheetname" "Barometer" (at 125.095 302.8184 0)
+    (property "Sheetname" "Barometer" (at 132.715 58.3434 0)
       (effects (font (size 1.27 1.27)) (justify left bottom))
     )
-    (property "Sheetfile" "hierarchical_sheets/ms5611.kicad_sch" (at 125.095 324.4346 0)
+    (property "Sheetfile" "hierarchical_sheets/ms5611.kicad_sch" (at 132.715 79.9596 0)
       (effects (font (size 1.27 1.27)) (justify left top) hide)
     )
     (instances
@@ -25,14 +31,14 @@
     )
   )
 
-  (sheet (at 48.26 303.53) (size 22.86 20.32) (fields_autoplaced)
+  (sheet (at 20.32 145.415) (size 22.86 20.32) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 255 255 194 1.0000))
     (uuid 047c0ef5-e762-41a7-bfd7-fdc982a27304)
-    (property "Sheetname" "Pyro Channels" (at 48.26 302.8184 0)
+    (property "Sheetname" "Pyro Channels" (at 20.32 144.7034 0)
       (effects (font (size 1.27 1.27)) (justify left bottom))
     )
-    (property "Sheetfile" "hierarchical_sheets/pyro_channel.kicad_sch" (at 48.26 324.4346 0)
+    (property "Sheetfile" "hierarchical_sheets/pyro_channel.kicad_sch" (at 20.32 166.3196 0)
       (effects (font (size 1.27 1.27)) (justify left top) hide)
     )
     (instances
@@ -42,14 +48,14 @@
     )
   )
 
-  (sheet (at 150.495 303.53) (size 22.86 20.32) (fields_autoplaced)
+  (sheet (at 158.115 59.055) (size 22.86 20.32) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 255 255 194 1.0000))
     (uuid 35031a3a-251a-4009-92bf-5738de5c8c69)
-    (property "Sheetname" "Telemetry Radio" (at 150.495 302.8184 0)
+    (property "Sheetname" "Telemetry Radio" (at 158.115 58.3434 0)
       (effects (font (size 1.27 1.27)) (justify left bottom))
     )
-    (property "Sheetfile" "hierarchical_sheets/ra-01sh.kicad_sch" (at 150.495 324.4346 0)
+    (property "Sheetfile" "hierarchical_sheets/ra-01sh.kicad_sch" (at 158.115 79.9596 0)
       (effects (font (size 1.27 1.27)) (justify left top) hide)
     )
     (instances
@@ -59,14 +65,14 @@
     )
   )
 
-  (sheet (at 200.66 303.53) (size 22.86 20.32) (fields_autoplaced)
+  (sheet (at 208.28 59.055) (size 22.86 20.32) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 255 255 194 1.0000))
     (uuid 6e22c049-ccb1-45dc-8368-a811e6fa6e08)
-    (property "Sheetname" "Magnetometer" (at 200.66 302.8184 0)
+    (property "Sheetname" "Magnetometer" (at 208.28 58.3434 0)
       (effects (font (size 1.27 1.27)) (justify left bottom))
     )
-    (property "Sheetfile" "hierarchical_sheets/bmm-350.kicad_sch" (at 200.66 324.4346 0)
+    (property "Sheetfile" "hierarchical_sheets/bmm-350.kicad_sch" (at 208.28 79.9596 0)
       (effects (font (size 1.27 1.27)) (justify left top) hide)
     )
     (instances
@@ -76,14 +82,14 @@
     )
   )
 
-  (sheet (at 99.06 303.53) (size 22.86 20.32) (fields_autoplaced)
+  (sheet (at 106.68 59.055) (size 22.86 20.32) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 255 255 194 1.0000))
     (uuid 7e43dc21-d4ed-4dfe-b96f-060fb7f0f8ce)
-    (property "Sheetname" "IMU" (at 99.06 302.8184 0)
+    (property "Sheetname" "IMU" (at 106.68 58.3434 0)
       (effects (font (size 1.27 1.27)) (justify left bottom))
     )
-    (property "Sheetfile" "hierarchical_sheets/bmi-270.kicad_sch" (at 99.06 324.4346 0)
+    (property "Sheetfile" "hierarchical_sheets/bmi-270.kicad_sch" (at 106.68 79.9596 0)
       (effects (font (size 1.27 1.27)) (justify left top) hide)
     )
     (instances
@@ -93,14 +99,31 @@
     )
   )
 
-  (sheet (at 74.295 303.53) (size 22.86 20.32) (fields_autoplaced)
+  (sheet (at 18.415 34.925) (size 22.86 20.32) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 255 255 194 1.0000))
+    (uuid aac89dea-c005-40db-a234-32c8ed41f1e5)
+    (property "Sheetname" "Microcontroller" (at 18.415 34.2134 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch" (at 18.415 55.8296 0)
+      (effects (font (size 1.27 1.27)) (justify left top) hide)
+    )
+    (instances
+      (project "FC"
+        (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc" (page "10"))
+      )
+    )
+  )
+
+  (sheet (at 79.375 59.69) (size 22.86 20.32) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 255 255 194 1.0000))
     (uuid cf41b566-7189-40a2-a24f-d689fa8a8692)
-    (property "Sheetname" "High G Accelerometer" (at 74.295 302.8184 0)
+    (property "Sheetname" "High G Accelerometer" (at 79.375 58.9784 0)
       (effects (font (size 1.27 1.27)) (justify left bottom))
     )
-    (property "Sheetfile" "hierarchical_sheets/kx134-1211.kicad_sch" (at 74.295 324.4346 0)
+    (property "Sheetfile" "hierarchical_sheets/kx134-1211.kicad_sch" (at 79.375 80.5946 0)
       (effects (font (size 1.27 1.27)) (justify left top) hide)
     )
     (instances
@@ -110,14 +133,14 @@
     )
   )
 
-  (sheet (at 224.79 303.53) (size 22.86 20.32) (fields_autoplaced)
+  (sheet (at 232.41 59.055) (size 22.86 20.32) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 255 255 194 1.0000))
     (uuid ec693876-f9f5-4d00-b73f-be61605a2d0a)
-    (property "Sheetname" "Storage" (at 224.79 302.8184 0)
+    (property "Sheetname" "Storage" (at 232.41 58.3434 0)
       (effects (font (size 1.27 1.27)) (justify left bottom))
     )
-    (property "Sheetfile" "hierarchical_sheets/mb85rs2mtapnf.kicad_sch" (at 224.79 324.4346 0)
+    (property "Sheetfile" "hierarchical_sheets/mb85rs2mtapnf.kicad_sch" (at 232.41 79.9596 0)
       (effects (font (size 1.27 1.27)) (justify left top) hide)
     )
     (instances
@@ -127,14 +150,14 @@
     )
   )
 
-  (sheet (at 175.895 303.53) (size 22.86 20.32) (fields_autoplaced)
+  (sheet (at 183.515 59.055) (size 22.86 20.32) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 255 255 194 1.0000))
     (uuid f2d155c9-a158-4cf0-b4ab-42b0987153ce)
-    (property "Sheetname" "GPS" (at 175.895 302.8184 0)
+    (property "Sheetname" "GPS" (at 183.515 58.3434 0)
       (effects (font (size 1.27 1.27)) (justify left bottom))
     )
-    (property "Sheetfile" "hierarchical_sheets/m10s.kicad_sch" (at 175.895 324.4346 0)
+    (property "Sheetfile" "hierarchical_sheets/m10s.kicad_sch" (at 183.515 79.9596 0)
       (effects (font (size 1.27 1.27)) (justify left top) hide)
     )
     (instances
