@@ -2,7 +2,7 @@
   (version 7)
   (lib (name "BM350")(type "KiCad")(uri "${KIPRJMOD}/libraries/BM350.kicad_sym")(options "")(descr ""))
   (lib (name "BMI270")(type "KiCad")(uri "${KIPRJMOD}/libraries/BMI270.kicad_sym")(options "")(descr ""))
-  (lib (name "CONSMA020.062-G")(type "Legacy")(uri "${KIPRJMOD}/libraries/CONSMA020.062-G.lib")(options "")(descr ""))
+  (lib (name "CONSMA020.062-G")(type "KiCad")(uri "${KIPRJMOD}/libraries/CONSMA020.062-G.kicad_sym")(options "")(descr ""))
   (lib (name "SI9926CDY")(type "KiCad")(uri "${KIPRJMOD}/libraries/SI9926CDY.kicad_sym")(options "")(descr ""))
   (lib (name "RA-01SH")(type "KiCad")(uri "${KIPRJMOD}/libraries/RA-01SH.kicad_sym")(options "")(descr ""))
 )

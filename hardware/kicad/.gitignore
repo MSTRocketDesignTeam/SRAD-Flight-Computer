@@ -1,1 +1,4 @@
 FC-backups/
+*.lck
+fp-info-cache
+fp-lib-table
