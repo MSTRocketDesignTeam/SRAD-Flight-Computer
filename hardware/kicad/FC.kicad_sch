@@ -14,7 +14,7 @@
   )
 
 
-  (text "Skye: High G Accelerometer - (kx134-1211)\nBen: Barometer - (ms5611)\nRiley: GPS -(m10s)\nSean Duda: Magnetometer - (bmm350)\nAriel: Telemetry Radio - (Ra-01SH)\nClifford: Storage (MB85RS2MTAPNF)\nEvan: IMU (BMI-270)\n"
+  (text "Seth: Microcontroller - (Atmega32u4)\nSkye: High G Accelerometer - (kx134-1211)\nBen: Barometer - (ms5611)\nRiley: GPS -(m10s)\nSean Duda: Magnetometer - (bmm350)\nAriel: Telemetry Radio - (Ra-01SH)\nClifford: Storage (MB85RS2MTAPNF)\nEvan: IMU (BMI-270)\nNat: Pyro/Misc"
     (at 158.75 160.02 0)
     (effects (font (size 2.56 2.56) (thickness 0.512) bold) (justify left bottom))
     (uuid 4fa0c92b-8176-4e71-b7d1-73d5523c5e48)

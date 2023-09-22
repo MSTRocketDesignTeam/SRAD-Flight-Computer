@@ -10,6 +10,7 @@
     (rev "0.1")
     (company "Missouri S&T Rocket Design Team")
     (comment 1 "Seth Sievers")
+    (comment 2 "Nat")
   )
 
   (lib_symbols
