@@ -1645,7 +1645,7 @@
     (pin "1" (uuid 5d88856b-6432-4824-88b2-44947933b808))
     (pin "2" (uuid c3088a29-7b92-4b0e-a780-dd2e11e9fcd1))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R4") (unit 1)
         )
@@ -1676,7 +1676,7 @@
     (pin "1" (uuid e1fb5cf5-4775-49dd-8dca-f089159ea2c3))
     (pin "2" (uuid 6b1eccb7-9474-4785-8643-ece772cc8e64))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "JP3") (unit 1)
         )
@@ -1710,7 +1710,7 @@
     (pin "1" (uuid 402c1c62-b20c-4713-8cd6-f63b0b83a05d))
     (pin "2" (uuid daa58a56-bbc0-4326-adb2-c3a3d74e694f))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R5") (unit 1)
         )
@@ -1740,7 +1740,7 @@
     )
     (pin "1" (uuid 1146b9cc-fc00-40f1-811a-86afb570c3d6))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "TP6") (unit 1)
         )
@@ -1773,7 +1773,7 @@
     )
     (pin "1" (uuid 68728a93-aa4b-41bb-a918-2ced58113a3b))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "#PWR014") (unit 1)
         )
@@ -1804,7 +1804,7 @@
     (pin "1" (uuid c0dc14f6-4c1d-47c4-b1d8-35996bef3791))
     (pin "2" (uuid db067a79-ca5b-45a1-b7ab-c738db422619))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R8") (unit 1)
         )
@@ -1835,7 +1835,7 @@
     (pin "1" (uuid 10623537-96fb-48ea-b075-c94413c016d3))
     (pin "2" (uuid 310f02ff-2cc7-4bcd-8a9c-93f83b959395))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "JP3") (unit 1)
         )
@@ -1868,7 +1868,7 @@
     )
     (pin "1" (uuid 44363b39-b520-467b-aff6-5fff8f795d22))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "#PWR010") (unit 1)
         )
@@ -1898,7 +1898,7 @@
     )
     (pin "1" (uuid fffafb1c-6b09-459b-b7fc-3321beb7f072))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "TP6") (unit 1)
         )
@@ -1932,7 +1932,7 @@
     (pin "1" (uuid ff6f5dca-8ea2-4f61-abbf-a637220b7b2c))
     (pin "2" (uuid 4223a925-776b-4f78-be84-5af671d487ce))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "JP3") (unit 1)
         )
@@ -1966,7 +1966,7 @@
     (pin "1" (uuid 3aeb5667-3bd9-4dd2-be8d-5733abec0e4c))
     (pin "2" (uuid 6a4f8cac-51b5-44ad-8a19-5cc57d45cc8f))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R14") (unit 1)
         )
@@ -1996,7 +1996,7 @@
     )
     (pin "1" (uuid 2aaf9c90-c4ea-4f94-8ba8-86b8afdd5101))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "TP6") (unit 1)
         )
@@ -2029,7 +2029,7 @@
     )
     (pin "1" (uuid ed2beebb-342d-4ab7-909f-924e7baa0828))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "#PWR013") (unit 1)
         )
@@ -2059,7 +2059,7 @@
     )
     (pin "1" (uuid fcff9b02-0ec9-485d-bf92-cab67db72c4a))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "#PWR012") (unit 1)
         )
@@ -2094,7 +2094,7 @@
     (pin "2" (uuid edbf4524-4406-475d-a6dc-f83f109ea421))
     (pin "3" (uuid 6fec083c-7835-41c7-b985-20c6cad4e366))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "D1") (unit 1)
         )
@@ -2125,7 +2125,7 @@
     (pin "1" (uuid 5725d5e7-1d52-46a6-af14-2dbacea6f346))
     (pin "2" (uuid 027272ca-e3df-402d-9ee7-5c920d8cfc4c))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R15") (unit 1)
         )
@@ -2161,7 +2161,7 @@
     (pin "3" (uuid 5ab424f3-18de-45ba-be9e-2b2d74b43aa4))
     (pin "4" (uuid a06993cc-ba5e-4bc1-ba41-55ef3ec291ea))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "J2") (unit 1)
         )
@@ -2191,7 +2191,7 @@
     )
     (pin "1" (uuid 8665bc4e-4b74-4e39-b464-487b6fcb55f9))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "TP6") (unit 1)
         )
@@ -2225,7 +2225,7 @@
     (pin "1" (uuid 2d0ba055-e1af-4552-8316-bba17ba65f99))
     (pin "2" (uuid a78f0f91-8d69-4c4f-8144-ca47320a8ef6))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R12") (unit 1)
         )
@@ -2255,7 +2255,7 @@
     )
     (pin "1" (uuid 13343fdf-67ef-4a94-affc-9a328fc474ba))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "TP6") (unit 1)
         )
@@ -2288,7 +2288,7 @@
     )
     (pin "1" (uuid 39eb59ba-7c68-4460-9333-a42297ddc7e7))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "TP6") (unit 1)
         )
@@ -2322,7 +2322,7 @@
     (pin "1" (uuid e4c4ec0c-b1c8-4d8e-a9c4-30a58f5e4903))
     (pin "2" (uuid ed6d5807-a1b6-408b-87a7-fceca3e23597))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R10") (unit 1)
         )
@@ -2352,7 +2352,7 @@
     )
     (pin "1" (uuid 899d7da4-f5cc-4f4c-ba6b-a2b4ee567f5e))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "#PWR015") (unit 1)
         )
@@ -2382,7 +2382,7 @@
     )
     (pin "1" (uuid 66a9be3c-31c9-4ef7-81eb-37a26277fabe))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "TP6") (unit 1)
         )
@@ -2416,7 +2416,7 @@
     (pin "1" (uuid 8d804e60-a6b7-4b2b-a0d5-d952f13a50f8))
     (pin "2" (uuid 0a085b36-c821-4790-916c-6dd7099f6a60))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R13") (unit 1)
         )
@@ -2446,7 +2446,7 @@
     )
     (pin "1" (uuid 3b4969bf-efa5-45e0-af7f-e3687c73cfe8))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "#PWR011") (unit 1)
         )
@@ -2483,7 +2483,7 @@
     (pin "4" (uuid 742c7a02-e36d-4a68-99f1-6f28c03ef51b))
     (pin "5" (uuid 792bb43d-fd60-4ca2-9da1-9ed9c2e67bd0))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "U2") (unit 1)
         )
@@ -2518,7 +2518,7 @@
     (pin "2" (uuid eba8e664-7591-4398-8e6c-35fffc3d94bb))
     (pin "3" (uuid fde826f9-2d05-4659-958e-e559cab9a774))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "D3") (unit 1)
         )
@@ -2549,7 +2549,7 @@
     (pin "1" (uuid 464dd695-5666-4860-9af9-4822b3277c5b))
     (pin "2" (uuid 7a011432-df94-433e-8b14-203d71516d78))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "JP3") (unit 1)
         )
@@ -2583,7 +2583,7 @@
     (pin "1" (uuid bd7cc45e-6aab-43bf-a027-164f5106aba5))
     (pin "2" (uuid 4b80ef4f-5359-4650-9116-388b6ddde33d))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R11") (unit 1)
         )
@@ -2618,7 +2618,7 @@
     (pin "2" (uuid c1344bb9-e908-44a3-8d41-961d542dc5ad))
     (pin "3" (uuid 2ada1030-303d-4efb-a3ef-955145776d80))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "D2") (unit 1)
         )
@@ -2649,7 +2649,7 @@
     (pin "1" (uuid db601241-9972-4d3a-b9da-3d497c5ba2b6))
     (pin "2" (uuid 6d8545a5-7aa4-42f8-9c9e-9698dec7c95d))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "C12") (unit 1)
         )
@@ -2680,7 +2680,7 @@
     (pin "1" (uuid baabe8a0-6171-4840-a7c4-1c477d1d7323))
     (pin "2" (uuid ba2ba068-b8eb-4edc-b65c-96736791a507))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "JP3") (unit 1)
         )
@@ -2714,7 +2714,7 @@
     (pin "1" (uuid 293734c2-39c8-45cc-ab2f-6ac8aa75fd94))
     (pin "2" (uuid d74ac2ce-d1f2-4885-b979-639423e08673))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "JP3") (unit 1)
         )
@@ -2751,7 +2751,7 @@
     (pin "1" (uuid 9e78c93f-b2e8-45a4-a8ee-f70da6272e05))
     (pin "2" (uuid 4f85dca7-ea1d-4fa9-a164-8a64e460a775))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R6") (unit 1)
         )
@@ -2781,7 +2781,7 @@
     )
     (pin "1" (uuid 245a5d94-53b5-49c3-8d51-506e5b3a0951))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "TP6") (unit 1)
         )
@@ -2815,7 +2815,7 @@
     (pin "1" (uuid 0ce55a49-6f8c-4939-9bb0-3e25fd9444f5))
     (pin "2" (uuid a48da988-be02-4f53-8087-78994e08e0f0))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "JP3") (unit 1)
         )
@@ -2848,7 +2848,7 @@
     )
     (pin "1" (uuid b0e1b79c-5a91-4307-a25b-7ca3a552e215))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "TP6") (unit 1)
         )
@@ -2881,7 +2881,7 @@
     )
     (pin "1" (uuid da85a944-3860-4747-b96b-3c44bdfd04ac))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "#PWR016") (unit 1)
         )
@@ -2912,7 +2912,7 @@
     (pin "1" (uuid 40b2826a-31db-44d3-80be-f10ada7ab57b))
     (pin "2" (uuid dfc6d8ca-d6fe-44fd-9bd1-b772d016f712))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R9") (unit 1)
         )
@@ -2952,7 +2952,7 @@
     (pin "7" (uuid 14b96fc7-a7fe-465d-b6d3-9e8ed73e291f))
     (pin "8" (uuid b4156bbd-937b-476f-ab5a-83cb2f2a9b60))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "U3") (unit 1)
         )
@@ -2986,7 +2986,7 @@
     (pin "1" (uuid f8bbaef7-41ac-494e-a79f-c40c7fb537d5))
     (pin "2" (uuid 434e3d8e-77a1-4c29-8230-c8abd6bfc632))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
           (reference "R7") (unit 1)
         )
