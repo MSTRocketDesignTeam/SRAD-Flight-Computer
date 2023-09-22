@@ -1,7 +1,8 @@
 .vscode/
 .venv
-
+*/*.lck
 hardware/kicad/sym-lib-table
 hardware/kicad/fp-info-cache
 hardware/kicad/#auto_saved_files#
 *_autosave*
+hardware/kicad/#auto_saved_files#
