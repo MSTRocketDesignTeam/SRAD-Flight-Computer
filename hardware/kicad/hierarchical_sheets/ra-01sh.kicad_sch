@@ -146,7 +146,7 @@
     (pin "8" (uuid 9d29c5be-5182-4f42-b489-71fcfe2b0947))
     (pin "9" (uuid 6860745f-6760-4e20-9921-22d3d8bdcc4c))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/35031a3a-251a-4009-92bf-5738de5c8c69"
           (reference "U4") (unit 1)
         )

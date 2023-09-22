@@ -711,7 +711,7 @@
     )
     (pin "1" (uuid eb365d7e-2317-4b88-988c-0018d3ef84de))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "#PWR04") (unit 1)
         )
@@ -782,7 +782,7 @@
     (pin "8" (uuid 7e8111e4-e64f-444a-a4d1-f8b043ca331a))
     (pin "9" (uuid 95939ac7-6b8f-4d2e-9eb5-8f660d75d6c2))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "U1") (unit 1)
         )
@@ -807,7 +807,7 @@
     )
     (pin "1" (uuid b8992f3c-c950-46f1-b7c9-cd97d9ca23cf))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "#PWR01") (unit 1)
         )
@@ -833,7 +833,7 @@
     (pin "1" (uuid d92b3145-e7b0-41b2-9555-5d8b682328c3))
     (pin "2" (uuid d31ad42c-52eb-4dc9-8793-c68087ddadd1))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "C1") (unit 1)
         )
@@ -858,7 +858,7 @@
     )
     (pin "1" (uuid d9b17502-b9ba-49dd-bd4a-15c235c17d4d))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "#PWR03") (unit 1)
         )
@@ -884,7 +884,7 @@
     (pin "1" (uuid 6ff311f7-bab2-495b-a196-45508f48deb6))
     (pin "2" (uuid 306905f0-b24b-4908-93fd-30c12ad5b667))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "C5") (unit 1)
         )
@@ -910,7 +910,7 @@
     (pin "1" (uuid 96a442ad-581b-468a-b1f3-1d14a2400d2b))
     (pin "2" (uuid 8ea537c9-66b1-441a-a596-1592ca82dd7c))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "C2") (unit 1)
         )
@@ -935,7 +935,7 @@
     )
     (pin "1" (uuid e0d28513-3871-4e7f-8e57-0e8a3e7f3fc3))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "#PWR06") (unit 1)
         )
@@ -961,7 +961,7 @@
     (pin "1" (uuid f897729e-4468-43b4-b02c-a13d10007d8c))
     (pin "2" (uuid d63bf9ee-2c60-4fab-b8eb-5e062b218f33))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "R1") (unit 1)
         )
@@ -987,7 +987,7 @@
     (pin "1" (uuid f70c999f-3e7a-4819-be99-fc458022a1f2))
     (pin "2" (uuid 5e9621e0-3a0d-42ae-a0c0-55c152462060))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "C3") (unit 1)
         )
@@ -1013,7 +1013,7 @@
     (pin "1" (uuid 4db4f29c-c8c5-49c6-8010-af55c890a432))
     (pin "2" (uuid 4fac4d6b-5922-492e-893f-9e89cae1dcc8))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "C4") (unit 1)
         )
@@ -1038,7 +1038,7 @@
     )
     (pin "1" (uuid bd4ff36b-5ed9-4316-9353-3aa4ef7b0ee3))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "#PWR02") (unit 1)
         )
@@ -1067,7 +1067,7 @@
     (pin "1" (uuid 7c5b9488-5738-4676-ae41-46bf60e1188e))
     (pin "2" (uuid 5282440f-aa47-4472-a0b1-5be1f0bcd182))
     (instances
-      (project "FC"
+      (project "RA-01SH.kicad_sym"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "Y1") (unit 1)
         )
