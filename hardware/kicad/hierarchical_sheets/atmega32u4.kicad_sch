@@ -1178,7 +1178,7 @@
     (uuid fec92ba9-e7f0-45be-bc9a-026864cacb36)
   )
 
-  (text "ADC READS BETWEEN GND and AREF" (at 27.305 194.945 0)
+  (text "ADC READS BETWEEN GND and AREF" (at 15.24 190.5 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 2c2ad39f-68c3-4236-8fec-474176cbde67)
   )
