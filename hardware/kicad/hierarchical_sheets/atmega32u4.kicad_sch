@@ -885,6 +885,10 @@
     (stroke (width 0) (type default))
     (uuid 31304302-621c-438d-9dc7-c5f2e09c6867)
   )
+  (wire (pts (xy 116.84 63.5) (xy 125.095 63.5))
+    (stroke (width 0) (type default))
+    (uuid 338aa2d3-480e-4164-8f33-59760a286951)
+  )
   (wire (pts (xy 124.46 35.56) (xy 128.27 35.56))
     (stroke (width 0) (type default))
     (uuid 38f08a00-893e-49d5-b92c-0a86ec7298fe)
@@ -937,6 +941,10 @@
     (stroke (width 0) (type default))
     (uuid 5787e7df-1954-4e5b-b744-4905628d71cd)
   )
+  (wire (pts (xy 116.84 66.04) (xy 125.095 66.04))
+    (stroke (width 0) (type default))
+    (uuid 59f5f02b-f128-49db-9ce4-1c16274007a1)
+  )
   (wire (pts (xy 86.36 42.545) (xy 86.36 44.45))
     (stroke (width 0) (type default))
     (uuid 5af9ff5d-16fe-4b97-8dd1-a9504430ecbe)
@@ -952,6 +960,10 @@
   (wire (pts (xy 64.77 35.56) (xy 67.31 35.56))
     (stroke (width 0) (type default))
     (uuid 61e79fcc-3e71-4e5a-9be9-73101722cc3a)
+  )
+  (wire (pts (xy 116.84 68.58) (xy 125.095 68.58))
+    (stroke (width 0) (type default))
+    (uuid 63f2cb52-b283-4f07-9818-0b8744abf6b5)
   )
   (wire (pts (xy 66.04 101.6) (xy 66.04 104.14))
     (stroke (width 0) (type default))
@@ -1220,6 +1232,10 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 07a7635a-0843-41a1-9658-1bda090af4fb)
   )
+  (label "MISO" (at 125.095 68.58 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right bottom))
+    (uuid 25eb8680-c1f4-4cd3-a07c-6cf9c0a80c33)
+  )
   (label "VBUS" (at 78.105 95.25 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 2ec3445d-e395-47fa-9bee-4f1ad18cc533)
@@ -1244,9 +1260,17 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 56b3077f-9748-499c-8d4d-de388e59abe4)
   )
+  (label "SCK" (at 125.095 63.5 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right bottom))
+    (uuid a3f6157f-5a37-4765-bec9-5032d5608381)
+  )
   (label "AVCC" (at 118.11 35.56 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid bc2d79b1-5751-4d19-ae59-3d136c8cb71e)
+  )
+  (label "MOSI" (at 125.095 66.04 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right bottom))
+    (uuid c33f99eb-7283-4c6b-b2b7-0c4222e82cd2)
   )
   (label "AREF" (at 78.105 76.2 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
@@ -1329,7 +1353,7 @@
     )
     (pin "1" (uuid eb365d7e-2317-4b88-988c-0018d3ef84de))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "#PWR04") (unit 1)
         )
@@ -1476,7 +1500,7 @@
     (pin "8" (uuid 7e8111e4-e64f-444a-a4d1-f8b043ca331a))
     (pin "9" (uuid 95939ac7-6b8f-4d2e-9eb5-8f660d75d6c2))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "U1") (unit 1)
         )
@@ -1552,7 +1576,7 @@
     )
     (pin "1" (uuid b8992f3c-c950-46f1-b7c9-cd97d9ca23cf))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "#PWR01") (unit 1)
         )
@@ -1701,7 +1725,7 @@
     (pin "1" (uuid d92b3145-e7b0-41b2-9555-5d8b682328c3))
     (pin "2" (uuid d31ad42c-52eb-4dc9-8793-c68087ddadd1))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "C1") (unit 1)
         )
@@ -1726,7 +1750,7 @@
     )
     (pin "1" (uuid d9b17502-b9ba-49dd-bd4a-15c235c17d4d))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "#PWR03") (unit 1)
         )
@@ -1752,7 +1776,7 @@
     (pin "1" (uuid 6ff311f7-bab2-495b-a196-45508f48deb6))
     (pin "2" (uuid 306905f0-b24b-4908-93fd-30c12ad5b667))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "C5") (unit 1)
         )
@@ -1804,7 +1828,7 @@
     (pin "1" (uuid 96a442ad-581b-468a-b1f3-1d14a2400d2b))
     (pin "2" (uuid 8ea537c9-66b1-441a-a596-1592ca82dd7c))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "C2") (unit 1)
         )
@@ -1905,7 +1929,7 @@
     )
     (pin "1" (uuid e0d28513-3871-4e7f-8e57-0e8a3e7f3fc3))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "#PWR06") (unit 1)
         )
@@ -1957,7 +1981,7 @@
     (pin "1" (uuid f897729e-4468-43b4-b02c-a13d10007d8c))
     (pin "2" (uuid d63bf9ee-2c60-4fab-b8eb-5e062b218f33))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "R1") (unit 1)
         )
@@ -1983,7 +2007,7 @@
     (pin "1" (uuid f70c999f-3e7a-4819-be99-fc458022a1f2))
     (pin "2" (uuid 5e9621e0-3a0d-42ae-a0c0-55c152462060))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "C3") (unit 1)
         )
@@ -2034,7 +2058,7 @@
     (pin "1" (uuid 4db4f29c-c8c5-49c6-8010-af55c890a432))
     (pin "2" (uuid 4fac4d6b-5922-492e-893f-9e89cae1dcc8))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "C4") (unit 1)
         )
@@ -2059,7 +2083,7 @@
     )
     (pin "1" (uuid bd4ff36b-5ed9-4316-9353-3aa4ef7b0ee3))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "#PWR02") (unit 1)
         )
@@ -2085,7 +2109,7 @@
     (pin "1" (uuid 94d618bf-887a-42e5-973d-8798ff35074f))
     (pin "2" (uuid 2d5a2619-d638-4e14-9bee-59c7b21c71ef))
     (instances
-      (project "RA-01SH.kicad_sym"
+      (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/aac89dea-c005-40db-a234-32c8ed41f1e5"
           (reference "C9") (unit 1)
         )
