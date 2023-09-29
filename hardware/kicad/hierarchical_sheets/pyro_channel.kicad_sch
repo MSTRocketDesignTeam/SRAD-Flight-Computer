@@ -1222,7 +1222,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 16c9da70-137d-42fb-be61-ff71b57a7311)
   )
-  (text "Example Ematch: https://electricmatch.com/pyrotechnics/see/6/5/mjg-firewire-initiator\nResistance: 1Ω\nRecommended Current: 1A\nMinimum Recommended Current: 0.75A\nMaximum Test Current: 0.04A\n"
+  (text "Example Ematch: https://electricmatch.com/pyrotechnics/see/6/5/mjg-firewire-initiator--standard\nResistance: 1Ω\nRecommended Current: 1A\nMinimum Recommended Current: 0.75A\nMaximum Test Current: 0.04A\n"
     (at 13.335 22.86 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 46084a5b-64f2-4863-88c7-a5adc9547a27)
