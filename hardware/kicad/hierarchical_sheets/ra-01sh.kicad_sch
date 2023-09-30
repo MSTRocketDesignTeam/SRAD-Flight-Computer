@@ -11666,6 +11666,11 @@
     )
   )
 
+  (text "Maximum Working Current is 140mA" (at 48.26 120.65 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 5084410c-2b75-4d12-b3fb-1b5a7b216c2a)
+  )
+
   (label "MOSI" (at 46.355 80.645 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 3bed4ddd-ab2b-422b-b153-ecc4f2ca8dfc)
