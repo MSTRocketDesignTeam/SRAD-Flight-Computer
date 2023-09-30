@@ -1202,6 +1202,10 @@
     )
   )
 
+  (text "Max Current: 2mA" (at 13.97 201.93 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 7318d8d8-b2dc-420b-bad8-21c87e5a0faf)
+  )
   (text "Comments:\n\n- The ~{CS} Pullup resistor should be between the ~{CS} and 3.3V, \n	not in series between the chip and the microcontroller. Also, \n	make the ~{CS} Resistor 10k. The only purpose of this resistor\n	is to ensure that the chip stays inactive while the microcontroller\n	is being initially programmed since during programming the chip\n	will be unable to hold the various ~{CS} lines high. A higher value \n	reistor is less likely to cause problems during normal operation. \n\n- Rename SI to MOSI and SO to MISO. Not super important but it will match\n	with the convention we are using throughout the rest of the schematics\n\n- Set the footprint to be \"SOIC-8_3.9x4.9mm_P1.27mm\"\n\n- I have looked through the datasheet more closely and I do believe the ~{WP}\n	pin is fine as NC. If we use the instructions to set the \n	write enable latch (WEL) and clear the write protect enable latch (WPEN)\n	then we should have access to R/W to all blocks \n\n			-Seth"
     (at 144.145 89.535 0)
     (effects (font (size 2 2) (thickness 0.4) bold (color 255 48 0 1)) (justify left bottom))
