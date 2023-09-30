@@ -11700,7 +11700,7 @@
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid acfbc9da-ff0c-45d3-a4db-a24f3a7dab83)
   )
-  (hierarchical_label "CS" (shape input) (at 31.115 78.105 180) (fields_autoplaced)
+  (hierarchical_label "~{CS}" (shape input) (at 31.115 78.105 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid baaa519c-5073-47dd-b3aa-6b0449fad724)
   )
