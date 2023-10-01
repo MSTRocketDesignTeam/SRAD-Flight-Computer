@@ -413,9 +413,9 @@
       (effects (font (size 1.27 1.27)) (justify left))
       (uuid 5c72c2af-186c-4204-b557-4153d0efe51d)
     )
-    (pin "SCK" output (at 288.29 52.07 180)
+    (pin "SCL" input (at 288.29 52.07 180)
       (effects (font (size 1.27 1.27)) (justify left))
-      (uuid b68b98c6-bc66-4134-ba88-3a43efe7682b)
+      (uuid 29fb59f9-3c5f-4fe2-95ce-b5d6ec449688)
     )
     (instances
       (project "FC"
@@ -645,6 +645,14 @@
     )
     (property "Sheetfile" "hierarchical_sheets/m10s.kicad_sch" (at 325.755 55.1946 0)
       (effects (font (size 1.27 1.27)) (justify left top) hide)
+    )
+    (pin "~{SCL}" bidirectional (at 325.755 52.07 180)
+      (effects (font (size 1.27 1.27)) (justify left))
+      (uuid f9ba323a-86ec-44c0-a893-877078cea3cf)
+    )
+    (pin "SDA" bidirectional (at 325.755 48.895 180)
+      (effects (font (size 1.27 1.27)) (justify left))
+      (uuid 1aad9b9a-0296-4906-a655-403e63351239)
     )
     (instances
       (project "FC"

@@ -462,7 +462,7 @@
     (uuid f29221a1-0ca2-4189-b071-d39ed6ca93dd)
   )
 
-  (hierarchical_label "SDA" (shape output) (at 179.705 70.485 180) (fields_autoplaced)
+  (hierarchical_label "SDA" (shape bidirectional) (at 179.705 70.485 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 81863910-e183-4cf6-9d3a-82ed13c846d4)
   )

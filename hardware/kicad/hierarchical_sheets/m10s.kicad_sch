@@ -459,7 +459,7 @@
     (uuid b7de8394-d794-4fa0-82d2-23020571c047)
   )
 
-  (hierarchical_label "~{SCL}" (shape bidirectional) (at 111.76 94.615 180) (fields_autoplaced)
+  (hierarchical_label "SCL" (shape input) (at 111.76 94.615 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 62582d4a-5701-49c7-9ca3-9d6d28c8e6d2)
   )
