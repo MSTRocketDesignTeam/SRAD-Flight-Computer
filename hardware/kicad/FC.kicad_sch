@@ -550,6 +550,10 @@
       (effects (font (size 1.27 1.27)) (justify left))
       (uuid 2851f75d-60f3-4a33-b7e8-5d95371a7900)
     )
+    (pin "INT" output (at 129.54 38.1 180)
+      (effects (font (size 1.27 1.27)) (justify left))
+      (uuid 294791e8-248e-41fa-9f6f-43b2ab67365f)
+    )
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc" (page "4"))
