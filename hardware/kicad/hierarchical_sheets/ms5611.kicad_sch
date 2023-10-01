@@ -375,7 +375,7 @@
     (uuid 8fe80b98-670c-4502-a74e-283a9e60132c)
   )
 
-  (hierarchical_label "~{CS}" (shape output) (at 30.48 92.075 180) (fields_autoplaced)
+  (hierarchical_label "~{CS}" (shape input) (at 30.48 92.075 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 790c989c-56f1-4937-a19e-431b97ef932f)
   )

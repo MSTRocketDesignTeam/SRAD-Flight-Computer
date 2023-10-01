@@ -431,7 +431,7 @@
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 469013a4-67ed-41ce-aa44-8265f6cf245e)
   )
-  (hierarchical_label "~{CS}" (shape output) (at 99.06 104.14 180) (fields_autoplaced)
+  (hierarchical_label "~{CS}" (shape input) (at 99.06 104.14 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 607d775a-229a-4640-b8af-4d9bd92787e3)
   )
