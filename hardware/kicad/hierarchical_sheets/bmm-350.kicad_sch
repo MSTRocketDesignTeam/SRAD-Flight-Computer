@@ -428,7 +428,7 @@
     (uuid f8edf544-b9e2-498f-8dbb-446184eecf91)
   )
 
-  (text "Comments:\n\n-  VDD needs to be 1.8v so pick out a 1.8V SMD linear regulator on digikey, feed this regulator\n	from 3.3v. Follow the regulator datasheet, it will proabaly require a capacitor before and after it. \n\n-  VDDIO should be 3.3V\n\n-  Both VDD and VDDIO are power pins so add a 100n capacitor between each of them and gnd. Place them physically close on\n	the schematic so that we know to place them near the pins when routing the PCB. These are decoupling capacitors. \n\n- Looking at the datasheet page 24, a 2.2u capacitor is needed between the CRST pin and GND. I believe this is used as a \n	power buffer for things like calibration and desaturation\n\n- ADSEL: This pin is used to set the I2C address, we are only using one of these so it does not matter which address our chip\n	has. For simplicity connect it to GND. Look at page 44 of the datasheet. With ADSEL set to 0, the I2C 7 bit address is\n	0b0010100 => 0x14. Put a text label of something like \"Addr: 0x14\" near the bottom right of the IC so that we know\n	what the address is configured to. \n\n- We probably won't use the INT pin due to a lack of uC connections and lack of need so just mark this as no connect \n\n- SCK and SDA are the I2C data lines so connect them to hierarchical labels so that we can connect them outside the schematic. \n\n			-Seth"
+  (text "Comments:\n\n-  VDD needs to be 1.8v so pick out a 1.8V SMD linear regulator on digikey, feed this regulator\n	from 3.3v. Follow the regulator datasheet, it will proabaly require a capacitor before and after it. \n\n-  VDDIO should be 3.3V\n\n-  Both VDD and VDDIO are power pins so add a 100n capacitor between each of them and gnd. Place them physically close on\n	the schematic so that we know to place them near the pins when routing the PCB. These are decoupling capacitors. \n\n- Looking at the datasheet page 24, a 2.2u capacitor is needed between the CRST pin and GND. I believe this is used as a \n	power buffer for things like calibration and desaturation\n\n- ADSEL: This pin is used to set the I2C address, we are only using one of these so it does not matter which address our chip\n	has. For simplicity connect it to GND. Look at page 44 of the datasheet. With ADSEL set to 0, the I2C 7 bit address is\n	0b0010100 => 0x14. Put a text label of something like \"Addr: 0x14\" near the bottom right of the IC so that we know\n	what the address is configured to. \n\n- We probably won't use the INT pin due to a lack of uC connections and lack of need so just mark this as no connect \n\n- SCL and SDA are the I2C data lines so connect them to hierarchical labels so that we can connect them outside the schematic. \n\n			-Seth"
     (at 50.8 172.72 0)
     (effects (font (size 2 2) (thickness 0.4) bold (color 255 48 0 1)) (justify left bottom))
     (uuid 45502551-b6a5-4d57-a34d-e1fdb7d1b312)
@@ -466,7 +466,7 @@
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 81863910-e183-4cf6-9d3a-82ed13c846d4)
   )
-  (hierarchical_label "SCK" (shape output) (at 179.705 67.31 180) (fields_autoplaced)
+  (hierarchical_label "SCL" (shape input) (at 179.705 67.31 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid ba726e93-9463-4a40-8d91-3b5de0f0f01b)
   )
