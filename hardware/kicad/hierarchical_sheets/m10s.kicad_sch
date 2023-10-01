@@ -450,7 +450,7 @@
     (uuid fdd1e88d-421b-4209-9101-a1b0e531fbfc)
   )
 
-  (text "Addr: 0x42" (at 132.715 95.25 0)
+  (text "Addr: 0x42" (at 116.84 116.84 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 865a40ed-7a8a-4a49-9b0e-7b22fc1bcc3a)
   )
