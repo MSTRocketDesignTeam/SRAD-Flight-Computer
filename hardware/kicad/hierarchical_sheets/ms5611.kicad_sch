@@ -344,14 +344,9 @@
     (uuid e4050dd0-4ff2-4547-8c3d-b6fb26fe5e2b)
   )
 
-  (text "Max Current: 1.4 mA" (at 152.4 69.85 0)
+  (text "Max Current: 1.4 mA" (at 14.605 201.295 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid a28f5414-c0e8-48bb-9c18-fb8c9b404290)
-  )
-  (text "Comments:\n\n- There needs to be a ~{CS} pullup resistor between the ~{CS} pin and 3.3v. Make this\n	resistor 10k. The only purpose of this resistor is to ensure that the chip \n	stays inactive while the microcontroller is being initially programmed since\n	during programming the chip will be unable to hold the various ~{CS} lines high. \n	A higher value reistor is less likely to cause problems during normal operation. \n\n			-Seth"
-    (at 120.015 48.26 0)
-    (effects (font (size 2 2) (thickness 0.4) bold (color 255 48 0 1)) (justify left bottom))
-    (uuid ecab97b9-08fc-4666-b8a6-377b58ccd609)
   )
 
   (label "MOSI" (at 73.025 86.995 0) (fields_autoplaced)

@@ -419,11 +419,6 @@
     (uuid f939216a-88ec-4870-9d4b-5e622052fb5f)
   )
 
-  (text "Comments:\n\n-  VDD needs to be 1.8v so pick out a 1.8V SMD linear regulator on digikey, feed this regulator\n	from 3.3v. Follow the regulator datasheet, it will proabaly require a capacitor before and after it. \n\n-  VDDIO should be 3.3V\n\n-  Both VDD and VDDIO are power pins so add a 100n capacitor between each of them and gnd. Place them physically close on\n	the schematic so that we know to place them near the pins when routing the PCB. These are decoupling capacitors. \n\n- Looking at the datasheet page 24, a 2.2u capacitor is needed between the CRST pin and GND. I believe this is used as a \n	power buffer for things like calibration and desaturation\n\n- ADSEL: This pin is used to set the I2C address, we are only using one of these so it does not matter which address our chip\n	has. For simplicity connect it to GND. Look at page 44 of the datasheet. With ADSEL set to 0, the I2C 7 bit address is\n	0b0010100 => 0x14. Put a text label of something like \"Addr: 0x14\" near the bottom right of the IC so that we know\n	what the address is configured to. \n\n- We probably won't use the INT pin due to a lack of uC connections and lack of need so just mark this as no connect \n\n- SCL and SDA are the I2C data lines so connect them to hierarchical labels so that we can connect them outside the schematic. \n\n			-Seth"
-    (at 50.8 172.72 0)
-    (effects (font (size 2 2) (thickness 0.4) bold (color 255 48 0 1)) (justify left bottom))
-    (uuid 45502551-b6a5-4d57-a34d-e1fdb7d1b312)
-  )
   (text "Magnometer" (at 169.545 40.64 0)
     (effects (font (size 3 3)) (justify left bottom))
     (uuid 4bbb6526-098b-4392-90ec-b8e9e86bb68c)

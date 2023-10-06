@@ -11704,7 +11704,7 @@
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid baaa519c-5073-47dd-b3aa-6b0449fad724)
   )
-  (hierarchical_label "INT" (shape input) (at 80.01 85.725 0) (fields_autoplaced)
+  (hierarchical_label "INT" (shape output) (at 80.01 85.725 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid ca3b8415-5fef-4f9f-b305-d72748bcf56b)
   )

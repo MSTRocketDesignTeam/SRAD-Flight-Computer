@@ -424,11 +424,6 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid c83474a2-219f-4e1a-ade2-d471c3f18be4)
   )
-  (text "Comments:\n\n- This chip has two supply pins VDDIO and VDD. Both of these pins are 3.3v compatible. Connect them both to 3.3v. Since\n	They are supply pins, place two 100n capacitors between 3.3v and gnd. These are decoupling capacitors for the supply\n	pins and as such they need to be placed near the chip on the PCB. To help us remember this, place them physically\n	close to the supply pins on the schematic. (see microcontroller for example) \n\n- According to pg 123 of the datasheet, the SPI interface (which we are using) is selected by toggling the CSB pin (~{CS})\n	This can be done by the microcontroller. Connect the SPI pins to hierarchical labels as follows:\n		- SDO -> MISO\n		- SDx -> MOSI\n		- SCx -> SCK\n\n- The INT pins can be used as an interrupt whenever certain motion detections occur, we do not really have enough pins to \n	utilize this and so just set INT1 and INT2 as no connect\n\n- Add a ~{CS} pullup resistor between the ~{CS} pin and 3.3v. Make this resistor\n	10k. The only purpose of this resistor is to ensure that the chip stays inactive \n	while the microcontroller is being initially programmed since during programming the chip\n	will be unable to hold the various ~{CS} lines high. (The MOSI/MISO lines \n	are used by the programmer so if this chip starts communicating while\n	the programmer is communicating to the microcontroller it could be really \n	bad.) A higher value resistor is less likely to cause problems during normal \n	operation. \n\n- The OCSB and OSDO pins are used for optical image stabilitization applications. We don't need them so set them as\n	no connection.  \n\n- The ASDx, and ASCx pins are used to allow chaining an i2c sensor to this chip (ex magnetometer). We are just going\n	to connect the magnetometer to the microcontroller so just mark these pins as no connect. \n\n\n			-Seth"
-    (at 162.56 160.02 0)
-    (effects (font (size 2 2) (thickness 0.4) bold (color 255 48 0 1)) (justify left bottom))
-    (uuid d1380c91-ac0d-46e5-a82f-801be9652a29)
-  )
 
   (hierarchical_label "INT" (shape output) (at 111.76 106.68 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
