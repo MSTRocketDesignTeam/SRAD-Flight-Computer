@@ -425,6 +425,12 @@
     (uuid c83474a2-219f-4e1a-ade2-d471c3f18be4)
   )
 
+  (label "Digikey Link: https:{slash}{slash}www.digikey.com{slash}en{slash}products{slash}detail{slash}bosch-sensortec{slash}BMI270{slash}9974486"
+    (at 13.97 77.47 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 4c92e852-b47b-40ec-be10-e20ffdaf8cb6)
+  )
+
   (hierarchical_label "INT" (shape output) (at 111.76 106.68 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 29acfb39-7009-4dfd-a411-59ea4fff666a)
