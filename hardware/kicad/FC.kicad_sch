@@ -1360,13 +1360,13 @@
   (symbol (lib_id "Device:C") (at 208.915 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2c2e7779-b2c6-4acf-b4fb-eb86dba47e7b)
-    (property "Reference" "C19" (at 212.09 151.765 0)
+    (property "Reference" "C1" (at 212.09 151.765 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10u" (at 212.09 153.67 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 209.8802 156.21 0)
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 209.8802 156.21 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 208.915 152.4 0)
@@ -1377,7 +1377,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
-          (reference "C19") (unit 1)
+          (reference "C1") (unit 1)
         )
       )
     )
@@ -1386,7 +1386,7 @@
   (symbol (lib_id "Regulator_Linear:TPS7A05285PDBV") (at 231.775 149.86 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 35d8d63e-b890-4c5a-a5d1-3c69150a05fe)
-    (property "Reference" "U9" (at 231.775 140.335 0)
+    (property "Reference" "U1" (at 231.775 140.335 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "TPS7A4533DCQR" (at 231.775 142.875 0)
@@ -1410,7 +1410,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
-          (reference "U9") (unit 1)
+          (reference "U1") (unit 1)
         )
       )
     )
@@ -1419,7 +1419,7 @@
   (symbol (lib_id "power:GND") (at 172.085 151.765 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4103eef1-fc30-408d-9ccf-a00b3b8b1f31)
-    (property "Reference" "#PWR047" (at 172.085 158.115 0)
+    (property "Reference" "#PWR01" (at 172.085 158.115 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 172.085 156.21 0)
@@ -1435,7 +1435,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
-          (reference "#PWR047") (unit 1)
+          (reference "#PWR01") (unit 1)
         )
       )
     )
@@ -1444,7 +1444,7 @@
   (symbol (lib_id "power:+3.3V") (at 259.715 146.05 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 47bdc239-8152-498e-8d8a-6b74785af941)
-    (property "Reference" "#PWR045" (at 259.715 149.86 0)
+    (property "Reference" "#PWR05" (at 259.715 149.86 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3.3V" (at 259.715 141.605 0)
@@ -1460,7 +1460,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
-          (reference "#PWR045") (unit 1)
+          (reference "#PWR05") (unit 1)
         )
       )
     )
@@ -1469,7 +1469,7 @@
   (symbol (lib_id "Connector_Generic:Conn_01x02") (at 165.1 149.86 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4f284951-99db-44ab-8ad3-b2a113b7f382)
-    (property "Reference" "J6" (at 165.1 140.97 0)
+    (property "Reference" "J1" (at 165.1 140.97 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "xt30" (at 165.1 143.51 0)
@@ -1486,7 +1486,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
-          (reference "J6") (unit 1)
+          (reference "J1") (unit 1)
         )
       )
     )
@@ -1495,7 +1495,7 @@
   (symbol (lib_id "power:GND") (at 250.825 157.48 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5f742d91-332a-409c-be89-0647234722ff)
-    (property "Reference" "#PWR043" (at 250.825 163.83 0)
+    (property "Reference" "#PWR04" (at 250.825 163.83 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 250.825 161.925 0)
@@ -1511,7 +1511,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
-          (reference "#PWR043") (unit 1)
+          (reference "#PWR04") (unit 1)
         )
       )
     )
@@ -1520,7 +1520,7 @@
   (symbol (lib_id "Device:D") (at 183.515 147.32 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 73d7f55c-10bd-4bb6-ae2e-992a109a8571)
-    (property "Reference" "D5" (at 183.515 142.875 0)
+    (property "Reference" "D1" (at 183.515 142.875 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "LSM115JE3" (at 183.515 144.78 0)
@@ -1546,7 +1546,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
-          (reference "D5") (unit 1)
+          (reference "D1") (unit 1)
         )
       )
     )
@@ -1555,13 +1555,13 @@
   (symbol (lib_id "Device:C") (at 250.825 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 809296ec-7aca-4235-b931-a6bee0d1ecea)
-    (property "Reference" "C18" (at 254 151.765 0)
+    (property "Reference" "C2" (at 254 151.765 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10u" (at 254 153.67 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 251.7902 156.21 0)
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 251.7902 156.21 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 250.825 152.4 0)
@@ -1572,7 +1572,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
-          (reference "C18") (unit 1)
+          (reference "C2") (unit 1)
         )
       )
     )
@@ -1581,7 +1581,7 @@
   (symbol (lib_id "power:GND") (at 231.775 161.925 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a9114467-bc20-4a55-bc5b-e804687e76de)
-    (property "Reference" "#PWR046" (at 231.775 168.275 0)
+    (property "Reference" "#PWR03" (at 231.775 168.275 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 231.775 166.37 0)
@@ -1597,7 +1597,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
-          (reference "#PWR046") (unit 1)
+          (reference "#PWR03") (unit 1)
         )
       )
     )
@@ -1606,7 +1606,7 @@
   (symbol (lib_id "power:GND") (at 208.915 157.48 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid e4318850-ee94-4bb2-b196-1bcd839ab580)
-    (property "Reference" "#PWR044" (at 208.915 163.83 0)
+    (property "Reference" "#PWR02" (at 208.915 163.83 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 208.915 161.925 0)
@@ -1622,7 +1622,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
-          (reference "#PWR044") (unit 1)
+          (reference "#PWR02") (unit 1)
         )
       )
     )
@@ -1631,7 +1631,7 @@
   (symbol (lib_id "Device:D") (at 189.865 153.035 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f462114b-1dc6-4b14-8899-e37cdcc557e9)
-    (property "Reference" "D6" (at 193.04 151.13 90)
+    (property "Reference" "D2" (at 193.04 151.13 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "LSM115JE3" (at 197.485 153.035 90)
@@ -1657,7 +1657,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
-          (reference "D6") (unit 1)
+          (reference "D2") (unit 1)
         )
       )
     )

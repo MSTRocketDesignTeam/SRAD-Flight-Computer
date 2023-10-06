@@ -1236,13 +1236,13 @@
   (symbol (lib_id "Device:R") (at 35.56 46.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 2c364c81-aa2e-4000-b671-3345017710d6)
-    (property "Reference" "R2" (at 38.1 45.72 0)
+    (property "Reference" "R18" (at 38.1 45.72 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1k" (at 38.1 48.26 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 33.782 46.99 90)
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 33.782 46.99 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 35.56 46.99 0)
@@ -1253,7 +1253,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/ec693876-f9f5-4d00-b73f-be61605a2d0a"
-          (reference "R2") (unit 1)
+          (reference "R18") (unit 1)
         )
       )
     )
@@ -1262,7 +1262,7 @@
   (symbol (lib_id "power:GND") (at 49.53 57.15 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4a844197-6561-4c13-9b31-2a2b9613f238)
-    (property "Reference" "#PWR05" (at 49.53 63.5 0)
+    (property "Reference" "#PWR043" (at 49.53 63.5 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 49.53 62.23 0)
@@ -1278,7 +1278,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/ec693876-f9f5-4d00-b73f-be61605a2d0a"
-          (reference "#PWR05") (unit 1)
+          (reference "#PWR043") (unit 1)
         )
       )
     )
@@ -1287,7 +1287,7 @@
   (symbol (lib_id "power:+3.3V") (at 49.53 26.67 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a465a1c1-b304-4b9b-8a76-3a4e62a03aae)
-    (property "Reference" "#PWR07" (at 49.53 30.48 0)
+    (property "Reference" "#PWR042" (at 49.53 30.48 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3.3V" (at 49.53 21.59 0)
@@ -1303,7 +1303,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/ec693876-f9f5-4d00-b73f-be61605a2d0a"
-          (reference "#PWR07") (unit 1)
+          (reference "#PWR042") (unit 1)
         )
       )
     )
@@ -1312,13 +1312,13 @@
   (symbol (lib_id "Device:C") (at 85.09 40.64 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid bedb30d7-384b-4347-96bf-f519c8063343)
-    (property "Reference" "C6" (at 88.9 39.37 0)
+    (property "Reference" "C15" (at 88.9 39.37 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100nF" (at 88.9 41.91 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 86.0552 44.45 0)
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 86.0552 44.45 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 85.09 40.64 0)
@@ -1329,7 +1329,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/ec693876-f9f5-4d00-b73f-be61605a2d0a"
-          (reference "C6") (unit 1)
+          (reference "C15") (unit 1)
         )
       )
     )
@@ -1338,7 +1338,7 @@
   (symbol (lib_id "Memory_NVRAM:MB85RS16") (at 49.53 40.64 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ce229b78-b927-4bc7-9767-3fae7fb71cd5)
-    (property "Reference" "U5" (at 51.7241 30.48 0)
+    (property "Reference" "U10" (at 51.7241 30.48 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "MB85RS2" (at 51.7241 33.02 0)
@@ -1364,7 +1364,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/ec693876-f9f5-4d00-b73f-be61605a2d0a"
-          (reference "U5") (unit 1)
+          (reference "U10") (unit 1)
         )
       )
     )

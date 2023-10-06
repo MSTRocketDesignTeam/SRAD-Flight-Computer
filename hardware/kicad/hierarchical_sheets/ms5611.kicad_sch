@@ -409,7 +409,7 @@
           (reference "#PWR04") (unit 1)
         )
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/01e59dc5-0a98-4437-b4f9-a1305517a629"
-          (reference "#PWR07") (unit 1)
+          (reference "#PWR024") (unit 1)
         )
       )
     )
@@ -418,13 +418,13 @@
   (symbol (lib_id "Device:R") (at 40.005 77.47 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 2d4fdb97-acf1-4215-b477-5260de4c4b93)
-    (property "Reference" "R22" (at 42.545 76.835 0)
+    (property "Reference" "R15" (at 42.545 76.835 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10K" (at 42.545 79.375 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 38.227 77.47 90)
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 38.227 77.47 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 40.005 77.47 0)
@@ -435,7 +435,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/01e59dc5-0a98-4437-b4f9-a1305517a629"
-          (reference "R22") (unit 1)
+          (reference "R15") (unit 1)
         )
       )
     )
@@ -463,7 +463,7 @@
           (reference "#PWR01") (unit 1)
         )
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/01e59dc5-0a98-4437-b4f9-a1305517a629"
-          (reference "#PWR05") (unit 1)
+          (reference "#PWR023") (unit 1)
         )
       )
     )
@@ -500,7 +500,7 @@
   (symbol (lib_id "Sensor_Pressure:MS5611-01BA") (at 88.265 86.995 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c1da3272-264f-4052-837b-bfcd825c4869)
-    (property "Reference" "U4" (at 76.835 78.105 0)
+    (property "Reference" "U5" (at 76.835 78.105 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "MS5611-01BA" (at 71.755 75.565 0)
@@ -510,9 +510,6 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=MS5611-01BA03&DocType=Data+Sheet&DocLang=English" (at 88.265 86.995 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Digikey" "https://www.digikey.com/en/products/detail/te-connectivity-measurement-specialties/MS561101BA03-50/5277445" (at 88.265 86.995 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 87c27f49-5b37-449a-9ce6-9b60404073ff))
@@ -526,7 +523,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/01e59dc5-0a98-4437-b4f9-a1305517a629"
-          (reference "U4") (unit 1)
+          (reference "U5") (unit 1)
         )
       )
     )
@@ -554,7 +551,7 @@
           (reference "#PWR01") (unit 1)
         )
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/01e59dc5-0a98-4437-b4f9-a1305517a629"
-          (reference "#PWR028") (unit 1)
+          (reference "#PWR021") (unit 1)
         )
       )
     )
@@ -569,7 +566,7 @@
     (property "Value" "100nF" (at 108.585 90.8113 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 106.045 89.535 0)
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 106.045 89.535 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 106.045 89.535 0)

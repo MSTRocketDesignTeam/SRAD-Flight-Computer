@@ -477,7 +477,7 @@
     (property "Value" "100n" (at 123.19 64.77 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 121.285 64.135 0)
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 121.285 64.135 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 121.285 64.135 0)
@@ -491,7 +491,7 @@
           (reference "C2") (unit 1)
         )
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/f2d155c9-a158-4cf0-b4ab-42b0987153ce"
-          (reference "C16") (unit 1)
+          (reference "C9") (unit 1)
         )
       )
     )
@@ -561,7 +561,7 @@
           (reference "#PWR03") (unit 1)
         )
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/f2d155c9-a158-4cf0-b4ab-42b0987153ce"
-          (reference "#PWR041") (unit 1)
+          (reference "#PWR031") (unit 1)
         )
       )
     )
@@ -576,7 +576,7 @@
     (property "Value" "100n" (at 113.665 64.135 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 111.76 63.5 0)
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 111.76 63.5 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 111.76 63.5 0)
@@ -590,7 +590,7 @@
           (reference "C1") (unit 1)
         )
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/f2d155c9-a158-4cf0-b4ab-42b0987153ce"
-          (reference "C15") (unit 1)
+          (reference "C8") (unit 1)
         )
       )
     )
@@ -618,7 +618,7 @@
           (reference "#PWR01") (unit 1)
         )
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/f2d155c9-a158-4cf0-b4ab-42b0987153ce"
-          (reference "#PWR040") (unit 1)
+          (reference "#PWR030") (unit 1)
         )
       )
     )
@@ -627,7 +627,7 @@
   (symbol (lib_id "power:GND") (at 139.065 118.745 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7fc726c6-d85c-45ac-8740-1c507561b20b)
-    (property "Reference" "#PWR038" (at 139.065 125.095 0)
+    (property "Reference" "#PWR032" (at 139.065 125.095 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 139.065 123.19 0)
@@ -643,7 +643,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/f2d155c9-a158-4cf0-b4ab-42b0987153ce"
-          (reference "#PWR038") (unit 1)
+          (reference "#PWR032") (unit 1)
         )
       )
     )
