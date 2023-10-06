@@ -11828,7 +11828,7 @@
     (property "Value" "RA-01SH" (at 66.3291 67.945 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "RF_Module:RA-01SH" (at 89.535 93.345 0)
+    (property "Footprint" "RF_Module:Ai-Thinker-Ra-01-LoRa" (at 89.535 93.345 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://docs.ai-thinker.com/_media/lora/docs/ra-01sh_specification.pdf" (at 66.3291 65.405 0)
