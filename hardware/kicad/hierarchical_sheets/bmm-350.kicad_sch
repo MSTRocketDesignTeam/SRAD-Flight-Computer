@@ -7,6 +7,7 @@
   (title_block
     (title "SRAD-FC")
     (company "Missouri S&T Rocket Design Team")
+    (comment 1 "Sean Duda")
   )
 
   (lib_symbols
