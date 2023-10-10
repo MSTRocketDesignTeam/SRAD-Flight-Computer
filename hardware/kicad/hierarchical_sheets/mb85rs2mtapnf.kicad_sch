@@ -5,7 +5,7 @@
   (paper "USLetter")
 
   (title_block
-    (title "SRAD-FC")
+    (title "Storage (MB85RS2)")
     (company "Missouri S&T Rocket Design Team")
     (comment 1 "Cliffford Matteson")
   )

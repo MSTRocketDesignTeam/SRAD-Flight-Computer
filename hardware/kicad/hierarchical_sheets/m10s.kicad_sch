@@ -5,7 +5,7 @@
   (paper "USLetter")
 
   (title_block
-    (title "SRAD-FC")
+    (title "GPS (M10S)")
     (company "Missouri S&T Rocket Design Team")
     (comment 1 "Riley Kyle")
   )
@@ -504,12 +504,12 @@
   )
 
   (symbol (lib_id "RF_GPS:MAX-M10S") (at 139.065 94.615 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom yes) (on_board yes) (dnp no)
     (uuid 49fdb179-034d-4fd7-a70e-c8f3c2e8d094)
-    (property "Reference" "U8" (at 141.2591 111.76 0)
+    (property "Reference" "U8" (at 147.32 74.295 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "MAX-M10S" (at 141.2591 114.3 0)
+    (property "Value" "MAX-M10S" (at 147.32 76.835 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "RF_GPS:ublox_MAX" (at 149.225 111.125 0)
