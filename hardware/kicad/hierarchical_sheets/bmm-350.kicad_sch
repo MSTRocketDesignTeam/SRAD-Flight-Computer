@@ -511,7 +511,7 @@
   (symbol (lib_id "Regulator_Linear:LM1117MP-1.8") (at 99.06 77.47 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 24e998b3-5473-4e47-b748-c95b1099a09a)
-    (property "Reference" "U8" (at 99.06 72.5551 0)
+    (property "Reference" "U9" (at 99.06 72.5551 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "LM1117MP-1.8" (at 99.06 74.4761 0)
@@ -529,7 +529,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/6e22c049-ccb1-45dc-8368-a811e6fa6e08"
-          (reference "U8") (unit 1)
+          (reference "U9") (unit 1)
         )
       )
     )
@@ -690,7 +690,7 @@
   (symbol (lib_id "BM350:BM350") (at 184.15 86.36 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a946dd35-df0c-40e3-a6b1-cd1444416ccc)
-    (property "Reference" "U9" (at 201.93 67.31 0)
+    (property "Reference" "U10" (at 201.93 67.31 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "BMM350" (at 201.93 69.85 0)
@@ -717,7 +717,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/6e22c049-ccb1-45dc-8368-a811e6fa6e08"
-          (reference "U9") (unit 1)
+          (reference "U10") (unit 1)
         )
       )
     )

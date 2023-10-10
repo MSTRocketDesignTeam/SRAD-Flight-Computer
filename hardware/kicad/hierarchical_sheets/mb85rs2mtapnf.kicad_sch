@@ -363,7 +363,7 @@
   (symbol (lib_id "power:+3.3V") (at 102.87 97.155 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 07e0ba66-466f-4144-aadf-b1f9e91e7451)
-    (property "Reference" "#PWR062" (at 102.87 100.965 0)
+    (property "Reference" "#PWR042" (at 102.87 100.965 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3.3V" (at 102.87 93.345 0)
@@ -379,7 +379,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/ec693876-f9f5-4d00-b73f-be61605a2d0a"
-          (reference "#PWR062") (unit 1)
+          (reference "#PWR042") (unit 1)
         )
       )
     )
@@ -414,7 +414,7 @@
   (symbol (lib_id "power:GND") (at 123.19 103.505 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4a844197-6561-4c13-9b31-2a2b9613f238)
-    (property "Reference" "#PWR043" (at 123.19 109.855 0)
+    (property "Reference" "#PWR044" (at 123.19 109.855 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 123.19 108.585 0)
@@ -430,7 +430,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/ec693876-f9f5-4d00-b73f-be61605a2d0a"
-          (reference "#PWR043") (unit 1)
+          (reference "#PWR044") (unit 1)
         )
       )
     )
@@ -439,7 +439,7 @@
   (symbol (lib_id "power:+3.3V") (at 123.19 73.025 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a465a1c1-b304-4b9b-8a76-3a4e62a03aae)
-    (property "Reference" "#PWR042" (at 123.19 76.835 0)
+    (property "Reference" "#PWR043" (at 123.19 76.835 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3.3V" (at 123.19 67.945 0)
@@ -455,7 +455,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/ec693876-f9f5-4d00-b73f-be61605a2d0a"
-          (reference "#PWR042") (unit 1)
+          (reference "#PWR043") (unit 1)
         )
       )
     )
@@ -490,7 +490,7 @@
   (symbol (lib_id "Memory_NVRAM:MB85RS16") (at 123.19 86.995 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ce229b78-b927-4bc7-9767-3fae7fb71cd5)
-    (property "Reference" "U10" (at 125.3841 76.835 0)
+    (property "Reference" "U11" (at 125.3841 76.835 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "MB85RS2" (at 125.3841 79.375 0)
@@ -516,7 +516,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/ec693876-f9f5-4d00-b73f-be61605a2d0a"
-          (reference "U10") (unit 1)
+          (reference "U11") (unit 1)
         )
       )
     )

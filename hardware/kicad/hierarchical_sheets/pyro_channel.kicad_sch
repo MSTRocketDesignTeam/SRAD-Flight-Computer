@@ -2116,7 +2116,7 @@
   (symbol (lib_id "Device:Fuse") (at 134.62 113.03 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a3c8dc62-7ca5-4409-bf7e-c4f2e527b64d)
-    (property "Reference" "F2" (at 134.62 107.95 90)
+    (property "Reference" "F1" (at 134.62 107.95 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "20A" (at 134.62 110.49 90)
@@ -2136,7 +2136,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
-          (reference "F2") (unit 1)
+          (reference "F1") (unit 1)
         )
       )
     )
@@ -2210,7 +2210,7 @@
   (symbol (lib_id "Device:Fuse") (at 134.62 140.97 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid e0dc2236-2f07-4a2b-b708-1dc024898405)
-    (property "Reference" "F3" (at 134.62 135.89 90)
+    (property "Reference" "F2" (at 134.62 135.89 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "20A" (at 134.62 138.43 90)
@@ -2230,7 +2230,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/047c0ef5-e762-41a7-bfd7-fdc982a27304"
-          (reference "F3") (unit 1)
+          (reference "F2") (unit 1)
         )
       )
     )

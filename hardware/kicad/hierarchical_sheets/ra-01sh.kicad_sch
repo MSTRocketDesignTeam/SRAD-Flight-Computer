@@ -618,7 +618,7 @@
   (symbol (lib_id "RA-01SH:RA-01SH") (at 119.38 104.14 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4b7d0716-8359-4200-b310-b4aa1169b285)
-    (property "Reference" "U6" (at 121.5741 86.36 0)
+    (property "Reference" "U7" (at 121.5741 86.36 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "RA-01SH" (at 121.5741 88.9 0)
@@ -652,7 +652,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/35031a3a-251a-4009-92bf-5738de5c8c69"
-          (reference "U6") (unit 1)
+          (reference "U7") (unit 1)
         )
       )
     )

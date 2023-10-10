@@ -5,7 +5,7 @@
   (paper "USLetter")
 
   (title_block
-    (title "SRAD-FC")
+    (title "IMU (BMI-270)")
     (company "Missouri S&T Rocket Design Team")
     (comment 1 "Evan Richard")
   )
@@ -476,11 +476,11 @@
   (symbol (lib_id "BMI270:BMI270") (at 154.94 97.155 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 11a2b3c2-2b31-442c-86b3-1d31f54dc083)
-    (property "Reference" "BMI270_4WireSPI1" (at 107.95 66.675 0)
+    (property "Reference" "U5" (at 158.75 84.455 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "BMI270" (at 157.1341 86.995 0)
-      (effects (font (size 1.27 1.27)) (justify left) hide)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "BMI270:XDCR_BMI270" (at 154.94 97.155 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -508,7 +508,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/7e43dc21-d4ed-4dfe-b96f-060fb7f0f8ce"
-          (reference "BMI270_4WireSPI1") (unit 1)
+          (reference "U5") (unit 1)
         )
       )
     )

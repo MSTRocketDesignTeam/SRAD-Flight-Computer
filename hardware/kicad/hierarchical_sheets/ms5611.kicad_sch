@@ -5,7 +5,7 @@
   (paper "USLetter")
 
   (title_block
-    (title "SRAD-FC")
+    (title "Barometer (MS5611)")
     (company "Missouri S&T Rocket Design Team")
     (comment 1 "Ben Martin")
   )
@@ -501,10 +501,10 @@
   (symbol (lib_id "Sensor_Pressure:MS5611-01BA") (at 150.495 96.52 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c1da3272-264f-4052-837b-bfcd825c4869)
-    (property "Reference" "U5" (at 139.065 87.63 0)
+    (property "Reference" "U6" (at 139.065 84.455 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "MS5611-01BA" (at 133.985 85.09 0)
+    (property "Value" "MS5611-01BA" (at 133.985 86.36 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Package_LGA:LGA-8_3x5mm_P1.25mm" (at 150.495 96.52 0)
@@ -524,7 +524,7 @@
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc/01e59dc5-0a98-4437-b4f9-a1305517a629"
-          (reference "U5") (unit 1)
+          (reference "U6") (unit 1)
         )
       )
     )

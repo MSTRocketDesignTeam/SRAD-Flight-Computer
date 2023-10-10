@@ -5,7 +5,7 @@
   (paper "USLetter")
 
   (title_block
-    (title "SRAD-FC")
+    (title "High G Accelerometer (KX134-1211)")
     (company "Missouri S&T Rocket Design Team")
     (comment 1 "Skye Watson")
   )
