@@ -6,6 +6,5 @@
   (lib (name "CONSMA020.062")(type "KiCad")(uri "${KIPRJMOD}/footprints/CONSMA020.062")(options "")(descr ""))
   (lib (name "ASMB-LTB2")(type "KiCad")(uri "${KIPRJMOD}/footprints/ASMB-LTB2.pretty")(options "")(descr ""))
   (lib (name "LSM115JE3")(type "KiCad")(uri "${KIPRJMOD}/footprints/LSM115JE3.pretty")(options "")(descr ""))
-  (lib (name "footprints")(type "KiCad")(uri "${KIPRJMOD}/footprints.pretty")(options "")(descr ""))
   (lib (name "XT30PW-M")(type "KiCad")(uri "${KIPRJMOD}/footprints/XT30PW-M.pretty")(options "")(descr ""))
 )
