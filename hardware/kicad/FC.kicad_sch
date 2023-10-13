@@ -1617,7 +1617,7 @@
     (property "Value" "xt30" (at 129.54 143.51 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "XT30PW-M:AMASS_XT30PW-M" (at 127 139.7 0)
+    (property "Footprint" "Connector_AMASS:AMASS_XT30PW-M_1x02_P2.50mm_Horizontal" (at 127 139.7 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 129.54 149.86 0)

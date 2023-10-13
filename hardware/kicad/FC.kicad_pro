@@ -484,7 +484,12 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "USB",
+        "pattern": "/Microcontroller/USB*_D*"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
