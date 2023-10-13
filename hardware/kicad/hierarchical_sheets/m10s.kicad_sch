@@ -950,7 +950,7 @@
     (property "Value" "GRM155R71C103KA01J" (at 180.975 62.23 90)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "Capacitor_SMD:C_01005_0402Metric" (at 184.785 66.3448 0)
+    (property "Footprint" "Capacitor_SMD:C_0402_1005Metric" (at 184.785 66.3448 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM155R71C103KA01-01.pdf" (at 180.975 67.31 0)

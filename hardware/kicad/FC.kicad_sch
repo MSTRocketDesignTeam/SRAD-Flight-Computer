@@ -1680,9 +1680,9 @@
     (property "Digikey" "https://www.digikey.com/en/products/detail/vishay-general-semiconductor-diodes-division/V15PM153-M3-I/16683129" (at 163.83 154.305 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "3" (uuid f47817b5-75dd-4593-aa31-049e108beddf))
-    (pin "2" (uuid c65d92e4-df2f-4b06-9c42-59b3fba8f854))
     (pin "1" (uuid ac8c0d72-2cc7-4c2b-ad00-e3f39b67fe98))
+    (pin "2" (uuid c65d92e4-df2f-4b06-9c42-59b3fba8f854))
+    (pin "3" (uuid f47817b5-75dd-4593-aa31-049e108beddf))
     (instances
       (project "FC"
         (path "/54cce219-8b98-4e71-96c4-f9ee784aa3bc"
