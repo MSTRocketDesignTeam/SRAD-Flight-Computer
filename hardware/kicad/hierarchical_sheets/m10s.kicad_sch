@@ -642,6 +642,11 @@
     (uuid b7de8394-d794-4fa0-82d2-23020571c047)
   )
 
+  (label "RF_IN" (at 158.115 94.615 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 6e50f86f-a412-4d70-a6b3-c41999d20cc3)
+  )
+
   (hierarchical_label "SCL" (shape input) (at 111.76 94.615 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 62582d4a-5701-49c7-9ca3-9d6d28c8e6d2)
@@ -649,6 +654,14 @@
   (hierarchical_label "SDA" (shape bidirectional) (at 111.76 92.075 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 81b78e0f-8b4e-47fe-8a0f-cd659cc9f055)
+  )
+
+  (netclass_flag "" (length 2.54) (shape round) (at 172.085 94.615 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid e33d441f-7615-4cd6-98f8-7a8422ad161f)
+    (property "Netclass" "50_OHM" (at 172.7835 92.075 0)
+      (effects (font (size 1.27 1.27) italic) (justify left))
+    )
   )
 
   (symbol (lib_id "power:GND") (at 222.25 69.85 0) (unit 1)
