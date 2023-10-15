@@ -491,6 +491,10 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid b7b4cc2b-7b2c-476d-a1dd-2513bf7ec197)
   )
+  (label "~{RESET}" (at 130.81 101.6 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid f1da8b76-e630-4850-a14c-86d80b511bb6)
+  )
 
   (hierarchical_label "BUSY" (shape output) (at 88.9 111.76 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
