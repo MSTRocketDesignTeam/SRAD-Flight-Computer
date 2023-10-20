@@ -1366,6 +1366,11 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 16c9da70-137d-42fb-be61-ff71b57a7311)
   )
+  (text "https://www.rocketryforum.com/threads/minimum-all-fire-energy-of-mjg-technologies-firewire-initiator.138423/"
+    (at 26.035 55.245 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 4271a9a9-8c5c-46bb-9723-1d2e9125af69)
+  )
   (text "Example Ematch: https://electricmatch.com/pyrotechnics/see/6/5/mjg-firewire-initiator--standard\nResistance: 1 +/- 0.2Ω\nRecommended Current: 1A\nMinimum Recommended Current: 0.75A\nMaximum Test Current: 0.04A\n"
     (at 26.67 31.75 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
@@ -1383,7 +1388,7 @@
     (effects (font (size 2.52 2.52) (thickness 0.504) bold) (justify left bottom))
     (uuid b5bd472b-88f3-4ee3-b0f6-425af2e6a695)
   )
-  (text "In case of dead short on one pyro channel, \nan insane amount of current (50A-100A) will\nbe drawn (or attempted). Best case scenario the \nMCU BOR and everything is okay. Worst case scenario\nthe FET fails closed and the entire board / battery\ncatches fire. \n\nThe 15A fuses should fail, preventing a catastrophic \nfailure from a shorted pyro channel.  "
+  (text "In case of dead short on one pyro channel, \nan insane amount of current (50A-100A) will\nbe drawn (or attempted). Best case scenario the \nMCU BOR and everything is okay. Worst case scenario\nthe FET fails closed and the entire board / battery\ncatches fire. \n\nThe 15A fuses should fail, preventing the above\nfailures from a shorted pyro channel.  "
     (at 90.805 159.385 0)
     (effects (font (size 1 1)) (justify left bottom))
     (uuid d9ab4001-52b7-4de4-9807-76ee24d59421)
