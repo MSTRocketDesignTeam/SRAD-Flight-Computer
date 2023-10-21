@@ -613,7 +613,7 @@
 
   (footprint "TestPoint:TestPoint_Pad_D1.5mm" (layer "F.Cu")
     (tstamp 0ea6883c-4941-428c-a877-475830edcfa9)
-    (at 78.7125 61.86)
+    (at 120.77 119.12)
     (descr "SMD pad as test Point, diameter 1.5mm")
     (tags "test point SMD pad")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -1366,7 +1366,7 @@
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
     (tstamp 230b71b6-fcc3-4932-b4cf-f09547e8fb54)
-    (at 70.8425 44.2)
+    (at 112.9 101.46)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -1420,7 +1420,7 @@
 
   (footprint "TestPoint:TestPoint_Pad_D1.5mm" (layer "F.Cu")
     (tstamp 26ce9737-b900-4cba-b3bb-4d7fa994b86b)
-    (at 82.2625 61.86)
+    (at 124.32 119.12)
     (descr "SMD pad as test Point, diameter 1.5mm")
     (tags "test point SMD pad")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -2033,7 +2033,7 @@
 
   (footprint "Package_TO_SOT_SMD:SOT-23" (layer "F.Cu")
     (tstamp 42185d56-a0e3-403d-ad19-2f095e4a1e21)
-    (at 201.4375 132.8)
+    (at 189.6125 130)
     (descr "SOT, 3 Pin (https://www.jedec.org/system/files/docs/to-236h.pdf variant AB), generated with kicad-footprint-generator ipc_gullwing_generator.py")
     (tags "SOT TO_SOT_SMD")
     (property "Digikey" "https://www.digikey.com/en/products/detail/diodes-incorporated/MMBZ5225B-7-F/814491")
@@ -2331,7 +2331,7 @@
 
   (footprint "TestPoint:TestPoint_Pad_D1.5mm" (layer "F.Cu")
     (tstamp 4fc162bd-76e7-46e3-9506-8dc976f6995e)
-    (at 78.7125 54.76)
+    (at 120.77 112.02)
     (descr "SMD pad as test Point, diameter 1.5mm")
     (tags "test point SMD pad")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -2416,7 +2416,7 @@
 
   (footprint "TestPoint:TestPoint_Pad_D1.5mm" (layer "F.Cu")
     (tstamp 5b08a7e6-9eec-4e37-8405-9aea5f9b7919)
-    (at 75.1625 58.31)
+    (at 117.22 115.57)
     (descr "SMD pad as test Point, diameter 1.5mm")
     (tags "test point SMD pad")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -3202,7 +3202,7 @@
 
   (footprint "TestPoint:TestPoint_Pad_D1.5mm" (layer "F.Cu")
     (tstamp 70badb6b-3e8b-4e37-8525-485af36c8292)
-    (at 75.1625 61.86)
+    (at 117.22 119.12)
     (descr "SMD pad as test Point, diameter 1.5mm")
     (tags "test point SMD pad")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -3341,7 +3341,7 @@
 
   (footprint "TestPoint:TestPoint_Pad_D1.5mm" (layer "F.Cu")
     (tstamp 8388e434-2b91-43c3-86e9-6f3e494471a9)
-    (at 78.7125 58.31)
+    (at 120.77 115.57)
     (descr "SMD pad as test Point, diameter 1.5mm")
     (tags "test point SMD pad")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -3705,7 +3705,7 @@
 
   (footprint "TestPoint:TestPoint_Pad_D1.5mm" (layer "F.Cu")
     (tstamp 92403f99-ba40-4e81-89d3-b24d470e8f40)
-    (at 82.2625 54.76)
+    (at 124.32 112.02)
     (descr "SMD pad as test Point, diameter 1.5mm")
     (tags "test point SMD pad")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -3844,7 +3844,7 @@
 
   (footprint "TestPoint:TestPoint_Pad_D1.5mm" (layer "F.Cu")
     (tstamp 98538428-62e9-4957-b26d-60f2502a7d9a)
-    (at 82.2625 58.31)
+    (at 124.32 115.57)
     (descr "SMD pad as test Point, diameter 1.5mm")
     (tags "test point SMD pad")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -3929,7 +3929,7 @@
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
     (tstamp 9b220b8c-7700-4de8-87f9-dc9d8ab41184)
-    (at 185.1 127.55 180)
+    (at 185.175 127.55 180)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "hierarchical_sheets/pyro_channel.kicad_sch")
@@ -4308,7 +4308,7 @@
 
   (footprint "TestPoint:TestPoint_Pad_D1.5mm" (layer "F.Cu")
     (tstamp b6b99c2d-f4c0-4275-8a81-f3629bbb55ba)
-    (at 75.1625 65.41)
+    (at 117.22 122.67)
     (descr "SMD pad as test Point, diameter 1.5mm")
     (tags "test point SMD pad")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -4812,7 +4812,7 @@
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
     (tstamp cb85ef17-d1a0-454a-9e0c-c39a2c37a92a)
-    (at 205.425 133.3 180)
+    (at 189.75 127.45 180)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "hierarchical_sheets/pyro_channel.kicad_sch")
@@ -5281,7 +5281,7 @@
 
   (footprint "TestPoint:TestPoint_Pad_D1.5mm" (layer "F.Cu")
     (tstamp e04e84df-2545-4bb8-b70e-2e82e1b74f2e)
-    (at 75.1625 54.76)
+    (at 117.22 112.02)
     (descr "SMD pad as test Point, diameter 1.5mm")
     (tags "test point SMD pad")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -5312,7 +5312,7 @@
 
   (footprint "TestPoint:TestPoint_Pad_D1.5mm" (layer "F.Cu")
     (tstamp e23c058f-8e7f-41cf-83e2-3abe1b6fa72e)
-    (at 78.7125 65.41)
+    (at 120.77 122.67)
     (descr "SMD pad as test Point, diameter 1.5mm")
     (tags "test point SMD pad")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -5416,7 +5416,7 @@
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
     (tstamp e8619dc4-be74-438e-92a8-c9008bc17386)
-    (at 70.8425 46.71)
+    (at 112.9 103.97)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -5733,7 +5733,7 @@
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
     (tstamp efcf8ee9-9ba9-469a-b862-a7433c5db7b1)
-    (at 205.3375 130.63)
+    (at 189.6875 132.55)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "hierarchical_sheets/pyro_channel.kicad_sch")
@@ -5841,7 +5841,7 @@
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
     (tstamp f3cb8c7d-2858-4d58-b12e-4313ce7d41f8)
-    (at 62.8225 44.2)
+    (at 104.88 101.46)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -6044,7 +6044,7 @@
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
     (tstamp f9609bec-ab26-45c6-9371-05b0f1332fd8)
-    (at 70.8425 39.18)
+    (at 112.9 96.44)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -6176,7 +6176,7 @@
 
   (footprint "Resistor_SMD:R_0603_1608Metric" (layer "F.Cu")
     (tstamp ffc0afc6-4a97-4327-a0a4-b6a1cbbbca5e)
-    (at 70.8425 41.69)
+    (at 112.9 98.95)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
     (tags "resistor")
     (property "Sheetfile" "hierarchical_sheets/atmega32u4.kicad_sch")
@@ -6945,12 +6945,20 @@
   (segment (start 191.575 148.65) (end 192.625 148.65) (width 0.5) (layer "F.Cu") (net 38) (tstamp 45523956-db53-4d11-b160-4fc03762afdf))
   (segment (start 190.68 149.545) (end 191.575 148.65) (width 0.5) (layer "F.Cu") (net 38) (tstamp a0fa640b-fae7-4c4b-ac80-d610ac942565))
   (segment (start 189.6125 149.545) (end 190.68 149.545) (width 0.5) (layer "F.Cu") (net 38) (tstamp eac58e06-0e80-4a93-a25b-e57116812f1b))
+  (segment (start 190.5125 130.0375) (end 190.55 130) (width 0.5) (layer "F.Cu") (net 39) (tstamp 117b8217-ae0e-4090-8f3b-be64c8482703))
+  (segment (start 190.575 129.975) (end 190.55 130) (width 0.5) (layer "F.Cu") (net 39) (tstamp 385aca0b-9ec0-40a0-a489-5b7f9643ccf6))
+  (segment (start 190.575 127.45) (end 190.575 129.975) (width 0.5) (layer "F.Cu") (net 39) (tstamp 51fc7071-0178-43a1-9a07-ec29951e0e80))
+  (segment (start 190.5125 132.55) (end 190.5125 130.0375) (width 0.5) (layer "F.Cu") (net 39) (tstamp 5481a776-f461-4d7e-872e-410eb5b9104c))
   (segment (start 183.05 119.025) (end 182.975 118.95) (width 0.5) (layer "F.Cu") (net 39) (tstamp 69e707d1-15e3-40ba-95a2-a31eeabcdb6b))
   (segment (start 184.4 119.025) (end 183.05 119.025) (width 0.5) (layer "F.Cu") (net 39) (tstamp e48b275f-190f-4db4-8b2d-b2efc0ba58d0))
   (via (at 182.975 118.95) (size 0.7) (drill 0.4) (layers "F.Cu" "B.Cu") (free) (net 39) (tstamp 5197b29d-120a-4ef0-9a23-80b9a3f39a92))
   (segment (start 192.59 152.085) (end 192.625 152.05) (width 0.5) (layer "F.Cu") (net 40) (tstamp 717c2211-b8fc-404a-b676-0e98aba078a7))
   (segment (start 189.6125 152.085) (end 192.59 152.085) (width 0.5) (layer "F.Cu") (net 40) (tstamp f1a3cd28-28c5-416c-ad91-a0f5e6f0ddaf))
+  (segment (start 186 127.625) (end 185.925 127.55) (width 0.5) (layer "F.Cu") (net 41) (tstamp 455e70f7-42cb-4bbe-8393-bfa2b9c297f7))
+  (segment (start 185.975 132.65) (end 185.975 130.125) (width 0.5) (layer "F.Cu") (net 41) (tstamp 7efd1d78-0ae4-49a6-a8ee-145769581988))
   (segment (start 183.15 117.425) (end 182.975 117.25) (width 0.5) (layer "F.Cu") (net 41) (tstamp 858319df-5873-4d49-baf8-484c682e2f91))
+  (segment (start 186 130.1) (end 186 127.625) (width 0.5) (layer "F.Cu") (net 41) (tstamp b3115a02-2c31-4b7c-b8b1-a25cc2e63689))
+  (segment (start 185.975 130.125) (end 186 130.1) (width 0.5) (layer "F.Cu") (net 41) (tstamp c124ed4a-0d02-494a-8f1d-0cdc090da9e4))
   (segment (start 184.4 117.425) (end 183.15 117.425) (width 0.5) (layer "F.Cu") (net 41) (tstamp d04392f5-252e-4fe8-8df7-76bd392176db))
   (via (at 182.975 117.25) (size 0.7) (drill 0.4) (layers "F.Cu" "B.Cu") (free) (net 41) (tstamp 5098a0ea-cf4e-4289-a4bc-81ac13a395ad))
   (segment (start 149.05 91.675) (end 149.575 91.15) (width 0.27) (layer "F.Cu") (net 42) (tstamp 9dbcf916-4fae-4dcc-a038-82ae5846a2f9))
