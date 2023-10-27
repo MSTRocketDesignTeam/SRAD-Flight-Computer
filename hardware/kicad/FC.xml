@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>C:\Users\seth\Documents\SRAD-Flight-Computer\hardware\kicad\FC.kicad_sch</source>
-    <date>10/27/2023 4:27:14 PM</date>
+    <date>10/27/2023 4:36:07 PM</date>
     <tool>Eeschema 7.0.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -189,7 +189,12 @@
     <comp ref="C1">
       <value>100u</value>
       <footprint>Resistor_SMD:R_1206_3216Metric</footprint>
+      <datasheet>https://88ce57.p3cdn1.secureserver.net/wp-content/uploads/2023/01/gmc_series-2.pdf</datasheet>
+      <fields>
+        <field name="Digikey">https://www.digikey.com/en/products/detail/cal-chip-electronics-inc/GMC31X5R107M10NT/18151070</field>
+      </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Digikey" value="https://www.digikey.com/en/products/detail/cal-chip-electronics-inc/GMC31X5R107M10NT/18151070"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="FC.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -638,7 +643,11 @@
       <value>KX134-1211</value>
       <footprint>Package_LGA:LGA-12_2x2mm_P0.5mm</footprint>
       <datasheet>http://kionixfs.kionix.com/en/datasheet/KX112-1042-Specifications-Rev-6.0.pdf</datasheet>
+      <fields>
+        <field name="Digikey">https://www.digikey.com/en/products/detail/rohm-semiconductor/KX134-1211/10488055</field>
+      </fields>
       <libsource lib="Sensor_Motion" part="KX122-1042" description="3-Axis Accelerometer, 2/4/8g range, 2048 byte buffer, I2C/SPI interface, LGA-12"/>
+      <property name="Digikey" value="https://www.digikey.com/en/products/detail/rohm-semiconductor/KX134-1211/10488055"/>
       <property name="Sheetname" value="High G Accelerometer"/>
       <property name="Sheetfile" value="hierarchical_sheets/kx134-1211.kicad_sch"/>
       <property name="ki_description" value="3-Axis Accelerometer, 2/4/8g range, 2048 byte buffer, I2C/SPI interface, LGA-12"/>
@@ -883,7 +892,11 @@
       <value>MAX-M10S</value>
       <footprint>RF_GPS:ublox_MAX</footprint>
       <datasheet>https://content.u-blox.com/sites/default/files/MAX-M10S_DataSheet_UBX-20035208.pdf</datasheet>
+      <fields>
+        <field name="Digikey">https://www.digikey.com/en/products/detail/u-blox/MAX-M10S-00B/15712906</field>
+      </fields>
       <libsource lib="RF_GPS" part="MAX-M10S" description="GNSS Module MAX M10, VCC 1.65V to 3.6V"/>
+      <property name="Digikey" value="https://www.digikey.com/en/products/detail/u-blox/MAX-M10S-00B/15712906"/>
       <property name="Sheetname" value="GPS"/>
       <property name="Sheetfile" value="hierarchical_sheets/m10s.kicad_sch"/>
       <property name="ki_description" value="GNSS Module MAX M10, VCC 1.65V to 3.6V"/>
