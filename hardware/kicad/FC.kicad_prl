@@ -62,8 +62,8 @@
       39,
       40
     ],
-    "visible_layers": "ffefeeb_7ffffff8",
-    "zone_display_mode": 1
+    "visible_layers": "ffafefb_ffffffff",
+    "zone_display_mode": 0
   },
   "meta": {
     "filename": "FC.kicad_prl",
