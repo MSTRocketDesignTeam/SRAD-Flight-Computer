@@ -507,11 +507,11 @@
   },
   "pcbnew": {
     "last_paths": {
-      "gencad": "",
-      "idf": "",
+      "gencad": "../../../../../Downloads/FC.cad",
+      "idf": "../../../../../Downloads/FC.emn",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../../../../../Downloads/FC.step",
       "vrml": "../../../../../Downloads/FC.wrl"
     },
     "page_layout_descr_file": ""
