@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>C:\Users\seth\Documents\SRAD-Flight-Computer\hardware\kicad\FC.kicad_sch</source>
-    <date>10/27/2023 3:28:37 PM</date>
+    <date>10/27/2023 4:27:14 PM</date>
     <tool>Eeschema 7.0.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -646,7 +646,7 @@
       <sheetpath names="/High G Accelerometer/" tstamps="/cf41b566-7189-40a2-a24f-d689fa8a8692/"/>
       <tstamps>7ac06786-1568-4b24-88ae-331af63d9fc2</tstamps>
     </comp>
-    <comp ref="100n1">
+    <comp ref="C28">
       <value>C_Small</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <libsource lib="" part="C_Small_1" description="Unpolarized capacitor, small symbol"/>
@@ -657,7 +657,7 @@
       <sheetpath names="/IMU/" tstamps="/7e43dc21-d4ed-4dfe-b96f-060fb7f0f8ce/"/>
       <tstamps>00620a2c-8583-4e5b-a700-df5a52af57a0</tstamps>
     </comp>
-    <comp ref="100n2">
+    <comp ref="C29">
       <value>C_Small</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <libsource lib="" part="C_Small_1" description="Unpolarized capacitor, small symbol"/>
@@ -2132,8 +2132,6 @@
       <node ref="U13" pin="5" pinfunction="VOUT" pintype="power_out"/>
     </net>
     <net code="2" name="+3.3V">
-      <node ref="100n1" pin="2" pintype="passive"/>
-      <node ref="100n2" pin="2" pintype="passive"/>
       <node ref="C10" pin="1" pintype="passive"/>
       <node ref="C14" pin="1" pintype="passive"/>
       <node ref="C15" pin="1" pintype="passive"/>
@@ -2142,6 +2140,8 @@
       <node ref="C21" pin="1" pintype="passive"/>
       <node ref="C22" pin="1" pintype="passive"/>
       <node ref="C26" pin="1" pintype="passive"/>
+      <node ref="C28" pin="2" pintype="passive"/>
+      <node ref="C29" pin="2" pintype="passive"/>
       <node ref="C4" pin="1" pintype="passive"/>
       <node ref="C5" pin="1" pintype="passive"/>
       <node ref="C6" pin="1" pintype="passive"/>
@@ -2451,8 +2451,6 @@
       <node ref="U7" pin="15" pinfunction="~{NSS}" pintype="input"/>
     </net>
     <net code="57" name="GND">
-      <node ref="100n1" pin="1" pintype="passive"/>
-      <node ref="100n2" pin="1" pintype="passive"/>
       <node ref="C1" pin="2" pintype="passive"/>
       <node ref="C10" pin="2" pintype="passive"/>
       <node ref="C12" pin="2" pintype="passive"/>
@@ -2472,6 +2470,8 @@
       <node ref="C25" pin="2" pintype="passive"/>
       <node ref="C26" pin="2" pintype="passive"/>
       <node ref="C27" pin="2" pintype="passive"/>
+      <node ref="C28" pin="1" pintype="passive"/>
+      <node ref="C29" pin="1" pintype="passive"/>
       <node ref="C3" pin="2" pintype="passive"/>
       <node ref="C4" pin="2" pintype="passive"/>
       <node ref="C5" pin="2" pintype="passive"/>
