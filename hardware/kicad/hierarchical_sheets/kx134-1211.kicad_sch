@@ -579,7 +579,7 @@
     (property "Footprint" "Package_LGA:LGA-12_2x2mm_P0.5mm" (at 136.525 85.09 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
-    (property "Datasheet" "http://kionixfs.kionix.com/en/datasheet/KX112-1042-Specifications-Rev-6.0.pdf" (at 123.825 99.06 0)
+    (property "Datasheet" "https://kionixfs.azureedge.net/en/datasheet/kx134-1211-e.pdf" (at 123.825 99.06 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Digikey" "https://www.digikey.com/en/products/detail/rohm-semiconductor/KX134-1211/10488055" (at 132.715 99.06 0)
