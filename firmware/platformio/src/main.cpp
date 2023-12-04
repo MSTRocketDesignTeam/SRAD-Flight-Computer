@@ -1,11 +1,8 @@
-//#include <avr/io.h>
 #include <stdint.h>
+#include "test.h"
 
 int main()
 {
-        
-        while (1) {
-                ; 
-        }
+        test_func(); // implementation changes based on environment
         return 0;
 }
