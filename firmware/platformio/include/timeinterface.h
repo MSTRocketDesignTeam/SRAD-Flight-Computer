@@ -18,7 +18,7 @@ class TimeInterface
                 // Desc: Getter for time variable, interrupt safe. 
                 // Args: None
                 // Returns: 32-bit int specifying global millisecond count
-                virtual uint_fast32_t millis() = 0; 
+                virtual uint_fast32_t millis() const = 0; 
 
                 // Desc: Blocking delay function 
                 // Args: unsigned integer specifying milliseconds [0, 65535]

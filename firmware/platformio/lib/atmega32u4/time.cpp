@@ -2,6 +2,7 @@
 #include <stdint.h> 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/atomic.h>
 
 using namespace std; 
 
@@ -29,19 +30,32 @@ TimeClass::TimeClass() : milliseconds(0) //initialization list
 
 }
 
-uint_fast32_t TimeClass::millis()
+uint_fast32_t TimeClass::millis() const
 {
-        return 0; 
+        /*
+        1. disable interrupts
+        2. store in temp variable
+        3. restore previous interrupt state 
+        4. return temp variable by value 
+        */
+        uint_fast32_t temp_millis; 
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+                temp_millis = milliseconds; 
+        }
+        return temp_millis; 
 }
 
 void TimeClass::delayMs(const uint_fast16_t ms) const
 {
-        while (ms != 0) {;}
+        const uint_fast32_t temp_millis = millis(); 
+        while ((millis() - ms) > temp_millis) {;} // wait for time to elapse
         return; 
 }
 
 inline void TimeClass::ISR_timeIncrement() volatile
 {
+        // only called from ISR so this is thread safe
         milliseconds++; 
 }
 /* -------------------------------------------------------------------------- */
@@ -49,6 +63,7 @@ inline void TimeClass::ISR_timeIncrement() volatile
 /* ------------------------ INTERRUPT_SERVICE_ROUTINE ----------------------- */
 ISR(TIMER0_COMPA_vect)
 {
+        // every 1 ms, increment the time variable 
         Time.ISR_timeIncrement(); 
 }
 /* -------------------------------------------------------------------------- */

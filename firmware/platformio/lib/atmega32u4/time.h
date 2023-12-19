@@ -19,7 +19,7 @@ class TimeClass : public TimeInterface
                 TimeClass();
 
                 // Override Functions from Abstract Class
-                uint_fast32_t millis() override; 
+                uint_fast32_t millis() const override; 
                 void delayMs(const uint_fast16_t ms) const override; 
 
                 // Desc: Interrupt handler that will run every 1ms, keeping time
