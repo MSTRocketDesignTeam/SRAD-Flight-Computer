@@ -4,26 +4,26 @@ implementations. All public facing functions should be defined here.
 Specific hardware implementations will be derived from this base class. 
 */
 
-#ifndef TIMEI_H
-#define TIMEI_H
+#ifndef TIMEINTERFACE_H
+#define TIMEINTERFACE_H
 
 #include <stdint.h>
 
 using namespace std; 
 
 /* ----------------------------- TIME_INTERFACE ----------------------------- */
-class TimeI
+class TimeInterface
 {
         public: 
-                //Desc: Getter for time variable, interrupt safe. 
-                //Args: None
-                //Returns: 32-bit int specifying global millisecond count
+                // Desc: Getter for time variable, interrupt safe. 
+                // Args: None
+                // Returns: 32-bit int specifying global millisecond count
                 virtual uint_fast32_t millis() = 0; 
 
-                //Desc: Blocking delay function 
-                //Args: unsigned integer specifying milliseconds [0, 65535]
-                //Returns: Nothing
-                virtual void delayMs(const uint_fast16_t ms) = 0; 
+                // Desc: Blocking delay function 
+                // Args: unsigned integer specifying milliseconds [0, 65535]
+                // Returns: Nothing
+                virtual void delayMs(const uint_fast16_t ms) const = 0; 
 };
 /* -------------------------------------------------------------------------- */
 #endif
