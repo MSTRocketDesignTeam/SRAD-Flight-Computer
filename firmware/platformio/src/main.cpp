@@ -1,8 +1,9 @@
 #include <stdint.h>
-#include "test.h"
+#include <time.h>
+
+using namespace std; 
 
 int main()
 {
-        test_func(); // implementation changes based on environment
         return 0;
 }
