@@ -27,7 +27,7 @@ TimeClass::TimeClass() : milliseconds(0) //initialization list
         TCNT0 = 0; // Reset timer value 
         TCCR0A = (1 << WGM01); // No output pin mode, CTC mode
         TCCR0B = (1 << CS01) | (1 << CS00); // CTC mode, 64x prescaler 
-
+        sei(); //make sure interrupts are globally enabled
 }
 
 uint_fast32_t TimeClass::millis() const
@@ -39,17 +39,16 @@ uint_fast32_t TimeClass::millis() const
         4. return temp variable by value 
         */
         uint_fast32_t temp_millis; 
-        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
-        {
-                temp_millis = milliseconds; 
-        }
+        cli(); 
+        temp_millis = milliseconds; 
+        sei(); 
         return temp_millis; 
 }
 
 void TimeClass::delayMs(const uint_fast16_t ms) const
 {
         const uint_fast32_t temp_millis = millis(); 
-        while ((millis() - ms) > temp_millis) {;} // wait for time to elapse
+        while ((millis() - ms) < temp_millis) {;} // wait for time to elapse
         return; 
 }
 
