@@ -39,9 +39,10 @@ uint_fast32_t TimeClass::millis() const
         4. return temp variable by value 
         */
         uint_fast32_t temp_millis; 
-        cli(); 
-        temp_millis = milliseconds; 
-        sei(); 
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+                temp_millis = milliseconds; 
+        }
         return temp_millis; 
 }
 
