@@ -1,4 +1,5 @@
 #include "cdcserial.h"
+#include <stdint.h>
 
 using namespace std; 
 
@@ -18,3 +19,8 @@ uint_fast8_t SerialClass::write(const uint_fast8_t data)
         return data; 
 }
 /* -------------------------------------------------------------------------- */
+
+// Create Global Serial Object
+//---------------------------
+SerialClass Serial; 
+//---------------------------

@@ -8,6 +8,7 @@ to create a virtual com port. This may very by processor.
 #define CDCSERIAL_h
 
 #include "serialinterface.h"
+#include <avr/io.h>
 
 using namespace std; 
 
@@ -21,6 +22,18 @@ class SerialClass : public SerialInterface
                 // Overrided functions from interface
                 uint_fast8_t read() override; 
                 uint_fast8_t write(const uint_fast8_t data) override;
+
+        protected: 
+                void initCTLEP(); 
+
+                void initCDCEP()
+
 };
 /* -------------------------------------------------------------------------- */
+
+// Allow Global Serial Object to be referenced anywhere
+//------------------------
+extern SerialClass Serial; 
+//------------------------
+
 #endif
