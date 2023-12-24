@@ -26,7 +26,7 @@ class SerialClass : public SerialInterface
         protected: 
                 void initCTLEP(); 
 
-                void initCDCEP()
+                void initCDCEP();
 
 };
 /* -------------------------------------------------------------------------- */
