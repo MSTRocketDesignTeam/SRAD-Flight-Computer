@@ -9,6 +9,7 @@ to create a virtual com port. This may very by processor.
 
 #include "serialinterface.h"
 #include <avr/io.h>
+#include <avr/interrupt.h>
 
 using namespace std; 
 
@@ -30,6 +31,13 @@ class SerialClass : public SerialInterface
 
 };
 /* -------------------------------------------------------------------------- */
+
+// USB ISRs 
+// -------------------
+ISR(USB_COM_vect); 
+ISR(USB_GEN_vect); 
+// ------------------
+
 
 // Allow Global Serial Object to be referenced anywhere
 //------------------------

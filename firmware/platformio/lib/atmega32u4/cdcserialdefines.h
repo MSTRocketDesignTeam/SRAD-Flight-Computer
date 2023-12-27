@@ -73,8 +73,13 @@ This file contains various defines that hold constants for the CDC serial interf
 #define DESCRIPTOR_TYPE_INTERFACE_POWER 8
 
 // Standard USB Feature Selector Values (usb_20.pdf pg. 252)
-#define DEVICE_REMOTE_WAKEUP 1
-#define ENDPOINT_HALT 0
-#define TEST_MODE 2
+#define FEATURE_DEVICE_REMOTE_WAKEUP 1
+#define FEATURE_ENDPOINT_HALT 0
+#define FEATURE_TEST_MODE 2
+
+// Standard USB GetStatus() Request Information (usb_20.pdf pg. 255)
+#define D0_SELF_POWERED_MASK ((1 << 0))
+#define D1_REMOTE_WAKEUP_MASK ((1 << 1))
+
 /* -------------------------------------------------------------------------- */
 #endif

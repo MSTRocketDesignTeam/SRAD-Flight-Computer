@@ -8,6 +8,7 @@ on the Atmega32u4.
 
 #include "timeinterface.h"
 #include <stdint.h>
+#include <avr/interrupt.h>
 
 using namespace std; 
 
@@ -31,6 +32,9 @@ class TimeClass : public TimeInterface
                 volatile uint_fast32_t milliseconds;
 };
 /* -------------------------------------------------------------------------- */
+
+// T0 COMPA ISR 
+ISR(TIMER0_COMPA_vect); 
 
 // Allow Global Time Object to be referenced anywhere
 //------------------------
