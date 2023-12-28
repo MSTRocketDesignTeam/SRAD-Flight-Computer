@@ -25,9 +25,30 @@ class SerialClass : public SerialInterface
                 uint_fast8_t write(const uint_fast8_t data) override;
 
         protected: 
-                void initCTLEP(); 
 
-                void initCDCEP();
+                // Desc: Configures the PLL for generating USB clock 
+                // Args: None
+                // Returns: None 
+                inline void configurePLL(); 
+
+                // Desc: Unfreezes the USB CLK
+                // Args: None
+                // Returns: None 
+                inline void enableUSBCLK();
+
+                // Desc: Freezes the USB CLK for power savings 
+                // Args: None 
+                // Returns: None 
+                inline void disableUSBCLK(); 
+
+                volatile uint_fast8_t state; 
+
+                // Keep track of the USB interface STATE. 
+                enum USBState
+                {
+                        BUS_DEFAULT_STATE = 0, // Completely unconfigured, CPU reset state 
+                        
+                };
 
 };
 /* -------------------------------------------------------------------------- */

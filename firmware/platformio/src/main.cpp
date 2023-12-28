@@ -3,6 +3,8 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+#include <powersaving.h>
+#include <cdcserial.h>
 
 using namespace std; 
 
