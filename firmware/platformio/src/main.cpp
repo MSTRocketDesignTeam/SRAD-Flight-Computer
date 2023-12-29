@@ -18,23 +18,26 @@ int main()
         //enable interrupts globally 
         sei(); 
         uint8_t state = 0; 
+        uint8_t usb_clock_state = 0; 
+        uint32_t last_time = 0; 
         while (true)
         {
-                if (USBSTA & (1 << VBUS)) {
-                        yellowOn();
+                // PLL enabled? 
+                if (PLLCSR & (1 << PLLE)) {
+                        redOn(); 
                 } else {
-                        yellowOff(); 
+                        redOff(); 
                 }
 
-                //USBINT |= (1 << VBUSTI); 
-
-                if (USBINT & (1 << VBUSTI)) {
-                        blueOn(); 
+                // USB clock frozen? 
+                if (USBCON & (1 << FRZCLK)) {
+                        blueOn();
                 } else {
                         blueOff(); 
                 }
 
 
+                // heartbeat led
                 Time.delayMs(50); 
                 if (state) {
                         PORTC &= ~(1 << PC7); 
@@ -43,6 +46,18 @@ int main()
                         PORTC |= (1 << PC7); 
                         state = 1;
                 }
+
+                if ((Time.millis() - last_time) > 7000) {
+                        if (usb_clock_state) {
+                                Serial.disableClock(); 
+                                usb_clock_state = 0; 
+                        } else {
+                                Serial.enableClock(); 
+                                usb_clock_state = 1; 
+                        }
+                        last_time = Time.millis(); 
+                }
+
         }
         return 0;
 }

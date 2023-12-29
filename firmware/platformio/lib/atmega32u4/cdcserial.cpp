@@ -94,10 +94,17 @@ inline void SerialClass::initUSB()
 
                 // Enable VBUS change Interrupts (atmega32u4, pg. 267)
                 // Enable the USB controller VBUS Pad (atmega32u4, pg. 267)
-                USBCON |= ((1 << VBUSTE) | (1 << OTGPADE)) ;
+                USBCON |= ((1 << VBUSTE) | (1 << OTGPADE));
                 
                 // If VBUS is already high, enable the PLL and unfreeze the clock 
-                if (USBSTA & )
+                // If VBUS is not currently high, then the clock will enable when 
+                // the VBUSI interrupt is triggered //TODO: IMPLEMENT THIS 
+                if (USBSTA & (1 << VBUS)) {
+                        enableUSBCLK(); 
+
+                        // Attach the device so that it is recognized (atmega32u4, pg. 281)
+                        UDCON &= ~(1 << DETACH); 
+                }
         }
         
         // Once the VBUS is applied the PLL should be activated
@@ -164,6 +171,18 @@ inline void SerialClass::ISR_general() volatile
 
 inline void SerialClass::ISR_common() volatile
 {
+        return; 
+}
+
+void SerialClass::disableClock()
+{
+        disableUSBCLK();
+        return; 
+}
+
+void SerialClass::enableClock()
+{
+        enableUSBCLK(); 
         return; 
 }
 /* -------------------------------------------------------------------------- */

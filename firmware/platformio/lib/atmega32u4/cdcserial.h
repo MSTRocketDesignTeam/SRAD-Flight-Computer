@@ -29,6 +29,9 @@ class SerialClass : public SerialInterface
 
                 inline void ISR_common() volatile;
 
+                void disableClock();
+                void enableClock(); 
+
         protected: 
                 // Desc: Reset the USB interface 
                 // Args: None

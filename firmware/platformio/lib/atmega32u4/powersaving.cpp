@@ -6,7 +6,8 @@ using namespace std;
 /* --------------------- POWERSAVING_IMPLEMENTATION -------------------- */
 PowerSaving::PowerSaving()
 {
-        ; 
+        // PLL should start disabled
+        PLLCSR &= ~(1 << PLLE); 
 }
 
 void PowerSaving::lockPLL(const uint_fast8_t id) volatile
@@ -30,11 +31,11 @@ void PowerSaving::lockPLL(const uint_fast8_t id) volatile
 void PowerSaving::unlockPLL(const uint_fast8_t id) volatile
 {
         // This function assumes that the id is valid. 
-        PLL_ref &= id; 
+        PLL_ref &= ~id; 
 
         // Disable PLL if needed 
         if (PLL_ref == 0) {
-                PLLCSR &= (1 << PLLE); 
+                PLLCSR &= ~(1 << PLLE); 
         }
         
         return; 
