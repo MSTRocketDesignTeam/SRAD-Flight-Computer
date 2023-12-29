@@ -10,6 +10,7 @@ to create a virtual com port. This may very by processor.
 #include "serialinterface.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <stdint.h>
 
 using namespace std; 
 
@@ -24,7 +25,15 @@ class SerialClass : public SerialInterface
                 uint_fast8_t read() override; 
                 uint_fast8_t write(const uint_fast8_t data) override;
 
+                inline void ISR_general() volatile; 
+
+                inline void ISR_common() volatile;
+
         protected: 
+                // Desc: Reset the USB interface 
+                // Args: None
+                // Returns: Nothing 
+                inline void initUSB(); 
 
                 // Desc: Configures the PLL for generating USB clock 
                 // Args: None
@@ -46,7 +55,7 @@ class SerialClass : public SerialInterface
                 // Keep track of the USB interface STATE. 
                 enum USBState
                 {
-                        BUS_DEFAULT_STATE = 0, // Completely unconfigured, CPU reset state 
+                        BUS_DEFAULT_STATE = 0, // Completely unconfigured, CPU reset state (atmega32u4, pg. 260)
                         
                 };
 

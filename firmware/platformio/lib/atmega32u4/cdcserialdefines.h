@@ -6,6 +6,9 @@ This file contains various defines that hold constants for the CDC serial interf
 #define CDCSERIALDEFINES_H
 
 /* ------------------------- CONFIGURATION_CONSTANTS ------------------------ */
+// USB Powersaving PLL Lock ID, (one of 8 possible unique id's)
+#define USB_PLL_LOCK_ID (1 << 0) //id 0 
+
 // Endpoint Numbering
 #define EP_CTL_NUM 0 // Endpoint 0 is always control 
 #define EP_ACM_NUM 1 // Endpoint 1 is ACM endpoint 
