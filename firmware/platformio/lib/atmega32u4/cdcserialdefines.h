@@ -84,5 +84,9 @@ This file contains various defines that hold constants for the CDC serial interf
 #define D0_SELF_POWERED_MASK ((1 << 0))
 #define D1_REMOTE_WAKEUP_MASK ((1 << 1))
 
+// Endpoint 0 (Control) Constants
+#define EP_CTL_CFG0 ((EP_TYPE_CTL_MASK))
+#define EP_CTL_CFG1 ((EP_64_BYTE_MASK) | (EP_1_BANK_MASK) | (1 << ALLOC)) 
+
 /* -------------------------------------------------------------------------- */
 #endif

@@ -31,9 +31,9 @@ int main()
 
                 // USB clock frozen? 
                 if (USBCON & (1 << FRZCLK)) {
-                        blueOn();
+                        //blueOn();
                 } else {
-                        blueOff(); 
+                        //blueOff(); 
                 }
 
 
@@ -49,10 +49,10 @@ int main()
 
                 if ((Time.millis() - last_time) > 7000) {
                         if (usb_clock_state) {
-                                Serial.disableClock(); 
+                                //Serial.disableClock(); 
                                 usb_clock_state = 0; 
                         } else {
-                                Serial.enableClock(); 
+                                //Serial.enableClock(); 
                                 usb_clock_state = 1; 
                         }
                         last_time = Time.millis(); 
