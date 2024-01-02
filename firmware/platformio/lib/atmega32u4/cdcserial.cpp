@@ -16,7 +16,7 @@ SerialClass::SerialClass()
 {
         // TODO: REMOVE DEBUG LIGHT
         redOff(); 
-        greenOff();
+        greenOn();
         blueOff(); 
         yellowOff(); 
 
@@ -63,6 +63,8 @@ void SerialClass::initUSB()
         // Initialization process is based off of Arduino CDC Serial Code
         // Additional Information is from here: 
         // https://kampi.gitbook.io/avr/lets-use-usb/initialize-the-usb-as-a-usb-device
+        // https://www.usbmadesimple.co.uk/ums_4.htm
+        // http://janaxelson.com/usbcenum.htm
 
         // In this function, the following actions will be performed
         // 1. Configure the PLL (configure not enable)
@@ -75,7 +77,7 @@ void SerialClass::initUSB()
         // 6A. Clear VBUS int to guarantee that it will not be called again  
 
         // initial state 
-        state = BUS_DEFAULT_STATE; 
+        state = BUS_INITIAL_STATE; 
 
         // configure the PLL so when it is enabled it provides correct clock 
         configurePLL(); 
@@ -184,7 +186,6 @@ inline void SerialClass::initEP(const uint_fast8_t epNum,
         const uint_fast8_t epCFG0, const uint_fast8_t epCFG1)
 {
         // Following Ep Setup Procedure (atmega32u4, pg. 271)
-
         // Select the correct endpoint (atmega32u4, pg. 285)
         UENUM = epNum; 
 
@@ -201,7 +202,6 @@ inline void SerialClass::initEP(const uint_fast8_t epNum,
         if (!(UESTA0X & (1 << CFGOK))) {
                 // Invalid State, mark the bus to be reset 
                 state = BUS_INVALID_STATE; 
-                greenOn();
         }
         
         return; 
@@ -234,7 +234,8 @@ inline void SerialClass::ISR_general()
                         // Disable the Clock and unlock PLL
                         disableUSBCLK(); 
 
-                        //Update the state variable 
+                        // Update the state variable 
+                        // If Power is Lost, begin reset procedure 
                         state = BUS_UNPOWERED_STATE; 
                 }
         }
@@ -247,7 +248,7 @@ inline void SerialClass::ISR_general()
                 // Clear the Flag 
                 UDINT &= ~(1 << EORSTI); 
 
-                // state machine to handle invalid transitions 
+                // state machine to handle transitions 
                 switch (state)
                 {
                         case (BUS_ATTACHED_STATE): 
@@ -255,13 +256,16 @@ inline void SerialClass::ISR_general()
                                 state = BUS_EOR_STATE; 
 
                                 // Configure Endpoint 0 
-                                initEP(0, EP_CTL_CFG0, EP_CTL_CFG1); 
+                                initEP(EP_CTL_NUM, EP_CTL_CFG0, EP_CTL_CFG1); 
 
+                                // Enable Setup Packet Detection Interrupts [host to device] (atmega32u4, pg. 291)
+                                UEIENX = (1 << RXSTPE); 
 
                                 break; 
                         default: 
                                 // Invalid - should not occur
                                 state = BUS_INVALID_STATE; 
+                                yellowOn(); 
                                 break;
                 }
         }
@@ -293,11 +297,69 @@ inline void SerialClass::ISR_general()
         }
 
         */
+
+        if (state == BUS_INVALID_STATE) { greenOff(); }
         return; 
 }
 
 inline void SerialClass::ISR_common() volatile
 {
+        //! ONLY EP0 INTERRUPTS ENABLED CURRENTLY 
+        
+        // Store selected EP and select EP0 
+        uint_fast8_t originalEpNum = UENUM; 
+        UENUM = EP_CTL_NUM; 
+
+        // Clear Setup Packet Interrupt (atmega32u4, pg. 290)
+        UEINTX &= ~(1 << RXSTPI);
+
+        // Read in the 8 byte setup packet (usb_20.pdf, pg. 248)
+        SetupPacket_t setup; 
+        uint8_t * setupRunPtr = reinterpret_cast<uint8_t *>(&setup); 
+        for (uint_fast8_t i = 0; i < sizeof(SetupPacket_t); i++)
+        {
+                (*(setupRunPtr++)) = UEDATX;
+        }
+
+        // Carry out the Proper Action 
+        switch (setup.bmRequestType & D65_TYPE_MASK)
+        {
+                case (D65_TYPE_STANDARD_MASK):
+                        // Standard USB Request 
+                        switch (setup.bRequest)
+                        {
+                                case (GET_STATUS_REQ):
+                                        // Get Status Request 
+
+                                        break;
+                                case (CLEAR_FEATURE_REQ):
+                                        break;
+                                case (SET_FEATURE_REQ):
+                                        break;
+                                case (SET_ADDRESS_REQ):
+                                        break;
+                                case (GET_DESCRIPTOR_REQ):
+                                        break;
+                                case (SET_DESCRIPTOR_REQ):
+                                        break;
+                                case (GET_CONFIGURATION_REQ):
+                                        break;
+                                case (SET_CONFIGURATION_REQ):
+                                        break;
+                                case (GET_INTERFACE_REQ):
+                                        break;
+                                case (SET_INTERFACE_REQ):
+                                        break;
+                                case (SYNCH_FRAME_REQ):
+                                        break; 
+                        }
+                        break;
+                case (D65_TYPE_CLASS_MASK):
+                        break;
+        }
+
+        // Restore orginal selected Endpoint 
+        UENUM = originalEpNum; 
         return; 
 }
 
@@ -318,6 +380,38 @@ const SerialClass::USB_DeviceDescriptor_t SerialClass::DeviceDescriptor PROGMEM 
         2, // .iProduct: Product String Index Offset 
         3, // .iSerialNumber: Serial Number String Index Offset
         1 // .bNumConfigurations: Only one configuration 
+};
+
+/*
+const SerialClass::USB_ConfigurationDescriptor_t SerialClass::ConfigDescriptor PROGMEM = 
+{
+        sizeof(USB_DeviceDescriptor_t), // .bLength: 9 byte struct 
+        0x02, // .bDescriptorType: 2 -> Configuration Descriptor
+        
+};
+*/
+
+const SerialClass::USB_Configuration_t SerialClass::Configuration PROGMEM = 
+{
+        { // .ConfigurationDescriptor
+                sizeof(SerialClass::USB_ConfigurationDescriptor_t), // .bLength: 9 byte struct 
+                0x02, // .bDescriptorType -> Configuration Descriptor 
+                sizeof(SerialClass::USB_Configuration_t), // .wTotalLength: Number of bytes that will be transmitted 
+                1, // .bNumInterfaces: how many interfaces are active in this config // TODO: INCORRECT?
+                1, // .bConfigurationValue: Number used to select this configuration 
+                0, // .iConfiguration: Index Offset of String Descriptor for this config 
+                ((1 << 7) | (0 << 6) | (1 << 5)), // .bmAttributes: self powered and remote wakeup enabled 
+                (500 / 2) // .bMaxPower: Sets maximum power consumption to 500mA (2 mA increments)
+        },
+        { // .InterfaceDescriptor
+
+        },
+        { // .InEndpointDescriptor
+
+        },
+        { // .OutEndpointDescriptor
+
+        }
 };
 
 /* -------------------------------------------------------------------------- */

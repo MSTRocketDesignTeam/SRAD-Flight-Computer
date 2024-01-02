@@ -22,8 +22,8 @@ int main()
         uint32_t last_time = 0; 
         while (true)
         {
-                // PLL enabled? 
-                if (PLLCSR & (1 << PLLE)) {
+                // VBUS? 
+                if (USBSTA & (1 << VBUS)) {
                         redOn(); 
                 } else {
                         redOff(); 

@@ -55,16 +55,18 @@ class SerialClass : public SerialInterface
                 inline void initEP(const uint_fast8_t epNum, 
                         const uint_fast8_t epCFG0, const uint_fast8_t epCFG1); 
 
-                volatile uint_fast8_t state = BUS_DEFAULT_STATE; 
+                volatile uint8_t currentStatus = ((1 << 7) | (0 << 6) | (1 << 5)); // initial status as defined in configuration descriptor
+                volatile uint_fast8_t state = BUS_INITIAL_STATE; 
 
                 // Keep track of the USB interface STATE. 
                 enum USBState
                 {
-                        BUS_DEFAULT_STATE = 0, // Completely unconfigured, CPU reset state (atmega32u4, pg. 260)
-                        BUS_INVALID_STATE = 1,
+                        BUS_INITIAL_STATE = 0, // Completely unconfigured, CPU reset state (atmega32u4, pg. 260)
+                        BUS_INVALID_STATE = 1, // Bad State, must disable interface and restart 
                         BUS_UNPOWERED_STATE = 2, // Controller is Idle, VBUS flag is low 
                         BUS_ATTACHED_STATE = 3, // Controller is Idle, VBUS flag is high 
                         BUS_EOR_STATE = 4, // Device reset by host 
+                        BUS_DEFAULT_STATE = 5, // Device recognized by host and ready to respond to CTL requests
                         
                 };
 
@@ -122,9 +124,28 @@ class SerialClass : public SerialInterface
                         uint8_t bInterval;
                 };
 
+                struct __attribute__((packed)) USB_Configuration_t
+                {
+                        USB_ConfigurationDescriptor_t ConfigurationDescriptor;
+                        USB_InterfaceDescriptor_t InterfaceDescriptor;
+                        USB_EndpointDescriptor_t InEndpointDescriptor; 
+                        USB_EndpointDescriptor_t OutEndpointDescriptor; 
+                };
+
+                struct SetupPacket_t 
+                {
+                        uint8_t bmRequestType;
+                        uint8_t bRequest;
+                        uint16_t wValue; 
+                        uint16_t wIndex; 
+                        uint16_t wLength; 
+                };
+
 
 
                 static const USB_DeviceDescriptor_t DeviceDescriptor PROGMEM; 
+                //static const USB_ConfigurationDescriptor_t ConfigDescriptor PROGMEM; 
+                static const USB_Configuration_t Configuration PROGMEM; 
 
 };
 /* -------------------------------------------------------------------------- */
