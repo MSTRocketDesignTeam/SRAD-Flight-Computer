@@ -257,6 +257,8 @@ void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast
         // Send 'len' number of bytes starting from dataPtr address 
         // Sent byte by byte so convert void ptr to byte pointer 
         const uint8_t * dataRunPtr = reinterpret_cast<const uint8_t *>(dataPtr);  
+        uint8_t numBytesSent = 0; 
+        num_times_ran = 0 ; 
 
         for (uint_fast8_t i = 0; i < len; i++)
         {
@@ -269,9 +271,15 @@ void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast
                 // Send the byte 
                 tx8(dataByte); // TODO: Keep track of how many bytes in CTL EP
                 maxLen--; 
+                numBytesSent++; // TODO: DEBUG JANKNESS
+                print(++num_times_ran); 
 
                 if (!maxLen){ // TODO: THIS MORE ELEGANT 
                         // don't send anymore bytes
+                        break; 
+                }
+
+                if (numBytesSent > 62) {
                         break; 
                 }
         }
@@ -397,6 +405,8 @@ inline void SerialClass::ISR_common()
                 clrTxWait(); // make sure the EP0 bank is empty
         }
         
+        
+
         // Carry out the Proper Action 
         switch (setup.bmRequestType & D65_TYPE_MASK)
         {
@@ -459,12 +469,15 @@ inline void SerialClass::ISR_common()
                                                                 // Send Configuration Descriptor from ProgMem 
                                                                 sendProgMemPayload(&Configuration, sizeof(USB_Configuration_t), setup.wLength); 
                                                                 break; 
+                                                        default:
                                                         case (DESCRIPTOR_TYPE_STRING):
                                                                 
                                                                 break; 
                                                 }
                                         }
                                         break;
+                                default: 
+                                        break; 
                                 case (SET_DESCRIPTOR_REQ):
                                         break;
                                 case (GET_CONFIGURATION_REQ):
@@ -480,7 +493,6 @@ inline void SerialClass::ISR_common()
                         }
                         break;
                 default:
-                print(++num_times_ran);
                         break;
         }
 
@@ -526,7 +538,7 @@ const SerialClass::USB_Configuration_t SerialClass::Configuration PROGMEM =
                 sizeof(SerialClass::USB_ConfigurationDescriptor_t), // .bLength: 9 byte struct 
                 0x02, // .bDescriptorType -> Configuration Descriptor 
                 sizeof(SerialClass::USB_Configuration_t), // .wTotalLength: Number of bytes that will be transmitted 
-                1, // .bNumInterfaces: how many interfaces are active in this config // TODO: INCORRECT?
+                2, // .bNumInterfaces: how many interfaces are active in this config // TODO: INCORRECT?
                 1, // .bConfigurationValue: Number used to select this configuration 
                 0, // .iConfiguration: Index Offset of String Descriptor for this config 
                 ((1 << 7) | (0 << 6) | (1 << 5)), // .bmAttributes: self powered and remote wakeup enabled 
@@ -615,7 +627,6 @@ const SerialClass::USB_Configuration_t SerialClass::Configuration PROGMEM =
                 0 // .bInterval: 0 -> Endpoint never NAK's 
         }
 };
-
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------- INTERRUPT_SERVICE_ROUTINES ----------------------- */

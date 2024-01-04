@@ -194,7 +194,7 @@ class SerialClass : public SerialInterface
                         USB_EndpointDescriptor_t OutEndpointDescriptor; 
                         USB_EndpointDescriptor_t InEndpointDescriptor; 
                 };
-
+                
                 struct SetupPacket_t 
                 {
                         uint8_t bmRequestType;
@@ -203,7 +203,6 @@ class SerialClass : public SerialInterface
                         uint16_t wIndex; 
                         uint16_t wLength; 
                 };
-
 
 
                 static const USB_DeviceDescriptor_t DeviceDescriptor PROGMEM; 
