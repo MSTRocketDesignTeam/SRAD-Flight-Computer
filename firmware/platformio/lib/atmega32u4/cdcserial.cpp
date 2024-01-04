@@ -207,6 +207,69 @@ inline void SerialClass::initEP(const uint_fast8_t epNum,
         return; 
 }
 
+inline uint8_t SerialClass::rx8()
+{
+        return UEDATX; 
+}
+
+inline void SerialClass::tx8(const uint8_t data)
+{
+        UEDATX = data; 
+        return; 
+}
+
+inline void SerialClass::waitForTxRdy()
+{
+        // wait until the TXINI flag is set, signifying the current bank if free (atmega32u4, pg. 290)
+        // ^ since the RWAL bit cannot be used for CTL EP 
+        while (!(UEINTX & (1 << TXINI))) { ; }
+        return; 
+}
+
+inline void SerialClass::clrTxWait()
+{
+        // Clear the TXINI bit (atmega32u4, pg. 290)
+        UEINTX &= ~(1 << TXINI);
+        return; 
+}
+
+inline void SerialClass::clrGenISRFlags()
+{
+        // Clear Setup Packet Interrupt (atmega32u4, pg. 290)
+        // Also clear RXOUTI and TXINI so they can be used to lock registers until ready 
+        UEINTX &= ~((1 << RXSTPI) | (1 << TXINI) | (1 << RXOUTI));
+        return; 
+}
+
+inline uint_fast8_t SerialClass::waitForInOut()
+{
+        // wait for either a byte to be received or the output buffer to be empty 
+        while (UEINTX & ((1 << RXOUTI) | (1 << TXINI))) { ; }
+
+        // If byte received, raise error 
+        return (!(UEINTX & (1 << RXOUTI))); // true is no error, false is error
+}
+
+void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len)
+{
+        // Send 'len' number of bytes starting from dataPtr address 
+        // Sent byte by byte so convert void ptr to byte pointer 
+        const uint8_t * dataRunPtr = reinterpret_cast<const uint8_t *>(dataPtr); 
+
+        for (uint_fast8_t i = 0; i < len; i++)
+        {
+                // Read a byte of the descriptor struct from flash 
+                uint8_t dataByte = pgm_read_byte(dataRunPtr++); 
+
+                // Wait for the FIFO to be ready for next packet, if RX received error 
+                waitForInOut(); // TODO: ERROR 
+
+                // Send the byte 
+                tx8(dataByte);
+
+        }
+}
+
 inline void SerialClass::ISR_general()
 {
         // Handle a VBUS transition interrupt
@@ -302,7 +365,7 @@ inline void SerialClass::ISR_general()
         return; 
 }
 
-inline void SerialClass::ISR_common() volatile
+inline void SerialClass::ISR_common()
 {
         //! ONLY EP0 INTERRUPTS ENABLED CURRENTLY 
         
@@ -310,15 +373,22 @@ inline void SerialClass::ISR_common() volatile
         uint_fast8_t originalEpNum = UENUM; 
         UENUM = EP_CTL_NUM; 
 
-        // Clear Setup Packet Interrupt (atmega32u4, pg. 290)
-        UEINTX &= ~(1 << RXSTPI);
-
         // Read in the 8 byte setup packet (usb_20.pdf, pg. 248)
         SetupPacket_t setup; 
         uint8_t * setupRunPtr = reinterpret_cast<uint8_t *>(&setup); 
         for (uint_fast8_t i = 0; i < sizeof(SetupPacket_t); i++)
         {
-                (*(setupRunPtr++)) = UEDATX;
+                (*(setupRunPtr++)) = rx8();
+        }
+
+        // Clear interrupts to delete the EP0 bank (atmega32u4, pg. 274)
+        clrGenISRFlags(); 
+
+        // If we need to transmit, wait for the banks to be clear 
+        if (setup.bmRequestType & D7_DIR_DEVICE_TO_HOST_MASK) {
+                waitForTxRdy(); 
+        } else {
+                clrTxWait(); // make sure the EP0 bank is empty
         }
 
         // Carry out the Proper Action 
@@ -329,16 +399,59 @@ inline void SerialClass::ISR_common() volatile
                         switch (setup.bRequest)
                         {
                                 case (GET_STATUS_REQ):
-                                        // Get Status Request 
-
+                                        // Get Status Request (usb_20.pdf, pg. 254)
+                                        // send two bytes according to Figure 9-4 (usb_20.pdf, pg. 255)
+                                        if (setup.bmRequestType == (D7_DIR_DEVICE_TO_HOST_MASK | D65_TYPE_STANDARD_MASK | D40_RECIPIENT_DEVICE_MASK)) {
+                                                // sent to device
+                                                tx8(currentStatus); // status of remote wakeup and self powered fields
+                                                tx8(0); // second byte is reserved. 
+                                        } else {
+                                                // if request is anything else pad with NULL (two 0's)
+                                                // TODO: Halt state of endpoint?
+                                                tx8(0); 
+                                                tx8(0); 
+                                        }
                                         break;
                                 case (CLEAR_FEATURE_REQ):
+                                        // Clear Feature Request (usb_20.pdf, pg. 252)
+                                        if ((setup.bmRequestType == (D7_DIR_HOST_TO_DEVICE_MASK | D65_TYPE_STANDARD_MASK | D40_RECIPIENT_DEVICE_MASK)) 
+                                                && (setup.wValue == FEATURE_DEVICE_REMOTE_WAKEUP)) {
+                                                        // Disable Remote Wakeup Functionality 
+                                                        currentStatus &= ~D1_REMOTE_WAKEUP_MASK; 
+                                                }
                                         break;
                                 case (SET_FEATURE_REQ):
+                                        // Set Feature Request (usb_20.pdf, pg. 258) 
+                                        if ((setup.bmRequestType == (D7_DIR_HOST_TO_DEVICE_MASK | D65_TYPE_STANDARD_MASK | D40_RECIPIENT_DEVICE_MASK))
+                                                && (setup.wValue == FEATURE_DEVICE_REMOTE_WAKEUP)) {
+                                                        // Enable Remote Wakeup Functionality 
+                                                        currentStatus |= D1_REMOTE_WAKEUP_MASK;
+                                                }
                                         break;
                                 case (SET_ADDRESS_REQ):
+                                        // Set Address Request (usb_20.pdf)
+                                        // Wait for the device to finish sending the ACK 
+                                        waitForTxRdy(); 
+                                        // Set the received address and enable it (atmega32u4, pg. 272; pg. 284)
+                                        UDADDR = ((setup.wValue) | (1 << ADDEN)); 
                                         break;
                                 case (GET_DESCRIPTOR_REQ):
+                                        { // Needed to fix scoping 
+                                                // Get Descriptor Request (usb_20.pdf, pg. 253)
+                                                uint8_t wValueH = (setup.wValue >> 8);
+                                                //uint8_t wValueL = (setup.wValue & 0xFF); 
+                                                switch (wValueH)
+                                                {
+                                                        case (DESCRIPTOR_TYPE_DEVICE):
+                                                                // Device Descriptor (usb_20.pdf, pg. 261)
+                                                                break; 
+                                                        case (DESCRIPTOR_TYPE_CONFIGURATION):
+                                                                // Config Descriptor (usb_20.pdf, pg. 264)
+                                                                break; 
+                                                        case (DESCRIPTOR_TYPE_STRING):
+                                                                break; 
+                                                }
+                                        }
                                         break;
                                 case (SET_DESCRIPTOR_REQ):
                                         break;

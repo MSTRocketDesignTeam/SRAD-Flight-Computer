@@ -12,6 +12,7 @@ to create a virtual com port. This may very by processor.
 #include <avr/interrupt.h>
 #include <stdint.h>
 #include <avr/pgmspace.h> //PROGMEM
+#include "cdcserialdefines.h"
 
 using namespace std; 
 
@@ -28,7 +29,7 @@ class SerialClass : public SerialInterface
 
                 inline void ISR_general(); 
 
-                inline void ISR_common() volatile;
+                inline void ISR_common();
 
         protected: 
                 // Desc: Reset the USB interface 
@@ -54,8 +55,17 @@ class SerialClass : public SerialInterface
                 // Desc: Setup the endpoint 
                 inline void initEP(const uint_fast8_t epNum, 
                         const uint_fast8_t epCFG0, const uint_fast8_t epCFG1); 
+                
+                inline uint8_t rx8(); 
+                inline void tx8(const uint8_t data);   
+                inline void waitForTxRdy();
+                inline void clrTxWait();
+                inline void clrGenISRFlags(); 
+                inline uint_fast8_t waitForInOut(); 
 
-                volatile uint8_t currentStatus = ((1 << 7) | (0 << 6) | (1 << 5)); // initial status as defined in configuration descriptor
+                void sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len); 
+
+                volatile uint8_t currentStatus = 0; // initial status (no remote wakeup, bus powered)
                 volatile uint_fast8_t state = BUS_INITIAL_STATE; 
 
                 // Keep track of the USB interface STATE. 
