@@ -19,7 +19,7 @@ SerialClass::SerialClass()
         greenOn();
         blueOff(); 
         yellowOff(); 
-
+        print(0); 
         // Initialize the USB system 
         initUSB(); 
 
@@ -56,6 +56,8 @@ SerialClass::SerialClass()
         while (!((1 << PLOCK) & PLLCSR)) {;}
 */
 }
+
+static uint8_t num_times_ran = 0; //! DELETE
 
 void SerialClass::initUSB()
 {
@@ -244,17 +246,17 @@ inline void SerialClass::clrGenISRFlags()
 inline uint_fast8_t SerialClass::waitForInOut()
 {
         // wait for either a byte to be received or the output buffer to be empty 
-        while (UEINTX & ((1 << RXOUTI) | (1 << TXINI))) { ; }
+        while (!(UEINTX & ((1 << RXOUTI) | (1 << TXINI)))) { ; }
 
         // If byte received, raise error 
         return (!(UEINTX & (1 << RXOUTI))); // true is no error, false is error
 }
 
-void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len)
+void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint16_t maxLen)
 {
         // Send 'len' number of bytes starting from dataPtr address 
         // Sent byte by byte so convert void ptr to byte pointer 
-        const uint8_t * dataRunPtr = reinterpret_cast<const uint8_t *>(dataPtr); 
+        const uint8_t * dataRunPtr = reinterpret_cast<const uint8_t *>(dataPtr);  
 
         for (uint_fast8_t i = 0; i < len; i++)
         {
@@ -262,12 +264,18 @@ void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast
                 uint8_t dataByte = pgm_read_byte(dataRunPtr++); 
 
                 // Wait for the FIFO to be ready for next packet, if RX received error 
-                waitForInOut(); // TODO: ERROR 
+                if (!waitForInOut()) { yellowOn(); } // TODO: ERROR  
 
                 // Send the byte 
-                tx8(dataByte);
+                tx8(dataByte); // TODO: Keep track of how many bytes in CTL EP
+                maxLen--; 
 
+                if (!maxLen){ // TODO: THIS MORE ELEGANT 
+                        // don't send anymore bytes
+                        break; 
+                }
         }
+        return; 
 }
 
 inline void SerialClass::ISR_general()
@@ -293,7 +301,6 @@ inline void SerialClass::ISR_general()
 
                         // Set interface to be detached
                         UDCON |= (1 << DETACH);
-
                         // Disable the Clock and unlock PLL
                         disableUSBCLK(); 
 
@@ -306,7 +313,6 @@ inline void SerialClass::ISR_general()
         // Handle a USB End of Reset Interrupt 
         // Device has been reset by host 
         if (UDINT & (1 << EORSTI)){
-                blueOn(); 
                 // EOR Int occured
                 // Clear the Flag 
                 UDINT &= ~(1 << EORSTI); 
@@ -314,22 +320,22 @@ inline void SerialClass::ISR_general()
                 // state machine to handle transitions 
                 switch (state)
                 {
+                        default: 
                         case (BUS_ATTACHED_STATE): 
                                 // Valid condition 
                                 state = BUS_EOR_STATE; 
 
                                 // Configure Endpoint 0 
                                 initEP(EP_CTL_NUM, EP_CTL_CFG0, EP_CTL_CFG1); 
-
+                                
                                 // Enable Setup Packet Detection Interrupts [host to device] (atmega32u4, pg. 291)
                                 UEIENX = (1 << RXSTPE); 
 
                                 break; 
-                        default: 
-                                // Invalid - should not occur
-                                state = BUS_INVALID_STATE; 
-                                yellowOn(); 
-                                break;
+                        //default: 
+                        //        // Invalid - should not occur
+                        //        state = BUS_INVALID_STATE; 
+                        //        break;
                 }
         }
         /*
@@ -368,7 +374,7 @@ inline void SerialClass::ISR_general()
 inline void SerialClass::ISR_common()
 {
         //! ONLY EP0 INTERRUPTS ENABLED CURRENTLY 
-        
+
         // Store selected EP and select EP0 
         uint_fast8_t originalEpNum = UENUM; 
         UENUM = EP_CTL_NUM; 
@@ -383,14 +389,14 @@ inline void SerialClass::ISR_common()
 
         // Clear interrupts to delete the EP0 bank (atmega32u4, pg. 274)
         clrGenISRFlags(); 
-
+        
         // If we need to transmit, wait for the banks to be clear 
         if (setup.bmRequestType & D7_DIR_DEVICE_TO_HOST_MASK) {
                 waitForTxRdy(); 
         } else {
                 clrTxWait(); // make sure the EP0 bank is empty
         }
-
+        
         // Carry out the Proper Action 
         switch (setup.bmRequestType & D65_TYPE_MASK)
         {
@@ -431,6 +437,7 @@ inline void SerialClass::ISR_common()
                                 case (SET_ADDRESS_REQ):
                                         // Set Address Request (usb_20.pdf)
                                         // Wait for the device to finish sending the ACK 
+                                        blueOn(); 
                                         waitForTxRdy(); 
                                         // Set the received address and enable it (atmega32u4, pg. 272; pg. 284)
                                         UDADDR = ((setup.wValue) | (1 << ADDEN)); 
@@ -444,11 +451,16 @@ inline void SerialClass::ISR_common()
                                                 {
                                                         case (DESCRIPTOR_TYPE_DEVICE):
                                                                 // Device Descriptor (usb_20.pdf, pg. 261)
+                                                                // Send Device Descriptor from ProgMem 
+                                                                sendProgMemPayload(&DeviceDescriptor, sizeof(USB_DeviceDescriptor_t), 255); 
                                                                 break; 
                                                         case (DESCRIPTOR_TYPE_CONFIGURATION):
                                                                 // Config Descriptor (usb_20.pdf, pg. 264)
+                                                                // Send Configuration Descriptor from ProgMem 
+                                                                sendProgMemPayload(&Configuration, sizeof(USB_Configuration_t), setup.wLength); 
                                                                 break; 
                                                         case (DESCRIPTOR_TYPE_STRING):
+                                                                
                                                                 break; 
                                                 }
                                         }
@@ -467,9 +479,13 @@ inline void SerialClass::ISR_common()
                                         break; 
                         }
                         break;
-                case (D65_TYPE_CLASS_MASK):
+                default:
+                print(++num_times_ran);
                         break;
         }
+
+        // Clear TXINI to send anything in the buffer 
+        UEINTX &= ~(1 << TXINI); 
 
         // Restore orginal selected Endpoint 
         UENUM = originalEpNum; 
@@ -506,7 +522,7 @@ const SerialClass::USB_ConfigurationDescriptor_t SerialClass::ConfigDescriptor P
 
 const SerialClass::USB_Configuration_t SerialClass::Configuration PROGMEM = 
 {
-        { // .ConfigurationDescriptor
+        { // .ConfigurationDescriptor (usb_20.pdf, pg. 264)
                 sizeof(SerialClass::USB_ConfigurationDescriptor_t), // .bLength: 9 byte struct 
                 0x02, // .bDescriptorType -> Configuration Descriptor 
                 sizeof(SerialClass::USB_Configuration_t), // .wTotalLength: Number of bytes that will be transmitted 
@@ -516,14 +532,87 @@ const SerialClass::USB_Configuration_t SerialClass::Configuration PROGMEM =
                 ((1 << 7) | (0 << 6) | (1 << 5)), // .bmAttributes: self powered and remote wakeup enabled 
                 (500 / 2) // .bMaxPower: Sets maximum power consumption to 500mA (2 mA increments)
         },
-        { // .InterfaceDescriptor
-
+        { // .InterfaceAssociationDescriptor (https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-interface-association-descriptor)
+                sizeof(SerialClass::USB_InterfaceAssociationDescriptor_t), // .bLength: 8 byte struct
+                0x0B, // .bDescriptorType: 0x0B -> Interface Association Descriptor (IAD) 
+                0, // .bFirstInterface: Interface index 0 is the first interface in this association 
+                2, //.bInterfaceCount: 2 separate interfaces are in this association
+                0x02, // .bFunctionClass: 0x02 Class Code
+                0x02, // .bFunctionSubClass: 0x02 Subclass Code
+                0, // .bFunctionProtocol: 0 Protocol Code 
+                0 // .iFunction: function 0 
         },
-        { // .InEndpointDescriptor
-
+        { // .ACMInterfaceDescriptor (usb_20.pdf, pg. 251)
+                sizeof(SerialClass::USB_InterfaceDescriptor_t), // .bLength: 9 byte struct 
+                4, // .bDescriptorType: 4 -> Interface Descriptor (usb_20.pdf, pg. 251)
+                0, // .bInterfaceNumber: 0 -> first interface index 
+                0, // .AlternateSetting: do not select an alternate setting 
+                1, // .bNumEndpoints: 1 endpoint 
+                0x02, // .bInterfaceClass: Base Class Communications and CDC Control (https://www.usb.org/defined-class-codes)
+                0x02, // .bInterfaceSubClass: Sub Class CDC Control 
+                0, // .bInterfaceProtocol: no class specific protocol 
+                0 // .iInterface: first string descriptor describes this interface 
         },
-        { // .OutEndpointDescriptor
-
+        { // .HeaderFunctionalDescriptor (usbcdc11.pdf, pg. 45)
+                sizeof(SerialClass::CDC_HeaderFunctionalDescriptor_t), // .bFunctionLength: 5 byte struct
+                0x24, // .bDescriptorType: CS_Interface type 
+                0x00, // .bDescriptorSubtype: 0x00 -> Header for Functional Descriptor 
+                0x1001 // .bcdCDC: Version 1.10
+        },
+        { // .CallManagementFunctionalDescriptor (usbcdc11.pdf, pg. 45)
+                sizeof(SerialClass::CDC_CallManagementFunctionalDescriptor_t), // .bFunctionLength: 5
+                0x24, // .bDescriptorType: CS_Interface type
+                0x01, // .bDescriptorSubtype: 0x01 -> Call Management Functioanl Descriptor
+                0x01, // .bmCapabilities: D0 = 1 -> Device handles call management itself 
+                1 // .bDataInterface: Interface index number of Data Class Interface used for call management 
+        },
+        { // .ACMControlManagementFunctionalDescriptor (usbcdc11.pdf, pg. 46)
+                sizeof(SerialClass::CDC_ACMControlManagementFunctionalDescriptor_t), // .bFunctionLength: 4 bytes 
+                0x24, // .bDescriptorType: CS_Interface type 
+                0x02, // .bDescriptorSubtype: 0x02 -> Abstract Control Management Functional Descriptor
+                0x06 // .bmCapabilities: D1 = 1 -> Device supports requests, D2 = 1 -> Device supports Send_Break 
+        },
+        { // .UnionFunctionalDescriptor (usbcdc11.pdf, pg. 51)
+                sizeof(SerialClass::CDC_UnionFunctionalDescriptor_t), // .bFunctionLength: 5 byte struct 
+                0x24, // .bDescriptorType: CS_Interface type 
+                0x06, // .bDescriptorSubtype: 0x06 -> Union Functional Descriptor
+                0, // .bMasterInterface: 0 -> interface 0 is the controlling interface
+                1 // .bSlaveInterface0: 1 -> interface 1 is the slave interace 
+        },
+        { // .ACMEndpointDescriptor (usb_20.pdf, pg. 269)
+                sizeof(SerialClass::USB_EndpointDescriptor_t), // .bLength: 7 byte struct 
+                0x05, // .bDescriptorType: 0x05 -> Endpoint Descriptor
+                0x81, // .bEndpointAddress: D7 = 1 -> IN endpoint, D0 = 1 -> Endpoint 1
+                0x03, // .bmAttributes: 0x03 -> Interrupt Type Endpoint, Data Endpoint, No Sync 
+                0x0010, // .wMaxPacketSize: HIGH(0x00) -> 1 transaction per microframe, LOW(0x10) -> 16 Byte Max Packet Size
+                64 // .bInterval: 64 -> 64 milliseconds per polling interval (low/full speed = 1ms per .bInterval)
+        },
+        { // .DataInterfaceDescriptor (usb_20.pdf, pg. 267)
+                sizeof(SerialClass::USB_InterfaceDescriptor_t), //.bLength 9 byte struct 
+                4, // .bDescriptorType: 4 -> Interface Descriptor
+                1, // .bInterfaceNumber: 1 -> second interface in this config 
+                0, // .bAlternateSetting: do not select an alternate setting
+                2, // .bNumEndpoints: This interfaces uses 2 endpoints 
+                0x0A, // .bInterfaceClass: 0x0A -> CDC-Data Interface (https://www.usb.org/defined-class-codes)
+                0, // .bInterfaceSubClass: N/A
+                0, // .bInterfaceProtocol: 0 -> no class specific protocol
+                0 // .biInterface: first string descriptor describes this interface
+        },
+        { // .OutEndpointDescriptor (usb_20.pdf, pg. 269)
+                sizeof(SerialClass::USB_EndpointDescriptor_t), // .bLength 7 byte struct 
+                5, // .bDescriptorType: 5 -> Endpoint Descriptor
+                0x02, // .bEndpointAddress: D1 = 1 -> EP2
+                0x02, // .bmAttributes: 0x02 -> Bulk Endpoint 
+                64, // .wMaxPacketSize: 64 byte max packet size 
+                0 // .bInterval: 0 -> Endpoint never NAK's 
+        },
+        { // .InEndpointDescriptor (usb_20.pdf, pg. 269)
+                sizeof(SerialClass::USB_EndpointDescriptor_t), // .bLength 7 byte struct 
+                5, // .bDescriptorType: 5 -> Endpoint Descriptor
+                0x83, // .bEndpointAddress: D1, D0 = 1 -> EP3, D7 = 1 -> IN endpoint 
+                0x02, // .bmAttributes: 0x02 -> Bulk Endpoint 
+                64, // .wMaxPacketSize: 64 byte max packet size 
+                0 // .bInterval: 0 -> Endpoint never NAK's 
         }
 };
 

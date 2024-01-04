@@ -1,6 +1,8 @@
 #ifndef LIGHTDEBUG_H
 #define LIGHTDEBUG_H
 
+#include <stdint.h>
+
 using namespace std; 
 
 void configureLEDs();
@@ -12,4 +14,5 @@ void blueOn();
 void blueOff(); 
 void greenOn();
 void greenOff(); 
+void print(const uint8_t num); 
 #endif

@@ -16,18 +16,13 @@ int main()
         DDRC |= (1 << PC7);
 
         //enable interrupts globally 
-        sei(); 
+        sei();
+        //uint8_t test = 0;  
         uint8_t state = 0; 
         uint8_t usb_clock_state = 0; 
         uint32_t last_time = 0; 
         while (true)
         {
-                // VBUS? 
-                if (USBSTA & (1 << VBUS)) {
-                        redOn(); 
-                } else {
-                        redOff(); 
-                }
 
                 // USB clock frozen? 
                 if (USBCON & (1 << FRZCLK)) {
@@ -39,6 +34,8 @@ int main()
 
                 // heartbeat led
                 Time.delayMs(50); 
+                //test++; 
+                //print(0x9F); 
                 if (state) {
                         PORTC &= ~(1 << PC7); 
                         state = 0; 

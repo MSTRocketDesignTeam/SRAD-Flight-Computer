@@ -63,7 +63,7 @@ class SerialClass : public SerialInterface
                 inline void clrGenISRFlags(); 
                 inline uint_fast8_t waitForInOut(); 
 
-                void sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len); 
+                void sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint16_t maxLen); 
 
                 volatile uint8_t currentStatus = 0; // initial status (no remote wakeup, bus powered)
                 volatile uint_fast8_t state = BUS_INITIAL_STATE; 
@@ -123,6 +123,52 @@ class SerialClass : public SerialInterface
                         uint8_t bInterfaceProtocol;
                         uint8_t iInterface;
                 };
+                
+                struct __attribute__((packed)) USB_InterfaceAssociationDescriptor_t
+                {
+                        uint8_t bLength; 
+                        uint8_t bDescriptorType;
+                        uint8_t bFirstInterface;
+                        uint8_t bInterfaceCount;
+                        uint8_t bFunctionClass;
+                        uint8_t bFunctionSubClass; 
+                        uint8_t bFunctionProtocol; 
+                        uint8_t iFunction; 
+                };
+
+                struct __attribute__((packed)) CDC_HeaderFunctionalDescriptor_t
+                {
+                        uint8_t bFunctionLength;
+                        uint8_t bDescriptorType;
+                        uint8_t bDescriptorSubtype;
+                        uint16_t bcdCDC;
+                }; 
+
+                struct __attribute__((packed)) CDC_CallManagementFunctionalDescriptor_t
+                {
+                        uint8_t bFunctionLength;
+                        uint8_t bDescriptorType;
+                        uint8_t bDescriptorSubtype; 
+                        uint8_t bmCapabilities; 
+                        uint8_t bDataInterface; 
+                };
+
+                struct __attribute__((packed)) CDC_ACMControlManagementFunctionalDescriptor_t
+                {
+                        uint8_t bFunctionLength;
+                        uint8_t bDescriptorType;
+                        uint8_t bDescriptorSubtype; 
+                        uint8_t bmCapabilities; 
+                };
+
+                struct __attribute__((packed)) CDC_UnionFunctionalDescriptor_t
+                {
+                        uint8_t bFunctionLength;
+                        uint8_t bDescriptorType;
+                        uint8_t bDescriptorSubtype;
+                        uint8_t bMasterInterface;
+                        uint8_t bSlaveInterface0; 
+                };
 
                 struct __attribute__((packed)) USB_EndpointDescriptor_t
                 {
@@ -137,9 +183,16 @@ class SerialClass : public SerialInterface
                 struct __attribute__((packed)) USB_Configuration_t
                 {
                         USB_ConfigurationDescriptor_t ConfigurationDescriptor;
-                        USB_InterfaceDescriptor_t InterfaceDescriptor;
-                        USB_EndpointDescriptor_t InEndpointDescriptor; 
+                        USB_InterfaceAssociationDescriptor_t InterfaceAssociationDescriptor;
+                        USB_InterfaceDescriptor_t ACMInterfaceDescriptor;
+                        CDC_HeaderFunctionalDescriptor_t HeaderFunctionalDescriptor;
+                        CDC_CallManagementFunctionalDescriptor_t CallManagementFunctionalDescriptor; 
+                        CDC_ACMControlManagementFunctionalDescriptor_t ACMControlManagementFunctionalDescriptor; 
+                        CDC_UnionFunctionalDescriptor_t UnionFunctionalDescriptor; 
+                        USB_EndpointDescriptor_t ACMEndpointDescriptor; 
+                        USB_InterfaceDescriptor_t DataInterfaceDescriptor;
                         USB_EndpointDescriptor_t OutEndpointDescriptor; 
+                        USB_EndpointDescriptor_t InEndpointDescriptor; 
                 };
 
                 struct SetupPacket_t 
