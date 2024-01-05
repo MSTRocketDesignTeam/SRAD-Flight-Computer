@@ -63,9 +63,12 @@ class SerialClass : public SerialInterface
                 inline void clrGenISRFlags(); 
                 inline uint_fast8_t waitForInOut(); 
                 inline void stall(); 
+                void InitOtherEP(); 
 
-                void sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint16_t maxLen); 
+                void sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen); 
+                void sendMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen);
 
+                volatile uint8_t usbConfiguration = 0;  
                 volatile uint8_t currentStatus = 0; // initial status (no remote wakeup, bus powered)
                 volatile uint_fast8_t state = BUS_INITIAL_STATE; 
 
@@ -205,10 +208,27 @@ class SerialClass : public SerialInterface
                         uint16_t wLength; 
                 };
 
+                struct LineInfo_t
+                {
+                        uint32_t dwDTERate; 
+                        uint8_t bCharFormat;
+                        uint8_t bParityType;
+                        uint8_t bDataBits;
+                        uint8_t lineState; 
+                };
+
 
                 static const USB_DeviceDescriptor_t DeviceDescriptor PROGMEM; 
                 //static const USB_ConfigurationDescriptor_t ConfigDescriptor PROGMEM; 
                 static const USB_Configuration_t Configuration PROGMEM; 
+                volatile LineInfo_t usbLineInfo = 
+                {
+                        57600,
+                        0x00,
+                        0x00,
+                        0x00,
+                        0x00
+                }; 
 
 };
 /* -------------------------------------------------------------------------- */

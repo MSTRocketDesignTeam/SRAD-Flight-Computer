@@ -260,7 +260,7 @@ inline void SerialClass::stall()
         return; 
 }
 
-void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint16_t maxLen)
+void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen)
 {
         // Send 'len' number of bytes starting from dataPtr address 
         // Sent byte by byte so convert void ptr to byte pointer 
@@ -295,6 +295,57 @@ void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast
                         UEINTX &= ~static_cast<uint8_t>((1<<TXINI));
                 }
         }
+        return; 
+}
+
+void SerialClass::sendMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen)
+{
+        // Send 'len' number of bytes starting from dataPtr address 
+        // Sent byte by byte so convert void ptr to byte pointer 
+        const uint8_t * dataRunPtr = reinterpret_cast<const uint8_t *>(dataPtr);  
+        uint8_t numBytesSent = 0; 
+        
+        for (uint_fast8_t i = 0; i < len; i++)
+        {
+                // Read a byte of the descriptor struct from flash 
+                uint8_t dataByte = *(dataRunPtr++); 
+
+                // Wait for the FIFO to be ready for next packet, if RX received error 
+                redOn(); 
+                if (!waitForInOut()) { 
+                        yellowOn();
+                        break;  
+                        } // TODO: ERROR  
+                redOff(); 
+
+                // Send the byte 
+                tx8(dataByte); // TODO: Keep track of how many bytes in CTL EP
+                maxLen--; 
+                numBytesSent++; // TODO: DEBUG JANKNESS
+
+                if (!maxLen){ // TODO: THIS MORE ELEGANT 
+                        // don't send anymore bytes
+                        break; 
+                }
+
+                if (numBytesSent == 64) {
+                        // Start Transmitting the bytes since the buffer is full 
+                        UEINTX &= ~static_cast<uint8_t>((1<<TXINI));
+                }
+        }
+        return; 
+}
+
+void SerialClass::InitOtherEP()
+{
+        // initialize needed EP's
+        initEP(EP_ACM_NUM, EP_ACM_CFG0, EP_ACM_CFG1);
+        initEP(EP_RX_NUM, EP_RX_CFG0, EP_RX_CFG1);
+        initEP(EP_TX_NUM, EP_TX_CFG0, EP_TX_CFG1);
+
+        // To use EP's reset them and then clear RST flags (atmega32, pg. 285)
+        UERST = 0x7E; // don't reset EP0 
+        UERST = 0x00; 
         return; 
 }
 
@@ -463,13 +514,13 @@ inline void SerialClass::ISR_common()
                                         blueOn(); 
                                         waitForTxRdy(); 
                                         // Set the received address and enable it (atmega32u4, pg. 272; pg. 284)
-                                        UDADDR = ((setup.wValue) | (1 << ADDEN)); 
+                                        UDADDR = ((setup.wValue) | (1 << ADDEN)); //TODO: DO ADDEN IN SEPARATE STEP AS DATASHEET RECOMMENDS 
                                         break;
                                 case (GET_DESCRIPTOR_REQ):
                                         { // Needed to fix scoping 
                                                 // Get Descriptor Request (usb_20.pdf, pg. 253)
                                                 uint8_t wValueH = (setup.wValue >> 8);
-                                                //uint8_t wValueL = (setup.wValue & 0xFF); 
+                                                uint8_t wValueL = (setup.wValue & 0xFF); 
                                                 switch (wValueH)
                                                 {
                                                         case (DESCRIPTOR_TYPE_DEVICE):
@@ -484,7 +535,17 @@ inline void SerialClass::ISR_common()
                                                                 break; 
                                                         default:
                                                         case (DESCRIPTOR_TYPE_STRING):
-                                                                
+                                                                // what string ?
+                                                                switch (wValueL)
+                                                                {
+                                                                        case (DESCRIPTOR_TYPE_STRING_ILANGUAGE):
+                                                                                break;
+                                                                        case (DESCRIPTOR_TYPE_STRING_IMANUFACTURER):
+                                                                                break; 
+                                                                        case (DESCRIPTOR_TYPE_STRING_IPRODUCT):
+                                                                                break;
+                                                                        case (DESCRIPTOR_TYPE_STRING_ISERIAL):
+                                                                                break; 
                                                                 break; 
                                                 }
                                         }
@@ -496,18 +557,32 @@ inline void SerialClass::ISR_common()
                                         toStall = true; 
                                         break;
                                 case (GET_CONFIGURATION_REQ):
+                                        // TODO: What is this for 
+                                        tx8(1); 
                                         break;
                                 case (SET_CONFIGURATION_REQ):
+                                                if (D40_RECIPIENT_DEVICE_MASK == (setup.bmRequestType & D40_RECIPIENT_MASK)) {
+                                                        // Set a device configuration 
+                                                        // only one available so initialize everything 
+                                                        InitOtherEP(); 
+                                                        usbConfiguration = setup.wValue; //truncate the high byte and set the lower as the config 
+                                                } else {
+                                                        // not supported, stall the CTL Ep
+                                                        toStall = true; 
+                                                }
                                         break;
                                 case (GET_INTERFACE_REQ):
+                                        // arduino lib does nothing here 
                                         break;
                                 case (SET_INTERFACE_REQ):
+                                        // arduino lib does nothing here 
                                         break;
-                                case (SYNCH_FRAME_REQ):
-                                        break; 
                         }
                         break;
                 default:
+                        // Class Interface Request //TODO: I think this might be vendor Check that 
+                        
+                        // low byte of .wIndex in .bmRequestType specifies Interface index
                         break;
         }
 
@@ -646,6 +721,7 @@ const SerialClass::USB_Configuration_t SerialClass::Configuration PROGMEM =
                 0 // .bInterval: 0 -> Endpoint never NAK's 
         }
 };
+
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------- INTERRUPT_SERVICE_ROUTINES ----------------------- */

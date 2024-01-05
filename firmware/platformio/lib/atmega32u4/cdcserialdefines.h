@@ -38,7 +38,7 @@ This file contains various defines that hold constants for the CDC serial interf
 #define D65_TYPE_STANDARD_MASK 0x00
 #define D65_TYPE_CLASS_MASK 0x20
 #define D65_TYPE_VENDOR_MASK 0x60
-#define D40_RECIPIENT_MASK ((1 << 4) | (1 << 3) | (1 << 2) | (1 << 1) | (1 << 0))
+#define D40_RECIPIENT_MASK ((1 << 4) | (1 << 3) | (1 << 2) | (1 << 1) | (1 << 0)) //4 & 3 are reserved 
 #define D40_RECIPIENT_DEVICE_MASK 0x00
 #define D40_RECIPIENT_INTERFACE_MASK 0x01
 #define D40_RECIPIENT_ENDPOINT_MASK 0x02
@@ -87,6 +87,24 @@ This file contains various defines that hold constants for the CDC serial interf
 // Endpoint 0 (Control) Constants
 #define EP_CTL_CFG0 ((EP_TYPE_CTL_MASK))
 #define EP_CTL_CFG1 ((EP_64_BYTE_MASK) | (EP_1_BANK_MASK) | (1 << ALLOC)) 
+
+// Endpoint 1 Constants 
+#define EP_ACM_CFG0 ((EP_TYPE_INT_IN_MASK))
+#define EP_ACM_CFG1 ((EP_64_BYTE_MASK) | (EP_2_BANK_MASK) | (1 << ALLOC))
+
+// Endpoint 2 Constants 
+#define EP_RX_CFG0 ((EP_TYPE_BLK_OUT_MASK))
+#define EP_RX_CFG1 ((EP_64_BYTE_MASK) | (EP_2_BANK_MASK) | (1 << ALLOC))
+
+// Endpoint 3 Constants 
+#define EP_TX_CFG0 ((EP_TYPE_BLK_IN_MASK))
+#define EP_TX_CFG1 ((EP_64_BYTE_MASK) | (EP_2_BANK_MASK) | (1 << ALLOC))
+
+// String Descriptor Index Types
+#define DESCRIPTOR_TYPE_STRING_ILANGUAGE 0
+#define DESCRIPTOR_TYPE_STRING_IMANUFACTURER 1
+#define DESCRIPTOR_TYPE_STRING_IPRODUCT 2
+#define DESCRIPTOR_TYPE_STRING_ISERIAL 3
 
 /* -------------------------------------------------------------------------- */
 #endif
