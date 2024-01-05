@@ -63,8 +63,9 @@ class SerialClass : public SerialInterface
                 inline void clrGenISRFlags(); 
                 inline uint_fast8_t waitForInOut(); 
                 inline void stall(); 
-                void InitOtherEP(); 
+                void InitOtherEP();
 
+                void SendStringDescriptor(const void * const data, const uint8_t len);
                 void sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen); 
                 void sendMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen);
 
@@ -229,6 +230,10 @@ class SerialClass : public SerialInterface
                         0x00,
                         0x00
                 }; 
+
+                // string descriptors
+                static const uint16_t LanguageString[2] __attribute__((packed)) PROGMEM; 
+                static const uint8_t ProductString[26] __attribute__((packed)) PROGMEM; 
 
 };
 /* -------------------------------------------------------------------------- */

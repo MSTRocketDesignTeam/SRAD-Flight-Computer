@@ -336,6 +336,17 @@ void SerialClass::sendMemPayload(const void * const dataPtr, const uint_fast8_t 
         return; 
 }
 
+void SerialClass::SendStringDescriptor(const void * const data, const uint8_t len)
+{
+        // send string descriptor format (atmega32u4, pg. 274) 
+        uint8_t temp = 2+len*2;
+        sendMemPayload(&temp, 1, 63); // .bLength 
+        temp = 3; 
+        sendMemPayload(&temp, 1, 63); // .bDescriptorType 
+        sendProgMemPayload(data, len, 64);
+        return; 
+}
+
 void SerialClass::InitOtherEP()
 {
         // initialize needed EP's
@@ -539,14 +550,17 @@ inline void SerialClass::ISR_common()
                                                                 switch (wValueL)
                                                                 {
                                                                         case (DESCRIPTOR_TYPE_STRING_ILANGUAGE):
+                                                                                sendProgMemPayload(&LanguageString, sizeof(LanguageString), 63);
                                                                                 break;
                                                                         case (DESCRIPTOR_TYPE_STRING_IMANUFACTURER):
                                                                                 break; 
                                                                         case (DESCRIPTOR_TYPE_STRING_IPRODUCT):
+                                                                                SendStringDescriptor(&ProductString, sizeof(ProductString)); 
                                                                                 break;
                                                                         case (DESCRIPTOR_TYPE_STRING_ISERIAL):
-                                                                                break; 
-                                                                break; 
+                                                                                break;
+                                                                }
+                                                                break;
                                                 }
                                         }
                                         break;
@@ -720,6 +734,16 @@ const SerialClass::USB_Configuration_t SerialClass::Configuration PROGMEM =
                 64, // .wMaxPacketSize: 64 byte max packet size 
                 0 // .bInterval: 0 -> Endpoint never NAK's 
         }
+};
+
+const uint16_t SerialClass::LanguageString[2] PROGMEM =
+{
+        0x0304, 0x0409
+};
+
+const uint8_t SerialClass::ProductString[26] PROGMEM = 
+{
+        'A', 0, 'r', 0, 'd', 0, 'u', 0, 'i', 0, 'n', 0, 'o', 0, ' ', 0, 'M', 0, 'i', 0, 'c', 0, 'r', 0, 'o', 0
 };
 
 /* -------------------------------------------------------------------------- */
