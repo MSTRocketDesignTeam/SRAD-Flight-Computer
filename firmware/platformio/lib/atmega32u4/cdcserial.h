@@ -65,6 +65,8 @@ class SerialClass : public SerialInterface
                 inline void stall(); 
                 void InitOtherEP();
 
+                inline uint_fast8_t fifoByteCount(); 
+
                 void SendStringDescriptor(const void * const data, const uint8_t len);
                 void sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen); 
                 void sendMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen);
