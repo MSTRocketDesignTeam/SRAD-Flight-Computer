@@ -252,6 +252,14 @@ inline uint_fast8_t SerialClass::waitForInOut()
         return (!(UEINTX & (1 << RXOUTI))); // true is no error, false is error
 }
 
+inline void SerialClass::stall()
+{
+        // Setting STALLRQ -> Requests stall from host (atmega32u4, pg. 286)
+        // 
+        UECONX |= (1<<STALLRQ); //| (1<<EPEN); //TODO: ???? Don't think this is needed 
+        return; 
+}
+
 void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint16_t maxLen)
 {
         // Send 'len' number of bytes starting from dataPtr address 
@@ -284,7 +292,6 @@ void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast
 
                 if (numBytesSent == 64) {
                         // Start Transmitting the bytes since the buffer is full 
-                        print(numBytesSent); 
                         UEINTX &= ~static_cast<uint8_t>((1<<TXINI));
                 }
         }
@@ -410,6 +417,8 @@ inline void SerialClass::ISR_common()
                 clrTxWait(); // make sure the EP0 bank is empty
         }
         
+        //print(setup.bmRequestType); 
+        uint8_t toStall = false; 
 
         // Carry out the Proper Action 
         switch (setup.bmRequestType & D65_TYPE_MASK)
@@ -483,6 +492,8 @@ inline void SerialClass::ISR_common()
                                 default: 
                                         break; 
                                 case (SET_DESCRIPTOR_REQ):
+                                        // Not supported, stall the ctl ep 
+                                        toStall = true; 
                                         break;
                                 case (GET_CONFIGURATION_REQ):
                                         break;
@@ -501,7 +512,11 @@ inline void SerialClass::ISR_common()
         }
 
         // Clear TXINI to send anything in the buffer 
-        UEINTX &= ~(1 << TXINI); 
+        if (toStall) {
+                stall(); 
+        } else {
+                UEINTX &= ~(1 << TXINI);
+        } 
 
         // Restore orginal selected Endpoint 
         UENUM = originalEpNum; 

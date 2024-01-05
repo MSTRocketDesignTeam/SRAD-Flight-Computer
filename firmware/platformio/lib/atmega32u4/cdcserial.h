@@ -62,6 +62,7 @@ class SerialClass : public SerialInterface
                 inline void clrTxWait();
                 inline void clrGenISRFlags(); 
                 inline uint_fast8_t waitForInOut(); 
+                inline void stall(); 
 
                 void sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint16_t maxLen); 
 
