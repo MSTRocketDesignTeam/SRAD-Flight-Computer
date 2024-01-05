@@ -258,31 +258,33 @@ void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast
         // Sent byte by byte so convert void ptr to byte pointer 
         const uint8_t * dataRunPtr = reinterpret_cast<const uint8_t *>(dataPtr);  
         uint8_t numBytesSent = 0; 
-        print(maxLen); 
+        
         for (uint_fast8_t i = 0; i < len; i++)
         {
                 // Read a byte of the descriptor struct from flash 
                 uint8_t dataByte = pgm_read_byte(dataRunPtr++); 
 
                 // Wait for the FIFO to be ready for next packet, if RX received error 
+                redOn(); 
                 if (!waitForInOut()) { 
                         yellowOn();
                         break;  
                         } // TODO: ERROR  
+                redOff(); 
 
                 // Send the byte 
                 tx8(dataByte); // TODO: Keep track of how many bytes in CTL EP
                 maxLen--; 
                 numBytesSent++; // TODO: DEBUG JANKNESS
-                
 
                 if (!maxLen){ // TODO: THIS MORE ELEGANT 
                         // don't send anymore bytes
                         break; 
                 }
 
-                if (numBytesSent == 62) {
+                if (numBytesSent == 64) {
                         // Start Transmitting the bytes since the buffer is full 
+                        print(numBytesSent); 
                         UEINTX &= ~static_cast<uint8_t>((1<<TXINI));
                 }
         }
@@ -407,7 +409,6 @@ inline void SerialClass::ISR_common()
         } else {
                 clrTxWait(); // make sure the EP0 bank is empty
         }
-        
         
 
         // Carry out the Proper Action 
