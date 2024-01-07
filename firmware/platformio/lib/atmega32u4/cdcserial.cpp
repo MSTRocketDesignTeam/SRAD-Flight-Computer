@@ -360,6 +360,206 @@ void SerialClass::InitOtherEP()
         return; 
 }
 
+inline uint_fast8_t SerialClass::fifoByteCount()
+{
+        // Low Byte of selected EP FIFO Byte Count (atmega32u4, pg. 291)
+        // Since 64 is the max size, only low byte is needed 
+        // IN endpoint (TX): incremented after writing 
+        // OUT endpoint (RX): incremented by receiving from host 
+        return UEBCLX; 
+}
+
+inline uint_fast8_t SerialClass::isRWAllowed()
+{
+        // Set when reading or writing is valid (atmega32u4, pg. 289)
+        // IN Endpoint: the current bank's fifo is not full
+        // OUT Endpoint: the current bank is not empty, unread data 
+        return (UEINTX & (1 << RWAL)); 
+}
+
+inline uint_fast8_t SerialClass::isStalled()
+{
+        // set when a stall handshake has been sent (atmega32u4, pg. 290)
+        return (UEINTX & (1 << STALLEDI));
+}
+
+inline uint_fast8_t SerialClass::isFifoFree()
+{
+        // (atmega32u4, pg. 289)
+        return (UEINTX & (1 << FIFOCON)); 
+}
+
+inline void SerialClass::releaseRX()
+{
+        UEINTX = 0x6B; // FIFOCON=0 NAKINI=1 RWAL=1 NAKOUTI=0 RXSTPI=1 RXOUTI=0 STALLEDI=1 TXINI=1 //TODO: OPTIMIZE THIS
+        return; 
+}
+
+inline void SerialClass::releaseTX()
+{
+        UEINTX = 0x3A; // FIFOCON=0 NAKINI=0 RWAL=1 NAKOUTI=1 RXSTPI=1 RXOUTI=0 STALLEDI=1 TXINI=0 //TODO: OPTIMIZE THIS
+        return; 
+}
+
+inline uint_fast8_t SerialClass::frameNum()
+{
+        // returns the lower 8 bits of the current frame number (atmega32u4, pg. 285)
+        return UDFNUML; 
+}
+
+uint_fast8_t SerialClass::sendSpace(const uint_fast8_t epNum)
+{
+        uint_fast8_t retVal; 
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+                UENUM = epNum;
+                if (!isRWAllowed()) {
+                        retVal = 0; 
+                } else {
+                        retVal = 64 - fifoByteCount(); 
+                }
+        }
+        return retVal; 
+}
+
+uint_fast16_t SerialClass::send(uint_fast8_t epNum, const void * d, uint_fast16_t len)
+{
+        if (!usbConfiguration) {
+                return 0; // usb is not fully configured yet 
+        }
+
+        if (UDINT & (1 << SUSPI)){
+                // if true the interface is suspended, send a wakeup to the host 
+                // trigger remote wakeup request 
+                UDCON |= (1 << RMWKUP);
+        }
+
+        uint_fast16_t r = len;
+        const uint8_t * data = reinterpret_cast<const uint8_t *>(d); 
+        uint8_t timeout = 250; 
+        bool sendZlp = false; 
+
+        while (len || sendZlp)
+        {
+                uint8_t n = sendSpace(epNum); 
+                if (n == 0) {
+                        if (!(--timeout)) { return 0; }
+                        Time.delayMs(1); 
+                        continue; 
+                        // if no space is available wait for up to 250ms per call
+                }
+                if (n > len) { //! CHECK TO SEE IF THERE IS AN ISSUE WHEN EXACTLY 64 BYTES ARE TRANSMITTED, NEED TO SEND A ZLP FOR CDC? 
+                        n = len; // space is good to go ahead and send 
+                }
+
+                ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+                {
+                        UENUM = epNum; 
+                        //make sure interrupt hasn't released frames 
+                        if (!isRWAllowed()) {
+                                continue; 
+                        }
+
+                        len -= n; 
+                        if (epNum & 0x20) { // this is dumb change this implementation
+                                while (n--) 
+                                {
+                                        tx8(0); // send all the bytes there is room for 
+                                }
+                        } else if (epNum & 0x80) {
+                                while (n--)  
+                                {
+                                        tx8(pgm_read_byte(data++));
+                                }
+                        } else {
+                                while (n--)
+                                {
+                                        tx8(*(data++)); 
+                                }
+                        }
+
+                        if (sendZlp) {
+                                releaseTX(); // send ZLP 
+                                sendZlp = false;  
+                        } else if (!isRWAllowed()) {
+                                releaseTX(); // The buffer is full, change the fifo and send the previous packet 
+                                if (len == 0) {
+                                        sendZlp = true; // if all bytes sent, must send a Zlp to signify end of data to send  //!: IS THIS ONLY NEEDED FOR 64 BYTE MULTIPLE PACKETS? 
+                                }
+                        } // not implementing transfer release
+                }
+        }
+        return r; 
+}
+
+inline uint8_t SerialClass::classInterfaceRequest(SetupPacket_t &setup)
+{
+        uint8_t i = setup.wIndex; // represents interface number
+        if (i == 0) {
+                // ACM interface
+                return CDC_Setup(setup); 
+        }
+        return false; 
+}
+
+inline uint8_t SerialClass::CDC_Setup(SetupPacket_t &setup)
+{
+        uint8_t r = setup.bRequest;
+        uint8_t requestType = setup.bmRequestType; 
+
+        if ((D7_DIR_DEVICE_TO_HOST_MASK | D65_TYPE_CLASS_MASK | D40_RECIPIENT_INTERFACE_MASK) == requestType) {
+                if (CDC_GET_LINE_CODING_REQ == r) {
+                        sendMemPayload((const void *)&usbLineInfo, 7, 64); 
+                        return true; 
+                }
+        }
+        if ((D7_DIR_HOST_TO_DEVICE_MASK | D65_TYPE_CLASS_MASK | D40_RECIPIENT_INTERFACE_MASK) == requestType) {
+                if (CDC_SEND_BREAK == r) {
+                        breakValue = setup.wValue; // TODO: ? 
+                }
+
+                if (CDC_SET_LINE_CODING_REQ == r) {
+                        receiveControl((void*)&usbLineInfo, 7); 
+                }
+
+                if (CDC_SET_CONTROL_LINE_STATE_REQ == r) {
+                        usbLineInfo.lineState = (setup.wValue & 0x00FF); 
+                }
+        }
+        return true; 
+}
+
+inline void SerialClass::waitOut()
+{
+        while (!(UEINTX & (1<<RXOUTI))) { ; }
+        return; 
+}
+
+void SerialClass::receiveControl(void * d, uint16_t len)
+{
+        uint16_t length = len; 
+        uint8_t * dataPtr = reinterpret_cast<uint8_t *>(d); 
+        while (length)
+        {
+                uint16_t recvLength = length; 
+                if (recvLength > 64) {
+                        recvLength = 64; 
+                        // max of 64 bytes in fifo 
+                }
+
+                // fill the last portion of the data array
+                waitOut(); //wait for there to be unread data 
+                uint8_t count = recvLength;
+                while (count--)
+                {
+                        *((dataPtr++) + len - length) = rx8(); 
+                }
+                UEINTX = static_cast<uint8_t>(~(1<<RXOUTI)); // CLEAROUT 
+                length -= recvLength; 
+        }
+        return; 
+}
+
 inline void SerialClass::ISR_general()
 {
         // Handle a VBUS transition interrupt
@@ -595,7 +795,8 @@ inline void SerialClass::ISR_common()
                         break;
                 default:
                         // Class Interface Request //TODO: I think this might be vendor Check that 
-                        
+                        //!: This implementation is currently trash
+                        ok = classInterfaceRequest(setup); 
                         // low byte of .wIndex in .bmRequestType specifies Interface index
                         break;
         }
@@ -766,3 +967,5 @@ ISR(USB_COM_vect)
 //---------------------------
 SerialClass Serial; 
 //---------------------------
+
+

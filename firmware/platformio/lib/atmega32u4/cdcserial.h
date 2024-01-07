@@ -64,12 +64,25 @@ class SerialClass : public SerialInterface
                 inline uint_fast8_t waitForInOut(); 
                 inline void stall(); 
                 void InitOtherEP();
+                inline void waitOut(); 
 
                 inline uint_fast8_t fifoByteCount(); 
+                inline uint_fast8_t isRWAllowed(); 
+                inline uint_fast8_t isStalled(); 
+                inline uint_fast8_t isFifoFree(); 
+                inline void releaseRX(); 
+                inline void releaseTX(); 
+                inline uint_fast8_t frameNum(); 
+                uint_fast8_t sendSpace(const uint_fast8_t epNum); 
+
+                uint_fast16_t send(uint_fast8_t epNum, const void * d, uint_fast16_t len); 
 
                 void SendStringDescriptor(const void * const data, const uint8_t len);
                 void sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen); 
                 void sendMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen);
+
+                void receiveControl(void * d, uint16_t len); 
+
 
                 volatile uint8_t usbConfiguration = 0;  
                 volatile uint8_t currentStatus = 0; // initial status (no remote wakeup, bus powered)
@@ -236,6 +249,11 @@ class SerialClass : public SerialInterface
                 // string descriptors
                 static const uint16_t LanguageString[2] __attribute__((packed)) PROGMEM; 
                 static const uint8_t ProductString[26] __attribute__((packed)) PROGMEM; 
+
+                // handle class requests 
+                inline uint8_t classInterfaceRequest(SetupPacket_t &setup); 
+                inline uint8_t CDC_Setup(SetupPacket_t &setup);
+                int32_t breakValue = -1; 
 
 };
 /* -------------------------------------------------------------------------- */
