@@ -175,13 +175,15 @@ inline void SerialClass::disableUSBCLK()
 
 uint_fast8_t SerialClass::read() 
 {
-        
-        return 0; 
+        uint8_t x; 
+        receive(EP_RX_NUM, &x, 1); 
+        return x; 
 }
 
 uint_fast8_t SerialClass::write(const uint_fast8_t data)
 {
-        return data; 
+        send(EP_TX_NUM, &data, 1);
+        return 0; 
 }
 
 inline void SerialClass::initEP(const uint_fast8_t epNum, 
@@ -423,7 +425,7 @@ uint_fast8_t SerialClass::sendSpace(const uint_fast8_t epNum)
 }
 
 uint_fast16_t SerialClass::send(uint_fast8_t epNum, const void * d, uint_fast16_t len)
-{
+{ 
         if (!usbConfiguration) {
                 return 0; // usb is not fully configured yet 
         }
@@ -492,6 +494,30 @@ uint_fast16_t SerialClass::send(uint_fast8_t epNum, const void * d, uint_fast16_
         return r; 
 }
 
+void SerialClass::receive(uint8_t epNum, void * d, uint8_t len)
+{
+        if (!usbConfiguration) { 
+                return;
+        }
+
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+                UENUM = epNum; 
+                uint8_t n = fifoByteCount(); 
+                len = (n < len) ? (n) : (len); 
+                n = len; 
+                uint8_t * dst = (uint8_t *)d; 
+                while (n--)
+                {
+                        *(dst++) = rx8(); 
+                }
+                if (len && !fifoByteCount()) { //release empty buffer if all have been read 
+                        releaseRX(); 
+                }
+        }
+        return; 
+}
+
 inline uint8_t SerialClass::classInterfaceRequest(SetupPacket_t &setup)
 {
         uint8_t i = setup.wIndex; // represents interface number
@@ -499,7 +525,7 @@ inline uint8_t SerialClass::classInterfaceRequest(SetupPacket_t &setup)
                 // ACM interface
                 return CDC_Setup(setup); 
         }
-        return false; 
+        return true; 
 }
 
 inline uint8_t SerialClass::CDC_Setup(SetupPacket_t &setup)
@@ -510,7 +536,7 @@ inline uint8_t SerialClass::CDC_Setup(SetupPacket_t &setup)
         if ((D7_DIR_DEVICE_TO_HOST_MASK | D65_TYPE_CLASS_MASK | D40_RECIPIENT_INTERFACE_MASK) == requestType) {
                 if (CDC_GET_LINE_CODING_REQ == r) {
                         sendMemPayload((const void *)&usbLineInfo, 7, 64); 
-                        return true; 
+                        return false; 
                 }
         }
         if ((D7_DIR_HOST_TO_DEVICE_MASK | D65_TYPE_CLASS_MASK | D40_RECIPIENT_INTERFACE_MASK) == requestType) {
@@ -526,7 +552,7 @@ inline uint8_t SerialClass::CDC_Setup(SetupPacket_t &setup)
                         usbLineInfo.lineState = (setup.wValue & 0x00FF); 
                 }
         }
-        return true; 
+        return false; 
 }
 
 inline void SerialClass::waitOut()
@@ -619,6 +645,21 @@ inline void SerialClass::ISR_general()
                         //        state = BUS_INVALID_STATE; 
                         //        break;
                 }
+        }
+
+        if (UDINT & (1 << SOFI)) { // every ms if there is data stored try to send it? 
+                UENUM = EP_TX_NUM;
+                if (fifoByteCount()) { releaseTX(); }
+                UENUM = EP_CTL_NUM; 
+        }
+
+        if (UDINT & (1 << WAKEUPI)) {
+                // TODO: CHECK THIS 
+                UDIEN = (UDIEN & ~(1<<WAKEUPE)) | (1<<SUSPE);
+                UDINT &= ~(1<<WAKEUPI);
+        } else if (UDINT & (1 << SUSPI)) {
+                UDIEN = (UDIEN & ~(1<<SUSPE)) | (1<<WAKEUPE);
+                UDINT &= ~((1<<WAKEUPI) | (1<<SUSPI));
         }
         /*
         // utlize state machine to only check required if statements
@@ -722,7 +763,6 @@ inline void SerialClass::ISR_common()
                                 case (SET_ADDRESS_REQ):
                                         // Set Address Request (usb_20.pdf)
                                         // Wait for the device to finish sending the ACK 
-                                        blueOn(); 
                                         waitForTxRdy(); 
                                         // Set the received address and enable it (atmega32u4, pg. 272; pg. 284)
                                         UDADDR = ((setup.wValue) | (1 << ADDEN)); //TODO: DO ADDEN IN SEPARATE STEP AS DATASHEET RECOMMENDS 
@@ -796,7 +836,8 @@ inline void SerialClass::ISR_common()
                 default:
                         // Class Interface Request //TODO: I think this might be vendor Check that 
                         //!: This implementation is currently trash
-                        ok = classInterfaceRequest(setup); 
+                        UENUM = 0; 
+                        toStall = classInterfaceRequest(setup); 
                         // low byte of .wIndex in .bmRequestType specifies Interface index
                         break;
         }

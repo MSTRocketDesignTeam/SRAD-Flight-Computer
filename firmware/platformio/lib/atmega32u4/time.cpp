@@ -49,7 +49,7 @@ uint_fast32_t TimeClass::millis() const
 void TimeClass::delayMs(const uint_fast16_t ms) const
 {
         const uint_fast32_t temp_millis = millis(); 
-        while ((millis() - ms) < temp_millis) {;} // wait for time to elapse
+        while ((millis() - temp_millis) < ms) {;} // wait for time to elapse
         return; 
 }
 

@@ -82,6 +82,7 @@ class SerialClass : public SerialInterface
                 void sendMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen);
 
                 void receiveControl(void * d, uint16_t len); 
+                void receive(uint8_t epNum, void * d, uint8_t len); 
 
 
                 volatile uint8_t usbConfiguration = 0;  

@@ -21,6 +21,7 @@ int main()
         uint8_t state = 0; 
         uint8_t usb_clock_state = 0; 
         uint32_t last_time = 0; 
+        Time.delayMs(5000);
         while (true)
         {
 
@@ -43,13 +44,11 @@ int main()
                         PORTC |= (1 << PC7); 
                         state = 1;
                 }
-
-                if ((Time.millis() - last_time) > 7000) {
+                if ((Time.millis() - last_time) > 2000) {
                         if (usb_clock_state) {
-                                //Serial.disableClock(); 
+                                Serial.wri 
                                 usb_clock_state = 0; 
                         } else {
-                                //Serial.enableClock(); 
                                 usb_clock_state = 1; 
                         }
                         last_time = Time.millis(); 
