@@ -20,41 +20,9 @@ SerialClass::SerialClass()
         blueOff(); 
         yellowOff(); 
         print(0); 
-        // Initialize the USB system 
+
+        // Initialize the USB system and registers
         initUSB(); 
-
-
-
-/*
-        //! TODO: CHECK USBCORE.cpp FOR SOME FIXES RELATED TO THE CLOCK PLL 
-
-
-
-        // Enable the USB clock (atmega32u4, pg. 267)
-        USBCON &= ~(1 << FRZCLK);
-
-
-
-        // Connect the VBUS pad to the USB controller (atmega32u4, pg. 267)
-        USBCON |= (1 << OTGPADE); 
-
-        // Enable Full Speed Device. (atmega32u4, pg. 281)
-        UDCON &= ~(1 << LSM);
-
-        //! TODO: IS VBUSTE required? not set currently 
-
-        // Attach to the USB bus. Connects pullup to D+ and causes host to reset
-        // The USB controller in Atmega32u4 (atmega32u4, pg. 281)
-        UDCON &= ~(1 << DETACH); 
-
-
-
-        // Enable the PLL (atmega32u4, pg. 40-41)
-        PLLCSR |= (1 << PLLE);
-
-        // Wait for PLL to lock to accurate clock (atmega32u4, pg. 40-41)
-        while (!((1 << PLOCK) & PLLCSR)) {;}
-*/
 }
 
 //static uint8_t num_times_ran = 0; //! DELETE
@@ -78,8 +46,7 @@ void SerialClass::initUSB()
         // 5B. If VBUS is low, VBUS interrupt will handle connection 
         // 6A. Clear VBUS int to guarantee that it will not be called again  
 
-        // initial state 
-        state = BUS_INITIAL_STATE; 
+        //! SET STATE VARIABLE HERE? 
 
         // configure the PLL so when it is enabled it provides correct clock 
         configurePLL(); 
@@ -106,15 +73,14 @@ void SerialClass::initUSB()
                 USBCON |= ((1 << VBUSTE) | (1 << OTGPADE));
 
                 // Enable Required Interrupts 
-                // EORSTE: When host resets USB device duiring initialization set the EORSTI flag
-                // SOFI: 1ms frame interrupts
-                UDIEN |= ((1 << EORSTE) | (1 << SOFE)); 
+                // EORSTE: When host resets USB device duiring initialization set the EORSTI flag (atmega32u4, pg. 283)
+                UDIEN |= (1 << EORSTE); 
                 
                 // If VBUS is already high, enable the PLL and unfreeze the clock 
                 // If VBUS is not currently high, then the clock will enable when 
                 // the VBUSI interrupt is triggered //TODO: IMPLEMENT THIS 
                 if (USBSTA & (1 << VBUS)) {
-                        // If initially powered, the go ahead and try to connect
+                        // If initially powered, go ahead and try to connect
                         // Otherwise the connection will be handled by VBUS interrupt 
                         enableUSBCLK(); 
 
@@ -127,9 +93,7 @@ void SerialClass::initUSB()
                         // Clear the VBUSTI flag so that interrupt is not called again (atmega32u4, pg. 268)
                         USBINT &= ~(1 << VBUSTI); 
 
-                } else {
-                        state = BUS_UNPOWERED_STATE;
-                }
+                } //! Set State variable here? 
         }
         
         // Once the VBUS is applied the PLL should be activated
@@ -153,7 +117,7 @@ void SerialClass::configurePLL()
         return; 
 }
 
-inline void SerialClass::enableUSBCLK()
+void SerialClass::enableUSBCLK()
 {
         // To enable clock lock the PLL so it is not disabled by powersaving
         // Using id position of 0
@@ -164,7 +128,7 @@ inline void SerialClass::enableUSBCLK()
         return; 
 }
 
-inline void SerialClass::disableUSBCLK()
+void SerialClass::disableUSBCLK()
 {
         // freeze the USB clock (atmega32u4, pg.267)
         USBCON |= (1 << FRZCLK); 
@@ -187,8 +151,8 @@ uint_fast8_t SerialClass::write(const uint_fast8_t data)
         return 0; 
 }
 
-inline void SerialClass::initEP(const uint_fast8_t epNum, 
-        const uint_fast8_t epCFG0, const uint_fast8_t epCFG1)
+void SerialClass::initEP(const uint8_t epNum, 
+        const uint8_t epCFG0, const uint8_t epCFG1)
 {
         // Following Ep Setup Procedure (atmega32u4, pg. 271)
         // Select the correct endpoint (atmega32u4, pg. 285)
@@ -206,7 +170,7 @@ inline void SerialClass::initEP(const uint_fast8_t epNum,
         // Check to verify activation (atmega32u4, pg. 287)
         if (!(UESTA0X & (1 << CFGOK))) {
                 // Invalid State, mark the bus to be reset 
-                state = BUS_INVALID_STATE; 
+                state = BUS_INVALID_STATE; //!
         }
         
         return; 

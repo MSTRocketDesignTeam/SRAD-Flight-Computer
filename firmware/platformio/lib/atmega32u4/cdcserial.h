@@ -186,20 +186,35 @@ class SerialClass : public SerialInterface
                 // Desc: Unfreezes the USB CLK
                 // Args: None
                 // Returns: None 
-                inline void enableUSBCLK();
+                void enableUSBCLK();
 
                 // Desc: Freezes the USB CLK for power savings 
                 // Args: None 
                 // Returns: None 
-                inline void disableUSBCLK(); 
+                void disableUSBCLK(); 
 
-                // Desc: Setup the endpoint 
-                inline void initEP(const uint_fast8_t epNum, 
-                        const uint_fast8_t epCFG0, const uint_fast8_t epCFG1); 
+                // Desc: Configures the endpoint using the specified register values
+                // Args: None
+                // Returns: None 
+                void initEP(const uint8_t epNum, 
+                        const uint8_t epCFG0, const uint8_t epCFG1); 
                 
+                // Desc: Reads a byte from the currently selected EP's fifo
+                // Args: None
+                // Returns: None 
                 inline uint8_t rx8(); 
-                inline void tx8(const uint8_t data);   
+
+                // Desc: Puts a byte into the currently selected EP's fifo 
+                // Args: None
+                // Returns: None 
+                inline void tx8(const uint8_t data);
+
+                // Desc: Used with the CTL endpoint, waits for the fifo to be ready to receive data to transmit 
+                // Args: None
+                // Returns: None 
                 inline void waitForTxRdy();
+
+                
                 inline void clrTxWait();
                 inline void clrGenISRFlags(); 
                 inline uint_fast8_t waitForInOut(); 
