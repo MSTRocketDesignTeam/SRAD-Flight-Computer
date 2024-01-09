@@ -31,7 +31,12 @@ class PowerSaving
                 // Returns: Nothing 
                 void unlockPLL(const uint_fast8_t id) volatile; 
 
-                // Desc: Removes the
+                // Specify PLL Lock IDs 
+                enum PLL_IDs : uint8_t  
+                {
+                        USB_PLL_LOCK_ID = (1 << 0) // id 0
+                };
+
         protected: 
                 // If the PLL is being utilized, this will be nonzero 
                 volatile uint_fast8_t PLL_ref = 0;  

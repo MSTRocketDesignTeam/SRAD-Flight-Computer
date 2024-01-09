@@ -169,11 +169,34 @@ class SerialClass : public SerialInterface
                 };
                 /* ---------------------------------------------------------- */
 
+                /* --------------------- ENUM_CONSTANTS --------------------- */
+                // Endpoint Numbering
+                enum EP_NUMs : uint8_t 
+                {
+                        EP_CTL_NUM = 0, // Endpoint 0 is always control
+                        EP_ACM_NUM = 1, // Endpoint 1 is ACM endpoint
+                        EP_RX_NUM = 2, // Endpoint 2 recieves data from PC 
+                        EP_TX_NUM = 3, // Endpoint 3 sends data to PC 
+                };
+
+                // Endpoint Types (UECFG0X)
+                enum EP_TYPEs : uint8_t
+                {
+                        EP_TYPE_CTL = ((0 << EPTYPE1) | (0 << EPTYPE0) | (0 << EPDIR)),
+                        EP_TYPE_BLK_IN = ((1 << EPTYPE1) | (0 << EPTYPE0) | (1 << EPDIR)),
+                        EP_TYPE_BLK_OUT = ((1 << EPTYPE1) | (0 << EPTYPE0) | (0 << EPDIR)),
+                        EP_TYPE_INT_IN = ((1 << EPTYPE1) | (1 << EPTYPE0) | (1 << EPDIR))
+                };
+
+                // Endpoint Size and Banks 
+
+                /* ---------------------------------------------------------- */
 
 
 
 
-                // Desc: Reset the USB interface 
+
+                // Desc: Initializes the USB interface 
                 // Args: None
                 // Returns: Nothing 
                 void initUSB(); 
@@ -214,7 +237,7 @@ class SerialClass : public SerialInterface
                 // Returns: None 
                 inline void waitForTxRdy();
 
-                
+
                 inline void clrTxWait();
                 inline void clrGenISRFlags(); 
                 inline uint_fast8_t waitForInOut(); 

@@ -114,6 +114,7 @@ void SerialClass::configurePLL()
         // Configure PLL to output 48MHz (atmega32u4, pg. 41)
         PLLFRQ &= ~((1 << PDIV3) | (1 << PDIV1) | (1 << PDIV0)); 
         PLLFRQ |= (1 << PDIV2); 
+        sizeof(EP_CTL_NUM);
         return; 
 }
 
@@ -121,7 +122,7 @@ void SerialClass::enableUSBCLK()
 {
         // To enable clock lock the PLL so it is not disabled by powersaving
         // Using id position of 0
-        Pwr.lockPLL(USB_PLL_LOCK_ID); 
+        Pwr.lockPLL(PowerSaving::USB_PLL_LOCK_ID); 
 
         // Now that PLL is enabled, unfreeze the USB clock (atmega32u4, pg. 267)
         USBCON &= ~(1 << FRZCLK);
@@ -134,7 +135,7 @@ void SerialClass::disableUSBCLK()
         USBCON |= (1 << FRZCLK); 
 
         // unlock the PLL so that powersaving may disable it
-        Pwr.unlockPLL(USB_PLL_LOCK_ID);
+        Pwr.unlockPLL(PowerSaving::USB_PLL_LOCK_ID);
         return; 
 }
 
