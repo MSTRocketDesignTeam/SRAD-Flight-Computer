@@ -863,6 +863,23 @@ inline void SerialClass::ISR_common()
         return; 
 }
 
+/* -------------------------------------------------------------------------- */
+
+/* ----------------------- INTERRUPT_SERVICE_ROUTINES ----------------------- */
+// All other USB interrupts (atmega32u4, pg. 262) 
+ISR(USB_GEN_vect)
+{
+        Serial.ISR_general(); 
+}
+
+// Endpoint Interrupts (atmega32u4, pg. 262)
+ISR(USB_COM_vect)
+{
+        Serial.ISR_common(); 
+}
+/* -------------------------------------------------------------------------- */
+
+/* --------------------------- DATA_INITIALIZATION -------------------------- */
 const SerialClass::USB_DeviceDescriptor_t SerialClass::DeviceDescriptor PROGMEM = 
 {
         // https://www.beyondlogic.org/usbnutshell/usb5.shtml#DeviceDescriptors
@@ -881,15 +898,6 @@ const SerialClass::USB_DeviceDescriptor_t SerialClass::DeviceDescriptor PROGMEM 
         3, // .iSerialNumber: Serial Number String Index Offset
         1 // .bNumConfigurations: Only one configuration 
 };
-
-/*
-const SerialClass::USB_ConfigurationDescriptor_t SerialClass::ConfigDescriptor PROGMEM = 
-{
-        sizeof(USB_DeviceDescriptor_t), // .bLength: 9 byte struct 
-        0x02, // .bDescriptorType: 2 -> Configuration Descriptor
-        
-};
-*/
 
 const SerialClass::USB_Configuration_t SerialClass::Configuration PROGMEM = 
 {
@@ -986,31 +994,6 @@ const SerialClass::USB_Configuration_t SerialClass::Configuration PROGMEM =
                 0 // .bInterval: 0 -> Endpoint never NAK's 
         }
 };
-
-const uint16_t SerialClass::LanguageString[2] PROGMEM =
-{
-        0x0304, 0x0409
-};
-
-const uint8_t SerialClass::ProductString[26] PROGMEM = 
-{
-        'A', 0, 'r', 0, 'd', 0, 'u', 0, 'i', 0, 'n', 0, 'o', 0, ' ', 0, 'M', 0, 'i', 0, 'c', 0, 'r', 0, 'o', 0
-};
-
-/* -------------------------------------------------------------------------- */
-
-/* ----------------------- INTERRUPT_SERVICE_ROUTINES ----------------------- */
-// All other USB interrupts (atmega32u4, pg. 262) 
-ISR(USB_GEN_vect)
-{
-        Serial.ISR_general(); 
-}
-
-// Endpoint Interrupts (atmega32u4, pg. 262)
-ISR(USB_COM_vect)
-{
-        Serial.ISR_common(); 
-}
 /* -------------------------------------------------------------------------- */
 
 // Create Global Serial Object

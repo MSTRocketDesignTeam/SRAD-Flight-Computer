@@ -34,75 +34,7 @@ class SerialClass : public SerialInterface
                 uint8_t available(); 
 
         protected: 
-                // Desc: Reset the USB interface 
-                // Args: None
-                // Returns: Nothing 
-                void initUSB(); 
-
-                // Desc: Configures the PLL for generating USB clock 
-                // Args: None
-                // Returns: None 
-                void configurePLL(); 
-
-                // Desc: Unfreezes the USB CLK
-                // Args: None
-                // Returns: None 
-                inline void enableUSBCLK();
-
-                // Desc: Freezes the USB CLK for power savings 
-                // Args: None 
-                // Returns: None 
-                inline void disableUSBCLK(); 
-
-                // Desc: Setup the endpoint 
-                inline void initEP(const uint_fast8_t epNum, 
-                        const uint_fast8_t epCFG0, const uint_fast8_t epCFG1); 
-                
-                inline uint8_t rx8(); 
-                inline void tx8(const uint8_t data);   
-                inline void waitForTxRdy();
-                inline void clrTxWait();
-                inline void clrGenISRFlags(); 
-                inline uint_fast8_t waitForInOut(); 
-                inline void stall(); 
-                void InitOtherEP();
-                inline void waitOut(); 
-
-                inline uint_fast8_t fifoByteCount(); 
-                inline uint_fast8_t isRWAllowed(); 
-                inline uint_fast8_t isStalled(); 
-                inline uint_fast8_t isFifoFree(); 
-                inline void releaseRX(); 
-                inline void releaseTX(); 
-                inline uint_fast8_t frameNum(); 
-                uint_fast8_t sendSpace(const uint_fast8_t epNum); 
-
-                uint_fast16_t send(uint_fast8_t epNum, const void * d, uint_fast16_t len); 
-
-                void SendStringDescriptor(const void * const data, const uint8_t len);
-                void sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen); 
-                void sendMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen);
-
-                void receiveControl(void * d, uint16_t len); 
-                void receive(uint8_t epNum, void * d, uint8_t len); 
-
-
-                volatile uint8_t usbConfiguration = 0;  
-                volatile uint8_t currentStatus = 0; // initial status (no remote wakeup, bus powered)
-                volatile uint_fast8_t state = BUS_INITIAL_STATE; 
-
-                // Keep track of the USB interface STATE. 
-                enum USBState
-                {
-                        BUS_INITIAL_STATE = 0, // Completely unconfigured, CPU reset state (atmega32u4, pg. 260)
-                        BUS_INVALID_STATE = 1, // Bad State, must disable interface and restart 
-                        BUS_UNPOWERED_STATE = 2, // Controller is Idle, VBUS flag is low 
-                        BUS_ATTACHED_STATE = 3, // Controller is Idle, VBUS flag is high 
-                        BUS_EOR_STATE = 4, // Device reset by host 
-                        BUS_DEFAULT_STATE = 5, // Device recognized by host and ready to respond to CTL requests
-                        
-                };
-
+                /* -------------- VARIABLES AND DATA STRUCTURES ------------- */
                 // stores the descriptor data 
                 struct __attribute__((packed)) USB_DeviceDescriptor_t
                 {
@@ -235,7 +167,80 @@ class SerialClass : public SerialInterface
                         uint8_t bDataBits;
                         uint8_t lineState; 
                 };
+                /* ---------------------------------------------------------- */
 
+
+
+
+
+                // Desc: Reset the USB interface 
+                // Args: None
+                // Returns: Nothing 
+                void initUSB(); 
+
+                // Desc: Configures the PLL for generating USB clock 
+                // Args: None
+                // Returns: None 
+                void configurePLL(); 
+
+                // Desc: Unfreezes the USB CLK
+                // Args: None
+                // Returns: None 
+                inline void enableUSBCLK();
+
+                // Desc: Freezes the USB CLK for power savings 
+                // Args: None 
+                // Returns: None 
+                inline void disableUSBCLK(); 
+
+                // Desc: Setup the endpoint 
+                inline void initEP(const uint_fast8_t epNum, 
+                        const uint_fast8_t epCFG0, const uint_fast8_t epCFG1); 
+                
+                inline uint8_t rx8(); 
+                inline void tx8(const uint8_t data);   
+                inline void waitForTxRdy();
+                inline void clrTxWait();
+                inline void clrGenISRFlags(); 
+                inline uint_fast8_t waitForInOut(); 
+                inline void stall(); 
+                void InitOtherEP();
+                inline void waitOut(); 
+
+                inline uint_fast8_t fifoByteCount(); 
+                inline uint_fast8_t isRWAllowed(); 
+                inline uint_fast8_t isStalled(); 
+                inline uint_fast8_t isFifoFree(); 
+                inline void releaseRX(); 
+                inline void releaseTX(); 
+                inline uint_fast8_t frameNum(); 
+                uint_fast8_t sendSpace(const uint_fast8_t epNum); 
+
+                uint_fast16_t send(uint_fast8_t epNum, const void * d, uint_fast16_t len); 
+
+                void SendStringDescriptor(const void * const data, const uint8_t len);
+                void sendProgMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen); 
+                void sendMemPayload(const void * const dataPtr, const uint_fast8_t len, uint8_t maxLen);
+
+                void receiveControl(void * d, uint16_t len); 
+                void receive(uint8_t epNum, void * d, uint8_t len); 
+
+
+                volatile uint8_t usbConfiguration = 0;  
+                volatile uint8_t currentStatus = 0; // initial status (no remote wakeup, bus powered)
+                volatile uint_fast8_t state = BUS_INITIAL_STATE; 
+
+                // Keep track of the USB interface STATE. 
+                enum USBState
+                {
+                        BUS_INITIAL_STATE = 0, // Completely unconfigured, CPU reset state (atmega32u4, pg. 260)
+                        BUS_INVALID_STATE = 1, // Bad State, must disable interface and restart 
+                        BUS_UNPOWERED_STATE = 2, // Controller is Idle, VBUS flag is low 
+                        BUS_ATTACHED_STATE = 3, // Controller is Idle, VBUS flag is high 
+                        BUS_EOR_STATE = 4, // Device reset by host 
+                        BUS_DEFAULT_STATE = 5, // Device recognized by host and ready to respond to CTL requests
+                        
+                };
 
                 static const USB_DeviceDescriptor_t DeviceDescriptor PROGMEM; 
                 //static const USB_ConfigurationDescriptor_t ConfigDescriptor PROGMEM; 
@@ -248,10 +253,6 @@ class SerialClass : public SerialInterface
                         0x00,
                         0x00
                 }; 
-
-                // string descriptors
-                static const uint16_t LanguageString[2] __attribute__((packed)) PROGMEM; 
-                static const uint8_t ProductString[26] __attribute__((packed)) PROGMEM; 
 
                 // handle class requests 
                 inline uint8_t classInterfaceRequest(SetupPacket_t &setup); 
