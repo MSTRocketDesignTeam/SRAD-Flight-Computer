@@ -31,6 +31,8 @@ class SerialClass : public SerialInterface
 
                 inline void ISR_common();
 
+                uint8_t available(); 
+
         protected: 
                 // Desc: Reset the USB interface 
                 // Args: None

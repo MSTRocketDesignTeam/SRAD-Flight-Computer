@@ -107,7 +107,8 @@ void SerialClass::initUSB()
 
                 // Enable Required Interrupts 
                 // EORSTE: When host resets USB device duiring initialization set the EORSTI flag
-                UDIEN |= ((1 << EORSTE)); 
+                // SOFI: 1ms frame interrupts
+                UDIEN |= ((1 << EORSTE) | (1 << SOFE)); 
                 
                 // If VBUS is already high, enable the PLL and unfreeze the clock 
                 // If VBUS is not currently high, then the clock will enable when 
@@ -426,6 +427,7 @@ uint_fast8_t SerialClass::sendSpace(const uint_fast8_t epNum)
 
 uint_fast16_t SerialClass::send(uint_fast8_t epNum, const void * d, uint_fast16_t len)
 { 
+        blueOff(); 
         if (!usbConfiguration) {
                 return 0; // usb is not fully configured yet 
         }
@@ -440,7 +442,6 @@ uint_fast16_t SerialClass::send(uint_fast8_t epNum, const void * d, uint_fast16_
         const uint8_t * data = reinterpret_cast<const uint8_t *>(d); 
         uint8_t timeout = 250; 
         bool sendZlp = false; 
-
         while (len || sendZlp)
         {
                 uint8_t n = sendSpace(epNum); 
@@ -450,7 +451,7 @@ uint_fast16_t SerialClass::send(uint_fast8_t epNum, const void * d, uint_fast16_
                         continue; 
                         // if no space is available wait for up to 250ms per call
                 }
-                if (n > len) { //! CHECK TO SEE IF THERE IS AN ISSUE WHEN EXACTLY 64 BYTES ARE TRANSMITTED, NEED TO SEND A ZLP FOR CDC? 
+                if (n > len) { //! CHECK TO SEE IF THERE IS AN ISSUE WHEN EXACTLY 64 BYTES ARE TRANSMITTED, NEED TO SEND A ZLP FOR CDC?  
                         n = len; // space is good to go ahead and send 
                 }
 
@@ -489,9 +490,22 @@ uint_fast16_t SerialClass::send(uint_fast8_t epNum, const void * d, uint_fast16_
                                         sendZlp = true; // if all bytes sent, must send a Zlp to signify end of data to send  //!: IS THIS ONLY NEEDED FOR 64 BYTE MULTIPLE PACKETS? 
                                 }
                         } // not implementing transfer release
+                        //releaseTX(); //TODO: better solution for this? 
                 }
         }
         return r; 
+}
+
+uint8_t SerialClass::available()
+{
+        uint8_t numAvail = 0; 
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+                UENUM = EP_RX_NUM;
+                numAvail = fifoByteCount();
+                UENUM = EP_CTL_NUM; 
+        }
+        return numAvail; 
 }
 
 void SerialClass::receive(uint8_t epNum, void * d, uint8_t len)
@@ -650,7 +664,8 @@ inline void SerialClass::ISR_general()
         if (UDINT & (1 << SOFI)) { // every ms if there is data stored try to send it? 
                 UENUM = EP_TX_NUM;
                 if (fifoByteCount()) { releaseTX(); }
-                UENUM = EP_CTL_NUM; 
+                UDINT &= ~(1 << SOFI); // clear this int 
+                //UENUM = EP_CTL_NUM; 
         }
 
         if (UDINT & (1 << WAKEUPI)) {
