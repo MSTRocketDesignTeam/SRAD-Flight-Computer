@@ -276,12 +276,9 @@ void SerialClass::sendProgMemPayload(const void * const dataPtr, const uint_fast
                 uint8_t dataByte = pgm_read_byte(dataRunPtr++); 
 
                 // Wait for the FIFO to be ready for next packet, if RX received error 
-                redOn(); 
                 if (!waitForInOut()) { 
-                        yellowOn();
                         break;  
-                        } // TODO: ERROR  
-                redOff(); 
+                        } // TODO: ERROR
 
                 // Send the byte 
                 tx8(dataByte); // TODO: Keep track of how many bytes in CTL EP
@@ -316,7 +313,6 @@ void SerialClass::sendMemPayload(const void * const dataPtr, const uint_fast8_t 
                 // Wait for the FIFO to be ready for next packet, if RX received error 
                 redOn(); 
                 if (!waitForInOut()) { 
-                        yellowOn();
                         break;  
                         } // TODO: ERROR  
                 redOff(); 
@@ -427,7 +423,6 @@ uint_fast8_t SerialClass::sendSpace(const uint_fast8_t epNum)
 
 uint_fast16_t SerialClass::send(uint_fast8_t epNum, const void * d, uint_fast16_t len)
 { 
-        blueOff(); 
         if (!usbConfiguration) {
                 return 0; // usb is not fully configured yet 
         }
@@ -705,7 +700,6 @@ inline void SerialClass::ISR_general()
 
         */
 
-        if (state == BUS_INVALID_STATE) { greenOff(); }
         return; 
 }
 

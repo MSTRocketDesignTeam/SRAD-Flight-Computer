@@ -9,10 +9,10 @@
 
 using namespace std; 
 
-uint8_t rx_i = 0;
-uint8_t key[7] = {"hello?"};
-uint8_t hllWrld[13] = {"hello world!"};
-uint8_t err[25] = {"incorrect key, try again"};
+//uint8_t rx_i = 0;
+//uint8_t key[7] = {"hello?"};
+//uint8_t hllWrld[13] = {"hello world!"};
+//uint8_t err[25] = {"incorrect key, try again"};
 
 int main()
 {
@@ -47,7 +47,7 @@ int main()
                         PORTC |= (1 << PC7); 
                         state = 1;
                 }
-
+                /*
                 if (Serial.available()) {
                         uint8_t val = Serial.read(); 
                         if (val == key[rx_i]) {
@@ -81,6 +81,7 @@ int main()
                                 rx_i = 0; 
                         } 
                 }
+                */
 
                 /*
                 if ((Time.millis() - last_time) > 500) {
