@@ -12,7 +12,6 @@ to create a virtual com port. This may very by processor.
 #include <avr/interrupt.h>
 #include <stdint.h>
 #include <avr/pgmspace.h> //PROGMEM
-#include "cdcserialdefines.h"
 
 using namespace std; 
 
@@ -25,7 +24,11 @@ class SerialClass : public SerialInterface
 
                 // Overrided functions from interface
                 uint_fast8_t read() override; 
-                uint_fast8_t write(const uint_fast8_t data) override;
+                virtual void readBytes(void * const data, const uint8_t len) override; 
+                void write(const uint_fast8_t data) override;
+                void writeBytes(const void * const data, const uint8_t len) override; 
+                void flushTX() override; 
+                void flushRX() override; 
 
                 inline void ISR_general(); 
 
@@ -171,7 +174,7 @@ class SerialClass : public SerialInterface
 
                 /* --------------------- ENUM_CONSTANTS --------------------- */
                 // Endpoint Numbering
-                enum EP_NUMs : uint8_t 
+                enum EP_NUM : uint8_t 
                 {
                         EP_CTL_NUM = 0, // Endpoint 0 is always control
                         EP_ACM_NUM = 1, // Endpoint 1 is ACM endpoint
@@ -180,7 +183,7 @@ class SerialClass : public SerialInterface
                 };
 
                 // Endpoint Types (UECFG0X)
-                enum EP_TYPEs : uint8_t
+                enum EP_TYPE : uint8_t
                 {
                         EP_TYPE_CTL = ((0 << EPTYPE1) | (0 << EPTYPE0) | (0 << EPDIR)),
                         EP_TYPE_BLK_IN = ((1 << EPTYPE1) | (0 << EPTYPE0) | (1 << EPDIR)),
@@ -188,14 +191,101 @@ class SerialClass : public SerialInterface
                         EP_TYPE_INT_IN = ((1 << EPTYPE1) | (1 << EPTYPE0) | (1 << EPDIR))
                 };
 
-                // Endpoint Size and Banks 
+                // Endpoint Size and Banks (UECFG1X)
+                enum EP_SIZE : uint8_t 
+                {
+                        EP_64_BYTE_MASK = ((0 << EPSIZE2) | (1 << EPSIZE1) | (1 << EPSIZE0)),
+                        EP_1_BANK_MASK = ((0 << EPBK1) | (0 << EPBK0)),
+                        EP_2_BANK_MASK = ((0 << EPBK1) | (1 << EPBK0))
+                };
 
+                // Standard USB CTL EP bmRequestType Code Mask (usb_20.pdf pg. 248)
+                enum USB_CTL_BMREQUESTTYPE : uint8_t
+                {
+                        D7_DIR_MASK = (1 << 7),
+                        D7_DIR_HOST_TO_DEVICE_MASK = (0 << 7),
+                        D7_DIR_DEVICE_TO_HOST_MASK = (1 << 7), 
+                        D65_TYPE_MASK = ((1 << 6) | (1 << 5)),
+                        D65_TYPE_STANDARD_MASK = 0x00,
+                        D65_TYPE_CLASS_MASK = 0x20,
+                        D65_TYPE_VENDOR_MASK = 0x60,
+                        D40_RECIPIENT_MASK = ((1 << 4) | (1 << 3) | (1 << 2) | 
+                                        (1 << 1) | (1 << 0)), //4 & 3 are reserved 
+                        D40_RECIPIENT_DEVICE_MASK = 0x00,
+                        D40_RECIPIENT_INTERFACE_MASK = 0x01, 
+                        D40_RECIPIENT_ENDPOINT_MASK = 0x02,
+                        D40_RECIPIENT_OTHER_MASK = 0x03
+                };
+
+                // Standard USB CTL EP bRequest Codes (usb_20.pdf pg. 251)
+                enum USB_CTL_BREQUEST : uint8_t 
+                {
+                        GET_STATUS_REQ = 0,
+                        CLEAR_FEATURE_REQ = 1,
+                        SET_FEATURE_REQ = 3, 
+                        SET_ADDRESS_REQ = 5,
+                        GET_DESCRIPTOR_REQ = 6,
+                        SET_DESCRIPTOR_REQ = 7,
+                        GET_CONFIGURATION_REQ = 8,
+                        SET_CONFIGURATION_REQ = 9,
+                        GET_INTERFACE_REQ = 10, 
+                        SET_INTERFACE_REQ = 11,
+                        SYNCH_FRAME_REQ = 12
+                };
+
+                // Communication Device Class (CDC) Class bRequest Codes (AN758.pdf pg. 2)
+                enum CDC_BREQUEST : uint8_t
+                {
+                        CDC_SET_LINE_CODING_REQ = 0x20,
+                        CDC_GET_LINE_CODING_REQ = 0x21,
+                        CDC_SET_CONTROL_LINE_STATE_REQ = 0x22,
+                        CDC_SEND_BREAK = 0x23,
+                        MSC_RESET = 0xFF,
+                        MSC_GET_MAX_LUN = 0xFE
+                };
+
+                // Standard USB Descriptor Type Values (usb_20.pdf pg. 251)
+                enum USB_DESCRIPTOR_TYPE : uint8_t 
+                {
+                        DESCRIPTOR_TYPE_DEVICE = 1,
+                        DESCRIPTOR_TYPE_CONFIGURATION = 2,
+                        DESCRIPTOR_TYPE_STRING = 3,
+                        DESCRIPTOR_TYPE_INTERFACE = 4, 
+                        DESCRIPTOR_TYPE_ENDPOINT = 5
+                }; 
+
+                // Standard USB Feature Selector Values (usb_20.pdf pg. 252)
+                enum USB_FEATURE_SELECTOR : uint8_t
+                {
+                        FEATURE_DEVICE_REMOTE_WAKEUP = 1
+                };
+
+                // Standard USB GetStatus() Request Information (usb_20.pdf pg. 255)
+                enum USB_GETSTATUS : uint8_t 
+                {
+                        D0_SELF_POWERED_MASK = (1 << 0),
+                        D1_REMOTE_WAKEUP_MASK = (1 << 1)
+                };
+
+                // Endpoint Configuration Registers
+                enum EP_CFG0 : uint8_t 
+                {
+                        EP_CTL_CFG0 = EP_TYPE_CTL,
+                        EP_ACM_CFG0 = EP_TYPE_INT_IN,
+                        EP_RX_CFG0 = EP_TYPE_BLK_OUT,
+                        EP_TX_CFG0 = EP_TYPE_BLK_IN
+                };
+
+                enum EP_CFG1 : uint8_t 
+                {
+                        EP_CTL_CFG1 = (EP_64_BYTE_MASK | EP_1_BANK_MASK | (1 << ALLOC)),
+                        EP_ACM_CFG1 = (EP_64_BYTE_MASK | EP_2_BANK_MASK | (1 << ALLOC)),
+                        EP_RX_CFG1 = (EP_64_BYTE_MASK | EP_2_BANK_MASK | (1 << ALLOC)),
+                        EP_TX_CFG1 = (EP_64_BYTE_MASK | EP_2_BANK_MASK | (1 << ALLOC))
+                };
                 /* ---------------------------------------------------------- */
 
-
-
-
-
+                /* ------------------- PRORTECTED_METHODS ------------------- */
                 // Desc: Initializes the USB interface 
                 // Args: None
                 // Returns: Nothing 
@@ -236,7 +326,7 @@ class SerialClass : public SerialInterface
                 // Args: None
                 // Returns: None 
                 inline void waitForTxRdy();
-
+                /* ---------------------------------------------------------- */
 
                 inline void clrTxWait();
                 inline void clrGenISRFlags(); 

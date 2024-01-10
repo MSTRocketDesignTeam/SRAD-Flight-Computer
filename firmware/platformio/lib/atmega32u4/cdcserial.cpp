@@ -6,7 +6,6 @@
 #include <util/atomic.h>
 #include "lightdebug.h"
 #include "powersaving.h"
-#include "cdcserialdefines.h"
 #include <avr/pgmspace.h> //PROGMEM
 
 using namespace std; 
@@ -139,6 +138,7 @@ void SerialClass::disableUSBCLK()
         return; 
 }
 
+//!: 
 uint_fast8_t SerialClass::read() 
 {
         uint8_t x; 
@@ -146,6 +146,7 @@ uint_fast8_t SerialClass::read()
         return x; 
 }
 
+//!: 
 uint_fast8_t SerialClass::write(const uint_fast8_t data)
 {
         send(EP_TX_NUM, &data, 1);
@@ -169,10 +170,12 @@ void SerialClass::initEP(const uint8_t epNum,
         UECFG1X = (epCFG1);
 
         // Check to verify activation (atmega32u4, pg. 287)
+        /*
         if (!(UESTA0X & (1 << CFGOK))) {
                 // Invalid State, mark the bus to be reset 
-                state = BUS_INVALID_STATE; //!
-        }
+                state = BUS_INVALID_STATE; 
+        } //! Assuming that all init is successful 
+        */ 
         
         return; 
 }
