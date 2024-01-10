@@ -322,6 +322,11 @@ class SerialClass : public SerialInterface
                 // Returns: None 
                 inline void tx8(const uint8_t data);
 
+                // Desc: 
+                inline void releaseRX(); 
+        
+                inline void releaseTX(); 
+
                 // Desc: Used with the CTL endpoint, waits for the fifo to be ready to receive data to transmit 
                 // Args: None
                 // Returns: None 
@@ -339,8 +344,8 @@ class SerialClass : public SerialInterface
                 inline uint_fast8_t isRWAllowed(); 
                 inline uint_fast8_t isStalled(); 
                 inline uint_fast8_t isFifoFree(); 
-                inline void releaseRX(); 
-                inline void releaseTX(); 
+
+
                 inline uint_fast8_t frameNum(); 
                 uint_fast8_t sendSpace(const uint_fast8_t epNum); 
 

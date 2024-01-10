@@ -176,7 +176,6 @@ void SerialClass::initEP(const uint8_t epNum,
                 state = BUS_INVALID_STATE; 
         } //! Assuming that all init is successful 
         */ 
-        
         return; 
 }
 
@@ -358,13 +357,37 @@ inline uint_fast8_t SerialClass::isFifoFree()
 
 inline void SerialClass::releaseRX()
 {
-        UEINTX = 0x6B; // FIFOCON=0 NAKINI=1 RWAL=1 NAKOUTI=0 RXSTPI=1 RXOUTI=0 STALLEDI=1 TXINI=1 //TODO: OPTIMIZE THIS
+        // To speed up this function we can explicitly define all bits in the UEINTX register
+        // This way an OR operation will not need to be performed 
+        // For releasing the RX -> OUT Endpoint (atmega32u4, pg. 289)
+        // FIFOCON: 0 -> Switches to the next bank 
+        // NAKINI: 1 -> Setting by software has no effect 
+        // RWAL: 1 -> Not set by software, should have no impact
+        // NAKOUTI: 1 -> Setting by software has no effect 
+        // RXSTPI: 1 -> Settting by software has no effect 
+        // RXOUTI: 1 -> Setting by software has no effect
+        // STALLEDI: 1 -> Setting by software has no effect 
+        // TXINI: 1 -> Setting by software has no effect 
+        UEINTX = ((0 << FIFOCON) | (1 << NAKINI) | (1 << RWAL) | (1 << NAKOUTI) |
+                (1 << RXSTPI) | (1 << RXOUTI) | (1 << STALLEDI) | (1 << TXINI));
         return; 
 }
 
 inline void SerialClass::releaseTX()
 {
-        UEINTX = 0x3A; // FIFOCON=0 NAKINI=0 RWAL=1 NAKOUTI=1 RXSTPI=1 RXOUTI=0 STALLEDI=1 TXINI=0 //TODO: OPTIMIZE THIS
+        // To speed up this function we can explicitly define all bits in the UEINTX register
+        // This way an OR operation will not need to be performed 
+        // For releasing the TX -> IN Endpoint (atmega32u4, pg. 289)
+        // FIFOCON: 0 -> Switches to the next bank and sends data
+        // NAKINI: 1 -> Setting by software has no effect 
+        // RWAL: 1 -> Not set by software, should have no impact
+        // NAKOUTI: 1 -> Setting by software has no effect 
+        // RXSTPI: 1 -> Settting by software has no effect 
+        // RXOUTI: 1 -> Setting by software has no effect
+        // STALLEDI: 1 -> Setting by software has no effect 
+        // TXINI: 0 -> Handshake the INT and clear 
+        UEINTX = ((0 << FIFOCON) | (1 << NAKINI) | (1 << RWAL) | (1 << NAKOUTI) |
+                (1 << RXSTPI) | (1 << RXOUTI) | (1 << STALLEDI) | (0 << TXINI));
         return; 
 }
 
