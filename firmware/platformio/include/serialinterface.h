@@ -29,14 +29,13 @@ class SerialInterface
                 // Returns: Nothing 
                 virtual void readBytes(void * const data, const uint8_t len) = 0; 
 
-                // Desc: Writes a singular byte into the send buffer (does not check if room in send buffer)
+                // Desc: Writes a singular byte into the send buffer 
                 //      (The buffer is only sent if it fills or flushTX() is called)
                 // Args: A byte of data to add to buffer
                 // Returns: None
                 virtual void write(const uint8_t data) = 0; 
 
                 // Desc: Writes 'len' number of bytes into the send buffer starting at data's address
-                //      (Does not check if there is room for the bytes) 
                 //      (The buffer is only sent if it fills or flushTX() is called)
                 // Args: data: void ptr address, len: how many bytes to write 
                 // Returns: Nothing 

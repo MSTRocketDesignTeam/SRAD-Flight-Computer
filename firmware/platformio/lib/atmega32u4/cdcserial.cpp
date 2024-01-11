@@ -57,7 +57,85 @@ void SerialClass::readBytes(void * const data, uint8_t len)
                         releaseRX(); 
                 }
         }
-        return
+        return;
+}
+
+void SerialClass::writeBytes(const void * const data, uint8_t len)
+{
+        // This function only releases the current bank if it needs to, flushTX should be
+        //      called following a write sequence. 
+
+        // TODO: Does the USB configuration need to be checked?
+
+        // TODO: Does the Suspend State need to be checked?
+
+        // Convert the void ptr to a uint8_t ptr for bytewise access
+        const uint8_t * dataPtr = reinterpret_cast<const uint8_t *>(data);
+
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+                // Select the TX (IN) Endpoint
+                setEP(EP_TX_NUM);
+
+                // keep looping until remaining length is 0
+                while (len)
+                {
+                        // How much room is in FIFO 
+                        uint8_t fifoSpace = 64 - fifoByteCount(); 
+
+                        if (!fifoSpace) { 
+                                // if there is no room in FIFO, release the buffer
+                                releaseTX(); 
+                                
+                                // wait for the bank switch to occur
+                                //! Ideally this won't cause blocking 
+                                while (!isRWAllowed()) { ; }
+
+                                // bank has changed, recalculate fifoSpace
+                                fifoSpace = 64 - fifoByteCount();
+                                }
+
+                        // send the most bytes possible this iteration
+                        uint8_t n = (len < fifoSpace) ? (len) : (fifoSpace);
+                        len -= n; 
+                        while (n--)
+                        {
+                                // Send a byte and increment the pointer
+                                tx8(*(dataPtr++)); 
+                        }
+                }
+        }
+        return; 
+}
+
+void SerialClass::flushTX()
+{
+        // If any bytes are remaining in the TX (IN) FIFO send them
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+                // select the TX (IN) Endpoint
+                setEP(EP_TX_NUM); 
+
+                //  check to see if there are unsent bytes
+                uint8_t fifoCount = fifoByteCount();
+                if (fifoCount) {
+                        // releaseTX bank to send the bytes
+                        releaseTX();
+
+                        // If the last packet was a max length of 64 Bytes, a zero length packet (ZLP)
+                        //      must be sent to signal that end of data has been reached
+                        // Check to see if the FIFO was full 
+                        if (fifoCount == 64) {
+                                // wait for the prior bank switch to occur
+                                //! Ideally this won't cause blocking 
+                                while (!isRWAllowed()) { ; }
+
+                                // send the ZLP packet by not writing any data
+                                releaseTX(); 
+                        }
+                }
+        }
+        return; 
 }
 
 void SerialClass::initUSB()
@@ -352,7 +430,7 @@ void SerialClass::InitOtherEP()
         return; 
 }
 
-inline uint_fast8_t SerialClass::fifoByteCount()
+inline uint8_t SerialClass::fifoByteCount()
 {
         // Low Byte of selected EP FIFO Byte Count (atmega32u4, pg. 291)
         // Since 64 is the max size, only low byte is needed 
@@ -361,7 +439,7 @@ inline uint_fast8_t SerialClass::fifoByteCount()
         return UEBCLX; 
 }
 
-inline uint_fast8_t SerialClass::isRWAllowed()
+inline uint8_t SerialClass::isRWAllowed()
 {
         // Set when reading or writing is valid (atmega32u4, pg. 289)
         // IN Endpoint: the current bank's fifo is not full

@@ -26,7 +26,7 @@ class SerialClass : public SerialInterface
                 uint_fast8_t read() override; 
                 void readBytes(void * const data, const uint8_t len) override; 
                 void write(const uint_fast8_t data) override;
-                void writeBytes(const void * const data, const uint8_t len) override; 
+                void writeBytes(const void * const data, uint8_t len) override; 
                 void flushTX() override; 
                 void flushRX() override; 
 
@@ -342,7 +342,14 @@ class SerialClass : public SerialInterface
                 //      RX (OUT): Receive to fifo -> increases, read out of fifo -> decreases
                 // Args: None
                 // Returns: Byte Representing LSB of FIFO's current bank count 
-                inline uint_fast8_t fifoByteCount(); 
+                inline uint8_t fifoByteCount(); 
+
+                // Desc: Checks whether the FIFO can be read or written to 
+                //      TX (IN): True if current bank is not full
+                //      RX (OUT): True if unread data is in fifo 
+                // Args: None
+                // Returns: Nothing 
+                inline uint8_t isRWAllowed(); 
                 
 
 
@@ -356,7 +363,7 @@ class SerialClass : public SerialInterface
                 void InitOtherEP();
                 inline void waitOut(); 
 
-                inline uint_fast8_t isRWAllowed(); 
+
                 inline uint_fast8_t isStalled(); 
                 inline uint_fast8_t isFifoFree(); 
 
