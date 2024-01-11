@@ -24,7 +24,41 @@ SerialClass::SerialClass()
         initUSB(); 
 }
 
-//static uint8_t num_times_ran = 0; //! DELETE
+uint_fast8_t SerialClass::read()
+{
+        uint8_t temp; 
+        readBytes(&temp, 1); 
+        return temp; 
+}
+
+void SerialClass::readBytes(void * const data, uint8_t len) 
+{
+        // TODO: Does the USB configuration need to be checked? 
+
+        // Convert the void ptr to a uint8_t ptr for bytewise access
+        uint8_t * dataPtr = reinterpret_cast<uint8_t *>(data);
+
+        // To prevent interrupts changing EpNum, put in atomic block
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+                // Select the RX Endpoint 
+                setEP(EP_RX_NUM); 
+
+                // Loop len times to read requested bytes
+                while (len--)
+                {
+                        // Read a single byte from the RX FIFO 
+                        (*(dataPtr++)) = rx8();
+                }
+
+                if (!fifoByteCount()) {
+                        // if fifoByteCount is 0, then current bank is empty, 
+                        //      release it so it can be filled by Host 
+                        releaseRX(); 
+                }
+        }
+        return
+}
 
 void SerialClass::initUSB()
 {
@@ -136,14 +170,6 @@ void SerialClass::disableUSBCLK()
         // unlock the PLL so that powersaving may disable it
         Pwr.unlockPLL(PowerSaving::USB_PLL_LOCK_ID);
         return; 
-}
-
-//!: 
-uint_fast8_t SerialClass::read() 
-{
-        uint8_t x; 
-        receive(EP_RX_NUM, &x, 1); 
-        return x; 
 }
 
 //!: 
@@ -391,10 +417,10 @@ inline void SerialClass::releaseTX()
         return; 
 }
 
-inline uint_fast8_t SerialClass::frameNum()
+inline void SerialClass::setEP(const uint8_t epNum)
 {
-        // returns the lower 8 bits of the current frame number (atmega32u4, pg. 285)
-        return UDFNUML; 
+        UENUM = epNum;
+        return; 
 }
 
 uint_fast8_t SerialClass::sendSpace(const uint_fast8_t epNum)

@@ -22,9 +22,9 @@ class SerialClass : public SerialInterface
                 // Constructor
                 SerialClass(); 
 
-                // Overrided functions from interface
+                // Overridden functions from interface
                 uint_fast8_t read() override; 
-                virtual void readBytes(void * const data, const uint8_t len) override; 
+                void readBytes(void * const data, const uint8_t len) override; 
                 void write(const uint_fast8_t data) override;
                 void writeBytes(const void * const data, const uint8_t len) override; 
                 void flushTX() override; 
@@ -322,15 +322,31 @@ class SerialClass : public SerialInterface
                 // Returns: None 
                 inline void tx8(const uint8_t data);
 
-                // Desc: 
+                // Desc: Clears the RX (OUT) buffer and discards any contents, also switches banks
+                // Args: None 
+                // Returns: Nothing 
                 inline void releaseRX(); 
         
+                // Desc: Sends the TX (IN) buffer and switches to the other bank 
+                // Args: None
+                // Returns: Nothing 
                 inline void releaseTX(); 
 
-                // Desc: Used with the CTL endpoint, waits for the fifo to be ready to receive data to transmit 
+                // Desc: Sets the selected endpoint number
+                // Args: epNum: Value to set UENUM to 
+                // Returns: Nothing 
+                inline void setEP(const uint8_t epNum); 
+
+                // Desc: Returns the byte count of the selected endpoint's FIFO
+                //      TX (IN): Storing in fifo -> increases, sending from fifo -> decreases
+                //      RX (OUT): Receive to fifo -> increases, read out of fifo -> decreases
                 // Args: None
-                // Returns: None 
-                inline void waitForTxRdy();
+                // Returns: Byte Representing LSB of FIFO's current bank count 
+                inline uint_fast8_t fifoByteCount(); 
+                
+
+
+
                 /* ---------------------------------------------------------- */
 
                 inline void clrTxWait();
@@ -340,13 +356,15 @@ class SerialClass : public SerialInterface
                 void InitOtherEP();
                 inline void waitOut(); 
 
-                inline uint_fast8_t fifoByteCount(); 
                 inline uint_fast8_t isRWAllowed(); 
                 inline uint_fast8_t isStalled(); 
                 inline uint_fast8_t isFifoFree(); 
 
+                // Desc: Used with the CTL endpoint, waits for the fifo to be ready to receive data to transmit 
+                // Args: None
+                // Returns: None 
+                inline void waitForTxRdy();
 
-                inline uint_fast8_t frameNum(); 
                 uint_fast8_t sendSpace(const uint_fast8_t epNum); 
 
                 uint_fast16_t send(uint_fast8_t epNum, const void * d, uint_fast16_t len); 
