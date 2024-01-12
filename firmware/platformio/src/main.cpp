@@ -47,55 +47,7 @@ int main()
                         PORTC |= (1 << PC7); 
                         state = 1;
                 }
-                
-                if (Serial.available()) {
-                        uint8_t val = Serial.read(); 
-                        if (val == key[rx_i]) {
-                                rx_i++; 
-                        } else {
-                                if (val != '\n') {
-                                        for (uint8_t i = 0; i < 24; i++)
-                                        {
-                                                Serial.write(err[i]);
-                                        }
-                                        Serial.write('\n');
-                                        Serial.flushTX(); 
-                                        rx_i = 0; 
-                                }
-                        }
 
-                        if (rx_i == 6) {
-                                for (uint8_t i = 0; i < 12; i++) {
-                                        Serial.write(hllWrld[i]); 
-                                }
-                                Serial.write('\n');
-                                for (uint8_t j = 0; j < 50; j++)
-                                {
-                                        for (uint8_t k = 0; k < 50; k++)
-                                        {
-                                                Serial.write('#'); 
-                                        }
-                                        Serial.write(' ');
-                                        Serial.write((j/10) + '0');
-                                        Serial.write('\n');
-                                }
-                                Serial.flushTX(); 
-                                rx_i = 0; 
-                        } 
-                }
-                
-
-                /*
-                if ((Time.millis() - last_time) > 500) {
-                        if (usb_clock_state) {
-                                Serial.write('a'); 
-                                usb_clock_state = 0; 
-                        } else {
-                                usb_clock_state = 1; 
-                        }
-                        last_time = Time.millis(); 
-                }
-                */ 
 
         }
         return 0;

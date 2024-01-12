@@ -484,11 +484,11 @@ inline void SerialClass::releaseRX()
         // RWAL: 1 -> Not set by software, should have no impact
         // NAKOUTI: 1 -> Setting by software has no effect 
         // RXSTPI: 1 -> Settting by software has no effect 
-        // RXOUTI: 1 -> Setting by software has no effect
+        // RXOUTI: 0 -> Setting activates KILLBK, clear instead
         // STALLEDI: 1 -> Setting by software has no effect 
         // TXINI: 1 -> Setting by software has no effect 
         UEINTX = ((0 << FIFOCON) | (1 << NAKINI) | (1 << RWAL) | (1 << NAKOUTI) |
-                (1 << RXSTPI) | (1 << RXOUTI) | (1 << STALLEDI) | (1 << TXINI));
+                (1 << RXSTPI) | (0 << RXOUTI) | (1 << STALLEDI) | (1 << TXINI));
         return; 
 }
 
@@ -502,11 +502,12 @@ inline void SerialClass::releaseTX()
         // RWAL: 1 -> Not set by software, should have no impact
         // NAKOUTI: 1 -> Setting by software has no effect 
         // RXSTPI: 1 -> Settting by software has no effect 
-        // RXOUTI: 1 -> Setting by software has no effect
+        // RXOUTI: 0 -> Setting activates KILLBK, clear instead
         // STALLEDI: 1 -> Setting by software has no effect 
         // TXINI: 0 -> Handshake the INT and clear 
         UEINTX = ((0 << FIFOCON) | (1 << NAKINI) | (1 << RWAL) | (1 << NAKOUTI) |
-                (1 << RXSTPI) | (1 << RXOUTI) | (1 << STALLEDI) | (0 << TXINI));
+                (1 << RXSTPI) | (0 << RXOUTI) | (1 << STALLEDI) | (0 << TXINI));
+        //UEINTX = 0x3A;
         return; 
 }
 
