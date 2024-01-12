@@ -7,6 +7,7 @@
 #include "lightdebug.h"
 #include "powersaving.h"
 #include <avr/pgmspace.h> //PROGMEM
+#include <util/delay.h>
 
 using namespace std; 
 
@@ -60,6 +61,13 @@ void SerialClass::readBytes(void * const data, uint8_t len)
         return;
 }
 
+void SerialClass::write(const uint_fast8_t data)
+{
+        //! For now implemented with writeBytes, may optimize later
+        writeBytes(&data, 1);
+        return; 
+}
+
 void SerialClass::writeBytes(const void * const data, uint8_t len)
 {
         // This function only releases the current bank if it needs to, flushTX should be
@@ -80,6 +88,7 @@ void SerialClass::writeBytes(const void * const data, uint8_t len)
                 // keep looping until remaining length is 0
                 while (len)
                 {
+                        //_delay_ms(1); //!
                         // How much room is in FIFO 
                         uint8_t fifoSpace = 64 - fifoByteCount(); 
 
@@ -90,6 +99,8 @@ void SerialClass::writeBytes(const void * const data, uint8_t len)
                                 // wait for the bank switch to occur
                                 //! Ideally this won't cause blocking 
                                 while (!isRWAllowed()) { ; }
+
+                                //_delay_ms(1); //!
 
                                 // bank has changed, recalculate fifoSpace
                                 fifoSpace = 64 - fifoByteCount();
@@ -117,6 +128,7 @@ void SerialClass::flushTX()
                 setEP(EP_TX_NUM); 
 
                 //  check to see if there are unsent bytes
+                //_delay_ms(1); //!
                 uint8_t fifoCount = fifoByteCount();
                 if (fifoCount) {
                         // releaseTX bank to send the bytes
@@ -134,6 +146,17 @@ void SerialClass::flushTX()
                                 releaseTX(); 
                         }
                 }
+        }
+        return; 
+}
+
+void SerialClass::flushRX()
+{
+        // Do not need to worry about ZLPs, simply release the bank 
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+                setEP(EP_RX_NUM);
+                releaseRX(); 
         }
         return; 
 }
@@ -225,7 +248,6 @@ void SerialClass::configurePLL()
         // Configure PLL to output 48MHz (atmega32u4, pg. 41)
         PLLFRQ &= ~((1 << PDIV3) | (1 << PDIV1) | (1 << PDIV0)); 
         PLLFRQ |= (1 << PDIV2); 
-        sizeof(EP_CTL_NUM);
         return; 
 }
 
@@ -248,13 +270,6 @@ void SerialClass::disableUSBCLK()
         // unlock the PLL so that powersaving may disable it
         Pwr.unlockPLL(PowerSaving::USB_PLL_LOCK_ID);
         return; 
-}
-
-//!: 
-uint_fast8_t SerialClass::write(const uint_fast8_t data)
-{
-        send(EP_TX_NUM, &data, 1);
-        return 0; 
 }
 
 void SerialClass::initEP(const uint8_t epNum, 
@@ -875,7 +890,7 @@ inline void SerialClass::ISR_common()
                                         { // Needed to fix scoping 
                                                 // Get Descriptor Request (usb_20.pdf, pg. 253)
                                                 uint8_t wValueH = (setup.wValue >> 8);
-                                                uint8_t wValueL = (setup.wValue & 0xFF); 
+                                                //uint8_t wValueL = (setup.wValue & 0xFF); 
                                                 switch (wValueH)
                                                 {
                                                         case (DESCRIPTOR_TYPE_DEVICE):
@@ -891,6 +906,7 @@ inline void SerialClass::ISR_common()
                                                         default:
                                                         case (DESCRIPTOR_TYPE_STRING):
                                                                 // what string ?
+                                                                /*
                                                                 switch (wValueL)
                                                                 {
                                                                         case (DESCRIPTOR_TYPE_STRING_ILANGUAGE):
@@ -904,6 +920,8 @@ inline void SerialClass::ISR_common()
                                                                         case (DESCRIPTOR_TYPE_STRING_ISERIAL):
                                                                                 break;
                                                                 }
+                                                                */
+                                                                toStall = true; // do not support string descriptors and so will stall 
                                                                 break;
                                                 }
                                         }

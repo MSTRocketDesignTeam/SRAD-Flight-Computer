@@ -403,6 +403,7 @@ class SerialClass : public SerialInterface
                 static const USB_DeviceDescriptor_t DeviceDescriptor PROGMEM; 
                 //static const USB_ConfigurationDescriptor_t ConfigDescriptor PROGMEM; 
                 static const USB_Configuration_t Configuration PROGMEM; 
+                
                 volatile LineInfo_t usbLineInfo = 
                 {
                         57600,
@@ -411,6 +412,7 @@ class SerialClass : public SerialInterface
                         0x00,
                         0x00
                 }; 
+                
 
                 // handle class requests 
                 inline uint8_t classInterfaceRequest(SetupPacket_t &setup); 
