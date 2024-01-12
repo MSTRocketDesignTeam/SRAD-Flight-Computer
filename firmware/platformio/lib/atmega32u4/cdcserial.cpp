@@ -16,7 +16,7 @@ SerialClass::SerialClass()
 {
         // TODO: REMOVE DEBUG LIGHT
         redOff(); 
-        greenOn();
+        greenOff();
         blueOff(); 
         yellowOff(); 
         print(0); 
@@ -394,11 +394,9 @@ void SerialClass::sendMemPayload(const void * const dataPtr, const uint_fast8_t 
                 uint8_t dataByte = *(dataRunPtr++); 
 
                 // Wait for the FIFO to be ready for next packet, if RX received error 
-                redOn(); 
                 if (!waitForInOut()) { 
                         break;  
                         } // TODO: ERROR  
-                redOff(); 
 
                 // Send the byte 
                 tx8(dataByte); // TODO: Keep track of how many bytes in CTL EP
@@ -742,42 +740,29 @@ inline void SerialClass::ISR_general()
                 UEIENX = (1 << RXSTPE); 
         }
 
+        // Handle a Wakeup Interrupt (Non Idle Signals) (atmega32u4, pg. 272)
         if (UDINT & (1 << WAKEUPI)) {
-                // TODO: CHECK THIS 
+                // Wakeup Interrupt already deteched, now disable WAKEUPI to save future cycles. 
+                // Also enable the SUSPI interrupt to detect when the system will sleep 
                 UDIEN = (UDIEN & ~(1<<WAKEUPE)) | (1<<SUSPE);
+
+                // TODO: Powersaving Stuff
+
+                // Clear WAKEUPI flag since it was just handled. 
+                // Do not clear SUSPI since it only occurs once and we do not want to miss it (should not be set yet) 
                 UDINT &= ~(1<<WAKEUPI);
+
         } else if (UDINT & (1 << SUSPI)) {
+                // USB suspend interrupt detected
+                // Disable the SUSPI interrupt and enable the WAKEUPI interrupt
                 UDIEN = (UDIEN & ~(1<<SUSPE)) | (1<<WAKEUPE);
+                
+                // TODO: Powersaving Stuff
+
+                // Clear interrupt flags to prevent the ISR from being triggered again
+                // Since WAKEUPI can occur anytime, clear its flag to make sure a residual interrupt did not trigger a wakeup 
                 UDINT &= ~((1<<WAKEUPI) | (1<<SUSPI));
         }
-        /*
-        // utlize state machine to only check required if statements
-        // TODO: MAKE SURE THIS WON'T GET CAUGHT IN INFINITE INTERRUPT LOOP
-        switch (state)
-        {
-                case (BUS_UNPOWERED_STATE):
-                        // VBUS interrupt 
-                        if ()
-                        if (USBSTA & (1 << VBUS)) {
-                                ; 
-                        }
-                        break;
-
-                case (BUS_POWERED_STATE):
-
-                        break; 
-
-                case (BUS_INVALID_STATE):
-                default: 
-                        //TODO: INVALID, reset USB controller 
-                        break;
-        }
-        if (USBINT & (1 << VBUSTI)) {
-                USBINT &= ~(1 << VBUSTI); 
-                greenOn(); 
-        }
-
-        */
 
         return; 
 }
