@@ -221,16 +221,13 @@ void SerialClass::initUSB()
                         // Attach the device so that the host starts reset (atmega32u4, pg. 281)
                         UDCON &= ~(1 << DETACH);
 
-                        // Update the usb state variable 
-                        state = BUS_ATTACHED_STATE; 
-
                         // Clear the VBUSTI flag so that interrupt is not called again (atmega32u4, pg. 268)
                         USBINT &= ~(1 << VBUSTI); 
 
-                } //! Set State variable here? 
+                }
         }
         
-        // Once the VBUS is applied the PLL should be activated
+        // PLL activated in the ISR  
         return; 
 }
 
@@ -317,7 +314,7 @@ inline void SerialClass::waitForTxRdy()
         return; 
 }
 
-inline void SerialClass::clrTxWait()
+inline void SerialClass::clrTxRdy()
 {
         // Clear the TXINI bit (atmega32u4, pg. 290)
         UEINTX &= ~(1 << TXINI);
@@ -720,9 +717,6 @@ inline void SerialClass::ISR_general()
 
                         // Attach the device so that the host starts reset (atmega32u4, pg. 281)
                         UDCON &= ~(1 << DETACH);
-
-                        // Update the usb state variable 
-                        state = BUS_ATTACHED_STATE; 
                 } else {
                         // VBUS is low 
                         // TODO: Proper Powersaving procedure
@@ -730,11 +724,7 @@ inline void SerialClass::ISR_general()
                         // Set interface to be detached
                         UDCON |= (1 << DETACH);
                         // Disable the Clock and unlock PLL
-                        disableUSBCLK(); 
-
-                        // Update the state variable 
-                        // If Power is Lost, begin reset procedure 
-                        state = BUS_UNPOWERED_STATE; 
+                        disableUSBCLK();
                 }
         }
 
@@ -745,33 +735,11 @@ inline void SerialClass::ISR_general()
                 // Clear the Flag 
                 UDINT &= ~(1 << EORSTI); 
 
-                // state machine to handle transitions 
-                switch (state)
-                {
-                        default: 
-                        case (BUS_ATTACHED_STATE): 
-                                // Valid condition 
-                                state = BUS_EOR_STATE; 
-
-                                // Configure Endpoint 0 
-                                initEP(EP_CTL_NUM, EP_CTL_CFG0, EP_CTL_CFG1); 
+                // Configure Endpoint 0 
+                initEP(EP_CTL_NUM, EP_CTL_CFG0, EP_CTL_CFG1); 
                                 
-                                // Enable Setup Packet Detection Interrupts [host to device] (atmega32u4, pg. 291)
-                                UEIENX = (1 << RXSTPE); 
-
-                                break; 
-                        //default: 
-                        //        // Invalid - should not occur
-                        //        state = BUS_INVALID_STATE; 
-                        //        break;
-                }
-        }
-
-        if (UDINT & (1 << SOFI)) { // every ms if there is data stored try to send it? 
-                UENUM = EP_TX_NUM;
-                if (fifoByteCount()) { releaseTX(); }
-                UDINT &= ~(1 << SOFI); // clear this int 
-                //UENUM = EP_CTL_NUM; 
+                // Enable Setup Packet Detection Interrupts [host to device] (atmega32u4, pg. 291)
+                UEIENX = (1 << RXSTPE); 
         }
 
         if (UDINT & (1 << WAKEUPI)) {
@@ -837,7 +805,7 @@ inline void SerialClass::ISR_common()
         if (setup.bmRequestType & D7_DIR_DEVICE_TO_HOST_MASK) {
                 waitForTxRdy(); 
         } else {
-                clrTxWait(); // make sure the EP0 bank is empty
+                clrTxRdy(); // make sure the EP0 bank is empty
         }
         
         //print(setup.bmRequestType); 

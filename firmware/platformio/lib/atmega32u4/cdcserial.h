@@ -351,13 +351,27 @@ class SerialClass : public SerialInterface
                 // Returns: Nothing 
                 inline uint8_t isRWAllowed(); 
                 
+                // Desc: Used with the CTL endpoint, waits for the fifo to be ready to receive data to transmit 
+                // Args: None
+                // Returns: None 
+                inline void waitForTxRdy();
 
+                // Desc: Clears the TXINI bit so that it can be used to wait 
+                // Args: None
+                // Returns: Nothing
+                inline void clrTxRdy();
 
+                // Desc: Clears various flags so that they can be used for state changes
+                // Args: None
+                // Returns: Nothing
+                inline void clrGenISRFlags(); 
+
+                
 
                 /* ---------------------------------------------------------- */
 
-                inline void clrTxWait();
-                inline void clrGenISRFlags(); 
+
+
                 inline uint_fast8_t waitForInOut(); 
                 inline void stall(); 
                 void InitOtherEP();
@@ -367,10 +381,7 @@ class SerialClass : public SerialInterface
                 inline uint_fast8_t isStalled(); 
                 inline uint_fast8_t isFifoFree(); 
 
-                // Desc: Used with the CTL endpoint, waits for the fifo to be ready to receive data to transmit 
-                // Args: None
-                // Returns: None 
-                inline void waitForTxRdy();
+
 
                 uint_fast8_t sendSpace(const uint_fast8_t epNum); 
 
