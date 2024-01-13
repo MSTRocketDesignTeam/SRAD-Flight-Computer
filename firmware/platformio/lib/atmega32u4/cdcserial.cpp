@@ -831,8 +831,8 @@ inline void SerialClass::ISR_common()
                                         waitForTxRdy(); 
                                         // Set the received address and enable it (atmega32u4, pg. 272; pg. 284)
                                         // Should be done in separate steps 
-                                        UDADDR = (setup.wValue); 
-                                        UDADDR = (1 << ADDEN);
+                                        UDADDR = (setup.wValue & 0x7F); 
+                                        UDADDR |= (1 << ADDEN);
                                         break;
                                 case (GET_DESCRIPTOR_REQ):
                                         { // Needed to fix scoping 
