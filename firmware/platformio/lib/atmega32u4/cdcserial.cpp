@@ -897,7 +897,7 @@ inline void SerialClass::ISR_common()
                         break;
         }
 
-        // Clear TXINI to send anything in the buffer 
+        // Either stall or send the packet currently in the buffer 
         if (toStall) {
                 stall(); 
         } else {
