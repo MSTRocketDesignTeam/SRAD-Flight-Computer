@@ -88,7 +88,6 @@ void SerialClass::writeBytes(const void * const data, uint8_t len)
                 // keep looping until remaining length is 0
                 while (len)
                 {
-                        //_delay_ms(1); //!
                         // How much room is in FIFO 
                         uint8_t fifoSpace = 64 - fifoByteCount(); 
 
@@ -97,10 +96,7 @@ void SerialClass::writeBytes(const void * const data, uint8_t len)
                                 releaseTX(); 
                                 
                                 // wait for the bank switch to occur
-                                //! Ideally this won't cause blocking 
                                 while (!isRWAllowed()) { ; }
-
-                                //_delay_ms(1); //!
 
                                 // bank has changed, recalculate fifoSpace
                                 fifoSpace = 64 - fifoByteCount();
@@ -128,7 +124,6 @@ void SerialClass::flushTX()
                 setEP(EP_TX_NUM); 
 
                 //  check to see if there are unsent bytes
-                //_delay_ms(1); //!
                 uint8_t fifoCount = fifoByteCount();
                 if (fifoCount) {
                         // releaseTX bank to send the bytes
@@ -139,7 +134,6 @@ void SerialClass::flushTX()
                         // Check to see if the FIFO was full 
                         if (fifoCount == 64) {
                                 // wait for the prior bank switch to occur
-                                //! Ideally this won't cause blocking 
                                 while (!isRWAllowed()) { ; }
 
                                 // send the ZLP packet by not writing any data
@@ -179,8 +173,6 @@ void SerialClass::initUSB()
         // 5A. If VBUS is high, configure endpoints and attach device
         // 5B. If VBUS is low, VBUS interrupt will handle connection 
         // 6A. Clear VBUS int to guarantee that it will not be called again  
-
-        //! SET STATE VARIABLE HERE? 
 
         // configure the PLL so when it is enabled it provides correct clock 
         configurePLL(); 
@@ -342,7 +334,7 @@ inline void SerialClass::stall()
 {
         // Setting STALLRQ -> Requests stall from host (atmega32u4, pg. 286)
         // 
-        UECONX |= (1<<STALLRQ); //| (1<<EPEN); //TODO: ???? Don't think this is needed 
+        UECONX |= (1<<STALLRQ);
         return; 
 }
 
@@ -747,6 +739,7 @@ inline void SerialClass::ISR_general()
                 UDIEN = (UDIEN & ~(1<<WAKEUPE)) | (1<<SUSPE);
 
                 // TODO: Powersaving Stuff
+                redOn(); // signal usb is active
 
                 // Clear WAKEUPI flag since it was just handled. 
                 // Do not clear SUSPI since it only occurs once and we do not want to miss it (should not be set yet) 
@@ -758,22 +751,21 @@ inline void SerialClass::ISR_general()
                 UDIEN = (UDIEN & ~(1<<SUSPE)) | (1<<WAKEUPE);
                 
                 // TODO: Powersaving Stuff
+                redOff(); // signal usb is suspended
 
                 // Clear interrupt flags to prevent the ISR from being triggered again
                 // Since WAKEUPI can occur anytime, clear its flag to make sure a residual interrupt did not trigger a wakeup 
                 UDINT &= ~((1<<WAKEUPI) | (1<<SUSPI));
         }
-
         return; 
 }
 
 inline void SerialClass::ISR_common()
 {
-        //! ONLY EP0 INTERRUPTS ENABLED CURRENTLY 
+        // ONLY EP0 INTERRUPTS ENABLED
 
         // Store selected EP and select EP0 
-        uint_fast8_t originalEpNum = UENUM; 
-        UENUM = EP_CTL_NUM; 
+        setEP(EP_CTL_NUM); 
 
         // Read in the 8 byte setup packet (usb_20.pdf, pg. 248)
         SetupPacket_t setup; 
@@ -793,7 +785,7 @@ inline void SerialClass::ISR_common()
                 clrTxRdy(); // make sure the EP0 bank is empty
         }
         
-        //print(setup.bmRequestType); 
+        // Must wait to end to stall since during a stall a traditional packet is not sent
         uint8_t toStall = false; 
 
         // Carry out the Proper Action 
@@ -838,7 +830,9 @@ inline void SerialClass::ISR_common()
                                         // Wait for the device to finish sending the ACK 
                                         waitForTxRdy(); 
                                         // Set the received address and enable it (atmega32u4, pg. 272; pg. 284)
-                                        UDADDR = ((setup.wValue) | (1 << ADDEN)); //TODO: DO ADDEN IN SEPARATE STEP AS DATASHEET RECOMMENDS 
+                                        // Should be done in separate steps 
+                                        UDADDR = (setup.wValue); 
+                                        UDADDR = (1 << ADDEN);
                                         break;
                                 case (GET_DESCRIPTOR_REQ):
                                         { // Needed to fix scoping 
@@ -858,25 +852,9 @@ inline void SerialClass::ISR_common()
                                                                 sendProgMemPayload(&Configuration, sizeof(USB_Configuration_t), setup.wLength); 
                                                                 break; 
                                                         default:
-                                                        case (DESCRIPTOR_TYPE_STRING):
-                                                                // what string ?
-                                                                /*
-                                                                switch (wValueL)
-                                                                {
-                                                                        case (DESCRIPTOR_TYPE_STRING_ILANGUAGE):
-                                                                                sendProgMemPayload(&LanguageString, sizeof(LanguageString), 63);
-                                                                                break;
-                                                                        case (DESCRIPTOR_TYPE_STRING_IMANUFACTURER):
-                                                                                break; 
-                                                                        case (DESCRIPTOR_TYPE_STRING_IPRODUCT):
-                                                                                SendStringDescriptor(&ProductString, sizeof(ProductString)); 
-                                                                                break;
-                                                                        case (DESCRIPTOR_TYPE_STRING_ISERIAL):
-                                                                                break;
-                                                                }
-                                                                */
-                                                                toStall = true; // do not support string descriptors and so will stall 
-                                                                break;
+                                                                // Stall so that the host knows the request was unsupported. 
+                                                                toStall = true;  
+                                                                break; 
                                                 }
                                         }
                                         break;
@@ -887,7 +865,8 @@ inline void SerialClass::ISR_common()
                                         toStall = true; 
                                         break;
                                 case (GET_CONFIGURATION_REQ):
-                                        // TODO: What is this for 
+                                        // Return the proper configuration selector value (usb_20.pdf, pg. 253)
+                                        // .bConfigurationValue in Config Descriptor is set to one -> send a one
                                         tx8(1); 
                                         break;
                                 case (SET_CONFIGURATION_REQ):
@@ -895,6 +874,7 @@ inline void SerialClass::ISR_common()
                                                         // Set a device configuration 
                                                         // only one available so initialize everything 
                                                         InitOtherEP(); 
+                                                        setEP(EP_CTL_NUM); // keep EP0 selected
                                                         usbConfiguration = setup.wValue; //truncate the high byte and set the lower as the config 
                                                 } else {
                                                         // not supported, stall the CTL Ep
@@ -912,7 +892,6 @@ inline void SerialClass::ISR_common()
                 default:
                         // Class Interface Request //TODO: I think this might be vendor Check that 
                         //!: This implementation is currently trash
-                        UENUM = 0; 
                         toStall = classInterfaceRequest(setup); 
                         // low byte of .wIndex in .bmRequestType specifies Interface index
                         break;
@@ -925,8 +904,6 @@ inline void SerialClass::ISR_common()
                 UEINTX &= ~(1 << TXINI);
         } 
 
-        // Restore orginal selected Endpoint 
-        UENUM = originalEpNum; 
         return; 
 }
 

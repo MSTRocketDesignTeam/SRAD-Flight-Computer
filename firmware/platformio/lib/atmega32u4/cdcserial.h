@@ -366,14 +366,17 @@ class SerialClass : public SerialInterface
                 // Returns: Nothing
                 inline void clrGenISRFlags(); 
 
-                
+                // Desc: Requests a stall answer to the host for the next handshake 
+                // Args: None
+                // Returns: Nothing 
+                inline void stall(); 
 
                 /* ---------------------------------------------------------- */
 
 
 
                 inline uint_fast8_t waitForInOut(); 
-                inline void stall(); 
+
                 void InitOtherEP();
                 inline void waitOut(); 
 
