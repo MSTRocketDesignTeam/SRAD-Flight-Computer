@@ -858,12 +858,6 @@ inline void SerialClass::ISR_common()
                                                 }
                                         }
                                         break;
-                                default: 
-                                        break; 
-                                case (SET_DESCRIPTOR_REQ):
-                                        // Not supported, stall the ctl ep 
-                                        toStall = true; 
-                                        break;
                                 case (GET_CONFIGURATION_REQ):
                                         // Return the proper configuration selector value (usb_20.pdf, pg. 253)
                                         // .bConfigurationValue in Config Descriptor is set to one -> send a one
@@ -881,18 +875,53 @@ inline void SerialClass::ISR_common()
                                                         toStall = true; 
                                                 }
                                         break;
-                                case (GET_INTERFACE_REQ):
-                                        // arduino lib does nothing here 
-                                        break;
-                                case (SET_INTERFACE_REQ):
-                                        // arduino lib does nothing here 
+                                default: 
+                                        // unsupported request, stall 
+                                        toStall = true; 
                                         break;
                         }
                         break;
                 default:
+                        // make sure correct interface (ACM) is selected
+                        if (setup.wIndex == 0) {
+                                // determine proper request
+                                switch(setup.bmRequestType)
+                                {
+                                        case (D7_DIR_DEVICE_TO_HOST_MASK | D65_TYPE_CLASS_MASK | D40_RECIPIENT_INTERFACE_MASK):
+                                                if (setup.bRequest == CDC_GET_LINE_CODING_REQ) {
+                                                        sendMemPayload((const void *)&usbLineInfo, 7, 64);
+                                                }
+                                                break; 
+                                        case (D7_DIR_HOST_TO_DEVICE_MASK | D65_TYPE_CLASS_MASK | D40_RECIPIENT_INTERFACE_MASK):
+                                                switch (setup.bRequest) {
+                                                        case (CDC_SEND_BREAK):
+                                                                breakValue = setup.wValue;
+                                                                break;
+                                                        case (CDC_SET_LINE_CODING_REQ): 
+                                                                receiveControl((void*)&usbLineInfo, 7); 
+                                                                if (usbLineInfo.dwDTERate == 9600) {
+                                                                        yellowOn();
+                                                                } else {
+                                                                        yellowOff(); 
+                                                                }
+                                                                break; 
+                                                        case (CDC_SET_CONTROL_LINE_STATE_REQ):
+                                                                usbLineInfo.lineState = (setup.wValue & 0x00FF);
+                                                                break; 
+                                                        default: 
+                                                                toStall = true; 
+                                                                break; 
+                                                }
+                                                break; 
+                                        default: 
+                                                toStall = true; 
+                                }
+                        } else {
+                                toStall = true; 
+                        }
                         // Class Interface Request //TODO: I think this might be vendor Check that 
                         //!: This implementation is currently trash
-                        toStall = classInterfaceRequest(setup); 
+                        //toStall = classInterfaceRequest(setup); 
                         // low byte of .wIndex in .bmRequestType specifies Interface index
                         break;
         }

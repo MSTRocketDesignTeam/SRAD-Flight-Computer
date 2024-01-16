@@ -28,12 +28,13 @@ int main()
         uint8_t state = 0; 
         uint32_t last_run_ms = 0; 
         Time.delayMs(5000);
-
-        uint8_t temp = 1 + '0'; 
         while (true)
         {
 
-                Serial.write(temp); 
+                Serial.write(1 + '0'); 
+                Serial.write('\n');
+                Serial.flushTX(); 
+                Time.delayMs(100); 
 
                 // Heartbeat LED 
                 if ((Time.millis() - last_run_ms) > 50) {
