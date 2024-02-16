@@ -3,9 +3,9 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 //#include <util/delay.h>
-//#include <lightdebug.h>
+#include <lightdebug.h>
 //#include <powersaving.h>
-//#include <cdcserial.h>
+#include <cdcserial.h>
 
 using namespace std; 
 
@@ -15,14 +15,31 @@ int main()
         sei();
 
         //setup LED pins for testing
-        PORTD = (1 << PD6);
-        DDRD = ~(1 << PD6);
-        PORTB = (1 << PB5); 
-        PORTC = (1 << PC6); 
+        PORTD |= (1 << PD6); //B
+        DDRD |= (1 << PD6);
+        PORTB |= (1 << PB5); //G
+        DDRB |= (1 << PB5);
+        PORTC |= (1 << PC6); //R
+        DDRC |= (1 << PC6);
+        //print(11);
+
+        //PORTB &= ~(1 << PB5);
+        Time.delayMs(100);
 
         while (true)
         {
-                ;
+                //PORTD &= ~(1 << PD6); //B
+                Time.delayMs(100); 
+                PORTD |= (1 << PD6);
+                Time.delayMs(100);
+                //PORTC &= ~(1 << PC6); //R
+                Time.delayMs(100);
+                PORTC |= (1 << PC6);
+                Time.delayMs(100);
+                //PORTB &= ~(1 << PB5); //G
+                Time.delayMs(100);
+                PORTB |= (1 << PB5);
+                Time.delayMs(100);
         }
         return 0;
 }
