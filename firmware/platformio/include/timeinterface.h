@@ -1,6 +1,6 @@
 /*
 This abstract class is an interface for the hardware specific "time.h"
-implementations. All public facing functions should be defined here. 
+implementations. All public facing functions should be declared here. 
 Specific hardware implementations will be derived from this base class. 
 */
 
