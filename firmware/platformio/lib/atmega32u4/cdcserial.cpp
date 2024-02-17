@@ -388,14 +388,14 @@ void SerialClass::sendMemPayload(const void * const dataPtr, const uint_fast8_t 
                 // Wait for the FIFO to be ready for next packet, if RX received error 
                 if (!waitForInOut()) { 
                         break;  
-                        } // TODO: ERROR  
+                        } // TODO: ERROR?
 
                 // Send the byte 
-                tx8(dataByte); // TODO: Keep track of how many bytes in CTL EP
+                tx8(dataByte); // TODO: Keep track of how many bytes in CTL EP?
                 maxLen--; 
                 numBytesSent++; // TODO: DEBUG JANKNESS
 
-                if (!maxLen){ // TODO: THIS MORE ELEGANT 
+                if (!maxLen){ // TODO: MAKE THIS BETTER
                         // don't send anymore bytes
                         break; 
                 }
@@ -580,7 +580,7 @@ uint_fast16_t SerialClass::send(uint_fast8_t epNum, const void * d, uint_fast16_
                         } else if (!isRWAllowed()) {
                                 releaseTX(); // The buffer is full, change the fifo and send the previous packet 
                                 if (len == 0) {
-                                        sendZlp = true; // if all bytes sent, must send a Zlp to signify end of data to send  //!: IS THIS ONLY NEEDED FOR 64 BYTE MULTIPLE PACKETS? 
+                                        sendZlp = true; // if all bytes sent, must send a Zlp to signify end of data to send //!: IS THIS ONLY NEEDED FOR 64 BYTE MULTIPLE PACKETS? 
                                 }
                         } // not implementing transfer release
                         //releaseTX(); //TODO: better solution for this? 
@@ -648,7 +648,7 @@ inline uint8_t SerialClass::CDC_Setup(SetupPacket_t &setup)
         }
         if ((D7_DIR_HOST_TO_DEVICE_MASK | D65_TYPE_CLASS_MASK | D40_RECIPIENT_INTERFACE_MASK) == requestType) {
                 if (CDC_SEND_BREAK == r) {
-                        breakValue = setup.wValue; // TODO: ? 
+                        breakValue = setup.wValue; // TODO: ?
                 }
 
                 if (CDC_SET_LINE_CODING_REQ == r) {
