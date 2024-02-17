@@ -15,6 +15,9 @@ using namespace std;
 class SpiInterface
 {
         public: 
+                //Desc: Writes a single byte into the 
+                virtual void write() = 0;
+                virtual void read() = 0; 
 };
 /* -------------------------------------------------------------------------- */
 #endif
