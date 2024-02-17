@@ -40,7 +40,7 @@ int main()
         while (true)
         {
                 Time.delayMs(1000); 
-                Serial.write('a')
+                Serial.write('a');
                 Serial.flushTX(); 
                 //half_period++; 
                 /*
