@@ -14,6 +14,7 @@ int main()
         //enable interrupts globally 
         sei();
 
+        /*
         //setup LED pins for testing
         PORTD |= (1 << PD6); //B
         DDRD |= (1 << PD6);
@@ -31,12 +32,16 @@ int main()
         PORTB &= ~(1 << PB0); 
         DDRB |= (1 << PB0); 
 
-        uint32_t last_run_ms = Time.millis(); 
-        uint8_t state = 0; 
+        //uint32_t last_run_ms = Time.millis(); 
+        //uint8_t state = 0; 
+        */
 
         Time.delayMs(100);
         while (true)
         {
+                Time.delayMs(1000); 
+                Serial.write('a')
+                Serial.flushTX(); 
                 //half_period++; 
                 /*
                 DDRC |= (1 << PC7);
@@ -49,7 +54,7 @@ int main()
                 _delay_us(120);
                 //Time.delayMs(1); 
                 */
-                
+                /*
                 PORTD &= ~(1 << PD6); //B
                 Time.delayMs(100); 
                 PORTD |= (1 << PD6);
@@ -72,7 +77,7 @@ int main()
                         }
                         last_run_ms = Time.millis(); 
                 }
-                
+                */
         }
         return 0;
 }
