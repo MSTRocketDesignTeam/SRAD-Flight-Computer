@@ -191,8 +191,8 @@ void SerialClass::initUSB()
                 // The SRAD board bypasses the internal USB regulator, however the 
                 // Arduino micro used for development requires it. Uncomment the following
                 // line corresponding to the target device (atmega32u4, pg. 267, 256)
-                UHWCON &= ~(1 << UVREGE); // SRAD Board (disable regulator)
-                //UHWCON |= (1 << UVREGE); // Arduino Micro (enable regulator)
+                //UHWCON &= ~(1 << UVREGE); // SRAD Board (disable regulator)
+                UHWCON |= (1 << UVREGE); // Arduino Micro (enable regulator)
 
                 // Enable VBUS change Interrupts (atmega32u4, pg. 267)
                 // Enable the USB controller VBUS Pad (atmega32u4, pg. 267)
