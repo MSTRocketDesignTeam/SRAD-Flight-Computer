@@ -21,8 +21,13 @@
 
 void setup()
 {
-        led_init();
-        Serial.begin(9600);
+        // Initialize the USB interface ------
+        Serial.begin(9600); 
+        DDRC &= ~(1 << PC7); // disable the buzzer pin 
+        // -----------------------------------
+
+        led_init(); // SRAD status LED 
+        
 }
 
 void loop()
