@@ -4,7 +4,10 @@
 #include <SparkFun_KX13X.h> // High G Accelerometer Library
 #include <LoraSx1262.h> // SX1262 LORA Module Library 
 
+#include "globals.h" // store random global variables
 #include "led.h" // SRAD led abstraction
+#include "timer.h" // timer wrapper 
+#include "serialComs.h" // PC <---> SRAD communiation
 
 // LED (ACTIVE LOW) --------
 // RED: PC6
@@ -20,14 +23,14 @@
 // LORA  CS: PF4 (D21)
 
 
-
-LoraSx1262 radio; 
-byte* payload = "Hello world.  This a pretty long payload. We can transmit up to 255 bytes at once, which is pretty neat if you ask me";
+//LoraSx1262 radio; 
+//byte* payload = "Hello world.  This a pretty long payload. We can transmit up to 255 bytes at once, which is pretty neat if you ask me";
 
 void setup()
 {
         // Initialize the USB interface ------
         Serial.begin(9600); 
+        UHWCON &= ~(1 << UVREGE); // SRAD Board (disable regulator)
         DDRC &= ~(1 << PC7); // disable the buzzer pin 
         // -----------------------------------
 
@@ -35,22 +38,27 @@ void setup()
         
         delay(10); 
 
-        if (radio.begin()) {
-                led_g(50); 
-        } else {
-                led_r(50); 
-        }
-        delay(10); 
-        led_g(0); 
+        // if (radio.begin()) {
+        //         led_g(50); 
+        // } else {
+        //         led_r(50); 
+        // }
+        // delay(10); 
+        // led_g(0); 
 }
 
 void loop()
 {
-        led_r(100); 
-        radio.transmit(payload, strlen(payload)); 
-        led_r(0); 
 
-        delay(1000); 
+
+
+
+        communicate(); 
+        // led_r(100); 
+        // radio.transmit(payload, strlen(payload)); 
+        // led_r(0); 
+
+        // delay(1000); 
         // led_r(64);
         // delay(100);
         // led_r(0);
