@@ -6,3 +6,7 @@ hardware/kicad/fp-info-cache
 hardware/kicad/#auto_saved_files#
 *_autosave*
 hardware/kicad/#auto_saved_files#
+software/python/.venv/*
+software/python/build/*
+software/python/main.spec
+software/python/dist/main/_internal/*
