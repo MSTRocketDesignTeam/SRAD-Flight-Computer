@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include <MS5611_SPI.h> // Barometer Library 
 #include <Adafruit_FRAM_SPI.h> // FRAM Library
+#include <SparkFun_KX13X.h> // High G Accelerometer Library
+#include <LoraSx1262.h> // SX1262 LORA Module Library 
 
 #include "led.h" // SRAD led abstraction
 
@@ -15,9 +17,12 @@
 // MOSI: PB2 (D16)
 // MISO: PB3 (D14)
 // Baro. CS: PF5 (D20)
+// LORA  CS: PF4 (D21)
 
 
 
+LoraSx1262 radio; 
+byte* payload = "Hello world.  This a pretty long payload. We can transmit up to 255 bytes at once, which is pretty neat if you ask me";
 
 void setup()
 {
@@ -28,23 +33,36 @@ void setup()
 
         led_init(); // SRAD status LED 
         
+        delay(10); 
+
+        if (radio.begin()) {
+                led_g(50); 
+        } else {
+                led_r(50); 
+        }
+        delay(10); 
+        led_g(0); 
 }
 
 void loop()
 {
-        
-        led_r(64);
-        delay(100);
-        led_r(0);
-        delay(100);
-        led_g(32);
-        delay(100);
-        led_g(0);
-        delay(100);
-        led_b(32);
-        delay(100);
-        led_b(0); 
-        delay(100);
+        led_r(100); 
+        radio.transmit(payload, strlen(payload)); 
+        led_r(0); 
+
+        delay(1000); 
+        // led_r(64);
+        // delay(100);
+        // led_r(0);
+        // delay(100);
+        // led_g(32);
+        // delay(100);
+        // led_g(0);
+        // delay(100);
+        // led_b(32);
+        // delay(100);
+        // led_b(0); 
+        // delay(100);
         
 
         /*

@@ -28,17 +28,22 @@ bool LoraSx1262::begin() {
   pinMode(SX1262_NSS,OUTPUT);
   digitalWrite(SX1262_NSS, 1);  //High = inactive
 
+  //! SRAD BOARD DOES NOT HAVE RESET CONNECTED
+  /*
   digitalWrite(SX1262_RESET, 1);  //High = inactive
   pinMode(SX1262_RESET,OUTPUT);
+  */
   
   pinMode(SX1262_DIO1, INPUT);  //Radio interrupt pin.  Goes high when we receive a packet
 
+  //! SRAD BOARD DOES NOT HAVE RESET CONNECTED
   //Hardware reset the radio by toggling the reset pin
+  /*
   digitalWrite(SX1262_RESET, 0); delay(100);
   digitalWrite(SX1262_RESET, 1); delay(100);
   digitalWrite(SX1262_RESET, 0); delay(100);
   digitalWrite(SX1262_RESET, 1); delay(100);
-  
+  */
   
   //Ensure SPI communication is working with the radio
   bool success = sanityCheck();
@@ -171,7 +176,7 @@ void LoraSx1262::transmit(byte *data, int dataLen) {
   digitalWrite(SX1262_NSS,0); //Enable radio chip-select
   spiBuff[0] = 0x8C;          //Opcode for "SetPacketParameters"
   spiBuff[1] = 0x00;          //PacketParam1 = Preamble Len MSB
-  spiBuff[2] = 0x0C;          //PacketParam2 = Preamble Len LSB
+  spiBuff[2] = 0x0C;          //PacketParam2 = Preamble Len LSB //! 0x0C default
   spiBuff[3] = 0x00;          //PacketParam3 = Header Type. 0x00 = Variable Len, 0x01 = Fixed Length
   spiBuff[4] = dataLen;       //PacketParam4 = Payload Length (Max is 255 bytes)
   spiBuff[5] = 0x00;          //PacketParam5 = CRC Type. 0x00 = Off, 0x01 = on

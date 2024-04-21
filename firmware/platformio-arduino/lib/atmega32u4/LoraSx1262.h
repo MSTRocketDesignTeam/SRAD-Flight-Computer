@@ -37,9 +37,10 @@
 */
 
 //Pin configurations (for Arduino UNO)
-#define SX1262_NSS   7
-#define SX1262_RESET A0
-#define SX1262_DIO1  5
+//#define SX1262_NSS   7
+#define SX1262_NSS   21 //SRAD BOARD
+#define SX1262_RESET A0 //!SRAD Board does not have this? 
+#define SX1262_DIO1  7 //SRAD BOARD
 
 //Presets. These help make radio config easier
 #define PRESET_DEFAULT    0
