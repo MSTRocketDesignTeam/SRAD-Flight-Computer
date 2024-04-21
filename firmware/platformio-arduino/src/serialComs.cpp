@@ -42,8 +42,15 @@ void communicate() {
                                 break; 
                         case 1: // HANDSHAKE 
                                 led_g(2); 
+                                led_b(0); 
                                 if (Serial.available() > 0) {
+                                        if (Serial.available() > 1) {
+                                                led_g(255);
+                                                delay(1000); 
+                                        }
+                                        led_b(2);
                                         if (Serial.read() == 0xAA) {
+                                                led_b(0); 
                                                 // PC handshake successful
                                                 // send SRAD handshake 
                                                 Serial.write(0xBB); 

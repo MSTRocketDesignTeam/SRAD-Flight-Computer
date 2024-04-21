@@ -10,3 +10,4 @@ software/python/.venv/*
 software/python/build/*
 software/python/main.spec
 software/python/dist/main/_internal/*
+software/python/__pycache__/*
