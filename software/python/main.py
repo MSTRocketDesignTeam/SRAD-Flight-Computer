@@ -16,7 +16,7 @@ import cfg
 def main():
         print('------SRAD-ALTIMETER------\n')
 
-        # CONNECT TO ALTIMETER -----------
+        # ----------------------- CONNECT TO ALTIMETER ----------------------- #
         if (not(cfg.IS_CONNECTED)):
                 print('Scanning for Device...', end = '')
         while (not(cfg.IS_CONNECTED)):
@@ -33,16 +33,24 @@ def main():
                                         for i in range(2): # attempt twice, reset if first fails
                                                 # COM port identified, attempt connection 
                                                 time.sleep(0.25)
-                                                cfg.SER = serial.Serial(cfg.COM_PORT, 115200, timeout=1)
+                                                print('opening port')
+                                                cfg.SER = serial.Serial(cfg.COM_PORT, 115200, timeout=1, write_timeout=0.5)
+                                                print('port opened')
                                                 cfg.SER.reset_output_buffer()
                                                 cfg.SER.reset_input_buffer()
+                                                print('sending packet')
                                                 cfg.SER.write(bytes([0xAA])) # send PC 'hello' packet 
+                                                print('reading packet')
                                                 read_char = cfg.SER.read(1) # check for SRAD 'ACK' packet
+                                                
                                                 if ((len(read_char) == 1) and (ord(read_char) == 0xBB)): 
                                                         print('Connected')
                                                         cfg.IS_CONNECTED = True
+                                                        print('starting thread')
+                                                        cfg.PING_THREAD.start()
                                                         break
                                                 else:
+                                                        print('running else')
                                                         if (i == 1):
                                                                 break
                                                         # reset the altimeter by changing baud rate to 1200bps and closing port
@@ -55,16 +63,22 @@ def main():
                                                         time.sleep(10)
                                 except: 
                                         cfg.COM_PORT = None
+                                        print('except running')
                                         continue 
+                                break
                         
                 # If nothing is found, try again 
                 if (cfg.COM_PORT == None):
                         time.sleep(0.25)
-                        continue 
+                        continue                 # ------------------------------------------------------------ #
 
 
                 
-                while (True): time.sleep(0.5)
+        time.sleep(10)
+
+        cfg.ARE_THREADS_ALIVE = False
+
+        cfg.PING_THREAD.join(timeout = 3)
 
 
         if (cfg.SER != None): cfg.SER.close() 
