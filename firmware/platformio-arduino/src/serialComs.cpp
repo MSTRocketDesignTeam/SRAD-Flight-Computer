@@ -11,7 +11,6 @@
 
 // Global ------
 Timer doComCheck(250); 
-
 // -------------
 
 
@@ -21,6 +20,8 @@ void communicate() {
         // 0: no connection 
         // 1: handshake [ PC -> 0xAA, SRAD -> 0xBB]
         // 2: command mode 
+
+        // PC will send ping packet (0xCC) at least once every 4s or disconnect
 
         if (doComCheck) { // limit the check interval 
                 // if at any time the usb is reset or if vbus is low 
