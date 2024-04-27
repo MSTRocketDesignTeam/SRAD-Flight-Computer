@@ -53,24 +53,24 @@ void loop()
 
 
 
-        //communicate(); 
+        communicate(); 
         // led_r(100); 
         // radio.transmit(payload, strlen(payload)); 
         // led_r(0); 
 
         //delay(1000); 
-        led_r(255);
-        delay(100);
-        led_r(0);
-        delay(100);
-        led_g(255);
-        delay(100);
-        led_g(0);
-        delay(100);
-        led_b(255);
-        delay(100);
-        led_b(0); 
-        delay(100);
+        //led_r(255);
+        //delay(100);
+        //led_r(0);
+        //delay(100);
+        //led_g(255);
+        //delay(100);
+        //led_g(0);
+        //delay(100);
+        //led_b(255);
+        //delay(100);
+        //led_b(0); 
+        //delay(100);
         
 
         /*

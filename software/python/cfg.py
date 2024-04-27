@@ -13,7 +13,6 @@ import ping
 # ----------------------------- GLOBAL_VARIABLES ----------------------------- #
 COM_STATE = 0
 COM_PORT = None
-TO_RESET = False
 SER = None 
 PING_THREAD = threading.Thread(target=ping.ping, name='ping')
 PRINT_LOCK = threading.Lock()

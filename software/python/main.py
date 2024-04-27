@@ -31,7 +31,6 @@ def main():
                 for port in serial.tools.list_ports.comports():
                         if ('Arduino Micro' in port.description):
                                 cfg.COM_PORT = port.name
-                                
                                 try: 
                                         for i in range(2): # attempt twice, reset if first fails
                                                 # COM port identified, attempt connection 
