@@ -11,12 +11,15 @@ import serial
 import serial.tools.list_ports # used to identify com number
 import time 
 import cfg
+import communication as com 
 
 # ----------------------------------- MAIN ----------------------------------- #
 def main():
         print('------SRAD-ALTIMETER------\n')
-
+        while (True):
+                com.connect()
         # ----------------------- CONNECT TO ALTIMETER ----------------------- #
+        '''
         if (not(cfg.IS_CONNECTED)):
                 print('Scanning for Device...', end = '')
         while (not(cfg.IS_CONNECTED)):
@@ -70,7 +73,9 @@ def main():
                 # If nothing is found, try again 
                 if (cfg.COM_PORT == None):
                         time.sleep(0.25)
-                        continue                 # ------------------------------------------------------------ #
+                        continue                 
+        # ------------------------------------------------------------ #
+        '''
 
 
                 

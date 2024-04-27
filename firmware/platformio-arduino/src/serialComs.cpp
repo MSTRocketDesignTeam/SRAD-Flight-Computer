@@ -43,6 +43,7 @@ void communicate() {
                                 break; 
                         case 1: // HANDSHAKE 
                                 led_g(2); 
+                                delay(50);
                                 led_b(0); 
                                 if (Serial.available() > 0) {
                                         if (Serial.available() > 1) {

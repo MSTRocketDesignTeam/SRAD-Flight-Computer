@@ -11,7 +11,7 @@ import threading
 import ping
 
 # ----------------------------- GLOBAL_VARIABLES ----------------------------- #
-IS_CONNECTED = False # is the altimeter connected? 
+COM_STATE = 0
 COM_PORT = None
 SER = None 
 PING_THREAD = threading.Thread(target=ping.ping, name='ping')
