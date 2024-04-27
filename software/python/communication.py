@@ -9,8 +9,6 @@ import serial.tools.list_ports
 import time 
 
 # -------------------------------- COMMUNICATE ------------------------------- #
-toReset = False
-
 def connect():
         if cfg.COM_STATE == 0: #! BOARD IS DISCONNECTED
                 print('Scanning for Device...', end = '')
@@ -19,28 +17,28 @@ def connect():
                                 time.sleep(0.5)
                         for port in serial.tools.list_ports.comports():
                                 if ('Arduino Micro' in port.description):
+                                        print('Board Found...', end='')
                                         cfg.COM_PORT = port.name
                                         cfg.COM_STATE = 1
                                         break 
         elif cfg.COM_STATE == 1: #! ATTEMPT CONNECTION 
-                print('Board Found...', end='')
                 time.sleep(0.1)
-                try:
-                        cfg.SER = serial.Serial(cfg.COM_PORT, 115200, timeout=1, write_timeout=0.5)
-                        time.sleep(0.1)
-                        cfg.SER.reset_input_buffer()
-                        cfg.SER.reset_output_buffer()
+        #try:
+                cfg.SER = serial.Serial(cfg.COM_PORT, 115200, timeout=1, write_timeout=0.5)
+                time.sleep(0.1)
+                cfg.SER.reset_input_buffer()
+                cfg.SER.reset_output_buffer()
+                cfg.COM_STATE = 3
+                if (cfg.TO_RESET):
+                        cfg.COM_STATE = 2
+                        cfg.TO_RESET = False
+                else:
                         cfg.COM_STATE = 3
-                        if (toReset):
-                                cfg.COM_STATE = 2
-                                toReset = False
-                        else:
-                                cfg.COM_STATE = 3
-                except: 
-                        # error connecting, go back to reset state
-                        cfg.COM_STATE = 0
-                        toReset = True
-                        print('error')
+        #except: 
+                # error connecting, go back to DC state
+                cfg.COM_STATE = 0
+                #cfg.TO_RESET = True
+                print('error')
         elif cfg.COM_STATE == 2: #! RESET SRAD BOARD
                 print('Resetting...', end='')
                 time.sleep(0.1)
