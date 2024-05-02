@@ -54,6 +54,10 @@ bool QwDevKX13X::initialize(uint8_t settings)
 
   if (settings == DEFAULT_SETTINGS)
   {
+    //! EDIT: SET 128 SAMPLE AVERAGE IN ADP MODE PC1 MUST BE 0 
+    retVal = writeRegisterByte(SFE_KX13X_LP_CNTL1, 0x70); 
+
+
     retVal = writeRegisterByte(SFE_KX13X_CNTL1, DEFAULT_SETTINGS);
     if (retVal == 0) // Check the write was successful
     {
