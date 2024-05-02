@@ -11,7 +11,7 @@
 
 // PARAMETERS
 // For 10Hz collection and 5s of averaging, 50 needed
-#define SRAD_STORAGE_BUF_LENGTH 50
+#define SRAD_STORAGE_BUF_LENGTH 64
 
 
 /* ------------------------------ STORAGE CLASS ----------------------------- */
@@ -20,12 +20,25 @@ class Storage
         public:
                 Storage();
 
+                // Returns a pointer reference to dataPkt in buf
+                dataPkt * const getBufIRef(const uint8_t i); 
+
+                // Calculate how many elements are in the RAM FIFO 
+                const uint8_t numInFIFO(); 
+
+                // add a dataPkt to the queue and handle FRAM storage 
+                void addSensorData(const dataPkt &data);
+
+
 
         private:
                 // CIRCULAR SAMPLE FIFO 
                 dataPkt buf[SRAD_STORAGE_BUF_LENGTH]; // will hold all samples initially
-                uint8_t buf_start_i = 0; // next empty index 
-                uint8_t buf_stop_i = SRAD_STORAGE_BUF_LENGTH - 1; // last written index
+                uint8_t buf_start_i = 0; // start of data in buffer
+                uint8_t buf_stop_i = SRAD_STORAGE_BUF_LENGTH - 1; // element after end of data in buffer
+                void bufEnqueue(const dataPkt &data); // add data to the FIFO 
+                dataPkt * const bufDequeue(); // mark an element as removed from queue and return ptr to it 
+
 };
 /* -------------------------------------------------------------------------- */
 #endif
