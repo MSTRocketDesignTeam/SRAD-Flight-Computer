@@ -8,12 +8,12 @@
 #include "datapkt.h"
 
 /* ------------------------------ STORAGE CLASS ----------------------------- */
-dataPkt * const Storage::getBufIRef(const uint8_t i)
+dataPkt * Storage::getBufIRef(const uint8_t i)
 {
         return &(buf[i]); 
 }
 
-const uint8_t Storage::numInFIFO()
+uint8_t Storage::numInFIFO()
 {
         // Calculate the number of stored elements using modulo to account for rollover
         //! Note, this will benefit from array length that is a power of 2 for speedup
@@ -38,7 +38,7 @@ void Storage::bufEnqueue(const dataPkt &data)
         return; 
 }
 
-dataPkt * const Storage::bufDequeue()
+dataPkt * Storage::bufDequeue()
 {
         // Check that there is something to return from the buffer 
         dataPkt * temp_ptr = NULL;

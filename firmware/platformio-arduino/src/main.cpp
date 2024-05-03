@@ -22,7 +22,6 @@
 // Baro. CS: PF5 (D20)
 // LORA  CS: PF4 (D21)
 
-
 //LoraSx1262 radio; 
 //byte* payload = "Hello world.  This a pretty long payload. We can transmit up to 255 bytes at once, which is pretty neat if you ask me";
 
@@ -34,8 +33,8 @@ void setup()
         DDRC &= ~(1 << PC7); // disable the buzzer pin 
         // -----------------------------------
 
-        // Intialize Sensors -----------------
-
+        // Intialize Components --------------
+        
 
         // -----------------------------------
 
@@ -55,12 +54,9 @@ void setup()
 void loop()
 {
         /* -------------------------- READ SENSORS -------------------------- */
-        if ((millis() - lastSensorReadMs) > SENSOR_READ_INTERVAL) {
-
-        }
         /* ------------------------------------------------------------------ */
 
-
+        ;
 
         //communicate(); 
         // led_r(100); 

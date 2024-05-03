@@ -21,10 +21,10 @@ class Storage
                 Storage();
 
                 // Returns a pointer reference to dataPkt in buf
-                dataPkt * const getBufIRef(const uint8_t i); 
+                dataPkt * getBufIRef(const uint8_t i); 
 
                 // Calculate how many elements are in the RAM FIFO 
-                const uint8_t numInFIFO(); 
+                uint8_t numInFIFO(); 
 
                 // add a dataPkt to the queue and handle FRAM storage 
                 void addSensorData(const dataPkt &data);
@@ -37,7 +37,7 @@ class Storage
                 uint8_t buf_start_i = 0; // start of data in buffer
                 uint8_t buf_stop_i = SRAD_STORAGE_BUF_LENGTH - 1; // element after end of data in buffer
                 void bufEnqueue(const dataPkt &data); // add data to the FIFO 
-                dataPkt * const bufDequeue(); // mark an element as removed from queue and return ptr to it 
+                dataPkt * bufDequeue(); // mark an element as removed from queue and return ptr to it 
 
                 // Launch Condition Detect 
                 uint8_t accelMagnitude[SRAD_STORAGE_BUF_LENGTH]; 
