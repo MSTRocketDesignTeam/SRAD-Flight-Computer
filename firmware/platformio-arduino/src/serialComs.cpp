@@ -9,11 +9,6 @@
 
 #include "led.h"
 
-// Global ------
-Timer doComCheck(250); 
-// -------------
-
-
 /* ------------------------------- serialComs ------------------------------- */
 void communicate() {
         static uint8_t comState = 0; //state of the current communication 

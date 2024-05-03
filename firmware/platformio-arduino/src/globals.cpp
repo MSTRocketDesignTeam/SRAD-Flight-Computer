@@ -11,7 +11,8 @@
 
 // TIMERS --------------
 // Every 250ms we will check the usb bus 
-// Timer doComCheck(250); 
+Timer doComCheck(250); 
+Timer readSensors(SENSOR_READ_INTERVAL); 
 // ---------------------
 
 // Sensors --------------

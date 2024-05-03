@@ -9,6 +9,7 @@
 
 #include <Arduino.h>
 #include "timer.h"
+#include "storage.h"
 #include <Adafruit_FRAM_SPI.h> // FRAM Library
 #include <SparkFun_KX13X.h> // High G Accelerometer Library
 #include <LoraSx1262.h> // SX1262 LORA Module Library 
@@ -16,11 +17,12 @@
 
 // TIMERS --------------
 extern Timer doComCheck; 
+extern Timer readSensors; 
 // ---------------------
 
 // GLOBAL Vars ---------
 #define SENSOR_READ_INTERVAL 100
-//extern uint32_t lastSensorReadMs = 0; 
+Storage sensorStorage; 
 // ---------------------
 
 // SPI -----------------
@@ -45,4 +47,5 @@ extern SparkFun_KX134_SPI kxAccel; // Kx134 Accelerometer
 extern MS5611_SPI ms5611; // Barometer
 extern LoraSx1262 radio; // Radio 
 // ----------------------
-#endif 
+
+#endif

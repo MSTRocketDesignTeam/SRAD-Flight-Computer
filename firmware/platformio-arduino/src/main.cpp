@@ -42,7 +42,8 @@ void setup()
 
         // Intialize Components --------------
         pyro_init(); 
-        radio.begin();
+        radio.begin(); //start the radio
+        radio.configSetFrequency(917500000);
         // -----------------------------------
 
         led_init(); // SRAD status LED 
@@ -61,6 +62,9 @@ void setup()
 void loop()
 {
         /* -------------------------- READ SENSORS -------------------------- */
+        if (readSensors) {
+                // Time to read all the sensors 
+        }
         /* ------------------------------------------------------------------ */
         Timer test(1000); 
 
