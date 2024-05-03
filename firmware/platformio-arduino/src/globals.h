@@ -12,6 +12,7 @@
 #include <Adafruit_FRAM_SPI.h> // FRAM Library
 #include <SparkFun_KX13X.h> // High G Accelerometer Library
 #include <LoraSx1262.h> // SX1262 LORA Module Library 
+#include <MS5611_SPI.h> // Barometer Library 
 
 // TIMERS --------------
 extern Timer doComCheck; 
@@ -39,8 +40,9 @@ extern Timer doComCheck;
 // ----------------------
 
 // Sensors --------------
-extern Adafruit_FRAM_SPI fram; //Fram init
+extern Adafruit_FRAM_SPI fram; // Fram init
 extern SparkFun_KX134_SPI kxAccel; // Kx134 Accelerometer
+extern MS5611_SPI ms5611; // Barometer
 // ----------------------
 
 #endif 
