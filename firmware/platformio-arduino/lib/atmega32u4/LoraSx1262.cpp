@@ -662,7 +662,7 @@ uint32_t LoraSx1262::frequencyToPLL(long rfFreq) {
 	 *	In our case, xtalFreq is 32mhz
 	 *	pllFreq = (2^25 * rfFreq) / 32000000
 	 */
-
+  //! Assuming RA-01SH has 32MHZ? 
 	//Basically, we need to do "return ((1 << 25) * rfFreq) / 32000000L"
   //It's very important to perform this without losing precision or integer overflow.
   //If arduino supported 64-bit varibales (which it doesn't), we could just do this:

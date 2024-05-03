@@ -43,6 +43,6 @@ extern Timer doComCheck;
 extern Adafruit_FRAM_SPI fram; // Fram init
 extern SparkFun_KX134_SPI kxAccel; // Kx134 Accelerometer
 extern MS5611_SPI ms5611; // Barometer
+extern LoraSx1262 radio; // Radio 
 // ----------------------
-
 #endif 

@@ -5,6 +5,7 @@
 #include <LoraSx1262.h> // SX1262 LORA Module Library 
 
 #include "globals.h" // store random global variables
+#include "pyro.h"
 #include "led.h" // SRAD led abstraction
 #include "timer.h" // timer wrapper 
 #include "serialComs.h" // PC <---> SRAD communiation
@@ -14,6 +15,12 @@
 // GREEN: PB5
 // BLUE: PD6
 
+// Pyro Channels -- (ACTIVE HIGH) ----
+// CH1 Fire: PB0 
+// CH1 Detect: PB4
+// CH2 Fire: PD5
+// CH2 Detect: PB6
+// -----------------------------------
 
 // SPI -----------------
 // SCK: PB1 (D15)
@@ -34,13 +41,13 @@ void setup()
         // -----------------------------------
 
         // Intialize Components --------------
-        
-
+        pyro_init(); 
+        radio.begin();
         // -----------------------------------
 
         led_init(); // SRAD status LED 
         
-        delay(10); 
+        delay(5000); 
 
         // if (radio.begin()) {
         //         led_g(50); 
@@ -55,8 +62,46 @@ void loop()
 {
         /* -------------------------- READ SENSORS -------------------------- */
         /* ------------------------------------------------------------------ */
+        Timer test(1000); 
 
-        ;
+        uint8_t payload[5] = {'h', 'e', 'l', 'l', 'o'};
+        while (true)
+        {
+                while (test)
+                {
+                        led_g(255);
+                        radio.transmit(payload, 5); 
+                }
+                delay(10); 
+                led_g(0);
+        }
+
+        while (true)
+        {
+                while (test)
+                {
+                        led_g(255);
+                        radio.lora_receive_blocking(payload, 5, 100); 
+                        for (uint8_t i = 0; i < 5; i++)
+                        {
+                                Serial.write(payload[i]);
+                        }
+                        Serial.println(); 
+                }
+                delay(10); 
+                led_g(0);
+        }
+
+
+        delay(10000); 
+        led_r(255);
+        pyro_ch1(true); 
+        delay(30000); 
+        led_r(0);
+        pyro_ch1(false); 
+
+        led_g(128); 
+        while (true) { ; }
 
         //communicate(); 
         // led_r(100); 

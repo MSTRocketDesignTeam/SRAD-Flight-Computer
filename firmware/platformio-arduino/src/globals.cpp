@@ -18,4 +18,5 @@
 Adafruit_FRAM_SPI fram(FRAM_CS_D); //Fram init
 SparkFun_KX134_SPI kxAccel; // Kx134 Accelerometer
 MS5611_SPI ms5611(BARO_CS_D); 
+LoraSx1262 radio; 
 // -----------------------
