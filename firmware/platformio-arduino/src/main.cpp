@@ -34,6 +34,11 @@ void setup()
         DDRC &= ~(1 << PC7); // disable the buzzer pin 
         // -----------------------------------
 
+        // Intialize Sensors -----------------
+
+
+        // -----------------------------------
+
         led_init(); // SRAD status LED 
         
         delay(10); 
@@ -49,7 +54,11 @@ void setup()
 
 void loop()
 {
+        /* -------------------------- READ SENSORS -------------------------- */
+        if ((millis() - lastSensorReadMs) > SENSOR_READ_INTERVAL) {
 
+        }
+        /* ------------------------------------------------------------------ */
 
 
 
@@ -59,18 +68,18 @@ void loop()
         // led_r(0); 
 
         //delay(1000); 
-        led_r(255);
-        delay(100);
-        led_r(0);
-        delay(100);
-        led_g(255);
-        delay(100);
-        led_g(0);
-        delay(100);
-        led_b(255);
-        delay(100);
-        led_b(0); 
-        delay(100);
+        // led_r(255);
+        // delay(100);
+        // led_r(0);
+        // delay(100);
+        // led_g(255);
+        // delay(100);
+        // led_g(0);
+        // delay(100);
+        // led_b(255);
+        // delay(100);
+        // led_b(0); 
+        // delay(100);
         
 
         /*

@@ -10,3 +10,8 @@
 // TIMERS --------------
 extern Timer doComCheck; 
 // ---------------------
+
+// GLOBAL Vars ---------
+#define SENSOR_READ_INTERVAL 100
+extern uint32_t lastSensorReadMs = 0; 
+// ---------------------

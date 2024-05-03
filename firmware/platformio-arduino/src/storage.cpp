@@ -22,16 +22,19 @@ const uint8_t Storage::numInFIFO()
 
 void Storage::bufEnqueue(const dataPkt &data)
 {
-        // Check that the buffer has room, if not do nothing
-        if ((SRAD_STORAGE_BUF_LENGTH - numInFIFO()) > 0) {
-                // buf_stop_i is where the next element should be placed
-                buf[buf_stop_i] = data;
+        // buf_stop_i is where the next element should be placed
+        buf[buf_stop_i] = data;
 
-                //! need to compute averages and magnitudes 
+        //! need to compute averages and magnitudes 
 
-                // increment the stop_i accounting for rollover
-                buf_stop_i = ((buf_stop_i + 1) % SRAD_STORAGE_BUF_LENGTH);
+        // increment the stop_i accounting for rollover
+        buf_stop_i = ((buf_stop_i + 1) % SRAD_STORAGE_BUF_LENGTH);
+
+        // if data was overwritten, must move start ptr
+        if (buf_start_i == buf_stop_i) {
+                buf_start_i = ((buf_start_i + 1) % SRAD_STORAGE_BUF_LENGTH); 
         }
+
         return; 
 }
 
@@ -43,7 +46,7 @@ dataPkt * const Storage::bufDequeue()
                 // save ref for return
                 temp_ptr = &(buf[buf_start_i]); 
 
-                // decrement the index, accounting for rollunder 
+                // increment the index, accounting for rollover
                 buf_start_i = ((buf_start_i + 1) % SRAD_STORAGE_BUF_LENGTH); 
         }
         return temp_ptr;

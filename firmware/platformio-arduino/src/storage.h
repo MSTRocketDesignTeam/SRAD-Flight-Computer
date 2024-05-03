@@ -39,6 +39,9 @@ class Storage
                 void bufEnqueue(const dataPkt &data); // add data to the FIFO 
                 dataPkt * const bufDequeue(); // mark an element as removed from queue and return ptr to it 
 
+                // Launch Condition Detect 
+                uint8_t accelMagnitude[SRAD_STORAGE_BUF_LENGTH]; 
+
 };
 /* -------------------------------------------------------------------------- */
 #endif
