@@ -74,7 +74,11 @@ void setup()
 
         led_init(); // SRAD status LED 
         
-        delay(5000); 
+        delay(2000); 
+
+        // turn on the camera (any pyro channel)
+        pyro_ch1(true); 
+        pyro_ch2(true); 
 
         // if (radio.begin()) {
         //         led_g(50); 
