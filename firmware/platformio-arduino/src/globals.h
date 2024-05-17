@@ -32,6 +32,7 @@ extern Storage sensorStorage;
 // Baro. CS: PF5 (D20)
 // LORA  CS: PF4 (D21)
 // FRAM: CS: PF0 (D23) HOLD: PF1 (D22)
+// HG Accel CS: PF6 (D19)
 #define SPI_SCK_D 15
 #define SPI_MOSI_D 16
 #define SPI_MISO_D 14
@@ -39,6 +40,7 @@ extern Storage sensorStorage;
 #define LORA_CS_D 21
 #define FRAM_CS_D 23
 #define FRAM_HOLD_P PF1 
+#define HG_ACCEL_CS 19
 // ----------------------
 
 // Sensors --------------
