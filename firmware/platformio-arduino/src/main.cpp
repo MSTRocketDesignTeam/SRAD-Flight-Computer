@@ -40,8 +40,16 @@ void setup()
         DDRC &= ~(1 << PC7); // disable the buzzer pin 
         // -----------------------------------
 
+        // init SPI Bus
+        SPI.begin();
+        // -----------
+
         // Intialize Components --------------
         pyro_init(); 
+
+        ms5611.begin(); // connect to barometer
+        ms5611.setOversampling(OSR_STANDARD); // 10x oversampling rate 
+
         radio.begin(); //start the radio
         radio.configSetFrequency(917500000);
         // -----------------------------------
@@ -64,48 +72,53 @@ void loop()
         /* -------------------------- READ SENSORS -------------------------- */
         if (readSensors) {
                 // Time to read all the sensors 
+                ms5611.read(); // barometer will take measurement 
+                //Serial.print("T:\t");
+                //Serial.print(ms5611.getTemperature(), 2);
+                //Serial.print("\tP:\t");
+                //Serial.println(ms5611.getPressure(), 2);
         }
         /* ------------------------------------------------------------------ */
-        Timer test(1000); 
+        // Timer test(1000); 
 
-        uint8_t payload[5] = {'h', 'e', 'l', 'l', 'o'};
-        while (true)
-        {
-                while (test)
-                {
-                        led_g(255);
-                        radio.transmit(payload, 5); 
-                }
-                delay(10); 
-                led_g(0);
-        }
+        // uint8_t payload[5] = {'h', 'e', 'l', 'l', 'o'};
+        // while (true)
+        // {
+        //         while (test)
+        //         {
+        //                 led_g(255);
+        //                 radio.transmit(payload, 5); 
+        //         }
+        //         delay(10); 
+        //         led_g(0);
+        // }
 
-        while (true)
-        {
-                while (test)
-                {
-                        led_g(255);
-                        radio.lora_receive_blocking(payload, 5, 100); 
-                        for (uint8_t i = 0; i < 5; i++)
-                        {
-                                Serial.write(payload[i]);
-                        }
-                        Serial.println(); 
-                }
-                delay(10); 
-                led_g(0);
-        }
+        // while (true)
+        // {
+        //         while (test)
+        //         {
+        //                 led_g(255);
+        //                 radio.lora_receive_blocking(payload, 5, 100); 
+        //                 for (uint8_t i = 0; i < 5; i++)
+        //                 {
+        //                         Serial.write(payload[i]);
+        //                 }
+        //                 Serial.println(); 
+        //         }
+        //         delay(10); 
+        //         led_g(0);
+        // }
 
 
-        delay(10000); 
-        led_r(255);
-        pyro_ch1(true); 
-        delay(30000); 
-        led_r(0);
-        pyro_ch1(false); 
+        // delay(10000); 
+        // led_r(255);
+        // pyro_ch1(true); 
+        // delay(30000); 
+        // led_r(0);
+        // pyro_ch1(false); 
 
-        led_g(128); 
-        while (true) { ; }
+        // led_g(128); 
+        // while (true) { ; }
 
         //communicate(); 
         // led_r(100); 

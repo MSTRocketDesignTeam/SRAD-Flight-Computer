@@ -16,13 +16,13 @@
 #include <MS5611_SPI.h> // Barometer Library 
 
 // TIMERS --------------
-extern Timer doComCheck; 
+extern Timer doComCheck;
 extern Timer readSensors; 
 // ---------------------
 
 // GLOBAL Vars ---------
 #define SENSOR_READ_INTERVAL 100
-Storage sensorStorage; 
+extern Storage sensorStorage; 
 // ---------------------
 
 // SPI -----------------

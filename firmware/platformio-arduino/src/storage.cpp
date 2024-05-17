@@ -8,6 +8,8 @@
 #include "datapkt.h"
 
 /* ------------------------------ STORAGE CLASS ----------------------------- */
+Storage::Storage() {;}
+
 dataPkt * Storage::getBufIRef(const uint8_t i)
 {
         return &(buf[i]); 
