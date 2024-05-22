@@ -29,6 +29,12 @@ class Storage
                 // add a dataPkt to the queue and handle FRAM storage 
                 void addSensorData(const dataPkt &data);
 
+                // add data to the FIFO 
+                void bufEnqueue(const dataPkt &data); 
+
+                // mark an element as removed from queue and return ptr to it 
+                dataPkt * bufDequeue(); 
+
 
 
         private:
@@ -36,8 +42,7 @@ class Storage
                 dataPkt buf[SRAD_STORAGE_BUF_LENGTH]; // will hold all samples initially
                 uint8_t buf_start_i = 0; // start of data in buffer
                 uint8_t buf_stop_i = SRAD_STORAGE_BUF_LENGTH - 1; // element after end of data in buffer
-                void bufEnqueue(const dataPkt &data); // add data to the FIFO 
-                dataPkt * bufDequeue(); // mark an element as removed from queue and return ptr to it 
+
 
                 // Launch Condition Detect 
                 uint8_t accelMagnitude[SRAD_STORAGE_BUF_LENGTH]; 

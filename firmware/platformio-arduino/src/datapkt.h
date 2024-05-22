@@ -10,9 +10,11 @@
 /* ------------------------------- DATA PACKET ------------------------------ */
 struct dataPkt 
 {
-        uint16_t xAccel;
-        uint16_t yAccel;
-        uint16_t zAccel; 
+        int16_t xAccel;
+        int16_t yAccel;
+        int16_t zAccel; 
+        uint16_t pressure; 
+        uint16_t time; // each value is 10ms
 };
 /* -------------------------------------------------------------------------- */
 #endif

@@ -94,20 +94,43 @@ void loop()
         /* -------------------------- READ SENSORS -------------------------- */
         if (readSensors) {
                 // Time to read all the sensors 
-                ms5611.read(); // barometer will take measurement 
-                //Serial.print("T:\t");
-                //Serial.print(ms5611.getTemperature(), 2);
-                //Serial.print("\tP:\t");
-                //Serial.println(ms5611.getPressure(), 2);
+                dataPkt tempData; //store the sensor data until transferred to buffer
 
+                // Barometer
+                ms5611.read(); // barometer will take measurement 
+                // For ease of storage, going to store pressure as an integer
+                // assuming 1100mBar as atmospheric maximum, let 
+                // counts / mBar = 65535/1150 = 13107/230
+                // scale the float and then cast to an integer
+                tempData.pressure = static_cast<uint16_t>(ms5611.getPressure() * (13107.0 / 230.0)); 
+
+                // Serial.print("T:\t");
+                // Serial.print(ms5611.getTemperature(), 2);
+                // Serial.print("\tP:\t");
+                // Serial.println(ms5611.getPressure(), 2);
+
+                // Accelerometer
+                // Inefficient, should reverse engineer the driver and store bit values directly
+                // at 64g range, resolution is 512 LSB per G, 
+                // storing as signed int with max value 32767
+                // counts / g = 32767 / 64
                 outputData myData; 
                 kxAccel.getAccelData(&myData);
+                tempData.xAccel = static_cast<int16_t>(myData.xData * (32767.0 / 64.0));
+                tempData.yAccel = static_cast<int16_t>(myData.yData * (32767.0 / 64.0));
+                tempData.zAccel = static_cast<int16_t>(myData.zData * (32767.0 / 64.0));
                 // Serial.print(myData.xData, 4);
                 // Serial.print(' ');
                 // Serial.print(myData.yData,4);
                 // Serial.print(' ');
                 // Serial.print(myData.zData, 4); 
                 // Serial.println(' '); 
+
+                //time
+                tempData.time = (millis()/10);
+
+                //store the data in the buffer
+                sensorStorage.bufEnqueue(tempData); 
 
                 //fram.writeEnable(true);
                 //fram.read()
