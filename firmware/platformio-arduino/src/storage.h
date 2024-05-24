@@ -10,8 +10,9 @@
 #include "datapkt.h"
 
 // PARAMETERS
-// For 10Hz collection and 5s of averaging, 50 needed
-#define SRAD_STORAGE_BUF_LENGTH 64
+//// For 10Hz collection and 5s of averaging, 50 needed
+#define SRAD_STORAGE_BUF_LENGTH 32
+#define SRAD_FRAM_WORD_LENGTH 262144
 
 
 /* ------------------------------ STORAGE CLASS ----------------------------- */
@@ -23,6 +24,9 @@ class Storage
                 // Returns a pointer reference to dataPkt in buf
                 dataPkt * getBufIRef(const uint8_t i); 
 
+                // read the persistent configuration from the fram 
+                void cfgInit(); 
+
                 // Calculate how many elements are in the RAM FIFO 
                 uint8_t numInFIFO(); 
 
@@ -31,6 +35,13 @@ class Storage
 
                 // add data to the FIFO 
                 void bufEnqueue(const dataPkt &data); 
+
+                // add a packet to the FRAM
+                void framEnqueue(const dataPkt &data); 
+
+                // read a packet from the FRAM 
+                // give packet number from start of circular fram fifo 
+                dataPkt framRead(const uint8_t i); 
 
                 // mark an element as removed from queue and return ptr to it 
                 dataPkt * bufDequeue(); 
@@ -41,8 +52,13 @@ class Storage
                 // CIRCULAR SAMPLE FIFO 
                 dataPkt buf[SRAD_STORAGE_BUF_LENGTH]; // will hold all samples initially
                 uint8_t buf_start_i = 0; // start of data in buffer
-                uint8_t buf_stop_i = SRAD_STORAGE_BUF_LENGTH - 1; // element after end of data in buffer
+                uint8_t buf_stop_i = 0; // element after end of data in buffer
 
+                // CIRCULAR FRAM 
+                const uint8_t fram_offset = 9; // first 9 bits are reserved for persistent config bits
+                uint32_t fram_start_i = fram_offset; // address in fram where data starts
+                uint32_t fram_stop_i = fram_offset; 
+                uint8_t hasLanded = 0; 
 
                 // Launch Condition Detect 
                 uint8_t accelMagnitude[SRAD_STORAGE_BUF_LENGTH]; 

@@ -66,6 +66,7 @@ void setup()
 
         // FRAM
         fram.begin();
+        sensorStorage.cfgInit(); // load persistent values from fram to ram 
 
         // RADIO
         radio.begin(); //start the radio
@@ -87,6 +88,7 @@ void setup()
         // }
         // delay(10); 
         // led_g(0); 
+        analogRead
 }
 
 void loop()
