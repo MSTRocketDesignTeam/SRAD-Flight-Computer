@@ -88,7 +88,6 @@ void setup()
         // }
         // delay(10); 
         // led_g(0); 
-        analogRead
 }
 
 void loop()
