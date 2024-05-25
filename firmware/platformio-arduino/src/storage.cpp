@@ -11,6 +11,11 @@
 /* ------------------------------ STORAGE CLASS ----------------------------- */
 Storage::Storage() {;}
 
+uint8_t Storage::inFlight()
+{
+        return !hasLanded; 
+}
+
 void Storage::framEnqueue(const dataPkt &data)
 {
         // write the data packet, need an 8bit ptr 
@@ -29,7 +34,12 @@ void Storage::framEnqueue(const dataPkt &data)
 
 dataPkt Storage::framRead(const uint8_t i)
 {
-        return NULL;
+        // read the multibyte data pkt and return it 
+        dataPkt tempPkt; 
+        uint8_t * readPtr = reinterpret_cast<uint8_t *>(&tempPkt); 
+        fram.read(fram_start_i, readPtr, sizeof(dataPkt)); 
+
+        return tempPkt;
 }
 
 void Storage::cfgInit()
@@ -78,9 +88,23 @@ void Storage::cfgInit()
                                 fram.write8(i, 0);
                                 fram.write8(4+i, 0);
                         }
+
+                        // wipe the fram
+                        for (uint32_t i = 9; i < 262144; i++)
+                        {
+                                fram.write8(i, 0); // wipe all the data storage
+                        }
+                        fram.write8(8, 0x59); // now valid unlanded state
                         fram.writeEnable(false); 
                         hasLanded = 0; 
                         break; 
+        }
+
+        // initialize the pressure in buf so that avg does not get messed up
+        for (uint8_t i = 0; i < SRAD_STORAGE_BUF_LENGTH; i++)
+        {
+                ms5611.read(); 
+                buf[i].pressure = static_cast<uint16_t>(ms5611.getPressure() * (13107.0 / 230.0));
         }
         return; 
 }
@@ -103,6 +127,31 @@ void Storage::bufEnqueue(const dataPkt &data)
         buf[buf_stop_i] = data;
 
         //! need to compute averages and magnitudes 
+        // to determine landing condition I will keep track of lowest avg pressure 
+        uint32_t pressure_sum = 0; 
+        for (uint8_t i = 0; i < SRAD_STORAGE_BUF_LENGTH; i++)
+        {
+                pressure_sum += buf[i].pressure; 
+        }
+        uint16_t pressure_avg = pressure_sum / SRAD_STORAGE_BUF_LENGTH;
+
+        // update lowest if valid 
+        if (pressure_avg < lowestPressure) {lowestPressure = pressure_avg;}
+
+        // if has landeded update variable
+        if (lowestPressure < inFlightPressureThreshold) {
+                if (timeInFlightThreshold == 0) {
+                        // mark when it was first met
+                        timeInFlightThreshold = millis(); 
+                }
+                // if 10m has elapsed mark has landed
+                if ((millis() - timeInFlightThreshold) > (10UL*60UL*1000UL)){
+                        hasLanded = 1; 
+                        fram.writeEnable(true); 
+                        fram.write8(8, 0xA6);
+                        fram.writeEnable(false); 
+                }
+        }
 
         // increment the stop_i accounting for rollover
         buf_stop_i = ((buf_stop_i + 1) % SRAD_STORAGE_BUF_LENGTH);

@@ -11,7 +11,7 @@
 
 // PARAMETERS
 //// For 10Hz collection and 5s of averaging, 50 needed
-#define SRAD_STORAGE_BUF_LENGTH 32
+#define SRAD_STORAGE_BUF_LENGTH 16
 #define SRAD_FRAM_WORD_LENGTH 262144
 
 
@@ -46,6 +46,8 @@ class Storage
                 // mark an element as removed from queue and return ptr to it 
                 dataPkt * bufDequeue(); 
 
+                uint8_t inFlight(); // returns true or false
+
 
 
         private:
@@ -57,11 +59,15 @@ class Storage
                 // CIRCULAR FRAM 
                 const uint8_t fram_offset = 9; // first 9 bits are reserved for persistent config bits
                 uint32_t fram_start_i = fram_offset; // address in fram where data starts
-                uint32_t fram_stop_i = fram_offset; 
+                uint32_t fram_stop_i = fram_offset; // stop of data, next address to write
                 uint8_t hasLanded = 0; 
 
+                uint16_t lowestPressure = 60000; 
+                uint16_t inFlightPressureThreshold = static_cast<uint16_t>(303.975 * (13107.0 / 230.0));
+                uint32_t timeInFlightThreshold = 0; // when the in flight pressure threshold was met
+
                 // Launch Condition Detect 
-                uint8_t accelMagnitude[SRAD_STORAGE_BUF_LENGTH]; 
+                //uint8_t accelMagnitude[SRAD_STORAGE_BUF_LENGTH]; 
 
 };
 /* -------------------------------------------------------------------------- */

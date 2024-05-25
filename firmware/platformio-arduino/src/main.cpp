@@ -93,7 +93,8 @@ void setup()
 void loop()
 {
         /* -------------------------- READ SENSORS -------------------------- */
-        if (readSensors) {
+        if (readSensors && ) {
+                led_g(255); 
                 // Time to read all the sensors 
                 dataPkt tempData; //store the sensor data until transferred to buffer
 
@@ -136,6 +137,7 @@ void loop()
                 //fram.writeEnable(true);
                 //fram.read()
                 //fram.write();
+                led_g(0); 
         }
         /* ------------------------------------------------------------------ */
         // Timer test(1000); 
