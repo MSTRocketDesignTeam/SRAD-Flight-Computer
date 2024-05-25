@@ -93,7 +93,7 @@ void setup()
 void loop()
 {
         /* -------------------------- READ SENSORS -------------------------- */
-        if (readSensors && ) {
+        if (readSensors && sensorStorage.inFlight()) {
                 led_g(255); 
                 // Time to read all the sensors 
                 dataPkt tempData; //store the sensor data until transferred to buffer
