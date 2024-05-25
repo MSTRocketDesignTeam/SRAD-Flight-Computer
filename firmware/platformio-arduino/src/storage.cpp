@@ -20,7 +20,9 @@ void Storage::framEnqueue(const dataPkt &data)
 {
         // write the data packet, need an 8bit ptr 
         const uint8_t * write_ptr = reinterpret_cast<const uint8_t *>(&data); 
+        fram.writeEnable(true); 
         fram.write(fram_stop_i, write_ptr, sizeof(dataPkt)); // write the correct size to the fram 
+        fram.writeEnable(false); 
 
         // calculate address of next write, value has an offset, must remove and replace
         fram_stop_i = ((fram_stop_i - fram_offset + sizeof(dataPkt)) % (SRAD_FRAM_WORD_LENGTH - fram_offset)) + fram_offset;
