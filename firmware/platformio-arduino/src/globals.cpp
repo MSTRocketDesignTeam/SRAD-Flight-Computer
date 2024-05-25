@@ -13,10 +13,12 @@
 // Every 250ms we will check the usb bus 
 Timer doComCheck(250);
 Timer readSensors(SENSOR_READ_INTERVAL); 
+Timer comMessage(500); 
 // ---------------------
 
 // GLOBAL Vars ---------
 Storage sensorStorage; 
+uint8_t comState = 0; 
 // ---------------------
 
 // Sensors --------------

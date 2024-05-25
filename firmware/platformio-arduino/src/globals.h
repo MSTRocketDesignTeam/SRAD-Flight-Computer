@@ -18,11 +18,13 @@
 // TIMERS --------------
 extern Timer doComCheck;
 extern Timer readSensors; 
+extern Timer comMessage; 
 // ---------------------
 
 // GLOBAL Vars ---------
 #define SENSOR_READ_INTERVAL 100
 extern Storage sensorStorage; 
+extern uint8_t comState; 
 // ---------------------
 
 // SPI -----------------

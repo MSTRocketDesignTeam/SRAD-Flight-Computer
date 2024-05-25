@@ -34,10 +34,14 @@ void Storage::framEnqueue(const dataPkt &data)
 
 dataPkt Storage::framRead(const uint8_t i)
 {
+        // determine start address of packet in question 
+        // i is zero indexed, must add sizeof datapkt per i and account for wrap around 
+        uint8_t pktAddr = (((fram_start_i - fram_offset) + (sizeof(dataPkt) * i)) % (SRAD_FRAM_WORD_LENGTH - fram_offset)) + fram_offset; 
+
         // read the multibyte data pkt and return it 
         dataPkt tempPkt; 
         uint8_t * readPtr = reinterpret_cast<uint8_t *>(&tempPkt); 
-        fram.read(fram_start_i, readPtr, sizeof(dataPkt)); 
+        fram.read(pktAddr, readPtr, sizeof(dataPkt)); 
 
         return tempPkt;
 }

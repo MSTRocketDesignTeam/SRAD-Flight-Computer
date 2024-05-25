@@ -49,7 +49,6 @@ class Storage
                 uint8_t inFlight(); // returns true or false
 
 
-
         private:
                 // CIRCULAR SAMPLE FIFO 
                 dataPkt buf[SRAD_STORAGE_BUF_LENGTH]; // will hold all samples initially

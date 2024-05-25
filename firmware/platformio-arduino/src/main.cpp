@@ -139,6 +139,60 @@ void loop()
                 //fram.write();
                 led_g(0); 
         }
+
+        if (!sensorStorage.inFlight()) {
+                led_r(255); // HAS LANDED
+        } else {
+                led_r(0); 
+        }
+
+        // communicate over serial comms
+        if (Serial) { //leonardo has serial connected
+                led_b(255); 
+                if (sensorStorage.inFlight()) {
+                        // on the ground still 
+                        if (comMessage) {
+                                Serial.println(F("FC is saving data, waiting to land."));
+                                Serial.println(F(" ")); 
+                        }
+                } else {
+                        // send out the data 
+                        switch (comState) 
+                        {
+                                case 0: // begin 
+                                        if (comMessage) {
+                                                Serial.println(F("Beginning Data Dump")); 
+                                                Serial.println(F("NOTE: THIS DATA WILL NEED PROCESSING"));
+                                                Serial.println(F("XAccel, yAccel, zAccel, pressure, time"));
+                                                comState = 1;
+                                                delay(1000); 
+                                        }
+                                        break; 
+                                case 1: // send out data
+                                        for (uint32_t i = 0; i < ((SRAD_FRAM_WORD_LENGTH - 9) / sizeof(dataPkt)); i++)
+                                        {
+                                                dataPkt tempPkt = sensorStorage.framRead(i); //will read every possible spot, may not be valid
+                                                Serial.print(tempPkt.xAccel);
+                                                Serial.print(F(","));
+                                                Serial.print(tempPkt.yAccel);
+                                                Serial.print(F(","));
+                                                Serial.print(tempPkt.zAccel);
+                                                Serial.print(F(","));
+                                                Serial.print(tempPkt.pressure);
+                                                Serial.print(F(","));
+                                                Serial.println(tempPkt.time);
+                                        }
+                                        Serial.println(F("DONE!"));
+                                        comState = 2; 
+                                        break; 
+                                case 2: // wait to restart
+                                        led_b(0); 
+                                        delay(10000); 
+                                        comState = 0; 
+                                        break; 
+                        }
+                }
+        }
         /* ------------------------------------------------------------------ */
         // Timer test(1000); 
 
