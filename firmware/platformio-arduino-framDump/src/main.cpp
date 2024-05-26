@@ -282,7 +282,7 @@ void loop()
                 uint8_t data = fram.read8(i);
                 Serial.println(data); // will print each word to a new line
                 led_b(0); 
-                delay(1); // prevent windows from dying 
+                delayMicroseconds(10); // prevent windows from dying 
         }
         Serial.println(F("-----END OF DATA DUMP-----"));
         led_g(255); 
