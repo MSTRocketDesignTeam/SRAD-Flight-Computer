@@ -21,6 +21,7 @@ void Storage::framEnqueue(const dataPkt &data)
         // write the data packet, need an 8bit ptr 
         const uint8_t * write_ptr = reinterpret_cast<const uint8_t *>(&data); 
         fram.writeEnable(true); 
+        if ((fram_stop_i+sizeof(dataPkt)) > SRAD_FRAM_WORD_LENGTH) { return; } // crutch, drop packet if issue will arise 
         fram.write(fram_stop_i, write_ptr, sizeof(dataPkt)); // write the correct size to the fram 
         fram.writeEnable(false); 
 
@@ -54,7 +55,7 @@ void Storage::cfgInit()
         // 0-3: fram_start_i
         // 4-7: fram_stop_i
         // 8: hasLanded
-                // NOTE: if addr=8 reads 0b10100110 (0xA6) then landed state
+                //// NOTE: if addr=8 reads 0b10100110 (0xA6) then landed state
                 // NOTE: if addr=8 reads 0b01011001 (0x59) then unlanded state
                 // NOTE: if addr=8 reads other, then erase everything 
         fram.writeEnable(false); // we are reading not writing
@@ -65,7 +66,7 @@ void Storage::cfgInit()
 
         switch (fram.read8(8)) 
         {
-                case (0xA6):
+                case (SRAD_LANDED_KEY):
                         // HAS ALREADY LANDED
                         hasLanded = 1; 
                         // read the values from fram into ram
@@ -154,7 +155,7 @@ void Storage::bufEnqueue(const dataPkt &data)
                 if ((millis() - timeInFlightThreshold) > (10UL*60UL*1000UL)){
                         hasLanded = 1; 
                         fram.writeEnable(true); 
-                        fram.write8(8, 0xA6);
+                        fram.write8(8, SRAD_LANDED_KEY);
                         fram.writeEnable(false); 
                 }
         }

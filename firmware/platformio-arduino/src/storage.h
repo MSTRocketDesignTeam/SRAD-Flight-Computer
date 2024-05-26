@@ -13,6 +13,7 @@
 //// For 10Hz collection and 5s of averaging, 50 needed
 #define SRAD_STORAGE_BUF_LENGTH 16
 #define SRAD_FRAM_WORD_LENGTH 262144
+#define SRAD_LANDED_KEY 0xB5
 
 
 /* ------------------------------ STORAGE CLASS ----------------------------- */
