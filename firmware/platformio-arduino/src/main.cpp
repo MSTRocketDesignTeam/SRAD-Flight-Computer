@@ -9,17 +9,19 @@
 #include "led.h" // SRAD led abstraction
 #include "timer.h" // timer wrapper 
 #include "serialComs.h" // PC <---> SRAD communiation
+#include "board.h"
 
 // LED (ACTIVE LOW) --------
-// RED: PC6
-// GREEN: PB5
-// BLUE: PD6
+// RED: PC6 (D5)
+// GREEN: PB5 (D9)
+// BLUE: PD6 (D12)
+
 
 // Pyro Channels -- (ACTIVE HIGH) ----
-// CH1 Fire: PB0 
-// CH1 Detect: PB4
-// CH2 Fire: PD5
-// CH2 Detect: PB6
+// CH1 Fire: PB0 (RXLED = IO17)
+// CH1 Detect: PB4 (D8)
+// CH2 Fire: PD5 (TXLED = IO30)
+// CH2 Detect: PB6 (D10)
 // -----------------------------------
 
 // SPI -----------------
@@ -57,7 +59,7 @@ void setup()
         ms5611.setOversampling(OSR_STANDARD); // 10x oversampling rate 
 
         // HG ACCEL
-        kxAccel.begin(HG_ACCEL_CS); // initialize accelerometer
+        kxAccel.begin(HG_ACCEL_CS_D); // initialize accelerometer
         kxAccel.enableAccel(false); // disable so that settings can be changed
         kxAccel.setRange(SFE_KX134_RANGE64G); // 64G range 
         kxAccel.enableDataEngine(); // allows for data ready bit to be set

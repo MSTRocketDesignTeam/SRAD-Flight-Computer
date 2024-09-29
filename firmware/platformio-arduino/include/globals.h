@@ -42,7 +42,7 @@ extern uint8_t comState;
 #define LORA_CS_D 21
 #define FRAM_CS_D 23
 #define FRAM_HOLD_P PF1 
-#define HG_ACCEL_CS 19
+#define HG_ACCEL_CS_D 19
 // ----------------------
 
 // Sensors --------------
