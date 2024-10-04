@@ -39,7 +39,7 @@ void setup()
 {
         // Initialize the USB interface ------
         Serial.begin(9600); 
-        UHWCON &= ~(1 << UVREGE); // SRAD Board (disable regulator)
+        //UHWCON &= ~(1 << UVREGE); // SRAD Board (disable regulator)
         DDRC &= ~(1 << PC7); // disable the buzzer pin 
         // -----------------------------------
 
