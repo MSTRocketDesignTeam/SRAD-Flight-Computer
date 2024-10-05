@@ -18,9 +18,6 @@ void boardInit()
         // The buzzer has some issues currently, Tristate the pin to disable it
         gpioInit(PIN::BUZZER, PIN_MODE::INPUT_M, PIN_STATE::INPUT_HI_Z_S); 
 
-        // The FRAM !(HOLD) is not used by the current library, set HIGH to disable
-        gpioInit(PIN::FRAM_HOLD, PIN_MODE::OUTPUT_M, PIN_STATE::HIGH_S);
-
         // Initialize CDC Serial for debugging throughout the program
         Serial.begin(9600);
 

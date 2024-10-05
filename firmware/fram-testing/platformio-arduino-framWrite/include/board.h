@@ -36,6 +36,7 @@ enum PIN : uint8_t
         BARO_CS = 20,
         TEL_CS = 21,
         HG_ACCEL_CS = 19,
+        IMU_CS = 18, 
         FRAM_CS = 23,
         FRAM_HOLD = 22,
         BUZZER = 13
