@@ -52,19 +52,34 @@ void setup()
         // enable writing to the fram 
         fram.writeEnable(true); //not sure if this needs to be disabled to read? 
 
-        // write a value to all 262,144 8 byte words
+        // read all 262,144 8 byte words
         // byte addressable, zero indexed
         gpioSet(PIN::LED_B, PIN_STATE::LOW_S);
-        Serial.println(F("Writing to FRAM"));
+        Serial.println(F("reading from FRAM"));
+        uint8_t tempval = 0;
+        uint8_t readError = 0;  
         for (uint32_t i = 0; i < 262144; i++)
         {
-                fram.write8(i, static_cast<const uint8_t>(i & 0xFF));
+                tempval = fram.read8(i); // read the value stored in the fram
+                
+                // check if the value is correct 
+                if (tempval != (static_cast<uint8_t>(i & 0xFF))) {
+                        // error occured
+                        Serial.println(F("Read Data Mismatch!"));
+                        readError++; 
+                        gpioSet(PIN::LED_R, PIN_STATE::LOW_S); //error LED
+                }
         }
         gpioSet(PIN::LED_B, PIN_STATE::HIGH_S);
 
-        // write is complete, set green status 
-        gpioSet(PIN::LED_G, PIN_STATE::LOW_S);
-        Serial.println(F("FRAM write complete"));
+        if (readError == 0) {
+                Serial.println(F("Fram Read Verified Successfully"));
+                gpioSet(PIN::LED_G, PIN_STATE::LOW_S);
+        } else {
+                Serial.print(F("There were "));
+                Serial.print(readError);
+                Serial.print(F(" errors detected!"));
+        }
 
         while (true) { ; } // never end 
         return; 
