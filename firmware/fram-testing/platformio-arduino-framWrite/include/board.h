@@ -16,7 +16,7 @@ Date: 9/28/24
 /* ------------------------------ PIN_CONSTANTS ----------------------------- */
 // enum defining which pin number is connected to a function
 // these are using Arduino compatible pin numbers 
-enum class PIN : uint8_t
+enum PIN : uint8_t
 {
         // RGB LED Pins
         LED_R = 5, 
@@ -37,6 +37,8 @@ enum class PIN : uint8_t
         TEL_CS = 21,
         HG_ACCEL_CS = 19,
         FRAM_CS = 23,
+        FRAM_HOLD = 22,
+        BUZZER = 13
 };
 /* -------------------------------------------------------------------------- */
 
@@ -44,7 +46,7 @@ enum class PIN : uint8_t
 // Desc: Intiializes some specific register settings for the atmega32u4
 // Args: None 
 // Returns: Nothing 
-void board_init(); 
+void boardInit(); 
 /* -------------------------------------------------------------------------- */
 
 #endif
