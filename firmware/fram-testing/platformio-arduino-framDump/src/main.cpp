@@ -76,7 +76,7 @@ void setup()
 
         led_init(); // SRAD status LED 
         
-        delay(2000); 
+        delay(20000); 
 
         // turn on the camera (any pyro channel)
         // pyro_ch1(true); 
