@@ -4,11 +4,11 @@
 #include <SparkFun_KX13X.h> // High G Accelerometer Library
 #include <LoraSx1262.h> // SX1262 LORA Module Library 
 
-#include "globals.h" // store random global variables
-#include "pyro.h"
-#include "led.h" // SRAD led abstraction
-#include "timer.h" // timer wrapper 
-#include "serialComs.h" // PC <---> SRAD communiation
+// #include "globals.h" // store random global variables
+// #include "pyro.h"
+// #include "led.h" // SRAD led abstraction
+// #include "timer.h" // timer wrapper 
+// #include "serialComs.h" // PC <---> SRAD communiation
 #include "board.h"
 
 // LED (ACTIVE LOW) --------
