@@ -21,8 +21,21 @@ void boardInit()
         // Initialize CDC Serial for debugging throughout the program
         Serial.begin(9600);
 
+        // Initialize all of the chip selects 
+        gpioInit(PIN::HG_ACCEL_CS, PIN_MODE::OUTPUT_M, PIN_STATE::HIGH_S); 
+        gpioInit(PIN::IMU_CS, PIN_MODE::OUTPUT_M, PIN_STATE::HIGH_S); 
+        gpioInit(PIN::BARO_CS, PIN_MODE::OUTPUT_M, PIN_STATE::HIGH_S); 
+        gpioInit(PIN::TEL_CS, PIN_MODE::OUTPUT_M, PIN_STATE::HIGH_S); 
+        gpioInit(PIN::FRAM_CS, PIN_MODE::OUTPUT_M, PIN_STATE::HIGH_S); 
+
+        // Disable the LEDs 
+        gpioInit(PIN::LED_R, PIN_MODE::OUTPUT_M, PIN_STATE::HIGH_S);
+        gpioInit(PIN::LED_G, PIN_MODE::OUTPUT_M, PIN_STATE::HIGH_S);
+        gpioInit(PIN::LED_B, PIN_MODE::OUTPUT_M, PIN_STATE::HIGH_S);
+
         // Initialize the SPI interface that is used by most sensors 
         gpioInit(PIN::CH1_FIRE, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // spi.begin checks this
         SPI.begin(); 
+        return; 
 }
 /* -------------------------------------------------------------------------- */
