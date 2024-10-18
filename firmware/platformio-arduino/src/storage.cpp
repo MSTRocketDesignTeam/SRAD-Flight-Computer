@@ -33,7 +33,8 @@ uint8_t Storage::init()
         fram.writeEnable(true); 
 
         // Check the contents of the FRAM to determine status 
-        if (fram.read8(0) != 0) {
+        if (fram.read8(0) == 0) {
+                eraseAll(); 
                 state = STORAGE_STATE::EMPTY; 
         }
         return 0; 
