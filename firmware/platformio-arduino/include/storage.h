@@ -42,17 +42,125 @@ class Storage
                 // Returns: STORAGE_STATE enum 
                 STORAGE_STATE getState(); 
 
+                // enums to define the different components for packet types
+                // must be or'd together to form packet header 
+                // PCKT HEADER = <Preamble[7:6]> | <ID[5:1]> | <Parity[0]>
+                //! Undefined bits should be set as 0
+                enum PKT_PREAMBLE : uint8_t //[7:6]
+                {
+                        NORMAL = 0b01000000
+                };
+                enum PKT_ID : uint8_t //[5:1]
+                {
+                        ACCEL_ONLY = 0b00,
+                        GYRO_ONLY,
+                        ACCEL_AND_GYRO,
+                        ACCEL_GYRO_PRESSURE,
+                        PRESSURE_ONLY,
+                        EVENT
+                };
+
+                struct __attribute__((packed)) AccelPkt 
+                {
+                        uint8_t header; 
+                        uint32_t time_ms; 
+                        uint16_t xAccel;
+                        uint16_t yAccel; 
+                        uint16_t zAccel; 
+                };
+
+                struct __attribute__((packed)) GyroPkt 
+                {
+                        uint8_t header; 
+                        uint32_t time_ms; 
+                        uint16_t xRot;
+                        uint16_t yRot; 
+                        uint16_t zRot; 
+                };
+
+                struct __attribute__((packed)) PressurePkt 
+                {
+                        uint8_t header; 
+                        uint32_t time_ms; 
+                        uint32_t pressure; 
+                };
+
+                struct __attribute__((packed)) AccelGyroPkt 
+                {
+                        uint8_t header; 
+                        uint32_t time_ms; 
+                        uint16_t xAccel;
+                        uint16_t yAccel; 
+                        uint16_t zAccel; 
+                        uint16_t xRot;
+                        uint16_t yRot; 
+                        uint16_t zRot; 
+                };
+
+                struct __attribute__((packed)) AccelGyroPressurePkt 
+                {
+                        uint8_t header; 
+                        uint32_t time_ms; 
+                        uint16_t xAccel;
+                        uint16_t yAccel; 
+                        uint16_t zAccel; 
+                        uint16_t xRot;
+                        uint16_t yRot; 
+                        uint16_t zRot; 
+                        uint32_t pressure;
+                };
                 
+
+
+                // Desc: Write an acceleration Packet to the FRAM
+                // Returns: 0: success, 1: error 
+                uint8_t writeAccel(const uint32_t time, const uint16_t xAccel, 
+                                const uint16_t yAccel, const uint16_t zAccel); 
+
+                uint8_t writeGyro(const uint32_t time, const uint16_t xRot, 
+                                const uint16_t yRot, const uint16_t zRot);
+
+                uint8_t writePressure(const uint32_t time, const uint32_t pressure);
+
+                uint8_t writeAccelGyro(const uint32_t time, const uint16_t xAccel, 
+                                const uint16_t yAccel, const uint16_t zAccel,
+                                const uint16_t xRot, const uint16_t yRot, 
+                                const uint16_t zRot);
+
+                uint8_t writeAccelGyroPressure(const uint32_t time, const uint16_t xAccel, 
+                                const uint16_t yAccel, const uint16_t zAccel,
+                                const uint16_t xRot, const uint16_t yRot, 
+                                const uint16_t zRot, const uint32_t pressure);
+
+                
+
+
 
         private: 
                 // total number of words in FRAM 
                 const uint32_t FRAM_WORD_SIZE = 262144; 
+
+                // initialize to start of FRAM
+                uint32_t currentFramAddr = 0;
                 
                 // Adafruit FRAM object 
                 Adafruit_FRAM_SPI fram = Adafruit_FRAM_SPI(PIN::FRAM_CS); 
 
                 // store the state of the FRAM subsystem
                 STORAGE_STATE state = CONTAINS_FLIGHT; // prevent rewriting unless verified
+
+                // is single bit parity enabled? This may have some slowdown 
+                const uint8_t isParityEnabled = false; 
+
+                // Desc: Determine single bit parity of data of size <size>
+                // Args:
+                //      data: void pointer representing start of data block
+                //      size: how many total bytes to read starting from data
+                // Returns: 0 or 1, (bit that will make number of 1's in data even)
+                uint8_t computeParity(void * const data, const uint8_t size);
+
+                uint8_t writePkt(void * const data, const uint8_t size);
+
 }; 
 
 // global declaration for storage class singletons

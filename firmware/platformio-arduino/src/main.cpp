@@ -5,10 +5,12 @@
 #include <LoraSx1262.h> // SX1262 LORA Module Library 
 
 #include "board.h"
+#include "storage.h"
 
 /* ---------------------------------- SETUP --------------------------------- */
 void setup() 
 {
+        storage.init(); 
         return; 
 }
 /* -------------------------------------------------------------------------- */

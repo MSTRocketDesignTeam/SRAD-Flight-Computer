@@ -63,6 +63,113 @@ Storage::STORAGE_STATE Storage::getState()
         return state;
 }
 
+uint8_t Storage::writeAccel(const uint32_t time, const uint16_t xAccel, 
+                                const uint16_t yAccel, const uint16_t zAccel)
+{
+        AccelPkt pkt = {
+                        (NORMAL | ACCEL_ONLY),
+                        time,
+                        xAccel,
+                        yAccel, 
+                        zAccel
+                        };
+        
+        return writePkt(&pkt, sizeof(pkt));
+}
+
+uint8_t Storage::writeGyro(const uint32_t time, const uint16_t xRot, 
+                                const uint16_t yRot, const uint16_t zRot)
+{
+        GyroPkt pkt = {
+                        (NORMAL | GYRO_ONLY),
+                        time,
+                        xRot,
+                        yRot,
+                        zRot
+                        };
+
+        return writePkt(&pkt, sizeof(pkt));
+}
+
+uint8_t Storage::writePressure(const uint32_t time, const uint32_t pressure)
+{
+        PressurePkt pkt = {
+                        (NORMAL | PRESSURE_ONLY),
+                        time,
+                        pressure
+                        };
+
+        return writePkt(&pkt, sizeof(pkt));
+}
+
+uint8_t Storage::writeAccelGyro(const uint32_t time, const uint16_t xAccel, 
+                                const uint16_t yAccel, const uint16_t zAccel,
+                                const uint16_t xRot, const uint16_t yRot, 
+                                const uint16_t zRot)
+{
+        AccelGyroPkt pkt = {
+                        (NORMAL | ACCEL_AND_GYRO),
+                        time,
+                        xAccel,
+                        yAccel, 
+                        zAccel,
+                        xRot,
+                        yRot,
+                        zRot
+                        };
+
+        return writePkt(&pkt, sizeof(pkt));
+}
+
+uint8_t Storage::writeAccelGyroPressure(const uint32_t time, const uint16_t xAccel, 
+                                const uint16_t yAccel, const uint16_t zAccel,
+                                const uint16_t xRot, const uint16_t yRot, 
+                                const uint16_t zRot, const uint32_t pressure)
+{
+        AccelGyroPressurePkt pkt = {
+                        (NORMAL | ACCEL_AND_GYRO),
+                        time,
+                        xAccel,
+                        yAccel, 
+                        zAccel,
+                        xRot,
+                        yRot,
+                        zRot,
+                        pressure
+                        };
+
+        return writePkt(&pkt, sizeof(pkt));
+}
+
+
+uint8_t Storage::computeParity(void * const data, const uint8_t size)
+{
+        uint8_t * check_data = reinterpret_cast<uint8_t*>(data);
+        uint8_t parity = *check_data;
+        for (uint8_t i = 1; i < size; i++)
+        {
+                parity ^= *(check_data + i); 
+        }
+        parity ^= (parity >> 4); 
+        parity ^= (parity >> 2); 
+        parity ^= (parity >> 1); 
+        return (parity & 0x01);
+}
+
+uint8_t Storage::writePkt(void * const data, const uint8_t size)
+{
+        if (isParityEnabled) {
+                *(reinterpret_cast<uint8_t *>(data)) |= computeParity(data, size); 
+                }
+
+        uint8_t status = 1; 
+        if ((currentFramAddr + size) < FRAM_WORD_SIZE) {
+                status = !(fram.write(currentFramAddr, reinterpret_cast<uint8_t *>(data), size));
+                currentFramAddr += size * (!status); 
+        }
+        return status; 
+}
+
 // Instantiate the global storage class
 Storage storage; 
 /* -------------------------------------------------------------------------- */
