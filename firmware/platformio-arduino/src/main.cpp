@@ -28,7 +28,7 @@ void setup()
                 storage.writePressure(i, (static_cast<uint32_t>(1) << 31));
                 i++; 
         }
-        Serial.println(F("The Storage ")); 
+        Serial.print(F("Storage State: ")); 
         switch (storage.getState()) {
                 case (Storage::CONTAINS_FLIGHT):
                         Serial.println(F("CONTAINS FLIGHT"));
