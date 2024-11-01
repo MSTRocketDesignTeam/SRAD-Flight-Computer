@@ -109,8 +109,6 @@ class Storage
                         uint16_t zRot; 
                         uint32_t pressure;
                 };
-                
-
 
                 // Desc: Write an acceleration Packet to the FRAM
                 // Returns: 0: success, 1: error 
@@ -132,7 +130,9 @@ class Storage
                                 const uint16_t xRot, const uint16_t yRot, 
                                 const uint16_t zRot, const uint32_t pressure);
 
-                
+                // Desc: prints the contents of the FRAM to the Serial port (does not decode packets)
+                // Returns: 0: success, 1: error 
+                uint8_t printFRAM();
 
 
 

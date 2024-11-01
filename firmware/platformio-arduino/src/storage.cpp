@@ -34,8 +34,8 @@ uint8_t Storage::init()
 
         // Check the contents of the FRAM to determine status 
         if (fram.read8(0) == 0) {
+                // fram is empty, make sure that it is 
                 eraseAll(); 
-                state = STORAGE_STATE::EMPTY; 
         }
         return 0; 
 }
@@ -55,6 +55,8 @@ uint8_t Storage::eraseAll()
                 return 1; // 1: error
                 }
         }
+        state = STORAGE_STATE::EMPTY; 
+        currentFramAddr = 0; 
         return 0; // 0: success 
 }
 
@@ -139,6 +141,26 @@ uint8_t Storage::writeAccelGyroPressure(const uint32_t time, const uint16_t xAcc
                         };
 
         return writePkt(&pkt, sizeof(pkt));
+}
+
+uint8_t Storage::printFRAM()
+{
+        uint32_t timeoutStartMS = millis(); 
+        while (!Serial)
+        {
+                // wait for the USB CDC Serial port to be initialized
+                if ((millis() - timeoutStartMS) > 2000) { // 2s timeout
+                        return 1; // error 
+                }
+                delay(1); 
+        }
+
+        // print all bytes in FRAM 
+        for (uint32_t i = 0; i < currentFramAddr; i++)
+        {
+                Serial.write(fram.read8(i)); 
+        }
+        return 0; 
 }
 
 
