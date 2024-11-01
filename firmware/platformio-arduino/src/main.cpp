@@ -22,10 +22,10 @@ void setup()
         {
                 static uint32_t i = 0; 
                 // write various packets to attempt to read back after
-                storage.writeAccel(i, 0, static_cast<uint16_t>(1 << 15)/2, static_cast<uint16_t>(1 << 15)); 
-                storage.writeGyro(i, static_cast<uint16_t>(1 << 15), static_cast<uint16_t>(1 << 15)/2, 0); 
+                storage.writeAccel(i, 0, (static_cast<uint16_t>(1) << 15)/2, (static_cast<uint16_t>(1) << 15)); 
+                storage.writeGyro(i, (static_cast<uint16_t>(1) << 15), (static_cast<uint16_t>(1) << 15)/2, 0); 
                 storage.writePressure(i, 0); 
-                storage.writePressure(i, static_cast<uint32_t>(1 << 31));
+                storage.writePressure(i, (static_cast<uint32_t>(1) << 31));
                 i++; 
         }
         Serial.println(F("The Storage ")); 
