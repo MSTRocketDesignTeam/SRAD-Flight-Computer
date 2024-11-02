@@ -52,12 +52,12 @@ class Storage
                 };
                 enum PKT_ID : uint8_t //[5:1]
                 {
-                        ACCEL_ONLY = 0b00,
-                        GYRO_ONLY,
-                        ACCEL_AND_GYRO,
-                        ACCEL_GYRO_PRESSURE,
-                        PRESSURE_ONLY,
-                        EVENT
+                        ACCEL_ONLY = (1 << 4),
+                        GYRO_ONLY = (1 << 3),
+                        ACCEL_AND_GYRO = (1 << 2),
+                        ACCEL_GYRO_PRESSURE = (1 << 1),
+                        PRESSURE_ONLY = ((1 << 1) | (1 << 2)),
+                        EVENT = ((1 << 1) | (1 << 3))
                 };
 
                 struct __attribute__((packed)) AccelPkt 
