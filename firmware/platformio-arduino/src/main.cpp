@@ -14,9 +14,9 @@ void setup()
         // Intialize the board and various libraries 
         boardInit(); 
 
-
         // Storage Testing Code
         storage.init();
+        storage.eraseAll(); 
         gpioInit(PIN::LED_B, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // blue on 
         while (storage.getState() != Storage::FULL)
         {
