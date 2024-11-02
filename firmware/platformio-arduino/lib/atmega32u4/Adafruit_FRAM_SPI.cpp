@@ -144,8 +144,9 @@ bool Adafruit_FRAM_SPI::begin(uint8_t nAddressSizeBytes) {
   /* Everything seems to be properly initialised and connected */
   uint32_t fram_size = check_supported_device(manufID, prodID);
 
-  Serial.print(F("FRAM Size = 0x"));
-  Serial.println(fram_size, HEX);
+  //! Don't print the fram size
+  //Serial.print(F("FRAM Size = 0x"));
+  //Serial.println(fram_size, HEX);
 
   // Detect address size in bytes either 2 or 3 bytes (4 bytes is not supported)
   if (fram_size > 64UL * 1024) {

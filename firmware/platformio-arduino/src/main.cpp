@@ -15,12 +15,31 @@ void setup()
         boardInit(); 
         gpioInit(PIN::LED_R, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // red on
         while (!Serial) { ; } // wait for pc connection 
+        gpioSet(PIN::LED_R, PIN_STATE::HIGH_S); // red off
         delay(10000); 
 
         // Storage Testing Code
         storage.init();
         storage.eraseAll(); //! Need to properly have the code set the storage state on writes/reads
         gpioInit(PIN::LED_B, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // blue on 
+        Serial.print(F("Before Storage State: ")); 
+        switch (storage.getState()) {
+                case (Storage::CONTAINS_FLIGHT):
+                        Serial.println(F("CONTAINS FLIGHT"));
+                        break; 
+                case (Storage::EMPTY):
+                        Serial.println(F("EMPTY"));
+                        break;
+                case (Storage::WRITABLE):
+                        Serial.println(F("WRITABLE"));
+                        break; 
+                case (Storage::FULL):
+                        Serial.println(F("FULL"));
+                        break;
+                case (Storage::ERROR):
+                        Serial.println(F("ERROR"));
+                        break;  
+        }
         while (storage.getState() != Storage::FULL)
         {
                 static uint32_t i = 0; 
@@ -31,7 +50,7 @@ void setup()
                 storage.writePressure(i, (static_cast<uint32_t>(1) << 31));
                 i++; 
         }
-        Serial.print(F("Storage State: ")); 
+        Serial.print(F("After Storage State: ")); 
         switch (storage.getState()) {
                 case (Storage::CONTAINS_FLIGHT):
                         Serial.println(F("CONTAINS FLIGHT"));
