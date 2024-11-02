@@ -13,10 +13,13 @@ void setup()
 {
         // Intialize the board and various libraries 
         boardInit(); 
+        gpioInit(PIN::LED_R, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // red on
+        while (!Serial) { ; } // wait for pc connection 
+        delay(10000); 
 
         // Storage Testing Code
         storage.init();
-        storage.eraseAll(); 
+        storage.eraseAll(); //! Need to properly have the code set the storage state on writes/reads
         gpioInit(PIN::LED_B, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // blue on 
         while (storage.getState() != Storage::FULL)
         {

@@ -188,6 +188,8 @@ uint8_t Storage::writePkt(void * const data, const uint8_t size)
         if ((currentFramAddr + size) < FRAM_WORD_SIZE) {
                 status = !(fram.write(currentFramAddr, reinterpret_cast<uint8_t *>(data), size));
                 currentFramAddr += size * (!status); 
+        } else {
+                state = STORAGE_STATE::FULL; 
         }
         return status; 
 }
