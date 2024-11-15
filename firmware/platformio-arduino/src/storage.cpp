@@ -159,9 +159,10 @@ uint8_t Storage::printFRAM()
         }
 
         // print all bytes in FRAM 
-        for (uint32_t i = 0; i < currentFramAddr; i++)
+        for (uint32_t i = 0; i < FRAM_WORD_SIZE; i++)
         {
                 //Serial.write(fram.read8(i)); 
+                //! NAIVE IMPLEMENTATION
                 Serial.println(fram.read8(i)); // easier to log with putty. 
         }
         return 0; 
