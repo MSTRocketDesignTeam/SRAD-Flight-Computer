@@ -34,7 +34,6 @@ class Storage
                         EMPTY = 1,
                         WRITABLE = 2, 
                         FULL = 3, 
-                        ERROR = 4
                 };
 
                 // Desc: returns the state of the storage system
