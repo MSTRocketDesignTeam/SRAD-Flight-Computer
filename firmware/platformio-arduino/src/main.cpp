@@ -35,9 +35,6 @@ void setup()
                         break; 
                 case (Storage::FULL):
                         Serial.println(F("FULL"));
-                        break;
-                case (Storage::ERROR):
-                        Serial.println(F("ERROR"));
                         break;  
         }
         while (storage.getState() != Storage::FULL)
@@ -64,9 +61,6 @@ void setup()
                 case (Storage::FULL):
                         Serial.println(F("FULL"));
                         break;
-                case (Storage::ERROR):
-                        Serial.println(F("ERROR"));
-                        break;  
         }
         gpioSet(PIN::LED_B, PIN_STATE::HIGH_S); // blue off
         delay(5000); 

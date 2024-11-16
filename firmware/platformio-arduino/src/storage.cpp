@@ -36,6 +36,9 @@ uint8_t Storage::init()
         if (fram.read8(0) == 0) {
                 // fram is empty, make sure that it is 
                 eraseAll(); 
+        } else {
+                // fram is not empty, set state
+                state = CONTAINS_FLIGHT; 
         }
         return 0; 
 }
@@ -156,9 +159,11 @@ uint8_t Storage::printFRAM()
         }
 
         // print all bytes in FRAM 
-        for (uint32_t i = 0; i < currentFramAddr; i++)
+        for (uint32_t i = 0; i < FRAM_WORD_SIZE; i++)
         {
-                Serial.write(fram.read8(i)); 
+                //Serial.write(fram.read8(i)); 
+                //! NAIVE IMPLEMENTATION
+                Serial.println(fram.read8(i)); // easier to log with putty. 
         }
         return 0; 
 }
@@ -180,6 +185,19 @@ uint8_t Storage::computeParity(void * const data, const uint8_t size)
 
 uint8_t Storage::writePkt(void * const data, const uint8_t size)
 {
+        // verify FRAM can be written to 
+        switch (state)
+        {
+                case(STORAGE_STATE::EMPTY):
+                case(STORAGE_STATE::WRITABLE):
+                        // allow writing a packet
+                        break;
+                default: 
+                        // invalid current state, error
+                        return 1; // error 
+                        break; 
+        }
+
         if (isParityEnabled) {
                 *(reinterpret_cast<uint8_t *>(data)) |= computeParity(data, size); 
                 }
