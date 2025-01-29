@@ -35,6 +35,7 @@ void boardInit()
 
         // Initialize the SPI interface that is used by most sensors 
         gpioInit(PIN::CH1_FIRE, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // spi.begin checks this
+        gpioInit(PIN::CH2_FIRE, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); 
         SPI.begin(); 
         return; 
 }
