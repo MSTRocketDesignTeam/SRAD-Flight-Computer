@@ -8,9 +8,9 @@ Some basic wrappers for controlling the LEDs
 #include <stdint.h>
 
 /* ----------------------------------- LED ---------------------------------- */
-void LED_R(const uint8_t state);
-void LED_G(const uint8_t state);
-void LED_B(const uint8_t state);
+void SET_R(const uint8_t state);
+void SET_G(const uint8_t state);
+void SET_B(const uint8_t state);
 /* -------------------------------------------------------------------------- */
 
 #endif 

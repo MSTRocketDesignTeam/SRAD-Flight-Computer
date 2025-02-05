@@ -31,7 +31,7 @@ void Filter::zeroArr(void * arrPtr, const uint8_t dataSize, const uint8_t numEle
 {
         for (uint16_t i = 0; i < (dataSize * numElements); i++)
         {
-                *(arrPtr + i) = 0; 
+                *(reinterpret_cast<uint8_t *>(arrPtr) + i) = 0; 
         }
         return; 
 }

@@ -1,3 +1,8 @@
 // #include "buffer.h"
 
-// template <type
+// template <typename T, uint8_t numElements_>
+// Buf<T, numElements_>::Buf(const T &defaultVal)
+// {
+
+//         return; 
+// }
