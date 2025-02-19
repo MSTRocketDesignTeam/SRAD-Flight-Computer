@@ -29,19 +29,19 @@ class Filter
         private: 
                 // Acceleration Buffers
                 uint32_t xAccelSum, yAccelSum, zAccelSum; 
-                Buf<uint16_t, FILTER_NUM_AVERAGE> xAccelBuf(); 
-                Buf<uint16_t, FILTER_NUM_AVERAGE> yAccelBuf(); 
-                Buf<uint16_t, FILTER_NUM_AVERAGE> zAccelBuf(); 
+                Buf<uint16_t, FILTER_NUM_AVERAGE> xAccelBuf; 
+                Buf<uint16_t, FILTER_NUM_AVERAGE> yAccelBuf; 
+                Buf<uint16_t, FILTER_NUM_AVERAGE> zAccelBuf; 
 
                 // Gyro Buffers 
                 uint32_t xRotSum, yRotSum, zRotSum; 
-                Buf<uint16_t, FILTER_NUM_AVERAGE> xRotBuf(); 
-                Buf<uint16_t, FILTER_NUM_AVERAGE> yRotBuf(); 
-                Buf<uint16_t, FILTER_NUM_AVERAGE> zRotBuf(); 
+                Buf<int16_t, FILTER_NUM_AVERAGE> xRotBuf; 
+                Buf<int16_t, FILTER_NUM_AVERAGE> yRotBuf; 
+                Buf<int16_t, FILTER_NUM_AVERAGE> zRotBuf; 
 
                 // Pressure Buffers
                 uint64_t pressureSum; 
-                Buf<uint32_t, FILTER_NUM_AVERAGE> pressureBuf(); 
+                Buf<uint32_t, FILTER_NUM_AVERAGE> pressureBuf; 
 
                 // Time used for sample function
                 uint32_t lastSampleTime = 0;

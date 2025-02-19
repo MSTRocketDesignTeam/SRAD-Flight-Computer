@@ -25,3 +25,5 @@ uint32_t Barometer::readPressure()
     float pressure = baro.getPressure();
     return static_cast<uint32_t>(pressure * (static_cast<uint32_t>(1) << 16));
 }
+
+Barometer baro; 

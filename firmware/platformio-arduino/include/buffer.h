@@ -12,6 +12,14 @@ template <typename T, uint8_t numElements>
 class Buf 
 {
         public:
+                Buf()
+                {
+                        for (uint8_t i = 0; i < numElements; i++)
+                        {
+                                bufArr[i] = 0; 
+                        }
+                }
+
                 Buf(const T &defaultVal)
                 {
                         for (uint8_t i = 0; i < numElements; i++)

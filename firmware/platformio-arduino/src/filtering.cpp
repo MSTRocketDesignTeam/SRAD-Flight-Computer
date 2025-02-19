@@ -1,6 +1,7 @@
 #include "Arduino.h"
 #include "filtering.h"
 #include "buffer.h"
+#include "baro.h"
 
 
 
@@ -21,13 +22,24 @@ void Filter::sample()
 {
     if ((millis() - lastSampleTime) >= FILTER_SAMPLE_RATE_MS)
     {
-        // read the current pressure 
-        uint32_t * uint_ptr = pressureBuf.
+        // remove oldest pressure reading and add a new sample
+         
+        if (pressureBuf.getFreeElements() == 0) {
+                const uint32_t * temp_ptr = pressureBuf.dequeue(); 
+                pressureSum -= (*temp_ptr); 
+        }
+        if (pressureBuf.getFreeElements() >= 1) {
+                uint32_t * const temp_ptr = pressureBuf.enqueue(); 
+                (*temp_ptr) = baro.readPressure(); 
+                pressureSum += (*temp_ptr); 
+        }
+
+        //! Add acceleration and gyro sampling here! 2/18/25
 
 
 
-
-
+        // remove oldest accelerometer reading and add a new sample
+        
 
         lastSampleTime = millis(); 
         
