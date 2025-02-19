@@ -1,5 +1,6 @@
 #include "Arduino.h"
 #include "filtering.h"
+#include "buffer.h"
 
 
 
@@ -14,14 +15,20 @@ void Filter::init()
         zRotSum = 0;
         pressureSum = 0;
         
-        // Zero Avg Arrays 
-        zeroArr(xAccelArr, sizeof(xAccelArr), FILTER_NUM_AVERAGE);
 }
 
 void Filter::sample()
 {
     if ((millis() - lastSampleTime) >= FILTER_SAMPLE_RATE_MS)
     {
+        // read the current pressure 
+        uint32_t * uint_ptr = pressureBuf.
+
+
+
+
+
+
         lastSampleTime = millis(); 
         
     }

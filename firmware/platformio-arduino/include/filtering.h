@@ -6,6 +6,7 @@ Library to periodically read sensors, filter results, and set deployment status 
 #define FILTERING_H 
 
 #include <stdint.h>
+#include "buffer.h"
 
 #define FILTER_NUM_AVERAGE (8)
 #define FILTER_SAMPLE_RATE_MS (20) 
@@ -28,19 +29,19 @@ class Filter
         private: 
                 // Acceleration Buffers
                 uint32_t xAccelSum, yAccelSum, zAccelSum; 
-                uint16_t xAccelArr[FILTER_NUM_AVERAGE];
-                uint16_t yAccelArr[FILTER_NUM_AVERAGE];
-                uint16_t zAccelArr[FILTER_NUM_AVERAGE];
+                Buf<uint16_t, FILTER_NUM_AVERAGE> xAccelBuf(); 
+                Buf<uint16_t, FILTER_NUM_AVERAGE> yAccelBuf(); 
+                Buf<uint16_t, FILTER_NUM_AVERAGE> zAccelBuf(); 
 
                 // Gyro Buffers 
                 uint32_t xRotSum, yRotSum, zRotSum; 
-                uint16_t xRotArr[FILTER_NUM_AVERAGE];
-                uint16_t yRotArr[FILTER_NUM_AVERAGE]; 
-                uint16_t zRotArr[FILTER_NUM_AVERAGE]; 
+                Buf<uint16_t, FILTER_NUM_AVERAGE> xRotBuf(); 
+                Buf<uint16_t, FILTER_NUM_AVERAGE> yRotBuf(); 
+                Buf<uint16_t, FILTER_NUM_AVERAGE> zRotBuf(); 
 
                 // Pressure Buffers
                 uint64_t pressureSum; 
-                uint32_t pressureArr[FILTER_NUM_AVERAGE]; 
+                Buf<uint32_t, FILTER_NUM_AVERAGE> pressureBuf(); 
 
                 // Time used for sample function
                 uint32_t lastSampleTime = 0;
