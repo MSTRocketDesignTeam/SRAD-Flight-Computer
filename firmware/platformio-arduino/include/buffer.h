@@ -23,12 +23,34 @@ class Buf
                 T * const enqueue()
                 {
                         // is space available? 
-                        // if (((write_index + 1) % numElements) != read_index)
-                        return; 
+                        if (getFreeElements() == 0) {
+                                return NULL; 
+                        }
+
+                        // writing to queue, advance write_index
+                        uint8_t old_index = write_index;
+                        write_index = (write_index + 1) % (numElements); 
+
+                        // return ptr to write element 
+                        return (&bufArr[old_index]);
                 }
 
-                const T * const dequeue(); 
+                const T * const dequeue()
+                {
+                        // is there anything to dequeue? 
+                        if (getNumElements() == 0) {
+                                return NULL; 
+                        }
 
+                        // reading from queue, advance read_index
+                        uint8_t old_index = read_index; 
+                        read_index = (read_index + 1) % (numElements); 
+
+                        // return ptr to read element 
+                        return (&bufArr[old_index]); 
+                }
+                
+                // returns number of elements in queue 
                 uint8_t getNumElements()
                 {
                         // if write == read, no elements in buffer 
@@ -43,6 +65,16 @@ class Buf
                         }
                 }
 
+                // returns amount of free space in queue 
+                uint8_t getFreeElements()
+                {
+                        uint8_t temp = numElements - getNumElements(); 
+                        if (temp == 1) {
+                                return 0; // lose one spot to avoid ambiguity
+                        }
+                        return temp; 
+                }
+
         private:
                 // main buffer array 
                 T bufArr[numElements]; 
@@ -53,8 +85,6 @@ class Buf
                 // if write < read -> ((numElements - read) + write + 1) elements in buffer 
                 uint8_t write_index = 0; 
                 uint8_t read_index = 0; 
-
-
 }; 
 
 /* -------------------------------------------------------------------------- */
