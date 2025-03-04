@@ -7,73 +7,83 @@
 #include "board.h"
 #include "storage.h"
 #include "gpio.h"
+#include "filtering.h"
 
 /* ---------------------------------- SETUP --------------------------------- */
 void setup() 
 {
         // Intialize the board and various libraries 
         boardInit(); 
-        gpioInit(PIN::LED_R, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // red on
-        while (!Serial) { ; } // wait for pc connection 
-        gpioSet(PIN::LED_R, PIN_STATE::HIGH_S); // red off
-        delay(10000); 
+        delay(1); // make sure everything is initialized 
 
-        // Storage Testing Code
+        // enable storage
         storage.init();
-        storage.eraseAll(); //! Need to properly have the code set the storage state on writes/reads
-        gpioInit(PIN::LED_B, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // blue on 
-        Serial.print(F("Before Storage State: ")); 
-        switch (storage.getState()) {
-                case (Storage::CONTAINS_FLIGHT):
-                        Serial.println(F("CONTAINS FLIGHT"));
-                        break; 
-                case (Storage::EMPTY):
-                        Serial.println(F("EMPTY"));
-                        break;
-                case (Storage::WRITABLE):
-                        Serial.println(F("WRITABLE"));
-                        break; 
-                case (Storage::FULL):
-                        Serial.println(F("FULL"));
-                        break;  
-        }
-        while (storage.getState() != Storage::FULL)
-        {
-                static uint32_t i = 0; 
-                // write various packets to attempt to read back after
-                storage.writeAccel(i, 0, (static_cast<uint16_t>(1) << 15)/2, (static_cast<uint16_t>(1) << 15)); 
-                storage.writeGyro(i, (static_cast<uint16_t>(1) << 15), (static_cast<uint16_t>(1) << 15)/2, 0); 
-                storage.writePressure(i, 0); 
-                storage.writePressure(i, (static_cast<uint32_t>(1) << 31));
-                i++; 
-        }
-        Serial.print(F("After Storage State: ")); 
-        switch (storage.getState()) {
-                case (Storage::CONTAINS_FLIGHT):
-                        Serial.println(F("CONTAINS FLIGHT"));
-                        break; 
-                case (Storage::EMPTY):
-                        Serial.println(F("EMPTY"));
-                        break;
-                case (Storage::WRITABLE):
-                        Serial.println(F("WRITABLE"));
-                        break; 
-                case (Storage::FULL):
-                        Serial.println(F("FULL"));
-                        break;
-        }
-        gpioSet(PIN::LED_B, PIN_STATE::HIGH_S); // blue off
-        delay(5000); 
 
-        gpioInit(PIN::LED_R, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // red on 
-        // dump the FRAM to the serial terminal 
-        storage.printFRAM(); 
-        gpioSet(PIN::LED_R, PIN_STATE::HIGH_S); // red off
-        delay(5000); 
+        // init the sum variables 
+        filter.init(); 
 
-        gpioInit(PIN::LED_G, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // green on -> Done 
 
-        while (true) { ; }
+        // gpioInit(PIN::LED_R, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // red on
+        // while (!Serial) { ; } // wait for pc connection 
+        // gpioSet(PIN::LED_R, PIN_STATE::HIGH_S); // red off
+        // delay(10000); 
+
+        // // Storage Testing Code
+        // storage.init();
+        // storage.eraseAll(); //! Need to properly have the code set the storage state on writes/reads, done??
+        // gpioInit(PIN::LED_B, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // blue on 
+        // Serial.print(F("Before Storage State: ")); 
+        // switch (storage.getState()) {
+        //         case (Storage::CONTAINS_FLIGHT):
+        //                 Serial.println(F("CONTAINS FLIGHT"));
+        //                 break; 
+        //         case (Storage::EMPTY):
+        //                 Serial.println(F("EMPTY"));
+        //                 break;
+        //         case (Storage::WRITABLE):
+        //                 Serial.println(F("WRITABLE"));
+        //                 break; 
+        //         case (Storage::FULL):
+        //                 Serial.println(F("FULL"));
+        //                 break;  
+        // }
+        // while (storage.getState() != Storage::FULL)
+        // {
+        //         static uint32_t i = 0; 
+        //         // write various packets to attempt to read back after
+        //         storage.writeAccel(i, 0, (static_cast<uint16_t>(1) << 15)/2, (static_cast<uint16_t>(1) << 15)); 
+        //         storage.writeGyro(i, (static_cast<uint16_t>(1) << 15), (static_cast<uint16_t>(1) << 15)/2, 0); 
+        //         storage.writePressure(i, 0); 
+        //         storage.writePressure(i, (static_cast<uint32_t>(1) << 31));
+        //         i++; 
+        // }
+        // Serial.print(F("After Storage State: ")); 
+        // switch (storage.getState()) {
+        //         case (Storage::CONTAINS_FLIGHT):
+        //                 Serial.println(F("CONTAINS FLIGHT"));
+        //                 break; 
+        //         case (Storage::EMPTY):
+        //                 Serial.println(F("EMPTY"));
+        //                 break;
+        //         case (Storage::WRITABLE):
+        //                 Serial.println(F("WRITABLE"));
+        //                 break; 
+        //         case (Storage::FULL):
+        //                 Serial.println(F("FULL"));
+        //                 break;
+        // }
+        // gpioSet(PIN::LED_B, PIN_STATE::HIGH_S); // blue off
+        // delay(5000); 
+
+        // gpioInit(PIN::LED_R, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // red on 
+        // // dump the FRAM to the serial terminal 
+        // storage.printFRAM(); 
+        // gpioSet(PIN::LED_R, PIN_STATE::HIGH_S); // red off
+        // delay(5000); 
+
+        // gpioInit(PIN::LED_G, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // green on -> Done 
+
+        // while (true) { ; }
         return; 
 }
 /* -------------------------------------------------------------------------- */
@@ -81,6 +91,13 @@ void setup()
 /* ---------------------------------- LOOP ---------------------------------- */
 void loop() 
 {
+        // SERIAL COMMANDS ------------------------------------------
+        // Using very simple command structure for handling serial data 
+        // Single character command simplifies the command identificiation
+        if (Serial) { // if this is not initialized then print statements will hang
+
+        }
+        // ----------------------------------------------------------
         return; 
 }
 /* -------------------------------------------------------------------------- */

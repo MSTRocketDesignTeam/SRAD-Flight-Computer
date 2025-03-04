@@ -14,7 +14,7 @@ Library to periodically read sensors, filter results, and set deployment status 
 class Filter 
 {
         public: 
-                Filter(); 
+                Filter() { ; }
 
                 // Desc: Initializes member variables and sensors when called
                 // Args: None
@@ -29,9 +29,9 @@ class Filter
         private: 
                 // Acceleration Buffers
                 uint32_t xAccelSum, yAccelSum, zAccelSum; 
-                Buf<uint16_t, FILTER_NUM_AVERAGE> xAccelBuf; 
-                Buf<uint16_t, FILTER_NUM_AVERAGE> yAccelBuf; 
-                Buf<uint16_t, FILTER_NUM_AVERAGE> zAccelBuf; 
+                Buf<int16_t, FILTER_NUM_AVERAGE> xAccelBuf; 
+                Buf<int16_t, FILTER_NUM_AVERAGE> yAccelBuf; 
+                Buf<int16_t, FILTER_NUM_AVERAGE> zAccelBuf; 
 
                 // Gyro Buffers 
                 uint32_t xRotSum, yRotSum, zRotSum; 
@@ -45,8 +45,8 @@ class Filter
 
                 // Time used for sample function
                 uint32_t lastSampleTime = 0;
-
-                void zeroArr(void * arrPtr, const uint8_t dataSize, const uint8_t numElements); 
 }; 
+
+extern Filter filter; 
 
 #endif
