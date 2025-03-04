@@ -8,6 +8,9 @@
 #include "storage.h"
 #include "gpio.h"
 #include "filtering.h"
+#include "accel.h"
+#include "baro.h"
+#include "LED.h"
 
 /* ---------------------------------- SETUP --------------------------------- */
 void setup() 
@@ -19,8 +22,14 @@ void setup()
         // enable storage
         storage.init();
 
+        // initialize the sensors 
+        accel.init(); 
+        baro.baroInit(); 
+
         // init the sum variables 
         filter.init(); 
+
+
 
 
         // gpioInit(PIN::LED_R, PIN_MODE::OUTPUT_M, PIN_STATE::LOW_S); // red on
@@ -94,7 +103,7 @@ void loop()
         // SERIAL COMMANDS ------------------------------------------
         // 'S' - Status: Altimeter will print its current state 
         // 'E' - Erase: Altimeter will erase its internal storage 
-        // 'R' - Read: Prints stored data to terminal in csv format 
+        // 'R' - Read: Prints stored data to terminal in hex 
         // Using very simple command structure for handling serial data 
         // Single character command simplifies the command identificiation
         uint8_t r = 0; 
@@ -104,6 +113,7 @@ void loop()
 
                 if (r != 0xFF) { // -1 in binary is 0xFF
                         // Communication has been received 
+                        SET_G(1); 
 
                         // echo so that putty does not require additional echo settings
                         Serial.print(r); 
@@ -132,15 +142,41 @@ void loop()
                                                         break;
                                                 default:
                                                         Serial.print(F("INVALID, "));
-                                                        Serial.print(storage_state, );
-                                        };
+                                                        Serial.println(storage_state, HEX);
+                                                        break; 
+                                        }
+                                        Serial.print(F("AccelXAvg: ")); 
+                                        Serial.println(filter.getXAccelAvg(), 2);
+                                        Serial.print(F("AccelYAvg: ")); 
+                                        Serial.println(filter.getYAccelAvg(), 2);
+                                        Serial.print(F("AccelZAvg: ")); 
+                                        Serial.println(filter.getZAccelAvg(), 2);
+                                        Serial.print(F("PressureAvg: ")); 
+                                        Serial.println(filter.getPressureAvg(), 2);
                                         break; 
+                                case ('E'):
+                                        // ERASE --------------
+                                        Serial.print(F("Erasing Storage..."));
+                                        storage.eraseAll();
+                                        Serial.println(F("Done."));
+                                        break;
+                                case ('R'):
+                                        // READ ---------------
+                                        Serial.println(F("Reading Storage..."));
+                                        storage.printFRAM(); 
+                                        Serial.println(F("Done."));
+                                        break;
                                 default:
                                         break; 
-                        };
+                        }
                 }
+                
         }
+        SET_G(0); 
         // ----------------------------------------------------------
         return; 
+
+        // read from sensors and store in buffer
+        filter.sample(); 
 }
 /* -------------------------------------------------------------------------- */

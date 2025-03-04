@@ -26,6 +26,18 @@ class Filter
                 // Returns: Nothing
                 void sample(); 
 
+                // Desc: Returns the average of values stored in buffer
+                // Args: None
+                // Returns: float average
+                // Note: This function will be relatively slow 
+                float getXAccelAvg();
+                float getYAccelAvg();
+                float getZAccelAvg();
+                float getPressureAvg(); 
+
+                enum class ROCKET_STATE : uint8_t { LAUNCH_WAIT = 0, BOOST, APOGEE, PARACHUTE, LANDED}; 
+
+
         private: 
                 // Acceleration Buffers
                 uint32_t xAccelSum, yAccelSum, zAccelSum; 
@@ -35,9 +47,9 @@ class Filter
 
                 // Gyro Buffers 
                 uint32_t xRotSum, yRotSum, zRotSum; 
-                Buf<int16_t, FILTER_NUM_AVERAGE> xRotBuf; 
-                Buf<int16_t, FILTER_NUM_AVERAGE> yRotBuf; 
-                Buf<int16_t, FILTER_NUM_AVERAGE> zRotBuf; 
+                // Buf<int16_t, FILTER_NUM_AVERAGE> xRotBuf; 
+                // Buf<int16_t, FILTER_NUM_AVERAGE> yRotBuf; 
+                // Buf<int16_t, FILTER_NUM_AVERAGE> zRotBuf; 
 
                 // Pressure Buffers
                 uint64_t pressureSum; 
@@ -45,6 +57,8 @@ class Filter
 
                 // Time used for sample function
                 uint32_t lastSampleTime = 0;
+
+                void checkFlightState(); 
 }; 
 
 extern Filter filter; 

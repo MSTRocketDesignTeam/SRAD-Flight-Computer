@@ -68,9 +68,44 @@ void Filter::sample()
                         (*temp_ptr) = accel.getZ(); 
                         zAccelSum += (*temp_ptr); 
                 }
-
                 lastSampleTime = millis(); 
+
+                checkFlightState(); 
         }
+        return; 
+}
+
+float Filter::getXAccelAvg()
+{
+        const uint8_t n = xAccelBuf.getNumElements(); 
+        if (n == 0) { return -1.0f; }
+        return (xAccelSum / static_cast<float>(n)); 
+}
+
+float Filter::getYAccelAvg()
+{
+        const uint8_t n = yAccelBuf.getNumElements(); 
+        if (n == 0) { return -1.0f; }
+        return (yAccelSum / static_cast<float>(n)); 
+}
+
+float Filter::getZAccelAvg()
+{       
+        const uint8_t n = zAccelBuf.getNumElements(); 
+        if (n == 0) { return -1.0f; }
+        return (zAccelSum / static_cast<float>(n)); 
+}
+
+float Filter::getPressureAvg()
+{
+        const uint8_t n = pressureBuf.getNumElements();
+        if (n == 0) { return -1.0f; }
+        return (pressureSum / static_cast<float>(n)); 
+}
+
+void Filter::checkFlightState()
+{
+        return; 
 }
 
 Filter filter;
