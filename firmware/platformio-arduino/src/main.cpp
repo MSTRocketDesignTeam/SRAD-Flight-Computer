@@ -92,10 +92,53 @@ void setup()
 void loop() 
 {
         // SERIAL COMMANDS ------------------------------------------
+        // 'S' - Status: Altimeter will print its current state 
+        // 'E' - Erase: Altimeter will erase its internal storage 
+        // 'R' - Read: Prints stored data to terminal in csv format 
         // Using very simple command structure for handling serial data 
         // Single character command simplifies the command identificiation
+        uint8_t r = 0; 
         if (Serial) { // if this is not initialized then print statements will hang
+                // when there is no serial data available, read will return -1 = 255
+                r = Serial.read(); 
 
+                if (r != 0xFF) { // -1 in binary is 0xFF
+                        // Communication has been received 
+
+                        // echo so that putty does not require additional echo settings
+                        Serial.print(r); 
+
+                        // Switch case to handle commands 
+                        switch (r)
+                        {
+                                case ('S'):
+                                        // STATUS -------------
+                                        Serial.println(F("--- SRAD_ALTIMETER ---"));
+                                        Serial.print(F("STORAGE_STATE: "));
+                                        const uint8_t storage_state = storage.getState(); 
+                                        switch (storage_state)
+                                        {
+                                                case (Storage::CONTAINS_FLIGHT):
+                                                        Serial.println(F("CONTAINS FLIGHT"));
+                                                        break; 
+                                                case (Storage::EMPTY):
+                                                        Serial.println(F("EMPTY"));
+                                                        break;
+                                                case (Storage::WRITABLE):
+                                                        Serial.println(F("WRITABLE"));
+                                                        break; 
+                                                case (Storage::FULL):
+                                                        Serial.println(F("FULL"));
+                                                        break;
+                                                default:
+                                                        Serial.print(F("INVALID, "));
+                                                        Serial.print(storage_state, );
+                                        };
+                                        break; 
+                                default:
+                                        break; 
+                        };
+                }
         }
         // ----------------------------------------------------------
         return; 
