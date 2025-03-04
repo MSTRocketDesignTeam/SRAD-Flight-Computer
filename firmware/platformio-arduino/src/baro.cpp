@@ -19,8 +19,9 @@ void Barometer::baroInit()
 uint32_t Barometer::readPressure()
 {
     // 50,000 ft -> 0.11 bar 
-    // multiply by 65536 then truncate integer -> 0.000015259 bar resolution //! Double check this
-    // fixed point pressure range: [0, 65536] (max of barometer is 1.2 bar)
+    // multiply by 65536 then truncate integer -> 0.000015259 milli-bar resolution
+    // fixed point pressure range: [0, 65536] is [0, 1200]mB (max of barometer is 1.2 bar)
+    // milliBar = pressureInt/65536
     baro.read();
     float pressure = baro.getPressure();
     return static_cast<uint32_t>(pressure * (static_cast<uint32_t>(1) << 16));

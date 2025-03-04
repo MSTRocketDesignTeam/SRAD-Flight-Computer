@@ -40,6 +40,8 @@ void gpioInit(const PIN pin, const PIN_MODE mode, const PIN_STATE state);
 // Args: Enums defining the pin and state
 // Returns: Nothing 
 void gpioSet(const PIN pin, const PIN_STATE state); 
+
+uint8_t gpioRead(const PIN pin);
 /* -------------------------------------------------------------------------- */
 
 #endif

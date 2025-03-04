@@ -21,13 +21,16 @@ void setup()
 
         // enable storage
         storage.init();
+        delay(1);
 
         // initialize the sensors 
         accel.init(); 
         baro.baroInit(); 
+        delay(1);
 
         // init the sum variables 
         filter.init(); 
+        delay(1); 
 
 
 
@@ -116,17 +119,24 @@ void loop()
                         SET_G(1); 
 
                         // echo so that putty does not require additional echo settings
-                        Serial.print(r); 
+                        if ((r != '\n') && (r != '\r')) {
+                                Serial.print(r); 
+                                Serial.print('\n');
+                                Serial.print('\r');
+                        }
+
+                        // temp var 
+                        uint8_t temp = 0;
 
                         // Switch case to handle commands 
                         switch (r)
                         {
                                 case ('S'):
                                         // STATUS -------------
-                                        Serial.println(F("--- SRAD_ALTIMETER ---"));
+                                        Serial.println(F("--- STATUS ---"));
                                         Serial.print(F("STORAGE_STATE: "));
-                                        const uint8_t storage_state = storage.getState(); 
-                                        switch (storage_state)
+                                        temp = storage.getState(); 
+                                        switch (temp)
                                         {
                                                 case (Storage::CONTAINS_FLIGHT):
                                                         Serial.println(F("CONTAINS FLIGHT"));
@@ -142,7 +152,7 @@ void loop()
                                                         break;
                                                 default:
                                                         Serial.print(F("INVALID, "));
-                                                        Serial.println(storage_state, HEX);
+                                                        Serial.println(temp, HEX);
                                                         break; 
                                         }
                                         Serial.print(F("AccelXAvg: ")); 
@@ -151,8 +161,39 @@ void loop()
                                         Serial.println(filter.getYAccelAvg(), 2);
                                         Serial.print(F("AccelZAvg: ")); 
                                         Serial.println(filter.getZAccelAvg(), 2);
+                                        Serial.print(F("AccelMag: "));
+                                        Serial.println(sqrt(pow(filter.getXAccelAvg(),2) + pow(filter.getYAccelAvg(),2) + pow(filter.getZAccelAvg(),2)));
                                         Serial.print(F("PressureAvg: ")); 
                                         Serial.println(filter.getPressureAvg(), 2);
+
+                                        temp = static_cast<uint8_t>(filter.getState());
+                                        switch (static_cast<Filter::ROCKET_STATE>(temp))
+                                        {
+                                                case (Filter::ROCKET_STATE::LAUNCH_WAIT):
+                                                        Serial.println(F("LAUNCH WAIT"));
+                                                        break;
+                                                case (Filter::ROCKET_STATE::BOOST):
+                                                        Serial.println(F("BOOSTING"));
+                                                        break;
+                                                case (Filter::ROCKET_STATE::APOGEE):
+                                                        Serial.println(F("APOGEE"));
+                                                        break;
+                                                case (Filter::ROCKET_STATE::FALL):
+                                                        Serial.println(F("FALL"));
+                                                        break;
+                                                case (Filter::ROCKET_STATE::LANDED):
+                                                        Serial.println(F("LANDED"));
+                                                        break;
+                                                default:
+                                                        Serial.print(F("INVALID, "));
+                                                        Serial.println(temp, HEX);
+                                                        break;
+                                        }
+                                        Serial.print(F("CH1 Armed?: "));
+                                        Serial.println(gpioRead(PIN::CH1_DETECT));
+                                        Serial.print(F("CH2 Armed?: "));
+                                        Serial.println(gpioRead(PIN::CH2_DETECT));
+
                                         break; 
                                 case ('E'):
                                         // ERASE --------------
@@ -163,20 +204,34 @@ void loop()
                                 case ('R'):
                                         // READ ---------------
                                         Serial.println(F("Reading Storage..."));
+                                        Serial.println(F("--------------------"));
                                         storage.printFRAM(); 
+                                        Serial.println(F("--------------------"));
                                         Serial.println(F("Done."));
+                                        break;
+                                case ('T'):
+                                        // TEST --------------
+                                        Serial.print(F("Testing Pyro Channel..."));
+                                        gpioSet(PIN::CH1_FIRE, PIN_STATE::HIGH_S);
+                                        delay(1000);
+                                        gpioSet(PIN::CH1_FIRE, PIN_STATE::LOW_S);
+                                        Serial.println(F("Done."));
+
                                         break;
                                 default:
                                         break; 
                         }
+                        Serial.print('\n'); // newline spacer 
+                        Serial.print('\r');
                 }
                 
         }
         SET_G(0); 
         // ----------------------------------------------------------
-        return; 
 
         // read from sensors and store in buffer
         filter.sample(); 
+
+        return; 
 }
 /* -------------------------------------------------------------------------- */

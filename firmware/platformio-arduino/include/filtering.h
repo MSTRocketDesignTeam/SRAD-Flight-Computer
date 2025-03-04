@@ -35,8 +35,13 @@ class Filter
                 float getZAccelAvg();
                 float getPressureAvg(); 
 
-                enum class ROCKET_STATE : uint8_t { LAUNCH_WAIT = 0, BOOST, APOGEE, PARACHUTE, LANDED}; 
+                // keep track of rocket state 
+                enum class ROCKET_STATE : uint8_t { LAUNCH_WAIT = 0, BOOST, APOGEE, FALL, LANDED}; 
 
+                // Desc: Returns the current state of the rocket
+                // Args: None
+                // Returns: current rocket state
+                ROCKET_STATE getState();
 
         private: 
                 // Acceleration Buffers
@@ -57,6 +62,9 @@ class Filter
 
                 // Time used for sample function
                 uint32_t lastSampleTime = 0;
+
+                // Current state of rocket flight 
+                ROCKET_STATE flightState = ROCKET_STATE::LAUNCH_WAIT; 
 
                 void checkFlightState(); 
 }; 

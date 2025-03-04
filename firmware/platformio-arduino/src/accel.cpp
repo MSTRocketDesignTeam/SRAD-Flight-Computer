@@ -19,6 +19,8 @@ void Accelerometer::read()
         return; 
 }
 
+// with +/- 64G range, 0.001953125 g / LSB 
+
 int16_t Accelerometer::getX()
 {
         return kxData.xData;

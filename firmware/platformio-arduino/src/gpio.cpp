@@ -22,4 +22,9 @@ void gpioSet(const PIN pin, const PIN_STATE state)
         digitalWrite(pin, state); 
         return; 
 }
+
+uint8_t gpioRead(const PIN pin)
+{
+        return digitalRead(pin); 
+}
 /* -------------------------------------------------------------------------- */
