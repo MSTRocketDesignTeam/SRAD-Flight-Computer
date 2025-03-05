@@ -9,7 +9,7 @@ Library to periodically read sensors, filter results, and set deployment status 
 #include "buffer.h"
 
 #define FILTER_NUM_AVERAGE (8)
-#define FILTER_SAMPLE_RATE_MS (20) 
+#define FILTER_SAMPLE_RATE_MS (50) 
 
 class Filter 
 {

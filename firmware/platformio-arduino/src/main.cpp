@@ -120,9 +120,11 @@ void loop()
 
                         // echo so that putty does not require additional echo settings
                         if ((r != '\n') && (r != '\r')) {
-                                Serial.print(r); 
+                                Serial.print(static_cast<char>(r)); 
                                 Serial.print('\n');
                                 Serial.print('\r');
+                                SET_R(0);
+                                SET_B(0); 
                         }
 
                         // temp var 
@@ -212,11 +214,12 @@ void loop()
                                 case ('T'):
                                         // TEST --------------
                                         Serial.print(F("Testing Pyro Channel..."));
+                                        SET_R(1);
                                         gpioSet(PIN::CH1_FIRE, PIN_STATE::HIGH_S);
                                         delay(1000);
                                         gpioSet(PIN::CH1_FIRE, PIN_STATE::LOW_S);
+                                        SET_R(0); 
                                         Serial.println(F("Done."));
-
                                         break;
                                 default:
                                         break; 
@@ -228,6 +231,38 @@ void loop()
         }
         SET_G(0); 
         // ----------------------------------------------------------
+
+        // display current state as LED 
+        switch(filter.getState())
+        {
+                case (Filter::ROCKET_STATE::LAUNCH_WAIT):
+                        SET_B(1);
+                        SET_G(0);  
+                        SET_R(0); 
+                        break;
+                case (Filter::ROCKET_STATE::BOOST):
+                        SET_B(0); 
+                        SET_R(0); 
+                        SET_G(1); 
+                        break; 
+                case (Filter::ROCKET_STATE::APOGEE): 
+                        SET_B(0); 
+                        SET_R(1); 
+                        SET_G(0); 
+                        break; 
+                case (Filter::ROCKET_STATE::FALL):
+                        SET_B(0); 
+                        SET_R(1); 
+                        SET_G(0); 
+                        break; 
+                case (Filter::ROCKET_STATE::LANDED):
+                        SET_R(1); 
+                        SET_B(1); 
+                        SET_B(1); 
+                        break; 
+                default: 
+                        break; 
+        }
 
         // read from sensors and store in buffer
         filter.sample(); 

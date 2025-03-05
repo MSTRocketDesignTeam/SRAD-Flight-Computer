@@ -71,6 +71,7 @@ void Filter::sample()
                 }
                 lastSampleTime = millis(); 
 
+                // update flight states 
                 checkFlightState(); 
         }
         return; 
@@ -80,18 +81,18 @@ float Filter::getXAccelAvg()
 {
         const uint8_t n = xAccelBuf.getNumElements(); 
         if (n == 0) { return -1.0f; }
-        return (xAccelSum / static_cast<float>(n) * (1.0f/512.0f)); // conversion to g
+        return ((xAccelSum / static_cast<float>(n)) * (1.0f/512.0f)); // conversion to g
 }
 
 float Filter::getYAccelAvg()
 {
         const uint8_t n = yAccelBuf.getNumElements(); 
         if (n == 0) { return -1.0f; }
-        return (yAccelSum / static_cast<float>(n) * (1.0f/512.0f)); // conversion to g
+        return ((yAccelSum / static_cast<float>(n)) * (1.0f/512.0f)); // conversion to g
 }
 
 float Filter::getZAccelAvg()
-{       
+{
         const uint8_t n = zAccelBuf.getNumElements(); 
         if (n == 0) { return -1.0f; }
         return ((zAccelSum / static_cast<float>(n)) * (1.0f/512.0f)); // conversion to g
