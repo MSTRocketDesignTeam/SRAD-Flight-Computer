@@ -8,8 +8,8 @@ Library to periodically read sensors, filter results, and set deployment status 
 #include <stdint.h>
 #include "buffer.h"
 
-#define FILTER_NUM_AVERAGE (8)
-#define FILTER_SAMPLE_RATE_MS (50) 
+#define FILTER_NUM_AVERAGE (16)
+#define FILTER_SAMPLE_RATE_MS (20) 
 
 class Filter 
 {
@@ -43,15 +43,18 @@ class Filter
                 // Returns: current rocket state
                 ROCKET_STATE getState();
 
+                // Current state of rocket flight 
+                ROCKET_STATE flightState = ROCKET_STATE::LAUNCH_WAIT; 
+
         private: 
                 // Acceleration Buffers
-                uint32_t xAccelSum, yAccelSum, zAccelSum; 
+                int32_t xAccelSum, yAccelSum, zAccelSum; 
                 Buf<int16_t, FILTER_NUM_AVERAGE> xAccelBuf; 
                 Buf<int16_t, FILTER_NUM_AVERAGE> yAccelBuf; 
                 Buf<int16_t, FILTER_NUM_AVERAGE> zAccelBuf; 
 
                 // Gyro Buffers 
-                uint32_t xRotSum, yRotSum, zRotSum; 
+                int32_t xRotSum, yRotSum, zRotSum; 
                 // Buf<int16_t, FILTER_NUM_AVERAGE> xRotBuf; 
                 // Buf<int16_t, FILTER_NUM_AVERAGE> yRotBuf; 
                 // Buf<int16_t, FILTER_NUM_AVERAGE> zRotBuf; 
@@ -62,9 +65,6 @@ class Filter
 
                 // Time used for sample function
                 uint32_t lastSampleTime = 0;
-
-                // Current state of rocket flight 
-                ROCKET_STATE flightState = ROCKET_STATE::LAUNCH_WAIT; 
 
                 void checkFlightState(); 
 }; 

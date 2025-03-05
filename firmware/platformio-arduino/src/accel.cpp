@@ -15,6 +15,7 @@ void Accelerometer::init()
 
 void Accelerometer::read()
 {
+        while (!(kxAccel.dataReady())) { ; }
         kxAccel.getRawAccelData(&kxData);
         return; 
 }

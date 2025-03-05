@@ -4,6 +4,7 @@
 #include "baro.h"
 #include "accel.h"
 #include "gpio.h"
+#include "storage.h"
 
 
 
@@ -37,7 +38,6 @@ void Filter::sample()
                 }
 
                 // Read from the Accelerometer
-                //! Note: Might need to check if registers contain valid data? 
                 accel.read(); 
                 // Store X
                 if (xAccelBuf.getFreeElements() == 0) { // if no room
@@ -73,6 +73,34 @@ void Filter::sample()
 
                 // update flight states 
                 checkFlightState(); 
+
+                // if not landed and not waiting, store to fram
+                if ((flightState != ROCKET_STATE::LAUNCH_WAIT) && (flightState != ROCKET_STATE::LANDED)) {
+                        if (pressureBuf.getFreeElements() == 0) { // if no room
+                                const uint32_t * temp_ptr = pressureBuf.dequeue(); 
+                                pressureSum -= (*temp_ptr); 
+                                // store the pressure 
+                                const uint32_t temp_pressure = (*temp_ptr);
+                                storage.writePressure(millis(), temp_pressure); 
+                        }
+                        int16_t X=INT16_MAX, Y=INT16_MAX, Z=INT16_MAX; 
+                        if (xAccelBuf.getFreeElements() == 0) { // if no room
+                                const int16_t * temp_ptr = xAccelBuf.dequeue(); 
+                                xAccelSum -= (*temp_ptr); 
+                                X = (*temp_ptr); 
+                        }
+                        if (yAccelBuf.getFreeElements() == 0) { // if no room
+                                const int16_t * temp_ptr = yAccelBuf.dequeue(); 
+                                yAccelSum -= (*temp_ptr); 
+                                Y = (*temp_ptr);
+                        }
+                        if (zAccelBuf.getFreeElements() == 0) { // if no room
+                                const int16_t * temp_ptr = zAccelBuf.dequeue(); 
+                                zAccelSum -= (*temp_ptr); 
+                                Z = (*temp_ptr);
+                        }
+                        storage.writeAccel(millis(), X, Y, Z); 
+                }
         }
         return; 
 }

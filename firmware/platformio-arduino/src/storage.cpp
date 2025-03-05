@@ -6,6 +6,7 @@
 #include "board.h"
 #include "gpio.h"
 #include <Adafruit_FRAM_SPI.h>
+#include "LED.h"
 
 /* ---------------------- STORAGE_CLASS_IMPLEMENTATION ---------------------- */
 Storage::Storage()
@@ -35,7 +36,11 @@ uint8_t Storage::init()
         // Check the contents of the FRAM to determine status 
         if (fram.read8(0) == 0) {
                 // fram is empty, make sure that it is 
+                SET_R(1); 
+                SET_G(1); 
                 eraseAll(); 
+                SET_R(0);
+                SET_G(0); 
         } else {
                 // fram is not empty, set state
                 state = CONTAINS_FLIGHT; 

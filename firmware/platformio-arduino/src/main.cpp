@@ -107,6 +107,7 @@ void loop()
         // 'S' - Status: Altimeter will print its current state 
         // 'E' - Erase: Altimeter will erase its internal storage 
         // 'R' - Read: Prints stored data to terminal in hex 
+        // 'B' - Boost: Set the flight state to boost for debugging
         // Using very simple command structure for handling serial data 
         // Single character command simplifies the command identificiation
         uint8_t r = 0; 
@@ -202,6 +203,7 @@ void loop()
                                         Serial.print(F("Erasing Storage..."));
                                         storage.eraseAll();
                                         Serial.println(F("Done."));
+                                        filter.flightState = Filter::ROCKET_STATE::LAUNCH_WAIT;
                                         break;
                                 case ('R'):
                                         // READ ---------------
@@ -221,15 +223,19 @@ void loop()
                                         SET_R(0); 
                                         Serial.println(F("Done."));
                                         break;
+                                case ('B'):
+                                        // BOOST ------------
+                                        filter.flightState = Filter::ROCKET_STATE::BOOST;
                                 default:
                                         break; 
                         }
                         Serial.print('\n'); // newline spacer 
                         Serial.print('\r');
+                        SET_G(0); 
                 }
                 
         }
-        SET_G(0); 
+        
         // ----------------------------------------------------------
 
         // display current state as LED 
