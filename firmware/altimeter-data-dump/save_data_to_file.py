@@ -70,16 +70,19 @@ if __name__ == '__main__':
                 byte_val = data_list.pop(0)
                 if ('50' in byte_val):
                         # acceleration packet 
-                        time = int('0x' + data_list[3],16)*(16**3) + int('0x' + data_list[2],16)*(16**2) + int('0x' + data_list[1], 16)*16 + int('0x' + data_list[0],16)
+                        time = int('0x' + data_list[3],16)*(16**6) + int('0x' + data_list[2],16)*(16**4) + int('0x' + data_list[1], 16)*(16**2) + int('0x' + data_list[0],16)
 
-                        # remove data from the list 
-                        data_list = data_list[10::]
+                        # accelPkt has 10 bytes of data 
+                        data_list = data_list[10::] # remove data from the list 
                         print(time / 1000)
                         #print(data_list[0:20])
 
                 elif ('46' in byte_val):
-                        # pressure packet
-                        data_list = data_list[8::]
+                        # pressure packet 
+                        time = int('0x' + data_list[3],16)*(16**6) + int('0x' + data_list[2],16)*(16**4) + int('0x' + data_list[1], 16)*(16**2) + int('0x' + data_list[0],16)
+
+                        # pressure packet has 8 bytes of data
+                        data_list = data_list[8::] # remove data from the list 
                         pass
                 else:
                         # end of data
