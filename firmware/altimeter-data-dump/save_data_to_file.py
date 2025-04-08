@@ -60,11 +60,21 @@ if __name__ == '__main__':
         while ('Done.' not in read_line):
                 read_line = ser.readline().decode('ASCII').strip()
         raw_output_file.close() 
+
+        # open output csv
+        csv_output_file_path = input('Enter the path for the decoded CSV output file: ')
+        csv_output_pressure_file = open(csv_output_file_path+'Pressure', mode='a', newline='')
+        csvwriter_pressure = csv.writer(csv_output_pressure_file)
+        csvwriter_pressure.writerow(['Time (s)', 'Pressure (MilliBar)'])
+        csv_output_accel_file = open(csv_output_file_path+'Accel', mode='a', newline='')
+        csvwriter_accel = csv.writer(csv_output_accel_file)
+        csvwriter_accel.writerow(['Time (s)', 'AccelX (g)', 'AccelY (g)', 'AccelZ (g)'])
         
         # decode the packets and store data into nested lists
         print('Decoding Packets')
         accel_data = []
         pressure_data = []
+        start_time_ms = -1
         for i in range(len(data_list)):
                 # read the packet header byte 
                 byte_val = data_list.pop(0)
@@ -72,25 +82,53 @@ if __name__ == '__main__':
                         # acceleration packet 
                         time = int('0x' + data_list[3],16)*(16**6) + int('0x' + data_list[2],16)*(16**4) + int('0x' + data_list[1], 16)*(16**2) + int('0x' + data_list[0],16)
 
+                        if start_time_ms == -1:
+                                start_time_ms = time
+
+                        time -= start_time_ms
+
+                        # decode acceleration data
+                        accel_x_int = int('0x' + data_list[5], 16)*(16**2) + int('0x' + data_list[4],16)
+                        accel_y_int = int('0x' + data_list[7], 16)*(16**2) + int('0x' + data_list[6],16)
+                        accel_z_int = int('0x' + data_list[9], 16)*(16**2) + int('0x' + data_list[8],16)
+                        accel_x_g = float(accel_x_int) * float(128.0 / float(1 << 16))
+                        accel_y_g = float(accel_y_int) * float(128.0 / float(1 << 16))
+                        accel_z_g = float(accel_z_int) * float(128.0 / float(1 << 16))
+
+                        csvwriter_accel.writerow([f'{time/1000.0:.4f}', f'{accel_x_g:.4f}', f'{accel_y_g:.4f}', f'{accel_z_g:.4f}'])
+                        print(f'AccelPkt, T:{time/1000.0:.0f}, X:{accel_x_g:.2f}g, Y:{accel_y_g:.2f}g, Z:{accel_z_g:.2f}g')
+
                         # accelPkt has 10 bytes of data 
                         data_list = data_list[10::] # remove data from the list 
-                        print(time / 1000)
-                        #print(data_list[0:20])
 
                 elif ('46' in byte_val):
                         # pressure packet 
                         time = int('0x' + data_list[3],16)*(16**6) + int('0x' + data_list[2],16)*(16**4) + int('0x' + data_list[1], 16)*(16**2) + int('0x' + data_list[0],16)
 
+                        if start_time_ms == -1:
+                                start_time_ms = time
+
+                        time -= start_time_ms
+                        
+                        # decode the pressure value from its FP representation 
+                        pressure_int = int('0x' + data_list[7],16)*(16**6) + int('0x' + data_list[6],16)*(16**4) + int('0x' + data_list[5], 16)*(16**2) + int('0x' + data_list[4],16)
+                        pressureMB = float(pressure_int) / (float(1 << 16))
+
+                        csvwriter_pressure.writerow([f'{time/1000.0:.4f}', f'{pressureMB:.4f}'])
+                        print(f'PressurePkt, T:{time/1000:.0f}, P:{pressureMB:.2f} millibar')
+
                         # pressure packet has 8 bytes of data
                         data_list = data_list[8::] # remove data from the list 
-                        pass
                 else:
                         # end of data
                         print('end of data') 
                         print(data_list[0:20])
                         break 
-        
 
+        # close the csv files 
+        csv_output_pressure_file.close()
+        csv_output_accel_file.close()
+        
         # release the serial port 
         ser.close() 
 
