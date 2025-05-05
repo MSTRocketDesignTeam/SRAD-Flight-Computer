@@ -143,10 +143,11 @@ void Filter::checkFlightState()
 {
         const float LAUNCH_ACCEL_MAG_GS = 4.0f;
         const float APOGEE_ACCEL_MAG_GS = 1.1f; 
-        const float APOGEE_PRESSURE_MB = 933.291f; // use website to calculate pressure threshold accounting for land elevation: https://www.mide.com/air-pressure-at-altitude-calculator
+        //! 25000ft above sea level, rocket must be above for apogee to detect
+        const float APOGEE_PRESSURE_MB = 383.0586f; // use website to calculate pressure threshold accounting for land elevation: https://www.mide.com/air-pressure-at-altitude-calculator
         const float LANDED_GS_MIN = 0.9f; 
         const float LANDED_GS_MAX = 1.1f; 
-        const float LANDED_PRESSURE_MIN = 957.5225f; 
+        const float LANDED_PRESSURE_MIN = 785.4041f; //! 7000ft above sea level, FAR is ~2000ft, rocket must be within 5000ft of gnd for landed state to work 
 
         static uint32_t temp32 = 0; 
 

@@ -32,6 +32,10 @@ void setup()
         filter.init(); 
         delay(1); 
 
+        //! CHANNEL 2 ENABLED AS CAMERA POWER
+        delay(1000); 
+        gpioSet(PIN::CH2_FIRE, PIN_STATE::HIGH_S); 
+
 
 
 

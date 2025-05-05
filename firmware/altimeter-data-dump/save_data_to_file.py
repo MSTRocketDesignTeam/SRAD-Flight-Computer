@@ -108,17 +108,19 @@ if __name__ == '__main__':
                                         else: 
                                                 # msb not set 
                                                 return val 
-                        
-                                accel_x_int = twos_adjust(accel_x_int, data_list[5])
-                                accel_y_int = twos_adjust(accel_y_int, data_list[7])
-                                accel_z_int = twos_adjust(accel_z_int, data_list[9])
+                                
+                                #! issue with some samples maxing out +/-64G, discard improper samples
+                                if ((accel_x_int != 32767) or (accel_y_int != 32767) or (accel_z_int != 32767)):
+                                        accel_x_int = twos_adjust(accel_x_int, data_list[5])
+                                        accel_y_int = twos_adjust(accel_y_int, data_list[7])
+                                        accel_z_int = twos_adjust(accel_z_int, data_list[9])
 
-                                accel_x_g = float(accel_x_int) * float(1.0 / 512.0)
-                                accel_y_g = float(accel_y_int) * float(1.0 / 512.0)
-                                accel_z_g = float(accel_z_int) * float(1.0 / 512.0)
+                                        accel_x_g = float(accel_x_int) * float(1.0 / 512.0)
+                                        accel_y_g = float(accel_y_int) * float(1.0 / 512.0)
+                                        accel_z_g = float(accel_z_int) * float(1.0 / 512.0)
 
-                                csvwriter_accel.writerow([f'{time/1000.0:.4f}', f'{accel_x_g:.4f}', f'{accel_y_g:.4f}', f'{accel_z_g:.4f}'])
-                                print(f'AccelPkt, T:{time/1000.0:.0f}, X:{accel_x_g:.2f}g, Y:{accel_y_g:.2f}g, Z:{accel_z_g:.2f}g')
+                                        csvwriter_accel.writerow([f'{time/1000.0:.4f}', f'{accel_x_g:.4f}', f'{accel_y_g:.4f}', f'{accel_z_g:.4f}'])
+                                        print(f'AccelPkt, T:{time/1000.0:.0f}, X:{accel_x_g:.2f}g, Y:{accel_y_g:.2f}g, Z:{accel_z_g:.2f}g')
 
                                 # accelPkt has 10 bytes of data 
                                 data_list = data_list[10::] # remove data from the list 
@@ -182,5 +184,5 @@ if __name__ == '__main__':
                 ser.close() 
         except Exception as e:
                 print(f'{e}')
-                input("(Press Enter To Exit)")
+        input("(Press Enter To Exit)")
 
