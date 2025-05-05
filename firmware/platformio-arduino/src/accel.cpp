@@ -8,7 +8,8 @@ void Accelerometer::init()
         kxAccel.enableAccel(false); // disable so that settings can be changed
         kxAccel.setRange(SFE_KX134_RANGE64G); // 64G range 
         kxAccel.enableDataEngine(); // allows for data ready bit to be set
-        kxAccel.setOutputDataRate(6); //! pg 26., 50hz //! Need to verify? 
+        kxAccel.setOutputDataRate(7); // pg 26., 100hz 
+        kxAccel.enableSampleBuffer(false); // want the read sample to always be new 
         kxAccel.enableAccel(true); // settings done, enable accelerometer
         return; 
 }
@@ -16,7 +17,7 @@ void Accelerometer::init()
 void Accelerometer::read()
 {
         while (!(kxAccel.dataReady())) { ; }
-        kxAccel.getRawAccelData(&kxData);
+        kxAccel.getRawAccelRegisterData(&kxData);
         return; 
 }
 

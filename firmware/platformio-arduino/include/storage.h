@@ -109,6 +109,13 @@ class Storage
                         uint32_t pressure;
                 };
 
+                struct __attribute__((packed)) EventPkt
+                {
+                        uint8_t header; 
+                        uint32_t time_ms; 
+                        uint8_t eventID; 
+                };
+
                 // Desc: Write an acceleration Packet to the FRAM
                 // Returns: 0: success, 1: error 
                 uint8_t writeAccel(const uint32_t time, const uint16_t xAccel, 
@@ -128,6 +135,16 @@ class Storage
                                 const uint16_t yAccel, const uint16_t zAccel,
                                 const uint16_t xRot, const uint16_t yRot, 
                                 const uint16_t zRot, const uint32_t pressure);
+
+                enum EVENT_ID : uint8_t 
+                {
+                        BOOST_START=0,
+                        APOGEE_START=1,
+                        FIRE_PYRO=2,
+                        LAND_START=3
+                };
+
+                uint8_t writeEvent(const uint32_t time, const EVENT_ID event); 
 
                 // Desc: prints the contents of the FRAM to the Serial port (does not decode packets)
                 // Returns: 0: success, 1: error 

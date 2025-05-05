@@ -151,6 +151,16 @@ uint8_t Storage::writeAccelGyroPressure(const uint32_t time, const uint16_t xAcc
         return writePkt(&pkt, sizeof(pkt));
 }
 
+uint8_t Storage::writeEvent(const uint32_t time, const EVENT_ID event)
+{
+        EventPkt pkt = {
+                (NORMAL | EVENT),
+                event
+        }; 
+
+        return writePkt(&pkt, sizeof(pkt)); 
+}
+
 uint8_t Storage::printFRAM()
 {
         uint32_t timeoutStartMS = millis(); 

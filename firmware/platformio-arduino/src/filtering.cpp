@@ -146,7 +146,7 @@ void Filter::checkFlightState()
         const float APOGEE_PRESSURE_MB = 933.291f; // use website to calculate pressure threshold accounting for land elevation: https://www.mide.com/air-pressure-at-altitude-calculator
         const float LANDED_GS_MIN = 0.9f; 
         const float LANDED_GS_MAX = 1.1f; 
-        const float LANDED_PRESSURE_MAX = 957.5225f; 
+        const float LANDED_PRESSURE_MIN = 957.5225f; 
 
         static uint32_t temp32 = 0; 
 
@@ -161,6 +161,7 @@ void Filter::checkFlightState()
                                 temp = sqrt(pow(getXAccelAvg(),2) + pow(getYAccelAvg(),2) + pow(getZAccelAvg(),2));
                                 // if magnitude greater than threshold, launch detected
                                 if (temp > LAUNCH_ACCEL_MAG_GS) {
+                                        storage.writeEvent(millis(), Storage::BOOST_START); 
                                         flightState = ROCKET_STATE::BOOST; 
                                         temp32 = millis(); 
                                 }
@@ -171,6 +172,8 @@ void Filter::checkFlightState()
                         temp = sqrt(pow(getXAccelAvg(),2) + pow(getYAccelAvg(),2) + pow(getZAccelAvg(),2));
                         if ((temp < APOGEE_ACCEL_MAG_GS) && (getPressureAvg() < APOGEE_PRESSURE_MB) && ((millis() - temp32) > 3000)) {
                                 temp32 = millis(); 
+                                storage.writeEvent(millis(), Storage::APOGEE_START);
+                                storage.writeEvent(millis(), Storage::FIRE_PYRO);
                                 flightState = ROCKET_STATE::APOGEE; 
                         }
                         break;
@@ -185,8 +188,9 @@ void Filter::checkFlightState()
                         break; 
                 case (ROCKET_STATE::FALL):
                         temp = sqrt(pow(getXAccelAvg(),2) + pow(getYAccelAvg(),2) + pow(getZAccelAvg(),2));
-                        if ((temp < LANDED_GS_MAX) && (temp > LANDED_GS_MIN) && (getPressureAvg() < LANDED_PRESSURE_MAX) && ((millis() - temp32) > 4000)) {
+                        if ((temp < LANDED_GS_MAX) && (temp > LANDED_GS_MIN) && (getPressureAvg() > LANDED_PRESSURE_MIN) && ((millis() - temp32) > 15000)) {
                                 flightState = ROCKET_STATE::LANDED; 
+                                storage.writeEvent(millis(), Storage::LAND_START);
                                 temp32 = millis(); 
                         }
                         break;

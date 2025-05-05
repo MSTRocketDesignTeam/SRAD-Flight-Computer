@@ -1,0 +1,1 @@
+pyinstaller save_data_to_file.py --onefile
