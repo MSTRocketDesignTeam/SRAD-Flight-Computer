@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "d6448807-ed30-4d60-9411-768808a397c5")
 	(paper "USLetter")
 	(title_block
@@ -97,17 +97,17 @@
 				)
 			)
 			(symbol "ZXCT1110_1_1"
-				(pin no_connect line
-					(at 0 2.54 270)
-					(length 2.54) hide
-					(name "NC"
+				(pin input line
+					(at -5.08 5.08 270)
+					(length 2.54)
+					(name "Vs+"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "1"
+					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -126,6 +126,25 @@
 						)
 					)
 					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at 0 2.54 270)
+					(length 2.54)
+					(hide yes)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -152,24 +171,6 @@
 					)
 				)
 				(pin input line
-					(at -5.08 5.08 270)
-					(length 2.54)
-					(name "Vs+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
 					(at 5.08 5.08 270)
 					(length 2.54)
 					(name "Vs-"
@@ -188,10 +189,13 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Connector:Screw_Terminal_01x02"
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -268,9 +272,10 @@
 						(type background)
 					)
 				)
-				(circle
-					(center 0 -2.54)
-					(radius 0.635)
+				(polyline
+					(pts
+						(xy -0.5334 0.3302) (xy 0.3302 -0.508)
+					)
 					(stroke
 						(width 0.1524)
 						(type default)
@@ -293,7 +298,7 @@
 				)
 				(polyline
 					(pts
-						(xy -0.5334 0.3302) (xy 0.3302 -0.508)
+						(xy -0.3556 0.508) (xy 0.508 -0.3302)
 					)
 					(stroke
 						(width 0.1524)
@@ -315,10 +320,9 @@
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy -0.3556 0.508) (xy 0.508 -0.3302)
-					)
+				(circle
+					(center 0 0)
+					(radius 0.635)
 					(stroke
 						(width 0.1524)
 						(type default)
@@ -328,7 +332,7 @@
 					)
 				)
 				(circle
-					(center 0 0)
+					(center 0 -2.54)
 					(radius 0.635)
 					(stroke
 						(width 0.1524)
@@ -375,10 +379,13 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Connector:Screw_Terminal_01x04"
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -455,43 +462,9 @@
 						(type background)
 					)
 				)
-				(circle
-					(center 0 -5.08)
-					(radius 0.635)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 0 -2.54)
-					(radius 0.635)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
 				(polyline
 					(pts
-						(xy -0.5334 -4.7498) (xy 0.3302 -5.588)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.5334 -2.2098) (xy 0.3302 -3.048)
+						(xy -0.5334 2.8702) (xy 0.3302 2.032)
 					)
 					(stroke
 						(width 0.1524)
@@ -515,7 +488,7 @@
 				)
 				(polyline
 					(pts
-						(xy -0.5334 2.8702) (xy 0.3302 2.032)
+						(xy -0.5334 -2.2098) (xy 0.3302 -3.048)
 					)
 					(stroke
 						(width 0.1524)
@@ -527,7 +500,7 @@
 				)
 				(polyline
 					(pts
-						(xy -0.3556 -4.572) (xy 0.508 -5.4102)
+						(xy -0.5334 -4.7498) (xy 0.3302 -5.588)
 					)
 					(stroke
 						(width 0.1524)
@@ -539,7 +512,7 @@
 				)
 				(polyline
 					(pts
-						(xy -0.3556 -2.032) (xy 0.508 -2.8702)
+						(xy -0.3556 3.048) (xy 0.508 2.2098)
 					)
 					(stroke
 						(width 0.1524)
@@ -563,8 +536,31 @@
 				)
 				(polyline
 					(pts
-						(xy -0.3556 3.048) (xy 0.508 2.2098)
+						(xy -0.3556 -2.032) (xy 0.508 -2.8702)
 					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.3556 -4.572) (xy 0.508 -5.4102)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 2.54)
+					(radius 0.635)
 					(stroke
 						(width 0.1524)
 						(type default)
@@ -585,7 +581,18 @@
 					)
 				)
 				(circle
-					(center 0 2.54)
+					(center 0 -2.54)
+					(radius 0.635)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 -5.08)
 					(radius 0.635)
 					(stroke
 						(width 0.1524)
@@ -668,11 +675,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "D_Zener_1"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -751,10 +763,10 @@
 			(symbol "D_Zener_1_0_1"
 				(polyline
 					(pts
-						(xy 1.27 0) (xy -1.27 0)
+						(xy -1.27 -1.27) (xy -1.27 1.27) (xy -0.762 1.27)
 					)
 					(stroke
-						(width 0)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -763,10 +775,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.27 -1.27) (xy -1.27 1.27) (xy -0.762 1.27)
+						(xy 1.27 0) (xy -1.27 0)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -788,6 +800,24 @@
 			)
 			(symbol "D_Zener_1_1_1"
 				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
 					(at 3.81 0 180)
 					(length 2.54)
 					(name "A"
@@ -807,7 +837,8 @@
 				)
 				(pin no_connect line
 					(at 6.35 2.54 0)
-					(length 2.54) hide
+					(length 2.54)
+					(hide yes)
 					(name "NC"
 						(effects
 							(font
@@ -823,30 +854,17 @@
 						)
 					)
 				)
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:C_Small"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0.254) hide)
+				(offset 0.254)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -916,10 +934,10 @@
 			(symbol "C_Small_0_1"
 				(polyline
 					(pts
-						(xy -1.524 -0.508) (xy 1.524 -0.508)
+						(xy -1.524 0.508) (xy 1.524 0.508)
 					)
 					(stroke
-						(width 0.3302)
+						(width 0.3048)
 						(type default)
 					)
 					(fill
@@ -928,10 +946,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
 					)
 					(stroke
-						(width 0.3048)
+						(width 0.3302)
 						(type default)
 					)
 					(fill
@@ -977,9 +995,12 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:Fuse"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0)
 			)
@@ -1110,9 +1131,12 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:R"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0)
 			)
@@ -1231,11 +1255,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:R_Small"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0.254) hide)
+				(offset 0.254)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1353,6 +1382,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "SI9926CDY:SI9926CDY"
 			(exclude_from_sim no)
@@ -1411,43 +1441,9 @@
 				)
 			)
 			(symbol "SI9926CDY_0_1"
-				(circle
-					(center -3.048 -3.81)
-					(radius 0.254)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(circle
-					(center -3.048 7.62)
-					(radius 0.254)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
 				(polyline
 					(pts
-						(xy -8.255 -8.255) (xy -1.27 -8.255)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -8.255 -3.81) (xy -3.81 -3.81)
+						(xy -8.255 7.62) (xy -3.81 7.62)
 					)
 					(stroke
 						(width 0)
@@ -1471,7 +1467,7 @@
 				)
 				(polyline
 					(pts
-						(xy -8.255 7.62) (xy -3.81 7.62)
+						(xy -8.255 -3.81) (xy -3.81 -3.81)
 					)
 					(stroke
 						(width 0)
@@ -1483,199 +1479,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.54 -5.588) (xy -3.556 -5.588)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.54 5.842) (xy -3.556 5.842)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 -6.096) (xy -1.27 -8.255)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 5.334) (xy -1.27 3.175)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 -5.588) (xy -1.778 -5.588)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 5.842) (xy -1.778 5.842)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.635 -6.096) (xy -3.175 -6.096)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.635 5.334) (xy -3.175 5.334)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 -5.588) (xy 0 -5.588)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 5.842) (xy 0 5.842)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -3.81) (xy 0.508 -3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 7.62) (xy 0.508 7.62)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 7.62 -8.255) (xy 4.445 -8.255)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 7.62 -3.81) (xy 2.54 -3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 7.62 3.175) (xy 4.445 3.175)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 7.62 7.62) (xy 2.54 7.62)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -3.81 -3.81) (xy -1.27 -3.81) (xy -1.27 -5.588)
+						(xy -8.255 -8.255) (xy -1.27 -8.255)
 					)
 					(stroke
 						(width 0)
@@ -1699,7 +1503,7 @@
 				)
 				(polyline
 					(pts
-						(xy 4.445 -8.255) (xy 3.175 -8.255) (xy 3.175 -3.81)
+						(xy -3.81 -3.81) (xy -1.27 -3.81) (xy -1.27 -5.588)
 					)
 					(stroke
 						(width 0)
@@ -1709,9 +1513,20 @@
 						(type none)
 					)
 				)
+				(circle
+					(center -3.048 7.62)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
 				(polyline
 					(pts
-						(xy 4.445 3.175) (xy 3.175 3.175) (xy 3.175 7.62)
+						(xy -3.048 5.842) (xy -3.048 8.382) (xy 0.508 8.382) (xy 0.508 5.842)
 					)
 					(stroke
 						(width 0)
@@ -1719,6 +1534,17 @@
 					)
 					(fill
 						(type none)
+					)
+				)
+				(circle
+					(center -3.048 -3.81)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
 					)
 				)
 				(polyline
@@ -1735,7 +1561,43 @@
 				)
 				(polyline
 					(pts
-						(xy -3.048 5.842) (xy -3.048 8.382) (xy 0.508 8.382) (xy 0.508 5.842)
+						(xy -2.54 5.842) (xy -3.556 5.842)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.54 -5.588) (xy -3.556 -5.588)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 6.096) (xy -0.889 7.112) (xy -1.651 7.112) (xy -1.27 6.096)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 5.334) (xy -1.27 3.175)
 					)
 					(stroke
 						(width 0)
@@ -1759,19 +1621,7 @@
 				)
 				(polyline
 					(pts
-						(xy -1.27 6.096) (xy -0.889 7.112) (xy -1.651 7.112) (xy -1.27 6.096)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.889 -3.048) (xy -1.524 -3.429) (xy -1.524 -2.667) (xy -0.889 -3.048)
+						(xy -1.27 -6.096) (xy -1.27 -8.255)
 					)
 					(stroke
 						(width 0)
@@ -1795,7 +1645,7 @@
 				)
 				(polyline
 					(pts
-						(xy -0.762 -3.556) (xy -0.889 -3.429) (xy -0.889 -2.667) (xy -1.016 -2.54)
+						(xy -0.889 -3.048) (xy -1.524 -3.429) (xy -1.524 -2.667) (xy -0.889 -3.048)
 					)
 					(stroke
 						(width 0)
@@ -1817,6 +1667,53 @@
 						(type none)
 					)
 				)
+				(polyline
+					(pts
+						(xy -0.762 5.842) (xy -1.778 5.842)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.762 -3.556) (xy -0.889 -3.429) (xy -0.889 -2.667) (xy -1.016 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.762 -5.588) (xy -1.778 -5.588)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0.508 7.62)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
 				(circle
 					(center 0.508 -3.81)
 					(radius 0.254)
@@ -1828,8 +1725,80 @@
 						(type outline)
 					)
 				)
+				(polyline
+					(pts
+						(xy 0.635 5.334) (xy -3.175 5.334)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 -6.096) (xy -3.175 -6.096)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 5.842) (xy 0 5.842)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 -5.588) (xy 0 -5.588)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 7.62) (xy 0.508 7.62)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -3.81) (xy 0.508 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 				(circle
-					(center 0.508 7.62)
+					(center 3.175 7.62)
 					(radius 0.254)
 					(stroke
 						(width 0)
@@ -1850,15 +1819,76 @@
 						(type outline)
 					)
 				)
-				(circle
-					(center 3.175 7.62)
-					(radius 0.254)
+				(polyline
+					(pts
+						(xy 4.445 3.175) (xy 3.175 3.175) (xy 3.175 7.62)
+					)
 					(stroke
 						(width 0)
 						(type default)
 					)
 					(fill
-						(type outline)
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 4.445 -8.255) (xy 3.175 -8.255) (xy 3.175 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 7.62) (xy 2.54 7.62)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 3.175) (xy 4.445 3.175)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 -3.81) (xy 2.54 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 -8.255) (xy 4.445 -8.255)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
 					)
 				)
 			)
@@ -1947,34 +1977,16 @@
 					)
 				)
 				(pin input line
-					(at 13.335 -8.255 180)
+					(at 13.335 7.62 180)
 					(length 2.54)
-					(name "D2"
+					(name "D1"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 13.335 -3.81 180)
-					(length 2.54)
-					(name "D2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
+					(number "8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2001,16 +2013,34 @@
 					)
 				)
 				(pin input line
-					(at 13.335 7.62 180)
+					(at 13.335 -3.81 180)
 					(length 2.54)
-					(name "D1"
+					(name "D2"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "8"
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 13.335 -8.255 180)
+					(length 2.54)
+					(name "D2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2019,6 +2049,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
@@ -2098,7 +2129,8 @@
 			(symbol "GND_1_1"
 				(pin power_in line
 					(at 0 0 270)
-					(length 0) hide
+					(length 0)
+					(hide yes)
 					(name "GND"
 						(effects
 							(font
@@ -2115,7 +2147,91 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
+	)
+	(text "Chosen MOSFET: https://www.digikey.com/en/products/detail/vishay-siliconix/SI9926CDY-T1-GE3/1978863\nMax Continous FET Current: 8A\nMax Pulse FET Current: 30A\n3.3V_{GS} → R_{DS(ON)} = 17mΩ\n"
+		(exclude_from_sim no)
+		(at 135.89 29.845 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "16c9da70-137d-42fb-be61-ff71b57a7311")
+	)
+	(text "https://www.rocketryforum.com/threads/minimum-all-fire-energy-of-mjg-technologies-firewire-initiator.138423/"
+		(exclude_from_sim no)
+		(at 26.035 55.245 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4271a9a9-8c5c-46bb-9723-1d2e9125af69")
+	)
+	(text "Example Ematch: https://electricmatch.com/pyrotechnics/see/6/5/mjg-firewire-initiator--standard\nResistance: 1 +/- 0.2Ω\nRecommended Current: 1A\nMinimum Recommended Current: 0.75A\nMaximum Test Current: 0.04A\n"
+		(exclude_from_sim no)
+		(at 26.67 31.75 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "46084a5b-64f2-4863-88c7-a5adc9547a27")
+	)
+	(text "FET:"
+		(exclude_from_sim no)
+		(at 135.89 20.955 0)
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.4)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "5ddbefd4-fde5-4d5a-9ef6-6c0dfc3278cb")
+	)
+	(text "EMATCH:"
+		(exclude_from_sim no)
+		(at 26.67 20.955 0)
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.4)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "64c13f2d-2ebb-4794-ab49-e7e7ab178511")
+	)
+	(text "PYRO CHANNELS AND SENSE"
+		(exclude_from_sim no)
+		(at 19.05 71.12 0)
+		(effects
+			(font
+				(size 2.52 2.52)
+				(thickness 0.504)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "b5bd472b-88f3-4ee3-b0f6-425af2e6a695")
+	)
+	(text "In case of dead short on one pyro channel, \nan insane amount of current (50A-100A) will\nbe drawn (or attempted). Best case scenario the \nMCU BOR and everything is okay. Worst case scenario\nthe FET fails closed and the entire board / battery\ncatches fire. \n\nThe 15A fuses should fail, preventing the above\nfailures from a shorted pyro channel.  "
+		(exclude_from_sim no)
+		(at 90.805 159.385 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left bottom)
+		)
+		(uuid "d9ab4001-52b7-4de4-9807-76ee24d59421")
 	)
 	(junction
 		(at 173.355 124.46)
@@ -3181,92 +3297,8 @@
 		)
 		(uuid "fc7d358a-9693-4682-b24d-f9a4893697ea")
 	)
-	(text "Chosen MOSFET: https://www.digikey.com/en/products/detail/vishay-siliconix/SI9926CDY-T1-GE3/1978863\nMax Continous FET Current: 8A\nMax Pulse FET Current: 30A\n3.3V_{GS} → R_{DS(ON)} = 17mΩ\n"
-		(exclude_from_sim no)
-		(at 135.89 29.845 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "16c9da70-137d-42fb-be61-ff71b57a7311")
-	)
-	(text "https://www.rocketryforum.com/threads/minimum-all-fire-energy-of-mjg-technologies-firewire-initiator.138423/"
-		(exclude_from_sim no)
-		(at 26.035 55.245 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4271a9a9-8c5c-46bb-9723-1d2e9125af69")
-	)
-	(text "Example Ematch: https://electricmatch.com/pyrotechnics/see/6/5/mjg-firewire-initiator--standard\nResistance: 1 +/- 0.2Ω\nRecommended Current: 1A\nMinimum Recommended Current: 0.75A\nMaximum Test Current: 0.04A\n"
-		(exclude_from_sim no)
-		(at 26.67 31.75 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "46084a5b-64f2-4863-88c7-a5adc9547a27")
-	)
-	(text "FET:"
-		(exclude_from_sim no)
-		(at 135.89 20.955 0)
-		(effects
-			(font
-				(size 2 2)
-				(thickness 0.4)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "5ddbefd4-fde5-4d5a-9ef6-6c0dfc3278cb")
-	)
-	(text "EMATCH:"
-		(exclude_from_sim no)
-		(at 26.67 20.955 0)
-		(effects
-			(font
-				(size 2 2)
-				(thickness 0.4)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "64c13f2d-2ebb-4794-ab49-e7e7ab178511")
-	)
-	(text "PYRO CHANNELS AND SENSE"
-		(exclude_from_sim no)
-		(at 19.05 71.12 0)
-		(effects
-			(font
-				(size 2.52 2.52)
-				(thickness 0.504)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "b5bd472b-88f3-4ee3-b0f6-425af2e6a695")
-	)
-	(text "In case of dead short on one pyro channel, \nan insane amount of current (50A-100A) will\nbe drawn (or attempted). Best case scenario the \nMCU BOR and everything is okay. Worst case scenario\nthe FET fails closed and the entire board / battery\ncatches fire. \n\nThe 15A fuses should fail, preventing the above\nfailures from a shorted pyro channel.  "
-		(exclude_from_sim no)
-		(at 90.805 159.385 0)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left bottom)
-		)
-		(uuid "d9ab4001-52b7-4de4-9807-76ee24d59421")
-	)
 	(label "VBAT_SWITCHED"
 		(at 50.165 88.265 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3277,7 +3309,6 @@
 	)
 	(label "PYRO_SUPPLY_MONITORED."
 		(at 114.3 88.265 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3288,7 +3319,6 @@
 	)
 	(label "CH1-."
 		(at 128.905 90.805 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3299,7 +3329,6 @@
 	)
 	(label "CH2-F"
 		(at 143.51 140.97 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3310,7 +3339,6 @@
 	)
 	(label "CH2_GATE."
 		(at 215.9 128.905 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3321,7 +3349,6 @@
 	)
 	(label "CH1_GATE."
 		(at 215.9 117.475 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3332,7 +3359,6 @@
 	)
 	(label "CH2-."
 		(at 128.905 95.885 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3343,7 +3369,6 @@
 	)
 	(label "CH1-F"
 		(at 143.51 113.03 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3355,7 +3380,6 @@
 	(hierarchical_label "ARMED"
 		(shape output)
 		(at 63.5 100.33 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3367,7 +3391,6 @@
 	(hierarchical_label "CH2_DETECT"
 		(shape output)
 		(at 162.56 149.86 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3379,7 +3402,6 @@
 	(hierarchical_label "CH1_FIRE"
 		(shape input)
 		(at 241.935 117.475 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3391,7 +3413,6 @@
 	(hierarchical_label "VBAT"
 		(shape input)
 		(at 31.75 88.265 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3403,7 +3424,6 @@
 	(hierarchical_label "CH1_DETECT"
 		(shape output)
 		(at 163.195 121.92 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3415,7 +3435,6 @@
 	(hierarchical_label "CH2_FIRE"
 		(shape input)
 		(at 241.935 137.16 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3427,7 +3446,6 @@
 	(hierarchical_label "CURRENT_SENSE"
 		(shape output)
 		(at 98.425 106.68 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)

@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "54cce219-8b98-4e71-96c4-f9ee784aa3bc")
 	(paper "USLetter")
 	(title_block
@@ -12,7 +12,9 @@
 	(lib_symbols
 		(symbol "Connector_Generic:Conn_01x02"
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -88,14 +90,14 @@
 			)
 			(symbol "Conn_01x02_1_1"
 				(rectangle
-					(start -1.27 -2.413)
-					(end 0 -2.667)
+					(start -1.27 1.27)
+					(end 1.27 -3.81)
 					(stroke
-						(width 0.1524)
+						(width 0.254)
 						(type default)
 					)
 					(fill
-						(type none)
+						(type background)
 					)
 				)
 				(rectangle
@@ -110,14 +112,14 @@
 					)
 				)
 				(rectangle
-					(start -1.27 1.27)
-					(end 1.27 -3.81)
+					(start -1.27 -2.413)
+					(end 0 -2.667)
 					(stroke
-						(width 0.254)
+						(width 0.1524)
 						(type default)
 					)
 					(fill
-						(type background)
+						(type none)
 					)
 				)
 				(pin passive line
@@ -157,11 +159,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "D_Schottky_1"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -229,10 +236,10 @@
 			(symbol "D_Schottky_1_0_1"
 				(polyline
 					(pts
-						(xy 1.27 0) (xy -1.27 0)
+						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
 					)
 					(stroke
-						(width 0)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -253,10 +260,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+						(xy 1.27 0) (xy -1.27 0)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -302,11 +309,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "D_Schottky_2"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -383,10 +395,10 @@
 			(symbol "D_Schottky_2_0_1"
 				(polyline
 					(pts
-						(xy 1.27 0) (xy -1.27 0)
+						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
 					)
 					(stroke
-						(width 0)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -407,10 +419,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+						(xy 1.27 0) (xy -1.27 0)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -456,9 +468,12 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:C"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0.254)
 			)
@@ -531,7 +546,7 @@
 			(symbol "C_0_1"
 				(polyline
 					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
+						(xy -2.032 0.762) (xy 2.032 0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -543,7 +558,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -592,11 +607,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:D_Schottky"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -673,10 +693,10 @@
 			(symbol "D_Schottky_0_1"
 				(polyline
 					(pts
-						(xy 1.27 0) (xy -1.27 0)
+						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
 					)
 					(stroke
-						(width 0)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -697,10 +717,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+						(xy 1.27 0) (xy -1.27 0)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -710,8 +730,27 @@
 			)
 			(symbol "D_Schottky_1_1"
 				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
 					(at 3.81 0 180)
-					(length 2.54) hide
+					(length 2.54)
+					(hide yes)
 					(name "A"
 						(effects
 							(font
@@ -745,28 +784,13 @@
 						)
 					)
 				)
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:Fuse"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0)
 			)
@@ -897,6 +921,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Regulator_Linear:TPS7A05285PDBV"
 			(exclude_from_sim no)
@@ -987,24 +1012,6 @@
 			)
 			(symbol "TPS7A05285PDBV_1_1"
 				(pin power_in line
-					(at -11.43 0 0)
-					(length 2.54)
-					(name "~{SHDN}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
 					(at -11.43 2.54 0)
 					(length 2.54)
 					(name "IN"
@@ -1023,6 +1030,24 @@
 					)
 				)
 				(pin power_in line
+					(at -11.43 0 0)
+					(length 2.54)
+					(name "~{SHDN}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
 					(at 0 -10.795 90)
 					(length 2.54)
 					(name "GND"
@@ -1033,6 +1058,25 @@
 						)
 					)
 					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -10.795 90)
+					(length 2.54)
+					(hide yes)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1076,25 +1120,8 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at 0 -10.795 90)
-					(length 2.54) hide
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:+3.3V"
 			(power)
@@ -1172,7 +1199,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -1184,7 +1211,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -1198,7 +1225,8 @@
 			(symbol "+3.3V_1_1"
 				(pin power_in line
 					(at 0 0 90)
-					(length 0) hide
+					(length 0)
+					(hide yes)
 					(name "+3.3V"
 						(effects
 							(font
@@ -1215,6 +1243,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
@@ -1294,7 +1323,8 @@
 			(symbol "GND_1_1"
 				(pin power_in line
 					(at 0 0 270)
-					(length 0) hide
+					(length 0)
+					(hide yes)
 					(name "GND"
 						(effects
 							(font
@@ -1311,7 +1341,60 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
+	)
+	(text "I2C BUS"
+		(exclude_from_sim no)
+		(at 75.565 66.675 0)
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.4)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "2f571c08-e17c-4a50-b0b3-6b2bfc9911e7")
+	)
+	(text "Seth: Microcontroller - (Atmega32u4)\nSkye: High G Accelerometer - (kx134-1211)\nBen: Barometer - (ms5611)\nRiley: GPS -(m10s)\nSean Duda: Magnetometer - (bmm350)\nAriel: Telemetry Radio - (Ra-01SH)\nClifford: Storage (MB85RS2MTAPNF)\nEvan: IMU (BMI-270)\nNat: Pyro/Misc"
+		(exclude_from_sim no)
+		(at 170.18 104.775 0)
+		(effects
+			(font
+				(size 2.56 2.56)
+				(thickness 0.512)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "4fa0c92b-8176-4e71-b7d1-73d5523c5e48")
+	)
+	(text "SPI BUS"
+		(exclude_from_sim no)
+		(at 75.565 19.05 0)
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.4)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "7f3c42cd-cc2e-4f42-ac4d-3f02a9a3d71a")
+	)
+	(text "POWER"
+		(exclude_from_sim no)
+		(at 123.825 134.62 0)
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.4)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "fd6e38ea-0adf-4e60-be12-05a2f8bac0ac")
 	)
 	(junction
 		(at 153.67 147.32)
@@ -3129,61 +3212,8 @@
 		)
 		(uuid "ff679971-1193-41ec-8c3f-6bc5215932db")
 	)
-	(text "I2C BUS"
-		(exclude_from_sim no)
-		(at 75.565 66.675 0)
-		(effects
-			(font
-				(size 2 2)
-				(thickness 0.4)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "2f571c08-e17c-4a50-b0b3-6b2bfc9911e7")
-	)
-	(text "Seth: Microcontroller - (Atmega32u4)\nSkye: High G Accelerometer - (kx134-1211)\nBen: Barometer - (ms5611)\nRiley: GPS -(m10s)\nSean Duda: Magnetometer - (bmm350)\nAriel: Telemetry Radio - (Ra-01SH)\nClifford: Storage (MB85RS2MTAPNF)\nEvan: IMU (BMI-270)\nNat: Pyro/Misc"
-		(exclude_from_sim no)
-		(at 170.18 104.775 0)
-		(effects
-			(font
-				(size 2.56 2.56)
-				(thickness 0.512)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "4fa0c92b-8176-4e71-b7d1-73d5523c5e48")
-	)
-	(text "SPI BUS"
-		(exclude_from_sim no)
-		(at 75.565 19.05 0)
-		(effects
-			(font
-				(size 2 2)
-				(thickness 0.4)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "7f3c42cd-cc2e-4f42-ac4d-3f02a9a3d71a")
-	)
-	(text "POWER"
-		(exclude_from_sim no)
-		(at 123.825 134.62 0)
-		(effects
-			(font
-				(size 2 2)
-				(thickness 0.4)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "fd6e38ea-0adf-4e60-be12-05a2f8bac0ac")
-	)
 	(label "SCK"
 		(at 158.75 42.545 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3194,7 +3224,6 @@
 	)
 	(label "MOSI"
 		(at 83.82 39.37 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3205,7 +3234,6 @@
 	)
 	(label "VBUS"
 		(at 67.945 146.685 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3216,7 +3244,6 @@
 	)
 	(label "~{BARO_CS}"
 		(at 155.575 31.115 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3227,7 +3254,6 @@
 	)
 	(label "CH2_FIRE"
 		(at 18.415 149.86 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3238,7 +3264,6 @@
 	)
 	(label "CH1_FIRE"
 		(at 18.415 147.32 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3249,7 +3274,6 @@
 	)
 	(label "MISO"
 		(at 233.68 36.195 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3260,7 +3284,6 @@
 	)
 	(label "~{TEL_CS}"
 		(at 193.04 32.385 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3271,7 +3294,6 @@
 	)
 	(label "~{FRAM_HOLD}"
 		(at 72.39 130.81 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3282,7 +3304,6 @@
 	)
 	(label "TEL_BUSY"
 		(at 19.685 30.48 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3293,7 +3314,6 @@
 	)
 	(label "VBAT"
 		(at 172.085 147.32 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3304,7 +3324,6 @@
 	)
 	(label "MOSI"
 		(at 233.68 39.37 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3315,7 +3334,6 @@
 	)
 	(label "HG_INT"
 		(at 81.915 27.305 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3326,7 +3344,6 @@
 	)
 	(label "VREG_IN"
 		(at 201.93 147.32 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3337,7 +3354,6 @@
 	)
 	(label "TEL_BUSY"
 		(at 191.135 29.21 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3348,7 +3364,6 @@
 	)
 	(label "TEL_INT"
 		(at 193.675 26.67 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3359,7 +3374,6 @@
 	)
 	(label "CH1_DETECT"
 		(at 18.415 173.99 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3370,7 +3384,6 @@
 	)
 	(label "~{IMU_CS}"
 		(at 69.85 116.205 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3381,7 +3394,6 @@
 	)
 	(label "CH2_DETECT"
 		(at 18.415 176.53 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3392,7 +3404,6 @@
 	)
 	(label "CH2_FIRE"
 		(at 18.415 182.88 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3403,7 +3414,6 @@
 	)
 	(label "VBAT_DIRECT"
 		(at 135.255 147.32 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 0.63 0.63)
@@ -3414,7 +3424,6 @@
 	)
 	(label "MISO"
 		(at 61.595 36.195 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3425,7 +3434,6 @@
 	)
 	(label "PYRO_ARMED"
 		(at 18.415 137.16 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3436,7 +3444,6 @@
 	)
 	(label "PYRO_CURRENT"
 		(at 18.415 153.67 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3447,7 +3454,6 @@
 	)
 	(label "VBAT"
 		(at 67.945 150.495 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3458,7 +3464,6 @@
 	)
 	(label "CH1_FIRE"
 		(at 18.415 180.34 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3469,7 +3474,6 @@
 	)
 	(label "PYRO_CURRENT"
 		(at 18.415 186.69 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3480,7 +3484,6 @@
 	)
 	(label "TEL_INT"
 		(at 22.225 27.305 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3491,7 +3494,6 @@
 	)
 	(label "SCK"
 		(at 196.215 42.545 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3502,7 +3504,6 @@
 	)
 	(label "IMU_INT"
 		(at 118.745 27.305 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3513,7 +3514,6 @@
 	)
 	(label "MISO"
 		(at 121.285 36.195 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3524,7 +3524,6 @@
 	)
 	(label "PYRO_ARMED"
 		(at 18.415 170.18 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3535,7 +3534,6 @@
 	)
 	(label "SDA"
 		(at 83.82 86.36 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3546,7 +3544,6 @@
 	)
 	(label "~{TEL_CS}"
 		(at 69.85 123.825 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3557,7 +3554,6 @@
 	)
 	(label "MOSI"
 		(at 61.595 39.37 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3568,7 +3564,6 @@
 	)
 	(label "VBUS"
 		(at 180.975 158.115 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3579,7 +3574,6 @@
 	)
 	(label "~{IMU_CS}"
 		(at 118.745 31.115 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3590,7 +3584,6 @@
 	)
 	(label "SCK"
 		(at 61.595 42.545 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3601,7 +3594,6 @@
 	)
 	(label "~{FRAM_CS}"
 		(at 69.85 127.635 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3612,7 +3604,6 @@
 	)
 	(label "~{FRAM_CS}"
 		(at 229.87 31.75 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3623,7 +3614,6 @@
 	)
 	(label "SCK"
 		(at 121.285 42.545 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3634,7 +3624,6 @@
 	)
 	(label "~{HG_CS}"
 		(at 69.85 112.395 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3645,7 +3634,6 @@
 	)
 	(label "CH1_DETECT"
 		(at 18.415 140.97 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3656,7 +3644,6 @@
 	)
 	(label "MISO"
 		(at 83.82 36.195 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3667,7 +3654,6 @@
 	)
 	(label "MOSI"
 		(at 196.215 39.37 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3678,7 +3664,6 @@
 	)
 	(label "~{FRAM_HOLD}"
 		(at 227.33 28.575 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3689,7 +3674,6 @@
 	)
 	(label "SCK"
 		(at 233.68 42.545 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3700,7 +3684,6 @@
 	)
 	(label "SCL"
 		(at 83.82 89.535 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3711,7 +3694,6 @@
 	)
 	(label "MISO"
 		(at 158.75 36.195 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3722,7 +3704,6 @@
 	)
 	(label "CH2_DETECT"
 		(at 18.415 143.51 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -3733,7 +3714,6 @@
 	)
 	(label "MISO"
 		(at 196.215 36.195 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3744,7 +3724,6 @@
 	)
 	(label "~{HG_CS}"
 		(at 80.645 31.115 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3755,7 +3734,6 @@
 	)
 	(label "SDA"
 		(at 66.04 86.36 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3766,7 +3744,6 @@
 	)
 	(label "MOSI"
 		(at 158.75 39.37 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3777,7 +3754,6 @@
 	)
 	(label "HG_INT"
 		(at 22.86 39.37 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3788,7 +3764,6 @@
 	)
 	(label "SCK"
 		(at 83.82 42.545 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3799,7 +3774,6 @@
 	)
 	(label "SDA"
 		(at 121.285 86.36 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3810,7 +3784,6 @@
 	)
 	(label "SCL"
 		(at 121.285 89.535 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3821,7 +3794,6 @@
 	)
 	(label "VBAT"
 		(at 67.945 170.18 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3832,7 +3804,6 @@
 	)
 	(label "~{BARO_CS}"
 		(at 69.85 120.015 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3843,7 +3814,6 @@
 	)
 	(label "IMU_INT"
 		(at 22.225 34.925 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3854,7 +3824,6 @@
 	)
 	(label "SCL"
 		(at 66.04 89.535 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3865,7 +3834,6 @@
 	)
 	(label "MOSI"
 		(at 121.285 39.37 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4856,6 +4824,10 @@
 	(sheet
 		(at 165.1 24.765)
 		(size 22.86 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -4886,43 +4858,43 @@
 		)
 		(pin "SCK" output
 			(at 165.1 42.545 180)
+			(uuid "0cc043bb-43ce-44c0-b37f-339a63eb48cb")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "0cc043bb-43ce-44c0-b37f-339a63eb48cb")
 		)
 		(pin "MOSI" output
 			(at 165.1 39.37 180)
+			(uuid "f7ffab61-1d28-484e-a7f8-8791895e5908")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "f7ffab61-1d28-484e-a7f8-8791895e5908")
 		)
 		(pin "MISO" output
 			(at 165.1 36.195 180)
+			(uuid "f50dd53c-8361-439d-9513-e318a1eb8006")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "f50dd53c-8361-439d-9513-e318a1eb8006")
 		)
 		(pin "~{CS}" input
 			(at 165.1 31.115 180)
+			(uuid "23ef831d-ce02-4718-8405-0cdeded55335")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "23ef831d-ce02-4718-8405-0cdeded55335")
 		)
 		(instances
 			(project "FC"
@@ -4935,6 +4907,10 @@
 	(sheet
 		(at 31.115 167.64)
 		(size 28.575 21.59)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -4965,73 +4941,73 @@
 		)
 		(pin "VBAT" input
 			(at 59.69 170.18 0)
+			(uuid "43739320-e70e-4964-9dee-2ff3bc20988e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "43739320-e70e-4964-9dee-2ff3bc20988e")
 		)
 		(pin "ARMED" output
 			(at 31.115 170.18 180)
+			(uuid "2e3cc98a-e642-4950-b0c1-dac126a15fb3")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "2e3cc98a-e642-4950-b0c1-dac126a15fb3")
 		)
 		(pin "CURRENT_SENSE" output
 			(at 31.115 186.69 180)
+			(uuid "a505a6ea-acef-4cbd-9c60-5a13b2f259c4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "a505a6ea-acef-4cbd-9c60-5a13b2f259c4")
 		)
 		(pin "CH1_FIRE" input
 			(at 31.115 180.34 180)
+			(uuid "e0b3e110-9c66-422b-abd5-d5d544af29c1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "e0b3e110-9c66-422b-abd5-d5d544af29c1")
 		)
 		(pin "CH2_FIRE" input
 			(at 31.115 182.88 180)
+			(uuid "df03ed17-e772-46e4-a14e-0d5c2dc92672")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "df03ed17-e772-46e4-a14e-0d5c2dc92672")
 		)
 		(pin "CH2_DETECT" output
 			(at 31.115 176.53 180)
+			(uuid "4c9a7cb1-2038-4b90-89b0-3867173ba656")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "4c9a7cb1-2038-4b90-89b0-3867173ba656")
 		)
 		(pin "CH1_DETECT" output
 			(at 31.115 173.99 180)
+			(uuid "f5e72e20-d6bb-467c-b9ae-189c785a4c8c")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "f5e72e20-d6bb-467c-b9ae-189c785a4c8c")
 		)
 		(instances
 			(project "FC"
@@ -5044,6 +5020,10 @@
 	(sheet
 		(at 202.565 24.765)
 		(size 22.86 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5074,63 +5054,63 @@
 		)
 		(pin "~{CS}" input
 			(at 202.565 32.385 180)
+			(uuid "ba226e03-60d5-4daa-94a3-2e740617bbce")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "ba226e03-60d5-4daa-94a3-2e740617bbce")
 		)
 		(pin "MOSI" input
 			(at 202.565 39.37 180)
+			(uuid "c5099759-04a3-4d5f-ae51-8f48f43d2ea8")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "c5099759-04a3-4d5f-ae51-8f48f43d2ea8")
 		)
 		(pin "BUSY" output
 			(at 202.565 29.21 180)
+			(uuid "0c6be86d-374c-4f98-98d3-797ceaa6dc2f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "0c6be86d-374c-4f98-98d3-797ceaa6dc2f")
 		)
 		(pin "SCK" input
 			(at 202.565 42.545 180)
+			(uuid "be429b78-9d68-43ed-9aa5-56151cce4069")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "be429b78-9d68-43ed-9aa5-56151cce4069")
 		)
 		(pin "MISO" output
 			(at 202.565 36.195 180)
+			(uuid "8209ba02-559d-4010-a6e6-37186394ec3f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "8209ba02-559d-4010-a6e6-37186394ec3f")
 		)
 		(pin "INT" input
 			(at 202.565 26.67 180)
+			(uuid "97a579e0-685b-44cf-87d2-6e150d864ff1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "97a579e0-685b-44cf-87d2-6e150d864ff1")
 		)
 		(instances
 			(project "FC"
@@ -5143,6 +5123,10 @@
 	(sheet
 		(at 90.17 71.755)
 		(size 22.86 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5173,23 +5157,23 @@
 		)
 		(pin "SCL" input
 			(at 90.17 89.535 180)
+			(uuid "29fb59f9-3c5f-4fe2-95ce-b5d6ec449688")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "29fb59f9-3c5f-4fe2-95ce-b5d6ec449688")
 		)
 		(pin "SDA" bidirectional
 			(at 90.17 86.36 180)
+			(uuid "eace3ed1-774e-44a1-a288-ac0da6b52b10")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "eace3ed1-774e-44a1-a288-ac0da6b52b10")
 		)
 		(instances
 			(project "FC"
@@ -5202,6 +5186,10 @@
 	(sheet
 		(at 127.635 24.765)
 		(size 22.86 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5232,53 +5220,53 @@
 		)
 		(pin "MOSI" output
 			(at 127.635 39.37 180)
+			(uuid "c323a736-0fbf-4014-922b-e30ed7d4d460")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "c323a736-0fbf-4014-922b-e30ed7d4d460")
 		)
 		(pin "SCK" output
 			(at 127.635 42.545 180)
+			(uuid "6a98cb14-4527-4e28-bf49-407b17dff122")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "6a98cb14-4527-4e28-bf49-407b17dff122")
 		)
 		(pin "MISO" output
 			(at 127.635 36.195 180)
+			(uuid "48f3ab7a-7bb9-4a67-aac8-cebc2eba6f19")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "48f3ab7a-7bb9-4a67-aac8-cebc2eba6f19")
 		)
 		(pin "~{CS}" input
 			(at 127.635 31.115 180)
+			(uuid "2851f75d-60f3-4a33-b7e8-5d95371a7900")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "2851f75d-60f3-4a33-b7e8-5d95371a7900")
 		)
 		(pin "INT" output
 			(at 127.635 27.305 180)
+			(uuid "294791e8-248e-41fa-9f6f-43b2ab67365f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "294791e8-248e-41fa-9f6f-43b2ab67365f")
 		)
 		(instances
 			(project "FC"
@@ -5291,6 +5279,10 @@
 	(sheet
 		(at 31.115 21.59)
 		(size 28.575 134.62)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5321,233 +5313,233 @@
 		)
 		(pin "PYRO_CURRENT" input
 			(at 31.115 153.67 180)
+			(uuid "b8004bd0-80c1-4cd4-938a-1b417af10025")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "b8004bd0-80c1-4cd4-938a-1b417af10025")
 		)
 		(pin "TELEMETRY_INT" input
 			(at 31.115 27.305 180)
+			(uuid "a86bd101-470a-44c8-9e88-624af8a5384c")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "a86bd101-470a-44c8-9e88-624af8a5384c")
 		)
 		(pin "TELEMETRY_BUSY" input
 			(at 31.115 30.48 180)
+			(uuid "2292397a-6688-48f9-8fa1-6fba5a85f89a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "2292397a-6688-48f9-8fa1-6fba5a85f89a")
 		)
 		(pin "~{BAROMETER_CS}" output
 			(at 59.69 120.015 0)
+			(uuid "a6428b00-b296-408a-a414-15aaa504dc4d")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "a6428b00-b296-408a-a414-15aaa504dc4d")
 		)
 		(pin "~{TELEMETRY_CS}" output
 			(at 59.69 123.825 0)
+			(uuid "79fe829a-8a48-4dc1-9398-9d5efc9fc66b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "79fe829a-8a48-4dc1-9398-9d5efc9fc66b")
 		)
 		(pin "~{IMU_CS}" output
 			(at 59.69 116.205 0)
+			(uuid "f1531d31-f2b5-4e74-9de5-ee6e6727c6f5")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "f1531d31-f2b5-4e74-9de5-ee6e6727c6f5")
 		)
 		(pin "~{HG_ACCEL_CS}" output
 			(at 59.69 112.395 0)
+			(uuid "9d87b256-e576-4726-b08f-c8017b251aa8")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "9d87b256-e576-4726-b08f-c8017b251aa8")
 		)
 		(pin "~{FRAM_CS}" output
 			(at 59.69 127.635 0)
+			(uuid "78709d51-2661-4863-ac3c-2ced51206269")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "78709d51-2661-4863-ac3c-2ced51206269")
 		)
 		(pin "~{FRAM_HOLD}" output
 			(at 59.69 130.81 0)
+			(uuid "b9b6944a-25ab-47d9-a031-6c4d47daabfa")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "b9b6944a-25ab-47d9-a031-6c4d47daabfa")
 		)
 		(pin "HG_ACCEL_INT" input
 			(at 31.115 39.37 180)
+			(uuid "db625f25-8b02-48e8-b6c0-d33c67ab816f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "db625f25-8b02-48e8-b6c0-d33c67ab816f")
 		)
 		(pin "IMU_INT" input
 			(at 31.115 34.925 180)
+			(uuid "35f62b76-3ea0-4214-b7a5-cb40d6bf39a5")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "35f62b76-3ea0-4214-b7a5-cb40d6bf39a5")
 		)
 		(pin "SDA" bidirectional
 			(at 59.69 86.36 0)
+			(uuid "1381b800-6b33-436d-9d88-573582ba7bc4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "1381b800-6b33-436d-9d88-573582ba7bc4")
 		)
 		(pin "VBAT" input
 			(at 59.69 150.495 0)
+			(uuid "dfb93c42-3918-4061-9b7b-add35bc438ea")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "dfb93c42-3918-4061-9b7b-add35bc438ea")
 		)
 		(pin "CH1_FIRE" output
 			(at 31.115 147.32 180)
+			(uuid "23537cff-0bdc-4a51-95f3-d1d2488bd991")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "23537cff-0bdc-4a51-95f3-d1d2488bd991")
 		)
 		(pin "MOSI" output
 			(at 59.69 39.37 0)
+			(uuid "19ff5b50-36eb-4b03-8357-504b95aa068c")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "19ff5b50-36eb-4b03-8357-504b95aa068c")
 		)
 		(pin "SCK" output
 			(at 59.69 42.545 0)
+			(uuid "dc76b06e-17c7-4d5c-9fac-841ed5cd4617")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "dc76b06e-17c7-4d5c-9fac-841ed5cd4617")
 		)
 		(pin "CH2_DETECT" input
 			(at 31.115 143.51 180)
+			(uuid "3dfc941c-e4f7-4516-bf5c-53d70931d05f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "3dfc941c-e4f7-4516-bf5c-53d70931d05f")
 		)
 		(pin "CH1_DETECT" input
 			(at 31.115 140.97 180)
+			(uuid "0ed13ab5-3388-4540-bea3-dd4fd66cd6ff")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "0ed13ab5-3388-4540-bea3-dd4fd66cd6ff")
 		)
 		(pin "MISO" input
 			(at 59.69 36.195 0)
+			(uuid "f4602eed-e1f2-4014-89f4-58a8e9d68159")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "f4602eed-e1f2-4014-89f4-58a8e9d68159")
 		)
 		(pin "CH2_FIRE" output
 			(at 31.115 149.86 180)
+			(uuid "6e83eec2-668e-4609-b887-a1d812d8e523")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "6e83eec2-668e-4609-b887-a1d812d8e523")
 		)
 		(pin "PYRO_ARMED" input
 			(at 31.115 137.16 180)
+			(uuid "96b78ec7-e0b9-4dff-9d01-044e54f9ee25")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "96b78ec7-e0b9-4dff-9d01-044e54f9ee25")
 		)
 		(pin "SCL" bidirectional
 			(at 59.69 89.535 0)
+			(uuid "2bdd054f-f63b-4bde-8b40-e63ac2dc33c4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "2bdd054f-f63b-4bde-8b40-e63ac2dc33c4")
 		)
 		(pin "VBUS" output
 			(at 59.69 146.685 0)
+			(uuid "e8cad468-6387-498f-8a2b-1a212afeb7fa")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "e8cad468-6387-498f-8a2b-1a212afeb7fa")
 		)
 		(instances
 			(project "FC"
@@ -5560,6 +5552,10 @@
 	(sheet
 		(at 90.17 24.765)
 		(size 22.86 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5590,53 +5586,53 @@
 		)
 		(pin "INT" output
 			(at 90.17 27.305 180)
+			(uuid "2d133115-4998-4f7b-a4f3-fdf8ae43dd8d")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "2d133115-4998-4f7b-a4f3-fdf8ae43dd8d")
 		)
 		(pin "MISO" output
 			(at 90.17 36.195 180)
+			(uuid "0f484a69-7f44-442a-a390-397e3c8b2e69")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "0f484a69-7f44-442a-a390-397e3c8b2e69")
 		)
 		(pin "SCK" input
 			(at 90.17 42.545 180)
+			(uuid "c9bcb923-91fd-4ec9-bcce-027d1bd5140f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "c9bcb923-91fd-4ec9-bcce-027d1bd5140f")
 		)
 		(pin "MOSI" input
 			(at 90.17 39.37 180)
+			(uuid "2d6d184c-472a-4093-b94d-bdc59be26d62")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "2d6d184c-472a-4093-b94d-bdc59be26d62")
 		)
 		(pin "~{CS}" input
 			(at 90.17 31.115 180)
+			(uuid "ee18113a-5051-4c2e-b5c6-79cdb7a0446f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "ee18113a-5051-4c2e-b5c6-79cdb7a0446f")
 		)
 		(instances
 			(project "FC"
@@ -5649,6 +5645,10 @@
 	(sheet
 		(at 240.03 24.765)
 		(size 22.86 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5679,53 +5679,53 @@
 		)
 		(pin "~{HOLD}" input
 			(at 240.03 28.575 180)
+			(uuid "db633b95-def2-4073-84a1-5d386bd10b83")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "db633b95-def2-4073-84a1-5d386bd10b83")
 		)
 		(pin "~{CS}" input
 			(at 240.03 31.75 180)
+			(uuid "e74122a9-41bc-4575-baf0-8a0ea3a8ce33")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "e74122a9-41bc-4575-baf0-8a0ea3a8ce33")
 		)
 		(pin "MOSI" input
 			(at 240.03 39.37 180)
+			(uuid "41a82df8-4a07-4b02-9e12-bf8aaa99e154")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "41a82df8-4a07-4b02-9e12-bf8aaa99e154")
 		)
 		(pin "SCK" input
 			(at 240.03 42.545 180)
+			(uuid "303196ca-b814-4734-9ba3-6dcf41f1b237")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "303196ca-b814-4734-9ba3-6dcf41f1b237")
 		)
 		(pin "MISO" output
 			(at 240.03 36.195 180)
+			(uuid "5fe6e45c-f569-44cb-96cd-06c0bd0c041f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "5fe6e45c-f569-44cb-96cd-06c0bd0c041f")
 		)
 		(instances
 			(project "FC"
@@ -5738,6 +5738,10 @@
 	(sheet
 		(at 127.635 71.755)
 		(size 22.86 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5768,23 +5772,23 @@
 		)
 		(pin "SDA" bidirectional
 			(at 127.635 86.36 180)
+			(uuid "1aad9b9a-0296-4906-a655-403e63351239")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "1aad9b9a-0296-4906-a655-403e63351239")
 		)
 		(pin "SCL" input
 			(at 127.635 89.535 180)
+			(uuid "c9af584a-472a-421f-99eb-dc32d83e88b0")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "c9af584a-472a-421f-99eb-dc32d83e88b0")
 		)
 		(instances
 			(project "FC"
@@ -5799,4 +5803,5 @@
 			(page "1")
 		)
 	)
+	(embedded_fonts no)
 )
