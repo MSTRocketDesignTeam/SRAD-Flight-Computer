@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20250114)
+	(version 20231120)
 	(generator "eeschema")
-	(generator_version "9.0")
+	(generator_version "8.0")
 	(uuid "38356e07-f1c2-436e-8054-22a19039cbae")
 	(paper "USLetter")
 	(title_block
@@ -78,53 +78,17 @@
 						(type background)
 					)
 				)
-				(pin bidirectional line
-					(at -14.605 13.97 0)
+				(pin output line
+					(at 13.335 13.97 180)
 					(length 2.54)
-					(name "CRST"
+					(name "INT"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "C2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -14.605 10.795 0)
-					(length 2.54)
-					(name "ADSEL"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "B2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -14.605 7.62 0)
-					(length 2.54)
-					(name "SCK"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "A3"
+					(number "A1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -150,17 +114,17 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at -1.27 20.32 270)
+				(pin bidirectional line
+					(at -14.605 7.62 0)
 					(length 2.54)
-					(name "VDD"
+					(name "SCK"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "C1"
+					(number "A3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -186,18 +150,17 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at 0 -0.635 90)
+				(pin input line
+					(at -14.605 10.795 0)
 					(length 2.54)
-					(hide yes)
-					(name "BYPASS"
+					(name "ADSEL"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "C3"
+					(number "B2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -223,17 +186,53 @@
 						)
 					)
 				)
-				(pin output line
-					(at 13.335 13.97 180)
+				(pin power_in line
+					(at -1.27 20.32 270)
 					(length 2.54)
-					(name "INT"
+					(name "VDD"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "A1"
+					(number "C1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -14.605 13.97 0)
+					(length 2.54)
+					(name "CRST"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "C2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -0.635 90)
+					(length 2.54) hide
+					(name "BYPASS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "C3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -242,12 +241,9 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 		(symbol "Device:C"
-			(pin_numbers
-				(hide yes)
-			)
+			(pin_numbers hide)
 			(pin_names
 				(offset 0.254)
 			)
@@ -320,7 +316,7 @@
 			(symbol "C_0_1"
 				(polyline
 					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -332,7 +328,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
+						(xy -2.032 0.762) (xy 2.032 0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -381,7 +377,6 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 		(symbol "Regulator_Linear:MIC5504-1.8YM5"
 			(exclude_from_sim no)
@@ -482,24 +477,6 @@
 						)
 					)
 				)
-				(pin input line
-					(at -10.16 -2.54 0)
-					(length 2.54)
-					(name "EN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin power_in line
 					(at 0 -7.62 90)
 					(length 2.54)
@@ -518,10 +495,27 @@
 						)
 					)
 				)
+				(pin input line
+					(at -10.16 -2.54 0)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 				(pin no_connect line
 					(at 7.62 -2.54 180)
-					(length 2.54)
-					(hide yes)
+					(length 2.54) hide
 					(name "NC"
 						(effects
 							(font
@@ -556,7 +550,6 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 		(symbol "power:+1V8"
 			(power)
@@ -634,7 +627,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -646,7 +639,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -660,8 +653,7 @@
 			(symbol "+1V8_1_1"
 				(pin power_in line
 					(at 0 0 90)
-					(length 0)
-					(hide yes)
+					(length 0) hide
 					(name "+1V8"
 						(effects
 							(font
@@ -678,7 +670,6 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 		(symbol "power:+3.3V"
 			(power)
@@ -756,7 +747,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -768,7 +759,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -782,8 +773,7 @@
 			(symbol "+3.3V_1_1"
 				(pin power_in line
 					(at 0 0 90)
-					(length 0)
-					(hide yes)
+					(length 0) hide
 					(name "+3.3V"
 						(effects
 							(font
@@ -800,7 +790,6 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
@@ -880,8 +869,7 @@
 			(symbol "GND_1_1"
 				(pin power_in line
 					(at 0 0 270)
-					(length 0)
-					(hide yes)
+					(length 0) hide
 					(name "GND"
 						(effects
 							(font
@@ -898,87 +886,7 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
-	)
-	(text "Magnometer"
-		(exclude_from_sim no)
-		(at 169.545 40.64 0)
-		(effects
-			(font
-				(size 3 3)
-			)
-			(justify left bottom)
-		)
-		(uuid "4bbb6526-098b-4392-90ec-b8e9e86bb68c")
-	)
-	(text "LDO Regulator"
-		(exclude_from_sim no)
-		(at 82.55 40.64 0)
-		(effects
-			(font
-				(size 3 3)
-			)
-			(justify left bottom)
-		)
-		(uuid "63487687-6ada-45ab-b950-d584a64b532f")
-	)
-	(text "LDO Datasheet Link"
-		(exclude_from_sim no)
-		(at 83.82 44.45 0)
-		(effects
-			(font
-				(size 2 2)
-			)
-			(justify left bottom)
-			(href "https://ww1.microchip.com/downloads/en/DeviceDoc/MIC5501-02-03-04-300mA-Single-Output-LDO-in-Small-Packages-DS20006006B.pdf")
-		)
-		(uuid "80357aef-189f-40db-bd3b-b3202e6a7b79")
-	)
-	(text "Max Current: 3.5mA"
-		(exclude_from_sim no)
-		(at 13.335 201.93 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "97a0f235-cdae-4214-998d-cbc917e4a565")
-	)
-	(text "No interrupt output"
-		(exclude_from_sim no)
-		(at 195.58 75.565 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "c03e4ca2-9cde-4b6d-8214-141ba7caaa24")
-	)
-	(text "Addr: 0x14 since pulled to GND"
-		(exclude_from_sim no)
-		(at 152.4 90.17 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e06b5305-1144-4627-9f0d-02383750187b")
-	)
-	(text "Magnometer Link"
-		(exclude_from_sim no)
-		(at 169.545 44.45 0)
-		(effects
-			(font
-				(size 2 2)
-			)
-			(justify left bottom)
-			(href "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmm350-ds001.pdf")
-		)
-		(uuid "f29221a1-0ca2-4189-b071-d39ed6ca93dd")
 	)
 	(junction
 		(at 180.34 52.07)
@@ -1254,9 +1162,89 @@
 		)
 		(uuid "fb593b93-f302-4a97-b85b-1fa39593fc2a")
 	)
+	(text "Magnometer"
+		(exclude_from_sim no)
+		(at 169.545 40.64 0)
+		(effects
+			(font
+				(size 3 3)
+			)
+			(justify left bottom)
+		)
+		(uuid "4bbb6526-098b-4392-90ec-b8e9e86bb68c")
+	)
+	(text "LDO Regulator"
+		(exclude_from_sim no)
+		(at 82.55 40.64 0)
+		(effects
+			(font
+				(size 3 3)
+			)
+			(justify left bottom)
+		)
+		(uuid "63487687-6ada-45ab-b950-d584a64b532f")
+	)
+	(text "LDO Datasheet Link"
+		(exclude_from_sim no)
+		(at 83.82 44.45 0)
+		(effects
+			(font
+				(size 2 2)
+			)
+			(justify left bottom)
+			(href "https://ww1.microchip.com/downloads/en/DeviceDoc/MIC5501-02-03-04-300mA-Single-Output-LDO-in-Small-Packages-DS20006006B.pdf")
+		)
+		(uuid "80357aef-189f-40db-bd3b-b3202e6a7b79")
+	)
+	(text "Max Current: 3.5mA"
+		(exclude_from_sim no)
+		(at 13.335 201.93 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "97a0f235-cdae-4214-998d-cbc917e4a565")
+	)
+	(text "No interrupt output"
+		(exclude_from_sim no)
+		(at 195.58 75.565 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c03e4ca2-9cde-4b6d-8214-141ba7caaa24")
+	)
+	(text "Addr: 0x14 since pulled to GND"
+		(exclude_from_sim no)
+		(at 152.4 90.17 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e06b5305-1144-4627-9f0d-02383750187b")
+	)
+	(text "Magnometer Link"
+		(exclude_from_sim no)
+		(at 169.545 44.45 0)
+		(effects
+			(font
+				(size 2 2)
+			)
+			(justify left bottom)
+			(href "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmm350-ds001.pdf")
+		)
+		(uuid "f29221a1-0ca2-4189-b071-d39ed6ca93dd")
+	)
 	(hierarchical_label "SDA"
 		(shape bidirectional)
 		(at 169.545 81.915 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1268,6 +1256,7 @@
 	(hierarchical_label "SCL"
 		(shape input)
 		(at 169.545 78.74 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
